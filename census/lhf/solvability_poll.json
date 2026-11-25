@@ -1,0 +1,622 @@
+[
+ {
+  "cls": "CLS-013",
+  "system": "3n+1 (par_3_1_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. This is the Collatz no-divergence problem P1 itself. Only small cycle-type results are realistic, such as m-cycle exclusion in the style of Simons and de Weger, extended by Hercher to m<=91.",
+  "why_not_done_yet": "It is the 3x+1 problem. The sweep only re-derived Steiner 1977 from Ellison's bound.",
+  "smallest_publishable_step": "Nothing new at this level. The m-cycle bound for 3x+1 is already far ahead of anything the sweep produced.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-014",
+  "system": "3n+3 (par_3_3_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. Every orbit enters 3Z, and F_3(3m)=3C(m), so the question is exactly P1 (Collatz).",
+  "why_not_done_yet": "It is provably equivalent to Collatz no-divergence.",
+  "smallest_publishable_step": "None beyond what Collatz itself gives. The {3,6} 1-cycle list is Steiner 1977 rescaled.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-017",
+  "system": "3n+9 (par_3_9_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. Every orbit enters 9Z, and F_9(9y)=9C(y), so the question is exactly P1.",
+  "why_not_done_yet": "It is provably equivalent to Collatz no-divergence.",
+  "smallest_publishable_step": "None. Any result is a rescaled 3x+1 result.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-031",
+  "system": "6n+2 (par_6_2_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. An orbit embedding into the Collatz map gives exact equivalence with P1, and the census record already had it.",
+  "why_not_done_yet": "It is provably equivalent to Collatz no-divergence.",
+  "smallest_publishable_step": "None. The only 1-cycle, {1,8,4,2}, is Steiner's theorem carried over.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-018",
+  "system": "3n-1 (par_3_m1_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None for the global question. F_{-1}(n)=-C(-n), so the question is exactly 'no divergent 3x+1 trajectory on the negative integers'. That is the negative half of Lagarias's 3x+1 conjecture on Z, and it is just as hard as P1: the same random-model drift and the same lack of any 2-adic trap (Lemma O).",
+  "why_not_done_yet": "It is the negative-integer 3x+1 problem, and every heuristic and obstruction applies unchanged. It is unnamed only in the sense that people rarely state it on its own.",
+  "smallest_publishable_step": "Classify the 3x+1 cycles on negative integers with at most m local minima, for m up to roughly 10 to 70. Use the Simons and de Weger machinery (a Baker/LMN bound plus LLL reduction). The known cycles are -1, -5 and -17. This would be a computational paper, but it is genuinely doable, and it is the most concrete weaker variant in this cluster. The one-minimum case should also be made unconditional by checking Ellison's or Rhin's constant against the source, or by using LMN.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-015",
+  "system": "3n+5 (par_3_5_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": false,
+  "best_route": "None for GLOBAL. The question is GLOBAL <=> P1 AND Q5, and on the 5Z sublattice it is literally Collatz, so it contains P1. The Q5 part alone (3x+1 on rationals with denominator 5) has the same drift, the same lack of a 2-adic trap, and no extra structure to exploit.",
+  "why_not_done_yet": "It contains the Collatz problem by scaling (Lemma S with g=5). No proof of GLOBAL can avoid proving Collatz divergence.",
+  "smallest_publishable_step": "Make the 1-cycle list (minima 1, 5, 19) unconditional, or check it against Belaga and Mignotte 1998, which may already contain it. Better: give a complete classification of 3x+5 cycles with at most two local minima using an LMN bound plus LLL. That is new for d=5 only if Lagarias 1990 and Belaga and Mignotte have not already done it, and someone has to check the literature first.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-016",
+  "system": "3n+7 (par_3_7_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": false,
+  "best_route": "None for GLOBAL. The question is GLOBAL <=> P1 AND Q7, and the 7Z sublattice is exactly Collatz.",
+  "why_not_done_yet": "It contains P1 by scaling. Q7 is unnamed, but it is a 3x+1 problem on rationals with the same near-zero drift.",
+  "smallest_publishable_step": "Classify the 3x+7 cycles with at most k local minima for small k (the known 1-cycles are 7*{1,2} and (5,11,20,10)), using effective linear-forms bounds and lattice reduction. This is weeks of work, but it is a routine-genre result.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-011",
+  "system": "3n+13 (par_3_13_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": false,
+  "best_route": "None for GLOBAL. The question is GLOBAL <=> P1 AND Q13, and it contains Collatz on 13Z.",
+  "why_not_done_yet": "It contains P1 by scaling.",
+  "smallest_publishable_step": "The same as for the other 3x+d entries: an unconditional classification of cycles with few local minima. The known 1-cycles have minima 1, 13 and 211.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-012",
+  "system": "3n+17 (par_3_17_s27)",
+  "solvability": 1,
+  "equivalent_to_named_problem": false,
+  "best_route": "None for GLOBAL. The question is GLOBAL <=> P1 AND Q17, and it contains Collatz on 17Z.",
+  "why_not_done_yet": "It contains P1 by scaling. Every cycle coprime to 17 that we know of, such as the 49-cycle of 27, has several local minima, so even the cycle question needs multi-minimum methods.",
+  "smallest_publishable_step": "Prove there is no cycle coprime to 17 with at most 2 (or k) local minima, other than the known ones, using an LMN bound plus LLL. This is the most interesting cycle variant in the cluster, because the 1-minimum case is empty here.",
+  "cluster": "collatz3"
+ },
+ {
+  "cls": "CLS-009",
+  "system": "par_10_2_s7: even n/2, odd 10n+2; FATE of 7",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None realistic. Since F(F(n)) = 5n+1 for odd n, this is exactly the fate of 7 under 5x+1 in all three outcomes. The random model drift for 5x+1 is +0.11 bits per step, and a sanity run shows the orbit at about 5000 bits after 50000 steps. So the expected answer is 'infinitely many distinct terms', and proving that needs one 5x+1 orbit that is provably unbounded. No such orbit is known, for any seed.",
+  "why_not_done_yet": "It is literally the famous open orbit of 7 under 5x+1. The sweep's L5 rules out divergence certificates built on eventually periodic parity, and the binary-automaton and congruence notes rule out finite-state separators. Every cheap route is therefore known to be closed.",
+  "smallest_publishable_step": "Show that the orbit of 7 never enters a 5x+1 cycle with at most k odd terms (or at most k local minima), for an explicit k such as 100. Bound the cycle elements with Laurent-Mignotte-Nesterenko applied to |K log 2 - k log 5|, then rule them out by computation. This says nothing about divergence.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-010",
+  "system": "par_10_2_s7: even n/2, odd 10n+2; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. This is equivalent, in both directions, to 5x+1 GLOBAL. The expected answer is NO (the drift is positive), so an answer needs a proof that some orbit is unbounded.",
+  "why_not_done_yet": "It is the 5x+1 problem.",
+  "smallest_publishable_step": "The same as for CLS-022: classify the 5x+1 cycles with at most 2 local minima (Steiner/Simons-de Weger style with LMN). The cycles {1,6,3,16,8,4,2}, {13,...} and {17,...} should be the only ones.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-019",
+  "system": "par_5_11_s27: even n/2, odd 5n+11; FATE of 27",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "The orbit is 11 times the 5x+1 orbit of the rational 27/11. It never enters 11Z, so it never merges with an integer 5x+1 orbit, and it is not literally a named problem. The expected fate is divergence (about 5600 bits after 50000 steps). Proving it would take the first ever proof that a specific orbit of a positive-drift Collatz map is unbounded. That is the same missing idea as for the orbit of 7, with no extra structure to exploit.",
+  "why_not_done_yet": "Proving that a single positive-drift orbit is unbounded is precisely the missing idea. L5 shows that any divergent orbit has aperiodic parity, so no finite certificate exists.",
+  "smallest_publishable_step": "Rule out that this orbit enters a cycle of the 5n+11 map with at most k odd terms (LMN bound plus computation), and list all 5n+11 cycles with one local minimum.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-020",
+  "system": "par_5_11_s27: even n/2, odd 5n+11; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. YES contains 5x+1 GLOBAL YES via 11Z, which is believed false. NO needs a provably divergent orbit of rational 5x+1 with denominator dividing 11. That is the same missing idea as for 5x+1.",
+  "why_not_done_yet": "It contains 5x+1 GLOBAL.",
+  "smallest_publishable_step": "List the cycles of 5n+11 with one (or at most two) local minima. This is the same LMN method the sweep used for CLS-048, 051, 052 and 053.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-021",
+  "system": "par_5_131_s27: even n/2, odd 5n+131; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is equivalent to rational 5x+1 with denominators dividing 131, and YES contains 5x+1 GLOBAL. The seed 27 happens to fall into a cycle, but that is irrelevant to GLOBAL.",
+  "why_not_done_yet": "It contains 5x+1 GLOBAL.",
+  "smallest_publishable_step": "Classify the 5n+131 cycles with one local minimum (LMN plus computation).",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-022",
+  "system": "par_5_1_s5: 5x+1; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. This is the 5x+1 problem itself, and the expected answer (NO) needs one unbounded orbit.",
+  "why_not_done_yet": "It is a named open problem.",
+  "smallest_publishable_step": "An explicit classification of the 5x+1 m-cycles for small m (2 or 3 local minima) via LMN. First check the literature, because something like this may already exist.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-023",
+  "system": "par_5_1_s7: 5x+1; FATE of 7",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is the canonical open 5x+1 orbit.",
+  "why_not_done_yet": "It is a named open problem, and L5 and the automaton notes close the cheap certificate routes.",
+  "smallest_publishable_step": "Show that the orbit of 7 enters no cycle with at most k odd terms, for explicit k.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-024",
+  "system": "par_5_1_s7: 5x+1; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "It is a duplicate of CLS-022.",
+  "why_not_done_yet": "It is the 5x+1 problem.",
+  "smallest_publishable_step": "The same as for CLS-022.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-025",
+  "system": "par_5_353_s27: even n/2, odd 5n+353; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is rational 5x+1 with denominators dividing 353, and YES contains 5x+1 GLOBAL.",
+  "why_not_done_yet": "It contains 5x+1 GLOBAL.",
+  "smallest_publishable_step": "Classify the 5n+353 cycles with one local minimum.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-026",
+  "system": "par_5_3_s27: even n/2, odd 5n+3; FATE of 27",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. The orbit is 3 times the 5x+1 orbit of 9, which lies on the orbit of 7, so 'grows forever' is exactly the 5x+1 orbit of 7 being unbounded (the expected outcome). Only the 'return' branch differs from CLS-023, and it is the improbable one.",
+  "why_not_done_yet": "Deciding the fate here requires deciding the fate of the 5x+1 orbit of 7.",
+  "smallest_publishable_step": "The same as for CLS-023.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-027",
+  "system": "par_5_3_s27: even n/2, odd 5n+3; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. The 3Z part is literally 5x+1 GLOBAL, so this question contains it.",
+  "why_not_done_yet": "It contains 5x+1 GLOBAL.",
+  "smallest_publishable_step": "Classify the 5n+3 cycles with one local minimum on the numbers coprime to 3.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-028",
+  "system": "par_5_5_s27: even n/2, odd 5n+5; FATE of 27",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. The orbit runs 27, 140, 70, then 5 times the 5x+1 orbit of 7. 'Returns to 27' is impossible, and of the other two outcomes, 'grows forever' is exactly the 5x+1 orbit of 7 being unbounded. Settling the fate here settles the fate of the 5x+1 orbit of 7.",
+  "why_not_done_yet": "It is the orbit of 7 under 5x+1.",
+  "smallest_publishable_step": "The same as for CLS-023.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-029",
+  "system": "par_5_5_s27: even n/2, odd 5n+5; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is equivalent to 5x+1 GLOBAL in both directions.",
+  "why_not_done_yet": "It is the 5x+1 problem.",
+  "smallest_publishable_step": "The same as for CLS-022.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-030",
+  "system": "par_5_7_s27: even n/2, odd 5n+7; GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is rational 5x+1 with denominators dividing 7, and YES contains 5x+1 GLOBAL via 7Z.",
+  "why_not_done_yet": "It contains 5x+1 GLOBAL.",
+  "smallest_publishable_step": "Classify the 5n+7 cycles with one local minimum. Overall verdict for this cluster: none of its entries is a good candidate. Every 5n+d entry has positive drift (+0.11 bits per step), and its open side is 'prove an orbit diverges', which no current technique can do for any Collatz-type map. Only the restricted-cycle variants (cycles with at most k local minima, via LMN) look provable now, and they are modest results.",
+  "cluster": "five"
+ },
+ {
+  "cls": "CLS-037",
+  "system": "9n+1 (even n -> n/2, odd n -> 9n+1), GLOBAL: is every orbit eventually periodic?",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "The expected answer is 'no'. There are two ways to get it. (i) Show that 9n+1 has no cycles at all, which settles it immediately because a non-eventually-periodic orbit is unbounded. (ii) Show that one specific orbit diverges. Route (i) is the more structured one: the cycle equation n(2^K - 9^k) = sum 9^{k-1-i} 2^{A_i}, Baker/Rhin bounds on |K log2 - 2k log3|, then the Simons-de Weger m-cycle machinery. The missing lemma is a bound on cycles that does not depend on the number m of local minima. That is the same lemma whose absence keeps 'Collatz has no nontrivial cycles' open.",
+  "why_not_done_yet": "'No cycles for all k' is the 9x+1 analogue of the Collatz nontrivial-cycle problem. Baker-type bounds control cycles with a bounded number of local minima, but not cycles with arbitrarily many. Route (ii) is the qx+1 divergence problem, and no qx+1 orbit with q>=5 has ever been proved divergent. The sweep's exact enumeration (k<=1000; k<=3000 unrefereed) cannot reach all k. Positive drift (log(9/4) per odd step) makes divergence heuristically certain, but nothing turns that heuristic into a proof for even one orbit.",
+  "smallest_publishable_step": "9n+1 has no cycle with at most m local minima, for every k. The m=1 (circuit) case is essentially immediate. A circuit start is n = (9^k - 2^k)/(7(2^K - 9^k)), and n must be congruent mod 2^k to the 2-adic fixed point -1/7, so n >= c*2^k. A Rhin/LMN lower bound for |K log 2 - k log 9| gives n <= poly(k), so circuits are impossible beyond a small k, and a check showed none for k < 400. Extending to m <= ~50-70 with Simons-de Weger is standard. Check the qx+1 cycle literature (Steiner-type results) for novelty first.",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-036",
+  "system": "9n+1, FATE of 5 (equivalently the orbit of 1, since 1->10->5)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Prove the orbit of 1 is not periodic and hence unbounded. One way: show it lies on no cycle, which needs the all-m cycle bound described under CLS-037. Another: prove this specific orbit diverges by some non-congruence (archimedean or automatic) certificate. Theorem A rules out every congruence argument at every modulus.",
+  "why_not_done_yet": "Proving that a single explicit qx+1 orbit diverges is the classic open difficulty, the same kind as the 5x+1 orbit of 7. Ruling out a cycle through 1 gives nothing special: with n_min=1, the cycle constraint (10)^k >= 2^K > 9^k is always satisfiable. So it is no easier than ruling out all cycles.",
+  "smallest_publishable_step": "The orbit of 1 is not contained in any cycle with at most m local minima, for every k. This follows from the m-cycle classification proposed for CLS-037, starting with circuits (m=1).",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-032",
+  "system": "7n+1 (even n -> n/2, odd n -> 7n+1), GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None for the full question. A 'no' answer means exhibiting a provably divergent 7x+1 orbit. That is the q=7 case of Crandall's conjecture that every qx+1 map with q>=5 has a divergent trajectory. Theorem A shows congruence traps cannot do it. Unlike 9n+1, 'no cycles' is false here ({1,8,4,2} exists), so there is no cycle-side shortcut.",
+  "why_not_done_yet": "No orbit of any qx+1 map with q>=5 has ever been proved unbounded, despite positive drift. The sweep obtained everything cheap: the congruence obstruction at every modulus and the cycle list up to k<=1000.",
+  "smallest_publishable_step": "Every cycle other than {1,8,4,2} has more than m local minima, for every k (all-k m-cycle classification via Rhin/LMN plus Simons-de Weger). A quick check of the circuit equation n = (7^k-2^k)/(5(2^K-7^k)) for k<400 found only k=1, n=1. The 2-adic argument used for 9n+1 (here the fixed point is -1/5) should prove this for all k.",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-034",
+  "system": "7n+1, GLOBAL (duplicate entry, seed tag par_7_1_s3)",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "Literally the same question as CLS-032. Same assessment: the q=7 case of Crandall's divergence conjecture.",
+  "why_not_done_yet": "Same as CLS-032. The entry is a bookkeeping duplicate and should be merged.",
+  "smallest_publishable_step": "Merge with CLS-032. The m-cycle classification for 7x+1 applies.",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-035",
+  "system": "7n+7 GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "Exactly equivalent to CLS-032 via the conjugacy T(7m) = 7U(m) on the forward-invariant set 7Z. Nothing is independently attackable.",
+  "why_not_done_yet": "It is the 7x+1 divergence question in disguise.",
+  "smallest_publishable_step": "Inherits the 7x+1 m-cycle classification: {7,56,28,14} is the only cycle with at most m local minima.",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-033",
+  "system": "7n+1, FATE of 3 (non-return already known via the mod-7 invariant {1,2,4})",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "To show the orbit reaches 1, you would need luck: the orbit would have to actually hit 1 within computable range, and simulation over 2*10^5 steps says it grows. To show it is unbounded, you would need a divergence proof for a single explicit qx+1 orbit. Theorem A blocks congruence arguments at every modulus, so the only possible certificates are non-congruence ones.",
+  "why_not_done_yet": "Proving one specific orbit of a positive-drift qx+1 map unbounded is exactly the unsolved 'prove any 5x+1 orbit diverges' problem, transplanted to q=7. No known technique gives even a single example.",
+  "smallest_publishable_step": "The orbit of 3 enters no cycle with at most m local minima other than {1,8,4,2} (from the all-k m-cycle classification). A rigorous lower bound on the orbit's growth rate over a long computed range is evidence, not publishable mathematics.",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-007",
+  "system": "m3_e: 3|n -> n/3; n=1 mod 3 -> 7n+2; n=2 mod 3 -> 7n+1 (T^2(n) = ceil(7n/3) off 3Z), GLOBAL",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same structure as qx+1 with base 3 and multiplier 7. The drift is positive (about 7/3^{1.5} > 1), so the expected answer is 'no', which requires a provably divergent orbit. No reduction to a solved map is known, and Theorem A kills congruence traps.",
+  "why_not_done_yet": "It is a base-3 analogue of the qx+1 divergence problem with the same obstruction: no method proves an explicit orbit unbounded. Two cycles exist ({1,9,3} and a 14-cycle), so 'no cycles' is unavailable as a shortcut.",
+  "smallest_publishable_step": "Classify all cycles with at most m local minima for every k. This uses Baker/LMN lower bounds for |K log 3 - k log 7| plus the 3-adic fixed-point congruence of the circuit start, which should yield exactly {1,9,3} and the 14-cycle for small m. It is the same template as for 7n+1 and 9n+1, with a different linear form.",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-006",
+  "system": "m3_e, FATE of 7",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Prove the orbit of 7 is unbounded (a single-orbit divergence proof) or find it entering a cycle computationally. Theorem A shows no congruence separator from {1,9,3} exists at any modulus.",
+  "why_not_done_yet": "It is a single explicit orbit of a positive-drift map, the same difficulty as the 5x+1 orbit of 7.",
+  "smallest_publishable_step": "The orbit of 7 enters no cycle with at most m local minima other than {1,9,3} and the 14-cycle (from the m-cycle classification for m3_e).",
+  "cluster": "seven-nine"
+ },
+ {
+  "cls": "CLS-038",
+  "system": "perm_1932_s44 (Collatz 1932 permutation T: 3q->2q, 3q+1->4q+1, 3q+2->4q+3), GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None for the question itself. Proving 'no' means exhibiting one provably infinite orbit of a bijection with positive drift ((1/3)log(32/27)). The sweep proved that congruence traps and affine-progression certificates cannot exist at any modulus (CLS-047 Theorem A/B). So such a proof would need a non-periodic invariant, such as an automatic set in base 2 or 3 or an archimedean argument, and no candidate is known. Proving 'yes' settles the orbit of 8.",
+  "why_not_done_yet": "This is Collatz's own 1932 global question (the same as CLS-040), and it contains the orbit-of-8 problem. Every cheap certificate class has now been ruled out by a proof, not just by search, so this confirms the problem is hard rather than suggesting a route.",
+  "smallest_publishable_step": "Classify the cycles of T with at most m local minima for m well beyond Simons's m<=2 (arXiv:2205.10582). The 1-cycle case is already written in census/round2/literature/perm1932_1cycle.md (Rhin bound plus a finite scan). A Simons-de Weger/Hercher-style extension to m around 10-20 is a standard Baker/LLL computation on 2^a vs 3^b.",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-041",
+  "system": "perm_1932inv_s8 (U = T^{-1}), FATE of 8",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. U = T^{-1} exactly, and the orbit of 8 under U returns iff it returns under T. This is literally the 1932 orbit-of-8 problem.",
+  "why_not_done_yet": "It is the 1932 orbit-of-8 problem verbatim. The sweep only re-confirmed an equivalence that was already known.",
+  "smallest_publishable_step": "None specific to this entry. Use the m-local-minima cycle classification for T (see CLS-038).",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-042",
+  "system": "perm_1932inv_s8 (U = T^{-1}), GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. GLOBAL(U) = GLOBAL(T) = CLS-040, because the periodic points of a bijection and of its inverse coincide.",
+  "why_not_done_yet": "It is exactly Collatz's 1932 global question.",
+  "smallest_publishable_step": "Same as CLS-038 (classify cycles of T with at most m local minima).",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-043",
+  "system": "perm_b_s7 (B(n) = T(n+1)-1), FATE of 7",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is conjugate by n->n+1 to T on Z>=2, so B^k(7) = T^k(8)-1. This is the orbit-of-8 problem verbatim.",
+  "why_not_done_yet": "It is literally the 1932 orbit-of-8 problem.",
+  "smallest_publishable_step": "None beyond the T cycle classification (CLS-038).",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-044",
+  "system": "perm_b_s7 (B(n) = T(n+1)-1), GLOBAL",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. It is exactly GLOBAL(T) via the conjugacy and T(1)=1.",
+  "why_not_done_yet": "It is literally Collatz's 1932 global question.",
+  "smallest_publishable_step": "None beyond the T cycle classification (CLS-038).",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-054",
+  "system": "flipT_s8 (P(n) = T(n+3)-3), FATE of 8",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "None. P is conjugate to T on Z>=4, and 8 is P-periodic iff 11 = T(8) is T-periodic iff 8 is T-periodic.",
+  "why_not_done_yet": "It is literally the 1932 orbit-of-8 problem.",
+  "smallest_publishable_step": "None beyond the T cycle classification (CLS-038).",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-047",
+  "system": "perm_swap_s8 (S: 3q->2q, 3q+1->4q+3, 3q+2->4q+1; S(5y)=5T(y)); CLS-045 (C = S^{-1}) is the same question",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "The expected answer is 'no', so the task is to prove one orbit infinite. 5Z is a copy of T, so an infinite orbit inside 5Z would solve CLS-040. The only escape is an infinite orbit among the non-multiples of 5, which are T-orbits of rationals with denominator 5. The sweep proved there is no congruence separator at any modulus (the only closed periodic sets are 0, Z>0, 5Z, and its complement) and no affine-progression certificate. The missing ingredient is a non-congruence invariant, such as a non-periodic automatic set or a 2-adic/3-adic argument special to the denominator-5 sector. Nothing suggests that sector is easier.",
+  "why_not_done_yet": "Proving one explicit orbit of a mixing, positive-drift affine permutation is infinite is the same kind of problem as the 1932 problem, and no method is known for it. A 'yes' answer would imply GLOBAL(T)=yes. The sweep found no implication from GLOBAL(T)=no to GLOBAL(S)=no.",
+  "smallest_publishable_step": "Classify the 1-cycles of S (one maximal ascent block on non-multiples of 3, one 2q/3q descent block). This is the same Rhin/LMN plus finite-scan argument as perm1932_1cycle.md, with the inhomogeneous terms +-5 instead of +-1. It is routine and a few days of work. Extending it to m <= 2 local minima is a Simons-style follow-up.",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-045",
+  "system": "perm_c_s8 (C = S^{-1}: 2q->3q, 4q+1->3q+2, 4q+3->3q+1), GLOBAL",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "It is identical to CLS-047, because C and S have the same cycles. See CLS-047.",
+  "why_not_done_yet": "It is the same problem as CLS-047. The catalog should merge the two entries.",
+  "smallest_publishable_step": "Same as CLS-047 (1-cycle classification for S, equivalently for C).",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-046",
+  "system": "perm_d_s3 (D: 2q->5q; 8q+r->5q+(r+1)/2 for odd r), GLOBAL",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "The expected answer is 'no' (drift (1/2)log(25/16) > 0), and the drift is not near zero. Still, proving a specific orbit infinite needs a non-congruence invariant. The sweep proved that every residue graph G_M(D) and G_M(D^{-1}) is strongly connected, even above any threshold, and that no affine self-similar class exists. That closes every periodic certificate and leaves no known route. This is the 1932-problem genre with 2 and 5 in place of 2 and 3.",
+  "why_not_done_yet": "No technique is known that proves an infinite orbit for a permutation of this type when every congruence trap is impossible. The sweep's own write-up classifies it as 'of the same type as Collatz's 1932 problem'.",
+  "smallest_publishable_step": "This is the best weak variant in the cluster, and nothing has been done on it. Classify the cycles of D with one local minimum: a block of E steps (x5/2, up) followed by a block of odd steps (x5/8, down). The cycle equation has denominator 2^{k+3l} - 5^{k+l}, so the needed input is a lower bound for |a log 2 - b log 5|, from LMN two-logarithm bounds or an effective irrationality measure of log5/log2, plus a finite scan. Expected answer: only {1}, {2,5,3}, {6,15,9}, {26,65,41} or a subset of these. The sweep already proved by exhaustive search that cycles of length <= 11 are exactly these four. Extending to m <= 2 local minima and to all lengths <= ~30 via Baker+LLL is also standard.",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-055",
+  "system": "swT9_s8 (Q = sigma\u2218T, sigma swaps 9<->10 mod 18), FATE of 8",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "The question is whether 8 is periodic under a bijection with heuristic drift about 0.177 bits/step (the orbit of 8 has 17478 bits after 1e5 steps). The only realistic proof of 'infinite' would be a congruence trap, and the sweep proved none exists at any modulus K with 3 not dividing K, and computationally none for K <= 1200 or K = 2^a3^b <= 3e5. A trap with 3|K at a huge modulus is not ruled out, but nothing suggests one exists. Beyond that you would need a DFA or nonlinear invariant: base 2 up to 6 states, base 3 up to 4 states, and base 6 up to 3 states have been excluded.",
+  "why_not_done_yet": "It is not provably equivalent to the 1932 problem, but it is a single-seed 'prove this orbit is infinite' question for a positive-drift Collatz-type permutation. That is exactly the kind of question for which no method exists. The perturbation sigma breaks the conjugacy to T without adding any structure a proof could use.",
+  "smallest_publishable_step": "Prove that G_K is strongly connected for every K, including 3|K. This would close the congruence-trap route completely. The missing piece is a 3-adic lifting lemma for moduli 2^a 3^b m: Q is affine mod 27, and the sweep's Step 1 fails only because sigma acts on whole classes mod 9. A fibre-lifting argument like CLS-047 Step 1, using the T pieces on n = 0,1,2 mod 27 to move 3-adic digits, looks feasible in days to weeks. This is an obstruction result only and does not settle the fate of 8.",
+  "cluster": "perms"
+ },
+ {
+  "cls": "CLS-048",
+  "system": "split5_1_s27 (even n/2; 1 mod 4 -> 5n+1; 3 mod 4 -> n+1). Same question as CLS-064",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route. Measured drift is -0.19 per step, so this is a no-divergence and no-cycles problem of 3x+1 type. The weaker statement is very tractable: transplant the split5_3 machinery (census/round2/rewriting/split5_3_s27.md) to this map. All expanding runs are governed by the single 2-adic fixed point -1/3, since 3A(x)+1 = (5/2)(3x+1). So a run of length k forces 2^k | 3x+1 and gives the recursion K <= log(m) * ((log_2(5/2))^r - 1)/log(5/2). Combine that with a range certificate (the residue-tree checker adapts directly, say to 2^48), Matveev applied to 5^K 2^-L - 1, and two continued-fraction reductions of log_2 5. Together they give 'no new cycle with <= 100 runs'. No new idea is needed beyond adapting the scripts.",
+  "why_not_done_yet": "The sweep only did the one-run case (the cycle {1,3}), and it quoted the LMN constant from memory. The multi-run split5_3 argument came from a separate, later effort and was never ported to sister maps.",
+  "smallest_publishable_step": "Every positive cycle other than {1,6,3,4,2} and the 35-cycle through 13 has more than 100 expanding runs and more than 10^6 steps, together with verified convergence below 2^48 and H(X)=O(X^c), c<1, for starts that never drop below themselves. This looks like weeks of work (5 for the variant).",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-064",
+  "system": "split5_1_s27 (round-2 revisit of CLS-048)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same question as CLS-048. The E-set density 1.08e-2 at 2^24 cannot close, because of the witness at the 2-adic point -1/3. Port the split5_3 bounded-run cycle theorem.",
+  "why_not_done_yet": "Same as CLS-048.",
+  "smallest_publishable_step": "Same as CLS-048: no new cycle with at most 100 runs.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-053",
+  "system": "desc_split7_1 (even n/2; 1 mod 4 -> 7n+1; 3 mod 4 -> n+1)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route (drift -0.28 per step). The weaker variant has the same single-fixed-point structure as split5_1/split5_3. A(x) = (7x+1)/4 has 2-adic fixed point -1/3, so a run of length k forces 4^k | 3x+1, which gives a strong recursion with factor log_4 7 = 1.40 per run. The variant follows from range certificate + Matveev on 7^K 2^-L - 1 + continued fractions of log_2 7. One-run is already proved: no cycle besides 1.",
+  "why_not_done_yet": "Only the one-run case was attempted, and the LMN constant was quoted from memory rather than checked.",
+  "smallest_publishable_step": "No cycle other than (1 8 4 2) with at most ~50-100 expanding runs, plus convergence below 2^48. Rated 5 as a variant. A natural companion piece is a single paper covering the whole SPLIT(a,1,d) family (Theorem 1 of descent/lemmas.md already classifies its certificates).",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-052",
+  "system": "desc_s32_plus9 (even n/2; odd n -> 3n+1 on 13 classes mod 32, n+1 on 19,27,31 mod 32)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL is a 3x+1 variant whose odd branch is 3n+1 on most classes. It is at least as resistant as Collatz in spirit, though it is not formally equivalent. The weaker variant: classify cycles with at most k runs. The run dynamics here is a subshift of finite type on classes mod 32, not a single affine branch, so the n_0 >= c^k lower bound has to be checked per admissible run word. That is more bookkeeping than for split maps.",
+  "why_not_done_yet": "One-run was done. Multi-run needs the subshift structure to give an exponential lower bound on the cycle minimum for every run word, which was not attempted.",
+  "smallest_publishable_step": "No cycle with <= 2 or 3 expanding runs (besides the fixed point 1). Rated 4 as a variant.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-051",
+  "system": "desc_m3_4n5 (3|n -> n/3; 1 mod 3 -> 4n+5; 2 mod 3 -> 2n+2)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route (drift -0.24). Variant: extend the one-run classification (only {16,23}, i.e. the T-cycle (16 69 23 48)) to k runs, using Matveev on 2^a 3^-b-type forms plus a range certificate. There are two expanding branches with different multipliers, so the Baker form has three bases (2, 3 and the run structure). That is still standard, but the constants are larger.",
+  "why_not_done_yet": "Only one run was done, and the LMN constant is unchecked.",
+  "smallest_publishable_step": "Re-derive the one-run result with a verified Laurent/Matveev constant, then extend it to two runs. Rated 4 as a variant.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-049",
+  "system": "split5_3_s27 (even n/2; 1 mod 4 -> 5n+3; 3 mod 4 -> n+3). Same question as CLS-065",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no realistic route (drift -0.19). The existing notes reduce GLOBAL to an exact prefix criterion: every integer y>=4 has some j with h_j > p j, p = log(5/4)/log 5. Proving that for every integer means controlling one orbit's binary digits forever, which is the Collatz obstruction. The best strictly weaker target is a Tao-style theorem that almost all orbits attain almost bounded values (in logarithmic density). Its missing lemma is Fourier decay of the 5-adic offset distribution of the run map (multipliers 5/4 and 1/2), the analog of Tao's 3-adic Syracuse-variable estimate.",
+  "why_not_done_yet": "All work used descent trees, potentials and Baker bounds. These provably cannot reach GLOBAL: Lemma B gives a growing 2-adic point at -3, and re-entry into its neighbourhood is free. The probabilistic and Fourier route has not been tried.",
+  "smallest_publishable_step": "Already nearly publishable as a package: convergence below 2^66, no new cycle with <= 6e9 runs (Matveev constants to be checked), the H(X)=O(X^0.585) bound, and the exact prefix criterion. A new step would be the Tao-type almost-all result, rated 3.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-065",
+  "system": "split5_3_s27 (round-2 revisit of CLS-049)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-049.",
+  "why_not_done_yet": "Same as CLS-049.",
+  "smallest_publishable_step": "Same as CLS-049.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-002",
+  "system": "div23_5n1_s7 (2|n -> n/2; else 3|n -> n/3; else 5n+1). Same question as CLS-059",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route (drift -0.19). The one-run method fails because the expanding blocks (5n+1)/2 and (5n+1)/4 have different 2-adic fixed points, so a cycle minimum need not be exponentially large in the run length. The weaker variant is a bound on the number of 5n+1 steps. A cycle with k multiplications by 5 satisfies 5^k ~ 2^a 3^b. Baker on the three-term form plus LLL reduction (Simons-de Weger style), combined with a convergence range, bounds k for cycles with few local minima.",
+  "why_not_done_yet": "The sweep only searched for conjugacies and found none. Simons-de Weger reduction was named but not tried.",
+  "smallest_publishable_step": "No cycle other than {1,6,3} with at most ~50 applications of 5n+1, via LLL reduction plus a verified range. Rated 4 as a variant.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-059",
+  "system": "div23_5n1_s7 (round-2 revisit of CLS-002)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-002. The E-set density is 3.7e-3 at 6^9 and provably never closes, because of the witness at c=-1.",
+  "why_not_done_yet": "Same as CLS-002.",
+  "smallest_publishable_step": "Same as CLS-002.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-001",
+  "system": "div235_7n1_s11 (2|n -> n/2; else 3|n -> n/3; else 5|n -> n/5; else 7n+1). Same question as CLS-058",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route (drift -0.19). Variant: cycles with few 7n+1 steps satisfy 7^k ~ 2^a 3^b 5^c. An S-unit / Baker bound with LLL reduction plus a range check bounds them.",
+  "why_not_done_yet": "No-progress note (reconstructed). Several expanding blocks with distinct fixed points defeat the one-run method.",
+  "smallest_publishable_step": "Classify cycles with at most k applications of 7n+1, for small k. Rated 3-4 because a 4-log form makes the constants worse.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-058",
+  "system": "div235_7n1_s11 (round-2 revisit of CLS-001)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-001.",
+  "why_not_done_yet": "Same as CLS-001.",
+  "smallest_publishable_step": "Same as CLS-001.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-003",
+  "system": "div23_7n1_s5 (2|n -> n/2; else 3|n -> n/3; else 7n+1). Same question as CLS-060",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route. The drift is only -0.028 per step, near critical, so orbits make long excursions and any descent-type argument is very weak. Variant: bounded-number-of-7n+1-steps cycle classification via Baker+LLL.",
+  "why_not_done_yet": "No-progress note (reconstructed). Near-zero drift makes even density statements weak.",
+  "smallest_publishable_step": "Cycles with at most k multiplications by 7, for small k (rated 3 as a variant).",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-060",
+  "system": "div23_7n1_s5 (round-2 revisit of CLS-003)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-003.",
+  "why_not_done_yet": "Same as CLS-003.",
+  "smallest_publishable_step": "Same as CLS-003.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-004",
+  "system": "m3_b_s8 (3k -> k; 3k+1 -> 4k+1; 3k+2 -> 4k+3; equivalently T(n)=round(4n/3) off multiples of 3). Same question as CLS-061",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route (drift -0.17). The structure is Mahler-like: T(n) = nearest integer to 4n/3 when 3 does not divide n. The 3-adic fixed point 1 of 3k+1 -> 4k+1 is a positive integer, so up-runs near 1 are unbounded and no cycle-minimum lower bound exists. Variant: classify cycles with bounded 4/3-step count via Baker on 4^K vs 3^L plus LLL.",
+  "why_not_done_yet": "The obstruction is intrinsic: the 1-neighbourhood has free re-entry, and the E-set density is still 5% at 3^14.",
+  "smallest_publishable_step": "Cycle classification for small numbers of runs that avoid the 1-neighbourhood (rated 3 as a variant).",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-061",
+  "system": "m3_b_s8 (round-2 revisit of CLS-004)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-004.",
+  "why_not_done_yet": "Same as CLS-004. In addition, the z3 search found no matrix interpretation of dimension <= 2.",
+  "smallest_publishable_step": "Same as CLS-004.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-005",
+  "system": "m3_d_s7 (3|n -> n/3; 1 mod 3 -> 4n+2; 2 mod 3 -> 4n+1). Same question as CLS-062",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "GLOBAL has no route (drift -0.105). Rising words pin the minimum to 2^k classes mod 3^(k+1), so the one-run method fails. Variant: LLL-reduced Baker bound for cycles with few runs, plus a range certificate.",
+  "why_not_done_yet": "The one-run method does not apply, and the Simons-de Weger reduction was not attempted.",
+  "smallest_publishable_step": "Cycles with at most 2 runs classified via LLL (rated 3 as a variant).",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-062",
+  "system": "m3_d_s7 (round-2 revisit of CLS-005)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-005.",
+  "why_not_done_yet": "Same as CLS-005.",
+  "smallest_publishable_step": "Same as CLS-005.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-008",
+  "system": "m3_g_s7 (3|n -> n/3; 1 mod 3 -> 5n+1; 2 mod 3 -> 5n+2). Same question as CLS-063",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "This is the hardest of the cluster in practice. The drift is -0.015 per step (log 5 - 1.5 log 3), essentially critical. E-set density decays only from 0.22 to 0.16 between 3^6 and 3^12, and there are two nontrivial cycles. No route for GLOBAL. Even almost-all statements would be very weak.",
+  "why_not_done_yet": "Near-critical drift plus two expanding branches with distinct 3-adic fixed points (-1/2 and -1).",
+  "smallest_publishable_step": "A verified convergence range and a lower bound on the length of any new cycle (from continued fractions of log_3 5). Rated 3 as a variant, of low interest.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-063",
+  "system": "m3_g_s7 (round-2 revisit of CLS-008)",
+  "solvability": 2,
+  "equivalent_to_named_problem": false,
+  "best_route": "Same as CLS-008.",
+  "why_not_done_yet": "Same as CLS-008.",
+  "smallest_publishable_step": "Same as CLS-008.",
+  "cluster": "mixed"
+ },
+ {
+  "cls": "CLS-056",
+  "system": "yah_avoid57 (n=5,7 mod 8 -> 1; else Collatz). Question: does every orbit enter (1,4,2)? This is Yolcu-Aaronson-Heule Conjecture 4.14, a $500 prize problem.",
+  "solvability": 2,
+  "equivalent_to_named_problem": true,
+  "best_route": "YAH Prop. 4.15 already reduces the problem to the partial map G: A(n)=(3n+1)/4 on 1 mod 32, B(n)=(9n+7)/8 on 57 mod 64, halt otherwise. B-runs have the closed form B^r(n)+7 = (9/8)^r (n+7) and need 8^r | n+7. A contracts. The heuristic is strongly favourable: a step survives with probability 3/64, and the surviving 2-adic set is a thin Cantor set (growth rate equal to the plastic number, exponent 0.406). This is unlike plain Collatz, whose drift is near zero. The missing lemma is that no positive integer other than 1 has an infinite G-orbit. That says an integer orbit cannot stay inside a thin 2-adic Cantor set, which has the same shape as Erdos's ternary-digits-of-2^n problem. Any route has to control the 2-adic digits of n+7 after multiplication by 9^r 3^a. Counting stalls because improving the X^0.406 bound needs equidistribution of E modulo 3^k, the standard barrier. My quick check: the recursion #E(X) <= sum_w #E(X*mult_w), without the mod-3^k constraint, gives no gain, because (3/4)^s+(9/8)^s > 1 for every s. I see no route that avoids this.",
+  "why_not_done_yet": "The local methods (residue graph plus potential, SAT and matrix interpretations, valuation runs) provably fail. The 2-adic point -7 is a B-fixed point with slope 9/8, and that cycle persists mod 2^j for every j. Each B-run is finite by valuation, but ruling out an infinite interleaving of expanding B-runs with contracting A-steps is exactly the 3x+1 mechanism. YAH's automated search failed, and it is a stated prize problem. Cycles are not the bottleneck: a G-cycle needs R < 2.44a (R B-steps, a A-steps) and is a Collatz cycle, so known Collatz cycle-length bounds already exclude short ones. The divergent orbit or very long cycle is the real difficulty, and the earlier agents correctly found nothing new there. I rate it 2 rather than 1 because it does not contain Collatz, its heuristic is strongly subcritical, and it is the weakest prize problem in its family.",
+  "smallest_publishable_step": "A sharp threshold result, checked numerically here. (i) Every C-trajectory that does not reach 1 meets 5 mod 8, 7 mod 8 or 505 mod 512. This tightens the sweep's Prop. 3(a), which used 57 mod 64 (measure 1/64), to a single class of measure 1/512. Proof: a B-run of length >= 3 starting at n needs 8^3 | n+7, i.e. n = 505 mod 512 (verified exhaustively mod 512*64). If such runs are excluded, every G-block B^j A with j <= 2 maps x to at most (243x+421)/256 < x for x >= 33. So block starts descend into [1,32], where the only G-point is the fixed point 1. (ii) The next rung, the class -7 mod 8^4, is blocked for every local method: the word B^3 A has the 2-adic rational fixed point -5069/139 (verified A(B^3(x)) = x), with slope (9/8)^3(3/4) = 1.068 > 1. So the ladder {5,7} union {-7 mod 8^r} is provable exactly for r <= 3. This is modest, a short note or a remark, but the proof is complete and new relative to the census notes.",
+  "cluster": "traps"
+ },
+ {
+  "cls": "CLS-066",
+  "system": "up_ct3 (n=7 mod 8 -> n+8 trap; else accelerated Collatz T). Question: is the divergent set exactly the trap basin, with (1 2) the only untrapped cycle? The sweep proved this is exactly YAH Conjecture 4.13, a $500 prize problem, and it implies CLS-056.",
+  "solvability": 1,
+  "equivalent_to_named_problem": true,
+  "best_route": "An untrapped orbit has a 111-free T-parity word. Contraction holds only when the window ones-density is below log2/log3 = 0.6309, and 111-free words reach 2/3. So a counterexample, divergent or a long cycle, must have long-run ones-density in the narrow band [0.631, 0.667]. Such a word is almost entirely 110-blocks: at least about 2.44 consecutive 110-blocks on average between interruptions. A 110-block acts as x -> (9x+5)/8 on 3 mod 8 (verified), so x+5 scales by 9/8 and a run of k blocks needs 8^k | x+5. The open core is therefore the CLS-056 structure centred at -5 instead of -7, with a richer set of interruptions: finite valuation runs interleaved with short contracting blocks. The missing lemma is the same digit-control statement as CLS-056, with strictly less constraint. No new idea is visible.",
+  "why_not_done_yet": "It is literally a named prize conjecture, and it is stronger than CLS-056. The census proved that the window/descent method fails at every window length: the class with word (110)^j expands by (9/8)^j. It also proved that congruence arguments fail, because the 2-adic integer -5 has the untrapped T-cycle -5 -> -7 -> -10. On top of that there are infinitely many expanding 2-adic cycles (110)^k 10 for k >= 3 (density (2k+1)/(3k+2) > 0.6309), so no finite set of extra trap classes recovers a descent proof. Its odd-step density sits above the critical value, which is the regime the census ladder (up_ct58 proved, up_ct3 open) identified as the Collatz-hard side. I rate it 1 because it is the strongest of the YAH single-class prize problems and needs at least what CLS-056 needs.",
+  "smallest_publishable_step": "Weaker variants are either folklore or already proved. The X^0.879 density bound is in the sweep. The 'trap set of arbitrarily small measure' ladder follows from the plain-Collatz version. Cycles with few blocks are covered by existing Collatz cycle bounds (Eliahou, Simons-de Weger, Hercher) plus Barina's 2^68. The only clean new statement I see is a structural lemma: any untrapped divergent orbit or nontrivial untrapped cycle has a parity word made of 110-runs (valuation-controlled at -5) whose interruptions have upper density at most about 1/3.44. Pair it with the CLS-056 threshold theorem as the analogous provable rung, e.g. a proof of 'meets 7 mod 8 or -5 mod 2^m' for the largest m where the descent still closes. That rung, if it exists, needs the same exit analysis as CLS-056 and has not been checked.",
+  "cluster": "traps"
+ }
+]
