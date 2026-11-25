@@ -1,4 +1,47 @@
-# qrA3_q17: two cycles in one coset with mixed multipliers {2,3}; no congruence rule (proved); finite-state rule OPEN
+# qrA3_q17 — no finite-state basin classifier in any integer base
+
+**Theorem (CLS-057).** For every integer base $k\ge2$, no finite automaton reading the base-$k$ digits of a positive integer coprime to 17 can distinguish the cycles $(1,6,3)$ and $(5,13,10)$ reached under this map.
+
+Write $f(n)=1$ if $n$ reaches 5, and $f(n)=0$ otherwise, with $f(0)=0$. Multiples of 17 are recognizable in every base by tracking the remainder. Therefore a classifier on the promised inputs would give a $k$-automaton for $f$. The proof below rules this out.
+
+## Both basins occur in every progression containing a unit modulo 17
+
+The map halves even inputs and takes an odd input $x$ to $(x+17c)/3$ with $c=x\bmod3$. For $x>17$ both branches decrease strictly. The interval $[1,17]$ is invariant and its cycle representatives are 1, 5 and 17. Each step preserves divisibility by 17 in both directions. Thus every unit eventually visits either 1 or 5.
+
+First fix $Q$ coprime to 6. From either odd seed $b\in\{1,5\}$ we can produce arbitrarily large odd points of its basin congruent to either chosen $c\in\{1,5\}$ modulo $Q$. The maps $L(y)=3y$ and $R(y)=3y-34$ give odd predecessors whenever $y$ is odd and the result is positive. Modulo $Q$ they are permutations. Their finite semigroup contains their inverses, so it contains $R L^{-1}$, translation by $-34$. This translation reaches every residue in a fixed class modulo $\gcd(34,Q)$, which is either 1 or 17. In the latter case multiplication by 3 connects 1 and 5 since $3^5\equiv5\pmod{17}$. Hence some word in $L,R$ sends $b$ to $c$ modulo $Q$. Before applying the word, multiply $b$ by an arbitrarily large power of 3 congruent to 1 modulo $Q$. This keeps every intermediate input positive and gives arbitrarily large outputs. For $Q=1$ the empty word suffices.
+
+Now let $x$ be any positive unit modulo 17 and let $M\ge1$. Follow $x$ to $c\in\{1,5\}$. Reverse this particular finite path. Its composite is $y\mapsto x+A(y-c)$, where $A$ is the product of its branch denominators. Indeed each reverse step is either $y\mapsto2y$ or $y\mapsto3y-17d$ with the original digit $d$. Starting with $y\equiv c\pmod2$ preserves the required parity at every intermediate step. The residue of $3y-17d$ modulo 3 is exactly $d$. For $y\ge c$ all intermediate values are positive.
+
+Write $M=2^u3^vQ$ with $Q$ coprime to 6. From the basin of either seed choose a large odd $z\equiv c\pmod Q$ as above. Reversing one lap at $c$ sends an odd $z\ge c$ to $c+18(z-c)$, since each cycle has one halving and two divisions by 3. Reversing $t$ laps gives $y=c+18^t(z-c)$, still odd and in the chosen basin. Choose $t$ so that $2^u3^v\mid18^t$. Then $y\equiv c\pmod M$. Reversing the path from $x$ to $c$ gives $x+A(y-c)\equiv x\pmod M$ in the chosen basin. Taking $z$ arbitrarily large proves the assertion for both basins.
+
+Consequently every section $g(n)=f(Dn+r)$ whose progression contains a unit modulo 17 fails to be ultimately periodic. Indeed, take an index $n_0$ with $Dn_0+r$ a positive unit. For every proposed period $P$, both labels occur arbitrarily far along the progression through $Dn_0+r$ of step $DP$. Ultimate periodicity would force a single label there.
+
+## A finite kernel would force a periodic section
+
+We have $f(2n)=f(3n)=f(n)$ for all $n$. Doubling simply inserts a halving step. For tripling, remove the common power of 2 from $n$ and $3n$, then observe that an odd multiple of 3 maps to its quotient by 3.
+
+Suppose $f$ is $k$-automatic. Its $k$-kernel, consisting of the sequences $n\mapsto f(k^a n+r)$ for $0\le r<k^a$, is finite. Each member is itself $k$-automatic since its own $k$-kernel lies in the same finite set. Let $S$ consist of members admitting a representation whose progression contains a unit modulo 17. Every member of $S$ fails to be ultimately periodic by the preceding result. We use the standard finite-kernel characterization of automatic sequences. [Allouche and Shallit, *Automatic Sequences*](https://www.cambridge.org/core/books/automatic-sequences/B092437A099192BA22DE4CF638142558)
+
+Choose $p=2$ unless $k$ is a power of 2, in which case choose $p=3$. Then $p$ and $k$ are multiplicatively independent. On $S$, give state $g$ a transition with digit $i$ to $n\mapsto g(pn+i)$ if that sequence belongs to $S$. These transitions are deterministic wherever defined.
+
+**Every finite digit word can be read from some state in $S$.** Write its digits least significant first, let $e$ be its length, let $d$ be its value, and write $d_j=d\bmod p^j$ for the value of its first $j$ digits. Choose $D=k^a>2p^e$. There is a residue $0\le r<D$ with
+$$
+r\equiv-Dd\pmod{p^e},\qquad 17\nmid r.
+$$
+Indeed the least nonnegative solution and that solution plus $p^e$ both fit, and 17 cannot divide both. Start at $g(n)=f(Dn+r)$. After the first $j$ digits the section is
+$$
+g(p^j n+d_j)=f\bigl(p^j(Dn+r_j)\bigr)=f(Dn+r_j),
+\qquad r_j=(Dd_j+r)/p^j.
+$$
+Here $r_j$ is an integer with $0\le r_j<D$. If $17\mid D$, then $17\nmid r_j$ because $17\nmid r$. If $17\nmid D$, every progression with step $D$ contains units. Thus every intermediate state lies in $S$, as required.
+
+**Some state in $S$ can read every word.** Otherwise start with all states as possible starts. Pick one surviving start and append a word unreadable from its current state. This eliminates that start, and a start already eliminated cannot return. After at most $|S|$ such extensions the resulting word is unreadable from every start, contradicting the previous paragraph.
+
+For this state, every iterated base-$p$ section belongs to the finite set $S$. It is therefore $p$-automatic as well as $k$-automatic. Cobham's theorem forces it to be ultimately periodic. This contradicts the progression result and proves the theorem. [Cobham, *On the base-dependence of sets of numbers recognizable by finite automata* (1969)](https://doi.org/10.1007/BF01746527)
+
+## Round-two record (historical)
+
+The original census established descent and nonperiodicity. Its open status and kernel measurements below predate the proof above.
 
 Rule: n even -> n/2; n odd -> (n + 17c)/3 with c = n mod 3.
 Question: BASIN, in the strong form: give a finite-state (automatic) rule that decides whether n reaches (1 6 3) or (5 13 10), or prove that none exists.

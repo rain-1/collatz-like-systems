@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[left=29mm,right=29mm,top=24mm,bottom=25mm]{geometry}
+\usepackage{xcolor,hyperref}
+\definecolor{ink}{RGB}{24,65,81}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=ink,citecolor=ink,
+ pdftitle={Two cycle basins that no integer-base automaton can distinguish}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small\itshape Two cycle basins}
+\fancyhead[R]{\small\itshape Nonautomaticity in every integer base}
+\fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
+\setlength{\parskip}{3pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\N}{\mathbb N}
+\newcommand{\NN}{\mathbb N_0}
+\newcommand{\B}{\mathcal B}
+\newcommand{\K}{\mathcal K}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+{\Large\bfseries Two cycle basins that no integer-base\\[3pt] automaton can distinguish\par}
+\end{center}
+
+\section{The system and the classification problem}
+Let $\N=\{1,2,\ldots\}$. For $n\in\N$, let $c(n)\in\{0,1,2\}$ be the least residue of $n$ modulo 3. Define
+\begin{equation}\label{eq:map}
+ T(n)=\begin{cases}
+ n/2 & n\text{ even},\\[2pt]
+ (n+17c(n))/3 & n\text{ odd}.
+ \end{cases}
+\end{equation}
+The odd branch is integral because $17\equiv-1\pmod3$. Every orbit enters one of the following cycles, as the finite calculation in Section~\ref{sec:orbits} will show:
+\[
+ 1\longrightarrow 6\longrightarrow 3\longrightarrow 1,\qquad
+ 5\longrightarrow 13\longrightarrow 10\longrightarrow 5,\qquad
+ 17\longrightarrow17.
+\]
+Write $\B_b=\{n\in\N:T^j(n)=b\text{ for some }j\ge0\}$ for $b=1,5,17$.
+The third basin consists precisely of the multiples of 17. For all other inputs, iteration decides which of the first two cycles is reached. Can a finite automaton make the same decision by reading the digits of the starting value?
+
+\begin{theorem}\label{th:main}
+For every integer $k\ge2$, no deterministic finite automaton reading the standard base-$k$ expansion of $n$ distinguishes $\B_1$ from $\B_5$ on all positive inputs with $17\nmid n$.
+\end{theorem}
+
+\subsection*{Overview of the proof}
+The arithmetic part shows that every residue class containing a positive integer coprime to 17 contains arbitrarily large points of \emph{both} basins. The two odd predecessors $3y$ and $3y-34$ allow us to prescribe the residue modulo the part of the modulus coprime to 6. A reverse trip around either cycle multiplies the displacement from its representative by 18. Repeating this trip supplies the remaining powers of 2 and 3.
+
+The automata part asks what happens on a single progression $k^a n+r$. A $k$-automatic sequence has only finitely many distinct restrictions of this form. Basin membership is invariant under doubling and tripling. We use one of these dilations to find a restriction which is automatic in a second, multiplicatively independent base and whose progression still contains a unit modulo 17. Cobham's theorem makes that restriction ultimately periodic. A period would give a subprogression on which the label eventually stays fixed, contrary to the arithmetic part.
+
+\newpage
+\section{Descent and inverse paths}\label{sec:orbits}
+For $n>17$, the odd branch satisfies $T(n)\le(n+34)/3<n$, and the even branch decreases as well. For $1\le n\le17$, direct substitution gives
+\[
+\setlength{\arraycolsep}{2.8pt}
+\begin{array}{c|rrrrrrrrrrrrrrrrr}
+ n&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17\\ \hline
+ T(n)&6&1&1&2&13&3&8&4&3&5&15&6&10&7&5&8&17
+\end{array}
+\]
+This table gives the three cycles in Section~1 and proves that the interval $[1,17]$ is invariant. On either branch $mT(n)\equiv n\pmod{17}$ for $m=2$ or $3$, both invertible modulo 17. Thus $17\mid T(n)$ if and only if $17\mid n$, proving $\B_{17}=17\N$.
+
+Define $f$ on $\NN=\{0,1,\ldots\}$ by $f(n)=1$ for $n\in\B_5$ and $f(n)=0$ otherwise. Then
+\begin{equation}\label{eq:dilate}
+                     f(2n)=f(3n)=f(n)\quad(n\ge0).
+\end{equation}
+Indeed, $T(2n)=n$ for $n>0$. If $n=2^su$ with $u$ odd, removing the $s$ powers of 2 from $3n$ leaves $3u$, and $T(3u)=u$. The two equalities at zero follow from the definition.
+
+\begin{lemma}\label{lem:rough}
+Let $\gcd(Q,6)=1$ and $b,c\in\{1,5\}$. There are arbitrarily large odd $z\in\B_b$ with $z\equiv c\pmod Q$.
+\end{lemma}
+
+\begin{proof}
+For odd $y$, both $L(y)=3y$ and $R(y)=3y-34$ map forward to $y$ whenever positive. Indeed, their residues modulo 3 are respectively 0 and 2. For $Q>1$, $L$ and $R$ act as permutations modulo $Q$. A permutation of a finite set has an inverse among its nonnegative powers. Hence words in $L,R$ realize the translation $RL^{-1}(y)=y-34$ modulo $Q$. Its orbits are the classes modulo $g=\gcd(Q,34)$. Since $Q$ is odd, $g$ is 1 or 17. For $g=1$ translation suffices. For $g=17$, $3^5\equiv5\pmod{17}$, so $L$ and its inverse connect the classes of 1 and 5. Translation then reaches the prescribed residue modulo $Q$.
+
+Fix a word realizing $b\mapsto c$ modulo $Q$. Before applying it, replace $b$ by $3^h b$, where $h$ ranges through multiples of the order of 3 modulo $Q$. Every prefix of the fixed word is affine with positive slope. For sufficiently large $h$ all intermediate integers are positive and odd, so each letter is a genuine inverse step. The outputs tend to infinity and have the required residue. For $Q=1$, take $z=3^h b$ directly.
+\end{proof}
+
+\newpage
+\section{Both basins in one residue class}
+\begin{lemma}\label{lem:lift}
+Suppose a path of length $s$ leads from $x$ to $c$. Let $A$ be the product of the branch denominators along the path, with $A=1$ for the empty path. For every $y\ge c$ with $y\equiv c\pmod2$, the integer $x+A(y-c)$ follows the same branches for $s$ steps and reaches $y$.
+\end{lemma}
+\begin{proof}
+Reverse the original path one step at a time. An even step has inverse $v\mapsto2v$. An odd step with digit $d$ has inverse $v\mapsto3v-17d$. If the endpoint changes by an even displacement $h\ge0$, its predecessor changes by $2h$ or $3h$. It stays positive and keeps its original parity. In the odd case its residue modulo 3 is $-17d\equiv d$, so the prescribed digit is still selected. Induction multiplies the initial displacement $y-c$ by $A$.
+\end{proof}
+
+\begin{theorem}\label{th:mix}
+If $M\ge1$, $x>0$ and $17\nmid x$, the class $x\bmod M$ contains arbitrarily large members of each of $\B_1$ and $\B_5$.
+\end{theorem}
+\begin{proof}
+Follow $x$ to its cycle representative $c\in\{1,5\}$. Write $M=2^u3^vQ$ with $\gcd(Q,6)=1$. Choose either desired basin $\B_b$. By Lemma~\ref{lem:rough} it contains arbitrarily large odd $z\ge c$ with $z\equiv c\pmod Q$.
+
+One full cycle from $c$ back to $c$ has branch product $2\cdot3^2=18$. Lemma~\ref{lem:lift} therefore gives $T^3(c+18(z-c))=z$. The new predecessor is odd and at least $c$, so we may repeat the construction. After $t$ laps the point $y=c+18^t(z-c)$ still belongs to $\B_b$. Choose $t$ with $t\ge u$ and $2t\ge v$. Then $y\equiv c\pmod M$. Finally apply Lemma~\ref{lem:lift} to the original path from $x$ to $c$. The resulting point $x+A(y-c)$ is in $\B_b$, is congruent to $x$ modulo $M$, and tends to infinity with $z$.
+\end{proof}
+
+For example, $1$ and $73$ represent the same class modulo 72. Taking $c=1$ and $z=5$ gives $73=1+18(5-1)$, and the lifted path is $73\to30\to15\to5$.
+
+\begin{corollary}\label{cor:aper}
+If $D\ge1$ and $r\ge0$ and the progression $Dn+r$ contains a positive integer coprime to 17, the sequence $n\mapsto f(Dn+r)$ is not ultimately periodic.
+\end{corollary}
+\begin{proof}
+Choose $n_0\ge0$ with $x=Dn_0+r$ positive and coprime to 17. A proposed eventual period $P\ge1$ makes the sequence eventually constant on indices $n_0+jP$. The corresponding inputs are $x+jDP$. Theorem~\ref{th:mix} with $M=DP$ gives both labels arbitrarily far along this progression.
+\end{proof}
+
+\newpage
+\section{A periodic section forced by dilation invariance}
+For a sequence $h$ on $\NN$, its \emph{$k$-kernel} is the family
+\[
+ \K_k(h)=\{\,n\mapsto h(k^a n+r): a\ge0,\ 0\le r<k^a\,\}.
+\]
+A finite-valued sequence is $k$-automatic exactly when its $k$-kernel is finite \cite[Ch.~6]{AS}. Every member of a finite $k$-kernel is itself $k$-automatic, since taking further $k$-sections stays in that kernel. Integers $p,k\ge2$ are \emph{multiplicatively independent} if $p^i\ne k^j$ for every $i,j\ge1$. Cobham's theorem states that a sequence automatic in two such bases is ultimately periodic \cite{Cobham}.
+
+\begin{theorem}\label{th:kernel}
+Let $h$ be a finite-valued $k$-automatic sequence and suppose $h(pn)=h(n)$ for all $n\ge0$, with $p$ and $k$ multiplicatively independent. Fix a prime $\ell\nmid p$. Some section $n\mapsto h(k^a n+r)$ is ultimately periodic and its progression contains a positive integer coprime to $\ell$.
+\end{theorem}
+\begin{proof}
+Let $S\subseteq\K_k(h)$ consist of sequences admitting a representation by a progression containing such an integer. On $S$ define the partial transition with digit $i\in\{0,\ldots,p-1\}$ by $g\mapsto(n\mapsto g(pn+i))$ whenever the result belongs to $S$.
+
+Fix any word of $e$ digits, read least significant first. Let its value be $d$ and put $d_j=d\bmod p^j$ for $0\le j\le e$. Choose $D=k^a>2p^e$. Among the least nonnegative residue of $-Dd$ modulo $p^e$ and that residue plus $p^e$, choose $r$ coprime to $\ell$. Such a choice exists since $\ell\nmid p$. Then $0\le r<D$. Starting from $g(n)=h(Dn+r)$, the section after $j$ digits is
+\[
+ g(p^j n+d_j)=h\bigl(p^j(Dn+r_j)\bigr)=h(Dn+r_j),
+ \qquad r_j=\frac{Dd_j+r}{p^j}.
+\]
+The congruence defining $r$ gives $r_j\in\mathbb Z$, and $d_j<p^j$ gives $0\le r_j<D$. If $\ell\nmid D$, the progression $Dn+r_j$ runs through every residue modulo $\ell$. If $\ell\mid D$, the identity $p^jr_j=Dd_j+r$ implies $\ell\nmid r_j$. Thus every displayed section lies in $S$. Every word is readable from some state of $S$.
+
+Now suppose each state fails to read some word. Start with the empty word and all states available as starts. Select a surviving start and append a word that fails from its current state. This removes that start and cannot restore a previously lost start. In at most $|S|$ extensions one obtains a word that fails from every start, a contradiction. Hence a single state $g$ can read all words. Its entire $p$-kernel lies in $S$, so $g$ is $p$-automatic. It is also $k$-automatic. Cobham's theorem gives ultimate periodicity, and membership in $S$ gives the required progression.
+\end{proof}
+
+\newpage
+\section{Conclusion and perspective}
+\begin{proof}[Proof of Theorem~\ref{th:main}]
+Suppose a base-$k$ automaton classifies the two basins on inputs coprime to 17. Running a remainder-modulo-17 automaton in parallel allows it to output zero on multiples of 17, including zero. The product computes $f$, which would therefore be $k$-automatic.
+
+Take $p=2$ if $k$ is not a power of 2, and $p=3$ otherwise. Unique prime factorization gives multiplicative independence in both cases. Equation~\eqref{eq:dilate} supplies $f(pn)=f(n)$. Apply Theorem~\ref{th:kernel} with $\ell=17$. Its ultimately periodic section lies on a progression containing a positive integer coprime to 17, contradicting Corollary~\ref{cor:aper}.
+\end{proof}
+
+\subsection*{Relation to earlier work}
+Back-tracing an orbit into a prescribed arithmetic progression has precedent in work of Monks, Monks, Monks and Monks on the $3x+1$ graph. Their analysis includes affine group actions modulo integers coprime to 6 \cite{Monks}. Here the translation by 34 and the inverse cycle multiplier 18 give the required result for the map~\eqref{eq:map}. A 2026 online manuscript on the $3x\mathbin{\pm}1$ maps also transfers information between kernels and invokes Cobham's theorem for orbit-invariant sets. Its Corollary~2 concerns cycles through the same three representatives for a different map \cite{Wren}. Theorem~\ref{th:kernel} extracts a single periodic section from an arbitrary candidate base using a dilation identity alone.
+
+\subsection*{Closing thoughts}
+The striking feature of this example is how little iteration is needed to prove convergence, and how much information the starting digits must retain to predict the outcome. The finite table settles the orbit question. The obstruction to a digit automaton lives at every modulus: even after restricting the input to one progression containing a unit, both outcomes persist on every finer progression through that unit.
+
+Theorem~\ref{th:kernel} is the part of the argument most likely to be useful for other systems. It separates two tasks: identify a dilation that preserves the label, and prove that every eligible progression resists eventual periodicity. A natural next question for this particular map is quantitative. Do the relative frequencies of the two basins converge along each eligible progression, and if so, how do they depend on the modulus? The construction here proves arbitrarily large occurrences of both labels. It supplies no estimate of those frequencies.
+
+\begin{thebibliography}{9}\small
+\bibitem{AS} J.-P. Allouche and J. Shallit, \emph{Automatic Sequences: Theory, Applications, Generalizations}, Cambridge University Press, 2003. \href{https://doi.org/10.1017/CBO9780511546563}{Publisher}.
+\bibitem{Cobham} A. Cobham, On the base-dependence of sets of numbers recognizable by finite automata, \emph{Math. Systems Theory} \textbf{3} (1969), 186--192. \href{https://doi.org/10.1007/BF01746527}{DOI}.
+\bibitem{Monks} K. Monks, K. G. Monks, K. M. Monks and M. Monks, Strongly sufficient sets and the distribution of arithmetic sequences in the $3x+1$ graph. \href{https://arxiv.org/abs/1204.3904}{arXiv:1204.3904}.
+\bibitem{Wren} \texttt{fourier\_wren}, Automaticity of saturated sets, ancestor sets, stopping times and forward-invariant sets of $3x\mathbin{\pm}1$ maps, online manuscript, 30 October 2026. \href{https://rstation.ai/problems/collatz/papers/64/v1}{rStation, version 1}.
+\end{thebibliography}
+\end{document}

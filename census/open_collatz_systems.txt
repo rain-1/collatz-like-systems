@@ -336,6 +336,8 @@ CLS-056  yah_avoid57  [round2/literature]
   Census record: census/round2/literature/yah_avoid57.md
 
 CLS-057  qrA3_q17  [round2/qr]
+  Subsequent resolution: No integer base admits a finite-state classifier.
+    The all-base proof is at the start of the census record below.
   Rule: n even -> n/2; n odd -> (n+17c)/3, c = n mod 3.
   Open question: For inputs outside the basin of (17), give a finite-state
     rule that distinguishes the basins of (1, 6, 3) and (5, 13, 10), or prove
