@@ -1,0 +1,273 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb{N}_0}
+\newcommand{\ud}{\bar d}
+\newcommand{\ld}{\delta}
+\title{Forward-closed automatic sets for the 1932 Collatz permutation\\
+in bases $2^x3^y$}
+\author{Research note, 25 November 2026}
+\date{}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.} This note does not decide whether the orbit of $8$ is
+infinite. It proves a restriction on one family of possible proofs. The argument
+has been checked by its author and by the finite tests in
+\texttt{verify\_smooth\_base\_classification.py}, and by nobody else. It uses one
+external result, Konieczny's Theorem~B \cite{K}. Novelty has not been checked
+against the literature.
+
+\section{Statement}
+
+Let $G$ be the permutation of $\N=\{0,1,2,\dots\}$ given by
+\[
+G(3q)=2q,\qquad G(3q+1)=4q+1,\qquad G(3q+2)=4q+3 .
+\]
+A set $S\subseteq\N$ is \emph{forward closed} if $G(S)\subseteq S$. A forward-closed
+set with $8\notin S$ and $G(8)=11\in S$ would prove that $8$ never returns to
+itself. The earlier note \emph{Which binary regular sets are forward closed?}
+shows that no such $S$ is recognised by a finite automaton reading binary
+digits, and the congruence note shows that none is a union of residue classes.
+Base $6$ was left open. An automaton reading base-$6$ digits sees the residue of
+$n$ modulo every $2^k3^k$, so it can correlate the $3$-adic information that
+selects the branches of $G$ with the $2$-adic information that $G$ creates. The
+equidistribution lemma of the binary proof fails for such sets.
+
+Write $\ud(A)=\limsup_N |A\cap[0,N)|/N$ for the upper density. A set is
+\emph{$b$-automatic} if a finite automaton recognises the base-$b$ expansions of
+its members.
+
+\begin{theorem}\label{main}
+Let $b=2^x3^y$ with $x,y\ge 1$, and let $S\subseteq\N$ be $b$-automatic with
+$G(S)\subseteq S$. Then $\ud(S)=0$ or $\ud(\N\setminus S)=0$. Moreover there is
+a word $U$ over the base-$b$ digits such that no member of the density-zero
+side has $U$ as a block of consecutive digits after its leading digit.
+\end{theorem}
+
+\begin{corollary}\label{eight}
+Suppose a $b$-automatic forward-closed set $S$ has $8\notin S$ and $11\in S$,
+with $b$ as above. Then there is a block $U$ of base-$b$ digits which never occurs
+after the leading digit, either in any of $G^j(8)$, $j\ge 1$, or in any of
+$G^{-j}(8)$, $j\ge 0$. If the automaton has $r$ states, $U$ can be taken of
+length at most $(r-1)^2$.
+\end{corollary}
+
+In base $6$ every block of length at most $7$ occurs in both half-orbits within
+their first $16{,}029$ and $14{,}067$ steps respectively (computed). So a
+base-$6$ certificate would need at least four states, and, more to the point, it
+would need one half-orbit of $8$ to omit some digit block for ever.
+
+Theorem~\ref{main} is weaker than the binary classification in one respect. In
+base $2$ the density-zero side is a finite union of cycles. Here it is only
+shown to be thin. Remark~\ref{gap} explains why the remaining step looks hard.
+
+\section{Proof of Theorem~\ref{main}}
+
+Throughout, $f=\mathbf 1_S$, and $g\simeq h$ means that $\{n: g(n)\ne h(n)\}$ has
+upper density zero. This relation is preserved by restriction to an arithmetic
+progression and by composition with $G$ or $G^{-1}$, since each of these maps is
+a union of three affine bijections between progressions. Let
+\[
+\ld(A)=\liminf_{X\to\infty}\frac1{\log X}\sum_{n\in A,\,1\le n\le X}\frac1n
+\]
+be the lower logarithmic density. It is superadditive on disjoint sets, at most
+$1$, and $\ld(\{an+c:n\in A\})=\ld(A)/a$ for integers $a\ge1$, $c\ge0$.
+
+\subsection{Branch formulas}
+
+For $k\ge0$ and $0\le r<3^k$ there are integers $e(r)\in[k,2k]$ and
+$0\le\beta(r)<2^{e(r)}$ with
+\begin{equation}\label{fwd}
+G^k(3^kq+r)=2^{e(r)}q+\beta(r)\qquad(q\ge0).
+\end{equation}
+Passing from $k$ to $k+1$ splits $q=3q'+d$; since $2^{e}$ is a unit modulo $3$ the
+three values of $d$ give the three branches once each, adding $1,2,2$ to $e$.
+Hence, for $k\ge k_0$ and a fixed class $r_0$ modulo $3^{k_0}$,
+\begin{equation}\label{weights}
+\sum_{\substack{0\le r<3^k\\ r\equiv r_0\ (3^{k_0})}}2^{-e(r)}=2^{-e(r_0)} .
+\end{equation}
+The inverse is $G^{-1}(2m)=3m$, $G^{-1}(4m+1)=3m+1$, $G^{-1}(4m+3)=3m+2$. By the
+mirror-image induction, for each $i\ge0$ the integers are partitioned into
+classes $\beta$ modulo $2^{\ell}$, with $\ell=\ell_i(\beta)\in[i,2i]$, on which
+\begin{equation}\label{bwd}
+G^{-i}(2^{\ell}m+\beta)=3^im+\rho,\qquad 0\le\rho<3^i .
+\end{equation}
+One further backward step refines the class and raises $\ell$ by $1$ or $2$.
+
+\subsection{The entry set has density zero}
+
+Let $D=\{n: n\notin S,\ G(n)\in S\}$. Forward closure makes $f$ nondecreasing
+along orbits, so $D$ meets each orbit at most once and the sets $G^k(D)$,
+$k\ge0$, are pairwise disjoint. Also $\{n:f(G(n))\ne f(n)\}=D$. The graph of $G$
+is definable from addition, so $D$ is $b$-automatic.
+
+\begin{lemma}\label{pos}
+A $b$-automatic set $A$ with $\ud(A)>0$ has $\ld(A)>0$.
+\end{lemma}
+\begin{proof}
+Read a nonzero leading digit and then independent uniform digits in an
+automaton for $A$, most significant digit first. If no accepting state lay in a
+reachable closed irreducible component, the proportion of accepted words of
+length $L$ would tend to zero and $A$ would have density zero. So some prefix of
+value $P$ leads to such a component, containing an accepting state $t$ with
+stationary mass $\pi(t)>0$. The Ces\`aro averages over $L$ of the probability of
+being at $t$ after $L$ further digits tend to $\pi(t)$. The extensions of $P$ by
+$L$ digits lie in $[Pb^L,(P+1)b^L)$, so they contribute at least that
+probability divided by $P+1$ to the harmonic sum. Summing over $L$ gives
+$\ld(A)\ge\pi(t)/((P+1)\log b)$.
+\end{proof}
+
+\begin{lemma}\label{cyl}
+Let $A$ be $b$-automatic with $\ud(A)>0$. There are $k_0\ge0$, a residue $w_0$
+modulo $b^{k_0}$ and $c>0$ such that $\ld(A\cap(w+b^k\N))\ge c\,b^{-k}$ for every
+$k\ge k_0$ and every $w\equiv w_0\pmod{b^{k_0}}$.
+\end{lemma}
+\begin{proof}
+Take an automaton for $A$ reading the least significant digit first, with
+acceptance unchanged by appending zeros. For a state $s$ let $L_s$ be the set of
+$m$ accepted when read from $s$. If the lowest $k$ digits of $n$ spell $w$ and
+lead to $s$, then $n=w+b^km$ lies in $A$ exactly when $m\in L_s$. Call $s$
+\emph{fat} if $\ud(L_s)>0$. In a terminal strongly connected component either
+all states are fat or none is, because $L_{s'}\supseteq u+b^{|u|}L_s$ whenever
+the word $u$ leads from $s'$ to $s$. A uniformly random digit sequence enters a
+terminal component with probability one, and
+$\ud(A)\le\sum_{|w|=k}b^{-k}\,\ud(L_{s(w)})$ for every $k$. If no reachable
+terminal component were fat the right side would tend to zero. So some word
+$w_0$ of length $k_0$ leads into a fat terminal component $C$. Each $L_s$ is
+$b$-automatic, so Lemma~\ref{pos} gives $c=\min_{s\in C}\ld(L_s)>0$. Every
+extension $w$ of $w_0$ leads to a state of $C$, and
+$\ld(w+b^kL_s)=b^{-k}\ld(L_s)$.
+\end{proof}
+
+Suppose $\ud(D)>0$ and apply Lemma~\ref{cyl} to $D$. Put $K=yk$ and $K_0=yk_0$.
+A class $r$ modulo $3^{K}$ with $r\equiv w_0\pmod{3^{K_0}}$ contains
+$2^{x(k-k_0)}$ classes modulo $b^k$ that reduce to $w_0$ modulo $b^{k_0}$, by the
+Chinese remainder theorem. Superadditivity gives
+\[
+\ld\bigl(D\cap(r+3^{K}\N)\bigr)\ \ge\ 2^{x(k-k_0)}\,c\,b^{-k}=c\,2^{-xk_0}\,3^{-K}.
+\]
+By \eqref{fwd}, $G^{K}$ maps this part of $D$ affinely with slope
+$2^{e(r)}/3^{K}$, so its image has lower logarithmic density at least
+$c\,2^{-xk_0}2^{-e(r)}$. The images for different $r$ are disjoint. Summing with
+\eqref{weights},
+\[
+\ld\bigl(G^{yk}(D)\bigr)\ \ge\ c\,2^{-xk_0-e(r_0)}\qquad(k\ge k_0),
+\]
+where $r_0$ is $w_0$ modulo $3^{K_0}$. The bound does not depend on $k$. The
+sets $G^{yk}(D)$ are pairwise disjoint, and their lower logarithmic densities
+sum to at most $1$. This is a contradiction, so $\ud(D)=0$, that is,
+\begin{equation}\label{inv}
+f\circ G\simeq f,\qquad\text{and hence } f\circ G^{-i}\simeq f\ \text{ for each fixed } i\ge0 .
+\end{equation}
+
+\subsection{From base $b$ to base $2$}
+
+Let $\mathcal K$ be the $b$-kernel of $f$, the finite set of sequences
+$n\mapsto f(b^an+R)$ with $0\le R<b^a$.
+
+\begin{lemma}\label{bridge}
+For all $J\ge0$ and $0\le B<2^J$ the sequence $q\mapsto f(2^Jq+B)$ is $\simeq$ to
+$q\mapsto K(2^tq+c)$ for some $K\in\mathcal K$, $0\le t<x+2y$ and $0\le c<2^t$.
+\end{lemma}
+\begin{proof}
+Follow $B$ backwards. After $i=ya$ backward steps its class in \eqref{bwd} has
+exponent $\ell_{ya}$, and $\ell_{ya}+xa$ increases with $a$ in steps between
+$x+y$ and $x+2y$, starting from $0$. Take the largest $a$ with
+$\ell_{ya}+xa\le J$ and put $t=J-\ell_{ya}-xa$, so $0\le t<x+2y$. Write
+$B=2^{\ell}B'+\beta$ with $\ell=\ell_{ya}$. By \eqref{bwd},
+\[
+G^{-ya}(2^Jq+B)=3^{ya}\bigl(2^{xa+t}q+B'\bigr)+\rho=b^a\,2^tq+R,\qquad
+R=3^{ya}B'+\rho<2^tb^a .
+\]
+Write $R=b^ac+R'$ with $0\le R'<b^a$. Then the right side is $b^a(2^tq+c)+R'$,
+and \eqref{inv} gives $f(2^Jq+B)\simeq f(b^a(2^tq+c)+R')$.
+\end{proof}
+
+There are finitely many triples $(K,t,c)$. So the $2$-kernel of $f$ is finite
+modulo $\simeq$: in the terminology of \cite{K}, $f$ is asymptotically
+$2$-automatic. It is also $b$-automatic, and $b$ and $2$ are multiplicatively
+independent because $3\mid b$. Theorem~B of \cite{K} gives a periodic sequence
+$p$ with $p\simeq f$.
+
+\subsection{The periodic sequence is constant}
+
+Since $p\simeq f$ and $f\circ G\simeq f$ we get $p\circ G\simeq p$. Both sides
+are periodic, so $p\circ G=p$ everywhere. Let $m$ be the least period of $p$.
+The identities are $p(3q)=p(2q)$, $p(3q+1)=p(4q+1)$, $p(3q+2)=p(4q+3)$. If $m$
+is even, replacing $q$ by $q+m/2$ leaves each right side fixed, so $3m/2$ is a
+period, and then so is $\gcd(m,3m/2)=m/2$. If $3\mid m$, shifting $q$ by $2m/3$
+in the first identity and by $m/3$ in the others leaves each left side fixed
+and moves each right argument by $4m/3$; the right arguments cover all
+integers, so $m/3$ is a period. Hence $\gcd(m,6)=1$. For a residue $v$ modulo
+$m$ choose representatives in the classes $1$ and $2$ modulo $3$. Then
+$p((4v-1)/3)=p(v)=p((4v+1)/3)$ in residue notation. The first argument runs
+over all residues, and the outer two differ by the unit $2/3$. So $p$ is
+constant, and $\ud(S)=0$ or $\ud(\N\setminus S)=0$.
+
+\subsection{The avoided block}
+
+Let $A$ be the density-zero side, recognised by a complete automaton with $r$
+states reading most significant digit first. Call a state \emph{dead} if no
+accepting state is reachable from it. From each state $s$ reached by a nonempty
+canonical prefix, some dead state is reachable. Otherwise every word passing
+through $s$ could be completed to a member of $A$ by fewer than $r$ further
+digits, which gives $A$ positive upper density. Let $u_s$ be a shortest word
+from $s$ to a dead state, of length at most $r-1$. List the states
+$s_1,\dots,s_h$ that are reached by nonempty canonical prefixes and are not
+dead; this family is closed under reading further digits, and $h\le r-1$ unless
+$A$ is empty. Build $U$ in $h$ rounds: in round $i$, if $U$ read
+from $s_i$ does not yet end in a dead state, append a shortest word that kills
+its endpoint. Dead states stay dead, so $U$ kills every listed state and
+$|U|\le(r-1)^2$. An expansion containing $U$ after its leading digit is
+rejected. This proves Theorem~\ref{main}.
+
+\medskip
+\noindent\emph{Proof of Corollary~\ref{eight}.} If $\ud(S)=0$, the forward orbit
+$G^j(8)$, $j\ge1$, lies in $S$. Otherwise $\N\setminus S$ has density zero, is
+closed under $G^{-1}$, and contains $G^{-j}(8)$ for all $j\ge0$. \qed
+
+\section{Remarks}
+
+\begin{remark}[Which bases]\label{bases}
+Base $2^x$ is the earlier binary theorem. For bases $3^y$ the mirror argument
+with $G^{-1}$ should apply but has not been written out. The proof above needs
+both primes: Lemma~\ref{cyl} uses $3\mid b$ and Lemma~\ref{bridge} uses that $b$
+has no other prime factors. Bases such as $5$, $10$ or $30$ are not covered.
+Boolean combinations of binary-automatic and ternary-automatic sets are not
+covered either.
+\end{remark}
+
+\begin{remark}[Why exactness is missing]\label{gap}
+To show that the density-zero side is finite one would need every infinite
+half-orbit to contain every digit block. Along the orbit of $3^k$ the iterates
+are $2^a3^{k-a}$, and in general the leading digits of an iterate are those of
+$2^{E}$ times a constant, where $E$ runs through a set with gaps $2$ and $3$
+determined by the branch sequence. Whether such numbers must contain a given
+block of base-$6$ digits is a question of the same kind as Erd\H{o}s's problem
+on the ternary digits of $2^n$. The binary proof avoids this because both
+branch slopes are then the same rotation of $\log_2 n$ modulo one.
+\end{remark}
+
+\begin{remark}[Density arguments cannot go further]
+Heuristically the set of integers that are the minimum of their own orbit has
+positive density, and its images under $G^k$, $k\in\mathbb Z$, are disjoint. So
+a general forward-closed set need not have a density-zero entry set. Lemma
+\ref{cyl} is where automaticity is used: an automatic set of positive density
+fills some $b$-adic cylinder evenly, which no such ladder set does.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{K} J.~Konieczny, \emph{An asymptotic version of Cobham's theorem},
+arXiv:2209.09588, Definition~1.1 and Theorem~B.
+\end{thebibliography}
+\end{document}

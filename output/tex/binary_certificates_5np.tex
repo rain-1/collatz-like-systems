@@ -1,0 +1,236 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb{N}_0}
+\newcommand{\ud}{\bar d}
+\newcommand{\ld}{\delta}
+\title{Binary automata cannot certify a divergent $5n+p$ orbit}
+\author{Research note, 25 November 2026}
+\date{}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.} This note resolves none of the $155$ open census
+cases. It proves that the certificate class used in the census can never
+resolve one of them unless plain simulation already does. The argument has been
+checked by its author and by the finite tests in the accompanying
+verification script, and by nobody else. It uses
+Konieczny's Theorem~B \cite{K}. Novelty has not been checked.
+
+\section{Statement}
+
+Fix an integer $p\ge1$ coprime to $10$ and let
+\[
+T(n)=n/2\ \ (n\text{ even}),\qquad T(n)=5n+p\ \ (n\text{ odd}).
+\]
+For a seed $s\ge1$, a \emph{first-step separator} is a set $S$ with
+$T(S)\subseteq S$, $s\notin S$ and $T(s)\in S$; it proves $T^j(s)\ne s$ for all
+$j\ge1$. A set is \emph{binary regular} if a finite automaton recognises the
+binary expansions of its members. The congruence note shows that for
+$5\nmid s$ no union of residue classes is a separator.
+
+\begin{theorem}\label{main}
+Let $5\nmid s$. A binary regular first-step separator for $s$ exists if and
+only if the orbit of $s$ is eventually periodic and $s$ is not on its cycle.
+\end{theorem}
+
+When the orbit is eventually periodic the finite set $\{T^j(s):j\ge1\}$ is a
+separator, and it is found by iterating. So for seeds coprime to $5$ a binary
+automaton of any size proves nothing that simulation does not. In particular
+each of the $155$ unresolved cases ($s=27$, $p$ prime) has a binary certificate
+only if its orbit eventually cycles.
+
+\begin{theorem}\label{structure}
+Let $S$ be binary regular with $T(S)\subseteq S$. There is a periodic set $P$
+such that $n\in P\iff T(n)\in P$ for every $n$ coprime to $5$, and such that
+the integers coprime to $5$ on which $S$ and $P$ differ have density zero.
+\end{theorem}
+
+\section{Proofs}
+
+Write $\ud$ for upper density, $g\simeq h$ when $g\ne h$ only on a set of upper
+density zero, and $\ld$ for lower logarithmic density. $\ld$ is superadditive on
+disjoint sets, at most $1$, and scales by $1/a$ under $n\mapsto an+c$. Call $n$
+a \emph{unit} if $5\nmid n$. Units map to units. Let $f=\mathbf 1_S$.
+
+\subsection{Backward words}
+
+The preimages of $x$ are $2x$, and also $(x-p)/5$ when $x$ is even and
+$x\equiv p\pmod 5$; the second preimage is odd. Write $d$ for $x\mapsto 2x$ and
+$e$ for $x\mapsto(x-p)/5$. A \emph{word} is a finite sequence of these moves in
+which every $e$ is immediately preceded by a $d$. A word $w$ with $J$ letters
+$d$ and $o$ letters $e$ is defined on a set $C_w$ which is a union of residue
+classes modulo $5^{o}$, apart from finitely many small $x$ where the value
+would not be positive. There it is affine with slope $2^{J}/5^{o}$, and
+$T^{|w|}(w(x))=x$. Different words of the same length have disjoint images,
+because $w$ is the reversed parity itinerary of $w(x)$. Let $\mu$ denote the
+density of a union of residue classes and put
+\[
+a_k=\sum_{|w|=k}5^{o(w)}2^{-J(w)}\mu(C_w),
+\]
+the sum over words that are empty or begin with $d$.
+
+\begin{lemma}\label{mass}
+$a_k=\tfrac23+\tfrac13(-\tfrac12)^k\ge\tfrac12$.
+\end{lemma}
+\begin{proof}
+Such a word is $d^k$, contributing $2^{-k}$, or $d^{j}e\,w'$ with $j\ge1$ and
+$w'$ empty or beginning with $d$. The move $d^je$ is defined on the class
+$x\equiv p2^{-j}\pmod5$ and maps it bijectively onto the integers, so
+$\mu(C_{d^jew'})=\mu(C_{w'})/5$. Its weight is $5\cdot2^{-j}$ times that of
+$w'$. Hence $a_k=2^{-k}+\sum_{j=1}^{k-1}2^{-j}a_{k-1-j}$ with $a_0=1$, and the
+closed form follows by induction.
+\end{proof}
+
+(As a check, $a_k$ is twice the density of $\{n:T^k(n)\text{ odd}\}$.)
+
+\subsection{The entry set is thin on units}
+
+Let $D=\{n:n\notin S,\ T(n)\in S\}$, a binary regular set. Since $f$ is
+nondecreasing along orbits, the sets $T^{-k}(D)$, $k\ge0$, are pairwise
+disjoint.
+
+\begin{lemma}\label{equi}
+Let $A$ be binary regular with $\ud(A)>0$. There are $P_0\ge1$, $a\ge0$ and
+$c>0$ with $\ld(A\cap(r+5^k\N))\ge c\,5^{-k}$ for all $k\ge a$ and all
+$r\equiv P_0\pmod{5^a}$.
+\end{lemma}
+\begin{proof}
+This is the lemma on page 2 of the note \emph{Which binary regular sets are
+forward closed?} with $3$ replaced by $5$. The proof only uses that appending a
+binary word permutes the residues modulo the odd modulus: one finds an
+accepting state $t$ in a closed component, two distinct loops $u,v$ of equal
+length at $t$, and takes $a=v_5([u]_2-[v]_2)$, so that the loops generate the
+translations by multiples of $5^a$ on the fibre over $t$.
+\end{proof}
+
+Suppose the set $A$ of units in $D$ has $\ud(A)>0$, and apply Lemma~\ref{equi}.
+Shrinking to a subclass we may take $a\ge1$; then $P_0$ is a unit because $A$
+consists of units. Since $2$ is a primitive root modulo $5$ there is $j\ge1$
+with $2^jP_0\equiv p\pmod5$. Replacing $j$ by $j+4$ changes $(2^jP_0-p)/5$
+modulo $5$ by the nonzero translation $3p$, so among five consecutive choices
+at most one fails to give a unit. Repeating $a$ times gives a word
+$w_0=d^{j_1}e\cdots d^{j_a}e$ whose domain is exactly the class of $P_0$ modulo
+$5^a$, mapped bijectively onto the integers. For a word $w'$ that is empty or
+begins with $d$ this gives $\mu(C_{w_0w'})=5^{-a}\mu(C_{w'})$. Each $C_{w_0w'}$
+is a union of classes modulo $5^{o}$ inside the class of $P_0$, so
+$\ld(A\cap C_{w_0w'})\ge c\,\mu(C_{w_0w'})$, and the image under the word has
+$\ld$ at least $5^{o}2^{-J}$ times this. Summing over the disjoint images and
+using Lemma~\ref{mass},
+\[
+\ld\bigl(T^{-k}(A)\bigr)\ \ge\ c\,2^{-J(w_0)}a_{k-|w_0|}\ \ge\ c\,2^{-J(w_0)-1}
+\qquad(k\ge|w_0|).
+\]
+These sets are disjoint for different $k$, a contradiction. Hence
+\begin{equation}\label{inv}
+f(T(z))=f(z)\quad\text{for all units } z \text{ outside a set of upper density zero.}
+\end{equation}
+
+\subsection{Base change}
+
+Let $F(n)=\star$ if $5\mid n$ and $F(n)=f(n)$ otherwise. This sequence over
+$\{0,1,\star\}$ is $2$-automatic. Let $\mathcal K$ be the finite $2$-kernel of
+$f$.
+
+\begin{lemma}\label{bridge}
+For $J\ge1$ and a unit $0<B<5^J$, the sequence $q\mapsto f(5^Jq+B)$ is $\simeq$
+to $q\mapsto\kappa(5q+c)$ for some $\kappa\in\mathcal K$ and $0\le c<5$.
+\end{lemma}
+\begin{proof}
+Put $m_0=5^Jq+B$ and $m_i=(2^{j_i}m_{i-1}-p)/5$ for $1\le i\le J-1$, choosing
+$j_i\ge1$ so that the constant term $B_i$ of $m_i$ is a positive unit. This is
+possible as above, since the constant term is determined modulo $5^{J-i}$ with
+$J-i\ge1$. Then $m_{J-1}=5\cdot2^{E}q+B_{J-1}$ with $0<B_{J-1}<5\cdot2^{E}$,
+every $m_i$ is an odd unit, and $T$ leads from $m_{J-1}$ back to $m_0$ through
+the units $2^{l}m_{i}$. Every point on this path is an affine function of $q$
+with positive slope, so \eqref{inv} gives $f(m_0)=f(m_{J-1})$ for almost all
+$q$. Write $B_{J-1}=2^{E}c+R$ with $0\le R<2^{E}$ and
+$\kappa(n)=f(2^{E}n+R)$.
+\end{proof}
+
+So every member of the $5$-kernel of $F$ is $\simeq$ to $F$, to the constant
+$\star$, or to one of finitely many sequences $\kappa(5q+c)$. Thus $F$ is
+$2$-automatic and asymptotically $5$-automatic, and Theorem~B of \cite{K} gives
+a periodic sequence $\simeq F$. It equals $\star$ exactly on multiples of $5$.
+Let $P$ be the set where it equals $1$. By \eqref{inv}, and because $T^{-1}$ of
+a density-zero set has density zero, $\mathbf 1_P(T(z))=\mathbf 1_P(z)$ for
+almost all units $z$. Both sides are periodic in $z$ on each parity class, so
+the equality holds for all units. This proves Theorem~\ref{structure}.
+
+\subsection{Proof of Theorem~\ref{main}}
+
+If the orbit is eventually periodic and $s$ is not on the cycle, the finite set
+$\{T^j(s):j\ge1\}$ is a separator. If $s$ is periodic there is no separator.
+Suppose the orbit of $s$ is infinite, so that its terms tend to infinity, and
+let $S$ be a binary regular separator with $P$ as above. A binary regular set
+of density zero omits some block $U$: no member has $U$ as consecutive digits
+after its leading $1$ (same argument as in the base-$2^x3^y$ note). Let $I_U$ be
+the open arc of angles $\theta$ such that every real with
+$\log_2$ congruent to $\theta$ modulo $1$ has binary digits $1U$ at the top.
+
+\emph{Case $s\notin P$.} By invariance no $T^j(s)$ is in $P$, while all of them
+are in $S$. So the orbit lies in the density-zero regular set of units in
+$S\setminus P$. Let $o_1,o_2,\dots$ be its odd terms; there are infinitely many
+and $o_{i+1}=(5o_i+p)2^{-\alpha_i}$. Hence
+$\log_2o_{i+1}\equiv\log_2o_i+\log_25+\varepsilon_i\pmod1$ with
+$\varepsilon_i\to0$. The set of limit points of $\log_2o_i$ modulo $1$ is
+closed, nonempty and invariant under the irrational rotation by $\log_25$, so
+it is the whole circle. Some $o_i$ has angle in $I_U$ and therefore contains
+$U$. Contradiction.
+
+\emph{Case $s\in P$.} The complement of $S$ is closed under taking preimages
+and contains $s$. Let $\Gamma$ be the smallest set containing $s$ such that
+$m\in\Gamma$ implies $2m\in\Gamma$ and, whenever $j\ge1$ and $(2^jm-p)/5$ is a
+positive integer coprime to $5$, also $(2^jm-p)/5\in\Gamma$. Every member of
+$\Gamma$ is a unit outside $S$, and lies in $P$ by invariance. So $\Gamma$ lies
+in the density-zero regular set of units in $P\setminus S$. Choose
+$y_0=s$ and $y_i=(2^{j_i}y_{i-1}-p)/5\in\Gamma$ with $j_1\ge J_0$ and
+$j_i\ge3$; five consecutive admissible exponents are available at each stage
+and at most one is excluded. Then
+\[
+y_g=\frac{2^{E_g}s}{5^{g}}\,(1-\eta_g),\qquad
+0<\eta_g\le\frac ps\sum_{i\ge1}\frac{5^{i-1}}{2^{E_i}}<3p\,2^{-J_0},
+\]
+where $E_i=j_1+\dots+j_i$. The angles $\log_2s-g\log_25$ are dense modulo $1$.
+Taking $J_0$ large and $g$ with angle well inside $I_U$ puts the angle of $y_g$
+in $I_U$, so $y_g$ contains $U$. Contradiction. \qed
+
+\section{Remarks}
+
+\begin{remark}
+The exact statement is available here, unlike in the base-$6$ note for the 1932
+permutation, because in base $2$ every odd step turns $\log_2n$ by the same
+angle $\log_25$ and halving does not turn it at all. Base $5$ and base $10$
+have the same feature and the argument should adapt; this has not been written
+out. Bases such as $20$ do not have it.
+\end{remark}
+
+\begin{remark}
+For $5\mid s$ there are periodic separators (congruence note). Seeds with
+$\gcd(s,p)>1$ are covered by the theorem as long as $5\nmid s$; for $p=3$,
+$s=27$ the question is the $5n+1$ orbit of $9$.
+\end{remark}
+
+\begin{remark}[What a proof would have to look like]
+Along a divergent orbit the parity sequence is not eventually periodic, since
+an eventually periodic parity sequence determines a rational $2$-adic point
+whose orbit is bounded or leaves the integers. Any certificate must therefore
+be a forward-closed set that is not congruence-defined and not finite-state in
+base $2$, and that still excludes the seed. No example of such a set is known
+for any orbit of $5n+p$ with $\gcd(p,5)=1$.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{K} J.~Konieczny, \emph{An asymptotic version of Cobham's theorem},
+arXiv:2209.09588, Definition~1.1 and Theorem~B.
+\end{thebibliography}
+\end{document}

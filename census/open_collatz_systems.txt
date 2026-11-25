@@ -12,6 +12,12 @@ In a rule such as 3q+1 -> 4q+1, q is an integer and the input is positive.
 Conditions with 'else' are evaluated in the listed order. An orbit is
 eventually periodic if it enters a finite cycle, including a fixed point.
 
+A sweep on 25 November 2026 (one attacking agent per cluster, one referee per
+claim) resolved none of the open questions below. It proved exact equivalences
+(29 items) that collapse most of the 3n+d, 5n+d and 1932-map entries onto a few core
+problems, plus obstruction and restricted-cycle results. Entries it touched
+carry a 'Sweep result' paragraph. Summary: census/lhf/README.md.
+
 CLS-001  div235_7n1_s11  [round1]
   Rule: 2|n -> n/2; else 3|n -> n/3; else 5|n -> n/5; else 7n+1.
   Open question: Is every positive orbit eventually periodic?
@@ -47,11 +53,23 @@ CLS-006  m3_e_s7  [round1]
   Open question: Does the orbit of 7 return to 7, enter a cycle omitting 7, or
     have infinitely many distinct terms?
   Census record: census/results/m3_e_s7.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    The m3_e orbit of 7 is unbounded, reaches {1,9,3} or the 14-cycle, or
+    enters a cycle with >1000 non-multiples of 3. Returning to 7 requires
+    the last case, because 7 lies on neither known cycle. No congruence
+    argument at any modulus separates the orbit from {1,9,3}.
+  Sweep record: census/lhf/seven-nine/CLS-006.md
 
 CLS-007  m3_e_s7  [round1]
   Rule: 3|n -> n/3; n=1 mod 3 -> 7n+2; n=2 mod 3 -> 7n+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/m3_e_s7.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    For m3_e: every nonempty forward-closed union of residue classes at any
+    modulus contains 1, so route-(a) traps are impossible. The only cycles
+    with <=1000 non-multiples of 3 are {1,9,3} and the 14-cycle through 4.
+    T(T(n))=ceil(7n/3) for 3 not dividing n.
+  Sweep record: census/lhf/seven-nine/CLS-007.md
 
 CLS-008  m3_g_s7  [round1]
   Rule: 3|n -> n/3; n=1 mod 3 -> 5n+1; n=2 mod 3 -> 5n+2.
@@ -64,73 +82,151 @@ CLS-009  par_10_2_s7  [round1]
   Open question: Does the orbit of 7 return to 7, enter a cycle omitting 7, or
     have infinitely many distinct terms?
   Census record: census/results/par_10_2_s7.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    FATE(7) under the map that halves even n and sends odd n to 10n+2
+    matches the 5x+1 fate of 7 exactly, in all three outcomes. The inserted
+    terms are 2 mod 10, so they are never 7. This item is in the 5x+1-orbit-
+    of-7 class.
+  Sweep record: census/lhf/five/CLS-009.md
 
 CLS-010  par_10_2_s7  [round1]
   Rule: even n -> n/2; odd n -> 10n+2.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_10_2_s7.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL for the 10n+2 map is equivalent to 5x+1 GLOBAL, in both
+    directions.
+  Sweep record: census/lhf/five/CLS-010.md
 
 CLS-011  par_3_13_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+13.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_13_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(3n+13) holds iff P1 and Q13 both hold. This is correct, but it is
+    a decomposition into an unnamed open problem Q13. The notes already
+    describe the 13Z embedding and the separate coprime part; the only new
+    element is the formal 'iff'.
+  Sweep record: census/lhf/collatz3/CLS-011.md
 
 CLS-012  par_3_17_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+17.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_17_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(3n+17) holds iff P1 and Q17 both hold. This is correct, but it is
+    a decomposition, not an equivalence to a known problem, and the notes
+    already have the 17Z and coprime split. The only cycle with one local
+    minimum is 17*{1,2}, so none is coprime to 17; the list is complete only
+    under the Ellison or Rhin bound.
+  Sweep record: census/lhf/collatz3/CLS-012.md
 
 CLS-013  par_3_1_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_1_s27.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    This is the Collatz problem itself, and the claim makes no progress on
+    it. The cross-links are correct: 031, 014 and 017 are equivalent to it,
+    and 015, 016, 011 and 012 each imply it, which the notes already stated
+    through the dZ sublattices. The result that only the trivial cycle has
+    one local minimum is Steiner 1977, re-derived correctly from Ellison's
+    bound.
+  Sweep record: census/lhf/collatz3/CLS-013.md
 
 CLS-014  par_3_3_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+3.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_3_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(3n+3) is equivalent to P1. The notes already contain this (orbits
+    enter 3Z, and F_3(3m) = 3C(m)). The only cycle with one local minimum is
+    {3,6}.
+  Sweep record: census/lhf/collatz3/CLS-014.md
 
 CLS-015  par_3_5_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+5.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_5_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(3n+5) holds iff P1 and Q5 both hold. The proof is correct (Lemmas
+    G, S and R). Q5 is not a named problem: it is the coprime part of the
+    3x+5 problem rewritten as 3x+1 on rationals with denominator 5, a
+    standard rewriting (Lagarias 1990).
+  Sweep record: census/lhf/collatz3/CLS-015.md
 
 CLS-016  par_3_7_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+7.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_7_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(3n+7) holds iff P1 and Q7 both hold. This is correct, but Q7 is
+    an unnamed open problem, so it is a decomposition rather than an
+    equivalence. The cycles with one local minimum are 7*{1,2} and the cycle
+    with minimum 5 (5,11,20,10); the list is complete only under the Ellison
+    or Rhin bound.
+  Sweep record: census/lhf/collatz3/CLS-016.md
 
 CLS-017  par_3_9_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n+9.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_9_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(3n+9) is equivalent to P1. The notes already contain this (every
+    orbit enters 9Z, and F_9(9y) = 9C(y)). The only cycle with one local
+    minimum is 9*{1,2}, which follows directly from Steiner.
+  Sweep record: census/lhf/collatz3/CLS-017.md
 
 CLS-018  par_3_m1_s27  [round1]
   Rule: even n -> n/2; odd n -> 3n-1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_3_m1_s27.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Since F_{-1}(n) = -C(-n), GLOBAL(3n-1) is equivalent to 'no divergent
+    3x+1 trajectory on the negative integers'. The notes already have this.
+    New, conditional on Ellison or Rhin: the only 3n-1 cycles with one local
+    minimum are {1,2} and {5,14,7,20,10}.
+  Sweep record: census/lhf/collatz3/CLS-018.md
 
 CLS-019  par_5_11_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+11.
   Open question: Does the orbit of 27 return to 27, enter a cycle omitting 27,
     or have infinitely many distinct terms?
   Census record: census/results/par_5_11_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    Under 5n+11 the orbit of 27 is exactly 11 times the rational 5x+1 orbit
+    of 27/11. Numbers coprime to 11 are invariant, so the orbit never enters
+    11Z. This is an exact restatement, and the FATE remains open.
+  Sweep record: census/lhf/five/CLS-019.md
 
 CLS-020  par_5_11_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+11.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_5_11_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(5n+11) is equivalent to rational 5x+1 with denominators dividing
+    11. NO follows from NO for CLS-022 or from CLS-019 diverging.
+  Sweep record: census/lhf/five/CLS-020.md
 
 CLS-021  par_5_131_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+131.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_5_131_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(5n+131) is equivalent to rational 5x+1 with denominators dividing
+    131 (131 is prime). NO for CLS-022 implies NO here.
+  Sweep record: census/lhf/five/CLS-021.md
 
 CLS-022  par_5_1_s5  [round1]
   Rule: even n -> n/2; odd n -> 5n+1.
   Open question: Is every positive orbit eventually periodic?
   Related work: Same map and global question as CLS-024.
   Census record: census/results/par_5_1_s5.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    This is 5x+1 GLOBAL. It is equivalent to CLS-010 and CLS-029 and
+    identical to CLS-024. NO here implies NO for CLS-027, 030, 020, 021 and
+    025, because T_d(dm)=dU(m) for odd d.
+  Sweep record: census/lhf/five/CLS-022.md
 
 CLS-023  par_5_1_s7  [round1]
   Rule: even n -> n/2; odd n -> 5n+1.
@@ -144,55 +240,112 @@ CLS-024  par_5_1_s7  [round1]
   Related work: Same map and global question as CLS-022. See CLS-023 for the
     seed-7 question.
   Census record: census/results/par_5_1_s7.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    Duplicate of CLS-022: GLOBAL does not depend on the seed.
+  Sweep record: census/lhf/five/CLS-024.md
 
 CLS-025  par_5_353_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+353.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_5_353_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(5n+353) is equivalent to rational 5x+1 with denominators dividing
+    353 (353 is prime). NO for CLS-022 implies NO here.
+  Sweep record: census/lhf/five/CLS-025.md
 
 CLS-026  par_5_3_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+3.
   Open question: Does the orbit of 27 return to 27, enter a cycle omitting 27,
     or have infinitely many distinct terms?
   Census record: census/results/par_5_3_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    Under 5n+3 the orbit of 27 is 3 times the 5x+1 orbit of 9, and 9 lies on
+    the 5x+1 orbit of 7. So 'grows forever' is equivalent to the 5x+1 orbit
+    of 7 being unbounded. 'Returns to 27' corresponds to 9 returning to 9
+    under 5x+1, which is not the same event as CLS-023's return to 7.
+  Sweep record: census/lhf/five/CLS-026.md
 
 CLS-027  par_5_3_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+3.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_5_3_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(5n+3) holds exactly when every n/3 (n>=1) has an eventually
+    periodic rational 5x+1 orbit. This splits into 5x+1 GLOBAL on 3Z and an
+    invariant 5n+3 problem on numbers coprime to 3. NO for CLS-022 implies
+    NO here.
+  Sweep record: census/lhf/five/CLS-027.md
 
 CLS-028  par_5_5_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+5.
   Open question: Does the orbit of 27 return to 27, enter a cycle omitting 27,
     or have infinitely many distinct terms?
   Census record: census/results/par_5_5_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    Under 5n+5 the orbit of 27 is 27, 140, 70, then 5 times the 5x+1 orbit
+    of 7. Return to 27 is impossible. 'Grows forever' is equivalent to the
+    5x+1 orbit of 7 being unbounded.
+  Sweep record: census/lhf/five/CLS-028.md
 
 CLS-029  par_5_5_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+5.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_5_5_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(5n+5) is equivalent to 5x+1 GLOBAL, in both directions. Every
+    5x+1 seed k is reached from the 5n+5 seed 2k-1. The claim's wording
+    needs fixing: it is the 5x+1 orbit m, not the 5n+5 orbit, that leaves
+    5Z, and the 5n+5 orbit stays in 5Z forever.
+  Sweep record: census/lhf/five/CLS-029.md
 
 CLS-030  par_5_7_s27  [round1]
   Rule: even n -> n/2; odd n -> 5n+7.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_5_7_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(5n+7) is equivalent to rational 5x+1 GLOBAL with denominators
+    dividing 7. NO for CLS-022 implies NO here. The units mod 5 are forward
+    invariant.
+  Sweep record: census/lhf/five/CLS-030.md
 
 CLS-031  par_6_2_s27  [round1]
   Rule: even n -> n/2; odd n -> 6n+2.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_6_2_s27.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(6n+2) is equivalent to P1, which is CLS-013. This is correct but
+    not new: census/results/par_6_2_s27.md already gives the same orbit-
+    embedding proof. The claim that the only cycle with one local minimum is
+    {1,8,4,2} is Steiner's 1977 theorem carried over through the embedding.
+  Sweep record: census/lhf/collatz3/CLS-031.md
 
 CLS-032  par_7_1_s1  [round1]
   Rule: even n -> n/2; odd n -> 7n+1.
   Open question: Is every positive orbit eventually periodic?
   Related work: Same map and global question as CLS-034.
   Census record: census/results/par_7_1_s1.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    For 7n+1: Theorem A (every nonempty forward-closed union of residue
+    classes, at any modulus, contains the periodic point 1, so route-(a)
+    congruence traps are impossible) and Theorem C (L=1000) are proved.
+    Correction: for 9n+1 the trap consequence does not follow. 1 is not
+    known to be periodic, and if there are no cycles then Z_{>0} is a trap.
+    For q=9, Theorem A only shows that every trap contains the orbit of 1,
+    so a route-(a) certificate would have to prove the orbit of 1 (CLS-036)
+    unbounded.
+  Sweep record: census/lhf/seven-nine/CLS-032.md
 
 CLS-033  par_7_1_s3  [round1]
   Rule: even n -> n/2; odd n -> 7n+1.
   Open question: Does the orbit of 3 return to 3, enter a cycle omitting 3, or
     have infinitely many distinct terms?
   Census record: census/results/par_7_1_s3.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    The 7n+1 orbit of 3 is unbounded, reaches {1,8,4,2}, or enters a cycle
+    with >1000 odd terms. At every modulus the residue closure of 22
+    contains the class of 1, so no congruence argument can exclude reaching
+    1. Non-return to 3 was already known (mod-7 set {1,2,4}).
+  Sweep record: census/lhf/seven-nine/CLS-033.md
 
 CLS-034  par_7_1_s3  [round1]
   Rule: even n -> n/2; odd n -> 7n+1.
@@ -200,22 +353,48 @@ CLS-034  par_7_1_s3  [round1]
   Related work: Same map and global question as CLS-032. See CLS-033 for the
     seed-3 question.
   Census record: census/results/par_7_1_s3.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    CLS-034 and CLS-032 are the same question: the steps par_7_1_s3 and
+    par_7_1_s1 agree, and GLOBAL does not depend on the seed, so one entry
+    can be dropped. Theorem A (q=7, every modulus) and Theorem C (only cycle
+    with <=1000 odd terms is {1,8,4,2}) are confirmed. GLOBAL stays open.
+  Sweep record: census/lhf/seven-nine/CLS-034.md
 
 CLS-035  par_7_7_s9  [round1]
   Rule: even n -> n/2; odd n -> 7n+7.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_7_7_s9.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(7n+7) is equivalent to GLOBAL(7n+1). This equivalence was already
+    in census/results/par_7_7_s9.md and in the OPEN_PROBLEMS status line, so
+    it is not new. New and correct: every forward-closed union of residue
+    classes, at any modulus, contains 7 (via G={x:7x in F}), and
+    {7,56,28,14} is the only cycle with <=1000 odd terms.
+  Sweep record: census/lhf/seven-nine/CLS-035.md
 
 CLS-036  par_9_1_s5  [round1]
   Rule: even n -> n/2; odd n -> 9n+1.
   Open question: Does the orbit of 5 return to 5, enter a cycle omitting 5, or
     have infinitely many distinct terms?
   Census record: census/results/par_9_1_s5.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    The 9n+1 orbit of 5 (a tail of the orbit of 1, since 1->10->5) is
+    unbounded or ends in a cycle with >1000 odd terms; this includes any
+    return to 5. At every modulus the residue closure of any class contains
+    the classes of 1, 10 and 5. This proves for all M what the census
+    checked for M<=3000.
+  Sweep record: census/lhf/seven-nine/CLS-036.md
 
 CLS-037  par_9_1_s5  [round1]
   Rule: even n -> n/2; odd n -> 9n+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/par_9_1_s5.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Proved: 9n+1 has no cycle with <=1000 odd terms (independent re-run).
+    The L=3000 run is unverified by the referee, since the referee run did
+    not finish in budget. Proved: Theorem A for q=9, every forward-closed
+    union of classes contains 1.
+  Sweep record: census/lhf/seven-nine/CLS-037.md
 
 CLS-038  perm_1932_s44  [round1]
   Rule: 3q->2q; 3q+1->4q+1; 3q+2->4q+3.
@@ -223,6 +402,13 @@ CLS-038  perm_1932_s44  [round1]
   Related work: Same map and global question as CLS-040. See CLS-039 for the
     orbit of 8.
   Census record: census/results/perm_1932_s44.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    For every M>=1, G_M(T) and G_M(T^{-1}) are strongly connected, so no
+    periodic separator exists. No T^k- or T^{-k}-invariant affine
+    progression exists. This is a complete written proof of the sketch in
+    certificate_search_proofs.txt §5 and HANDOFF.md claim I1, not a new
+    result.
+  Sweep record: census/lhf/perm-swap-c/CLS-038.md
 
 CLS-039  perm_1932_s8  [round1]
   Rule: 3q->2q; 3q+1->4q+1; 3q+2->4q+3.
@@ -245,6 +431,12 @@ CLS-041  perm_1932inv_s8  [round1]
   Related work: The inverse of the map in CLS-039. The seed returns under one
     map exactly when it returns under the other.
   Census record: census/results/perm_1932inv_s8.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    U = T^{-1} exactly on Z>0. Because U is injective, the FATE of 8 under U
+    is exactly Collatz's 1932 orbit-of-8 problem (CLS-039), which is open.
+    This was already recorded in OPEN_PROBLEMS.txt (KNOWN-HARD) and the
+    notes, so it is not new progress.
+  Sweep record: census/lhf/perm-near/CLS-041.md
 
 CLS-042  perm_1932inv_s8  [round1]
   Rule: 2q->3q; 4q+1->3q+1; 4q+3->3q+2.
@@ -252,38 +444,81 @@ CLS-042  perm_1932inv_s8  [round1]
   Related work: The inverse of the map in CLS-040. All orbits are periodic
     under one map exactly when they are periodic under the other.
   Census record: census/results/perm_1932inv_s8.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(U) is equivalent to GLOBAL(T) (CLS-040/CLS-038), because for a
+    bijection eventually periodic means periodic and the periodic points of
+    U and T coincide. This was already known in substance. It sharpens the
+    list's wording 'equivalent to the orbit of 8' to the stronger all-orbits
+    question.
+  Sweep record: census/lhf/perm-near/CLS-042.md
 
 CLS-043  perm_b_s7  [round1]
   Rule: 3q->4q; 3q+1->4q+2; 3q+2->2q+1.
   Open question: Does the orbit of 7 return to 7 or have infinitely many
     distinct terms?
   Census record: census/results/perm_b_s7.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    B(n) = T(n+1) - 1 on Z>0. T(1) = 1 makes Z>=2 T-invariant and mapped
+    onto itself, so B^k(7) = T^k(8) - 1 and the FATE of 7 is exactly the
+    1932 orbit-of-8 problem. This was already recorded in OPEN_PROBLEMS.txt
+    and the notes.
+  Sweep record: census/lhf/perm-near/CLS-043.md
 
 CLS-044  perm_b_s7  [round1]
   Rule: 3q->4q; 3q+1->4q+2; 3q+2->2q+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/perm_b_s7.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    GLOBAL(B) is equivalent to GLOBAL(T) (CLS-040), by the same conjugacy
+    and T(1) = 1. This was already known.
+  Sweep record: census/lhf/perm-near/CLS-044.md
 
 CLS-045  perm_c_s8  [round1]
   Rule: 2q->3q; 4q+1->3q+2; 4q+3->3q+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/perm_c_s8.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    C = S^{-1}, so GLOBAL(CLS-045) = GLOBAL(CLS-047). This equivalence was
+    already in results/perm_c_s8.md and is not new. New and proved: the
+    C-closed periodic sets are exactly ∅, Z>0, 5Z>0 and its complement, so
+    no congruence separator exists.
+  Sweep record: census/lhf/perm-swap-c/CLS-045.md
 
 CLS-046  perm_d_s3  [round1]
   Rule: 2q->5q; 8q+1->5q+1; 8q+3->5q+2; 8q+5->5q+3; 8q+7->5q+4.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/perm_d_s3.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    For D = perm_d_s3, for every M and all residues c,d mod M there exist n
+    = c (mod M), with n arbitrarily large, and k>=1 such that D^k(n) = d
+    (mod M). So no forward-invariant proper union of residue classes exists,
+    even above a threshold N, under D or D^{-1}, and no congruence
+    certificate of an infinite orbit exists at any modulus. No class is
+    mapped into itself by a single affine D^k, because the slope 5^k/2^e is
+    never an integer.
+  Sweep record: census/lhf/perm-d/CLS-046.md
 
 CLS-047  perm_swap_s8  [round1]
   Rule: 3q->2q; 3q+1->4q+3; 3q+2->4q+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/results/perm_swap_s8.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Proved for every M: the only S-closed unions of residue classes mod M
+    are ∅, Z>0, 5Z>0 and its complement (the last two only when 5|M). So no
+    periodic separator exists at any seed. For no k>=1 is there an
+    S^k-invariant arithmetic progression on which S^k is affine.
+  Sweep record: census/lhf/perm-swap-c/CLS-047.md
 
 CLS-048  split5_1_s27  [round1]
   Rule: even n -> n/2; n=1 mod 4 -> 5n+1; n=3 mod 4 -> n+1.
   Open question: Is every positive orbit eventually periodic?
   Related work: Round 2 revisits the same question in CLS-064.
   Census record: census/results/split5_1_s27.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Proved (PARTIAL). For the odd map S of split5_1, the only cycle with
+    exactly one expanding run (one local minimum) is {1,3}, i.e. the T-cycle
+    (1 6 3 4 2). S has no cycle without A-steps.
+  Sweep record: census/lhf/mixed/CLS-048.md
 
 CLS-049  split5_3_s27  [round1]
   Rule: even n -> n/2; n=1 mod 4 -> 5n+3; n=3 mod 4 -> n+3.
@@ -302,17 +537,33 @@ CLS-051  desc_m3_4n5  [round2/descent]
   Rule: 3|n -> n/3; n=1 mod 3 -> 4n+5; n=2 mod 3 -> 2n+2.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/round2/descent/desc_m3_4n5.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Proved (PARTIAL). On non-multiples of 3, the cycles of S with no
+    expanding step are {1} and {2}, i.e. the T-cycles (1 9 3) and (2 6). The
+    only cycle with exactly one expanding run is {16,23}, i.e. the T-cycle
+    (16 69 23 48).
+  Sweep record: census/lhf/mixed/CLS-051.md
 
 CLS-052  desc_s32_plus9  [round2/descent]
   Rule: even n -> n/2; odd n -> 3n+1 if n mod 32 in
     {1,3,5,7,9,11,13,15,17,21,23,25,29}, else (19,27,31 mod 32) n+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/round2/descent/desc_s32_plus9.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Proved (PARTIAL). The odd map of desc_s32_plus9 has no cycle with
+    exactly one expanding run. Its only cycle with no expanding step is the
+    fixed point 1.
+  Sweep record: census/lhf/mixed/CLS-052.md
 
 CLS-053  desc_split7_1  [round2/descent]
   Rule: even n -> n/2; n=1 mod 4 -> 7n+1; n=3 mod 4 -> n+1.
   Open question: Is every positive orbit eventually periodic?
   Census record: census/round2/descent/desc_split7_1.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    Proved (PARTIAL). The odd map of desc_split7_1 has no cycle with exactly
+    one expanding run. Its only cycle with no expanding step is the fixed
+    point 1, i.e. the T-cycle (1 8 4 2).
+  Sweep record: census/lhf/mixed/CLS-053.md
 
 CLS-054  flipT_s8  [round2/downfrom5]
   Rule: 3q -> 2q-1; 3q+1 -> 4q+2; 3q+2 -> 4q+4.
@@ -321,6 +572,12 @@ CLS-054  flipT_s8  [round2/downfrom5]
   Related work: The census proves that return of 8 for this map is equivalent
     to return of 8 in CLS-039.
   Census record: census/round2/downfrom5/flipT_s8.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    P(n) = T(n+3) - 3 on Z>0. T permutes {1,2,3}, so Z>=4 is invariant, and
+    8 is P-periodic iff 8 is T-periodic, using T(8) = 11 and injectivity.
+    The OPEN_PROBLEMS.txt status line already states this verbatim, so it is
+    a confirmation only.
+  Sweep record: census/lhf/perm-near/CLS-054.md
 
 CLS-055  swT9_s8  [round2/downfrom5]
   Rule: Apply T(3q)=2q, T(3q+1)=4q+1, T(3q+2)=4q+3, then replace the result y
@@ -328,12 +585,23 @@ CLS-055  swT9_s8  [round2/downfrom5]
   Open question: Does the orbit of 8 return to 8 or have infinitely many
     distinct terms?
   Census record: census/round2/downfrom5/swT9_s8.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    PARTIAL; the FATE of 8 under Q is still open. Proved: G_K is strongly
+    connected for every K with 3 not dividing K, so no congruence trap or
+    separator exists at such K. This only forces the minimal trap modulus to
+    be divisible by 3.
+  Sweep record: census/lhf/perm-near/CLS-055.md
 
 CLS-056  yah_avoid57  [round2/literature]
   Rule: n=5 or 7 mod 8 -> 1; else even n -> n/2; odd n -> 3n+1.
   Open question: Does every positive orbit enter the cycle (1, 4, 2)? (Yolcu-
     Aaronson-Heule, Conjecture 4.14.)
   Census record: census/round2/literature/yah_avoid57.md
+  Sweep result (25 Nov 2026, refereed, partial):
+    PARTIAL. (1) Conj. 4.14 holds iff E (trajectories avoiding 5 and 7 mod
+    8) is exactly the powers of 2. (2) Proved: #(E ∩ [1,X]) <= 2 a_L <= 2 +
+    12.4 X^{log2 ρ} = O(X^0.4057), an upper bound rather than '≈'.
+  Sweep record: census/lhf/traps/CLS-056.md
 
 CLS-057  qrA3_q17  [round2/qr]
   Subsequent resolution: No integer base admits a finite-state classifier.
@@ -347,6 +615,13 @@ CLS-057  qrA3_q17  [round2/qr]
     eventually periodic residue classification for the other two basins. The
     open question concerns a finite-state description in any integer base.
   Census record: census/round2/qr/qrA3_q17.md
+  Sweep result (25 Nov 2026, refereed, resolved):
+    Three independent lanes re-derived the all-base proof and found it
+    correct. One lane generalized it (Theorem F): for T(n)=n/2 on even n and
+    (n+cq)/m on odd n, with m>=3 odd and gcd(q,2m)=1, if one coset of <2,m>
+    in (Z/q)^* holds two or more cycles, then no basin of a cycle in that
+    coset is k-automatic for any base k>=2.
+  Sweep record: census/lhf/q17-family/CLS-057.md, census/lhf/q17-nonauto/CLS-057.md, census/lhf/q17-structure/CLS-057.md
 
 CLS-058  div235_7n1_s11  [round2/rewriting]
   Rule: 2|n -> n/2; else 3|n -> n/3; else 5|n -> n/5; else 7n+1.
@@ -409,3 +684,9 @@ CLS-066  up_ct3  [round2/upfrom1]
   Open question: Which n have infinite orbits (is it exactly the trap basin,
     with (1 2) the only untrapped cycle)?
   Census record: census/round2/upfrom1/up_ct3.md
+  Sweep result (25 Nov 2026, refereed, equivalence):
+    PARTIAL. (1) Exact equivalence: the up_ct3 question (divergent set =
+    trap basin, and (1 2) the only untrapped cycle) holds iff YAH Conj. 4.13
+    holds (every C-trajectory not reaching 1 meets 7 mod 8). This is a named
+    $500 prize problem, and it implies CLS-056.
+  Sweep record: census/lhf/traps/CLS-066.md

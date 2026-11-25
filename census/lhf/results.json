@@ -1,0 +1,587 @@
+{
+ "rows": [
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL for the 6n+2 map is exactly equivalent to P1 (no divergent Collatz trajectory) and so to CLS-013, CLS-014 and CLS-017. Its only cycle with one local minimum is {1,8,4,2}; this holds provided the cited bound on |2^K-3^k| is correct. No nonempty, forward-invariant, proper union of residue classes mod 2^j exists.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(6n+2) is equivalent to P1, which is CLS-013. This is correct but not new: census/results/par_6_2_s27.md already gives the same orbit-embedding proof. The claim that the only cycle with one local minimum is {1,8,4,2} is Steiner's 1977 theorem carried over through the embedding. Lemma O is correct and unconditional: no proper, nonempty, forward-invariant union of classes mod 2^j exists, because a G-invariant set is T_1-invariant (T_1(n) lies on the G-orbit of n). GLOBAL is still open.",
+   "notes": "check_CLS-031.py exits 0. referee_check.py exits 0; it tests against census/systems.py and confirms that removing the inserted terms 2(3n+1) from the G-orbit gives the Collatz orbit, for n<=5000. I re-derived Lemma O by hand. The equivalence was already in the notes.",
+   "catalog_id": "CLS-031",
+   "sweep_id": "CLS-001"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "PARTIAL",
+   "claim": "This is the Collatz problem itself and is not resolved. CLS-031, CLS-014 and CLS-017 are exactly equivalent to it, and CLS-015, CLS-016, CLS-011 and CLS-012 each imply it. The trivial cycle is the only cycle with one local minimum (Steiner's theorem, re-derived). That step uses a cited bound on |2^K-3^k| (Ellison 1971 or Rhin 1987), and the search covers k up to 1000. Lemma O rules out 2-adic residue-class certificates.",
+   "verdict": "confirmed",
+   "corrected": "This is the Collatz problem itself, and the claim makes no progress on it. The cross-links are correct: 031, 014 and 017 are equivalent to it, and 015, 016, 011 and 012 each imply it, which the notes already stated through the dZ sublattices. The result that only the trivial cycle has one local minimum is Steiner 1977, re-derived correctly from Ellison's bound. Lemma O holds.",
+   "notes": "Correct as PARTIAL, but none of it is new mathematics. Ellison's constant is quoted, not checked against the source; the usual quoted form (x>=28, e^{-x/10}) matches. The quoted Rhin form may be slightly off (Simons and de Weger give exp(-13.3(0.46057+log max))), but the exhaustive search to k=1000 covers that easily.",
+   "catalog_id": "CLS-013",
+   "sweep_id": "CLS-004"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "PARTIAL",
+   "claim": "GLOBAL is equivalent to P-1 (no divergent 3x+1 trajectory on the negative integers). The only 3n-1 cycles with one local minimum are {1,2} and {5,14,7,20,10}, provided the cited bound (Ellison or Rhin) holds. Lemma O applies.",
+   "verdict": "confirmed",
+   "corrected": "Since F_{-1}(n) = -C(-n), GLOBAL(3n-1) is equivalent to 'no divergent 3x+1 trajectory on the negative integers'. The notes already have this. New, conditional on Ellison or Rhin: the only 3n-1 cycles with one local minimum are {1,2} and {5,14,7,20,10}.",
+   "notes": "I enumerated 1-cycles independently for k<=400 and ran a brute-force search of all cycles with minimum below 20000: {1:1 run, 5:1 run, 17:2 runs}. With d<0, x>=1 forces D<0 and hence K<k log2 3, so the kE=0 step is correct. The l=0 fixed point x=-d=1 is handled correctly.",
+   "catalog_id": "CLS-018",
+   "sweep_id": "CLS-005"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL for 3n+3 is exactly equivalent to P1, which is CLS-013 (restated through the scaling Lemma S). Its only cycle with one local minimum is 3*{1,2}, provided the cited bound holds.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(3n+3) is equivalent to P1. The notes already contain this (orbits enter 3Z, and F_3(3m) = 3C(m)). The only cycle with one local minimum is {3,6}. This follows from Steiner through the conjugacy on 3Z, since there are no cycles off 3Z; it does not need the Ellison/Rhin condition.",
+   "notes": "Restatement of the notes. I checked that every orbit of n<=20000 enters 3Z, and that F_3(3m) = 3F_1(m) holds along orbits.",
+   "catalog_id": "CLS-014",
+   "sweep_id": "CLS-006"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "Exact reduction: GLOBAL(3n+5) holds iff P1 and Q5 both hold. Q5 says no positive rational with reduced denominator 5 has a divergent 3x+1 orbit. Equivalently, no 3n+5 orbit with 5 not dividing n diverges. So CLS-015 implies CLS-013. Provided the cited bound holds, the cycles with one local minimum are exactly 5*{1,2}, 1->8->4->2->1, and the cycle with minimum 19.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(3n+5) holds iff P1 and Q5 both hold. The proof is correct (Lemmas G, S and R). Q5 is not a named problem: it is the coprime part of the 3x+5 problem rewritten as 3x+1 on rationals with denominator 5, a standard rewriting (Lagarias 1990). So this is a decomposition, not an EQUIVALENCE that removes the item from the list. That CLS-015 implies CLS-013 was already in the notes. The cycles with one local minimum are 5*{1,2}, {1,8,4,2} and the cycle with minimum 19; the list is complete only under the Ellison or Rhin bound.",
+   "notes": "The outcome label EQUIVALENCE overstates the result. Brute force over minima below 20000 gives one run for 1, 5 and 19, two runs for 23, six for 187 and seven for 347, which matches. Lemma G needs gcd(d,6)=1, which holds.",
+   "catalog_id": "CLS-015",
+   "sweep_id": "CLS-007"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(3n+7) holds iff P1 and Q7 both hold, where Q7 is the rational 3x+1 no-divergence statement for denominator 7. Provided the cited bound holds, the cycles with one local minimum are exactly 7*{1,2} and the cycle 5->11->20->10->5 (shortcut form).",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(3n+7) holds iff P1 and Q7 both hold. This is correct, but Q7 is an unnamed open problem, so it is a decomposition rather than an equivalence. The cycles with one local minimum are 7*{1,2} and the cycle with minimum 5 (5,11,20,10); the list is complete only under the Ellison or Rhin bound.",
+   "notes": "The formula and the brute force agree: below 20000 the only cycle minima are 5 and 7, both with one run. Implication of CLS-013 already in notes.",
+   "catalog_id": "CLS-016",
+   "sweep_id": "CLS-008"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL for 3n+9 is exactly equivalent to P1, which is CLS-013 (restated). Its only cycle with one local minimum is 9*{1,2}, provided the cited bound holds.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(3n+9) is equivalent to P1. The notes already contain this (every orbit enters 9Z, and F_9(9y) = 9C(y)). The only cycle with one local minimum is 9*{1,2}, which follows directly from Steiner.",
+   "notes": "Restatement. I checked that every orbit of n<=20000 enters 9Z.",
+   "catalog_id": "CLS-017",
+   "sweep_id": "CLS-009"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(3n+13) holds iff P1 and Q13 both hold. Provided the cited bound holds, the cycles with one local minimum are exactly 13*{1,2}, 1->16->8->4->2->1, and the cycle with minimum 211 (k=5, l=3).",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(3n+13) holds iff P1 and Q13 both hold. This is correct, but it is a decomposition into an unnamed open problem Q13. The notes already describe the 13Z embedding and the separate coprime part; the only new element is the formal 'iff'. The cycles with one local minimum are 13*{1,2}, the cycle through 1 (k=1, l=3) and the cycle with minimum 211 (k=5, l=3); the list is complete only under the Ellison or Rhin bound.",
+   "notes": "211 = 13(243-32)/(256-243), checked. Below 20000 the other cycles (131, 227, 251, 259, 283, 287, 319) all have two or more runs.",
+   "catalog_id": "CLS-011",
+   "sweep_id": "CLS-010"
+  },
+  {
+   "key": "collatz3",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(3n+17) holds iff P1 and Q17 both hold. Provided the cited bound holds, the only cycle with one local minimum is 17*{1,2}, so no such cycle is coprime to 17.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(3n+17) holds iff P1 and Q17 both hold. This is correct, but it is a decomposition, not an equivalence to a known problem, and the notes already have the 17Z and coprime split. The only cycle with one local minimum is 17*{1,2}, so none is coprime to 17; the list is complete only under the Ellison or Rhin bound.",
+   "notes": "Below 20000 the other cycles are minimum 1 (two runs) and minimum 23 (nine runs). Independent test: /home/riv/Code/collatz/census/lhf/collatz3/referee_check.py, which exits 0 in about 3 s. Referee sections appended to every CLS-*.md in /home/riv/Code/collatz/census/lhf/collatz3/.",
+   "catalog_id": "CLS-012",
+   "sweep_id": "CLS-011"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "FATE of 7 under the map that halves even n and sends odd n to 10n+2: the orbit grows forever exactly when the 5x+1 orbit of 7 is unbounded. This puts it in the same class as CLS-023, 026 and 028.",
+   "verdict": "confirmed",
+   "corrected": "FATE(7) under the map that halves even n and sends odd n to 10n+2 matches the 5x+1 fate of 7 exactly, in all three outcomes. The inserted terms are 2 mod 10, so they are never 7. This item is in the 5x+1-orbit-of-7 class.",
+   "notes": "Re-derived F(F(n))=5n+1 for odd n. Already in census/results/par_10_2_s7.md and in the KNOWN-HARD status, so there is no new content. Open.",
+   "catalog_id": "CLS-009",
+   "sweep_id": "CLS-002"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL for the 10n+2 map is exactly 5x+1 GLOBAL, so it is the same question as CLS-022, 024 and 029.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL for the 10n+2 map is equivalent to 5x+1 GLOBAL, in both directions.",
+   "notes": "Already in the notes and the status. Open.",
+   "catalog_id": "CLS-010",
+   "sweep_id": "CLS-003"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "This is 5x+1 GLOBAL itself. It is exactly equivalent to CLS-010 and CLS-029, and literally the same question as CLS-024. A NO here implies NO for CLS-027, 030, 020, 021 and 025, through the dZ scaling n=dm.",
+   "verdict": "confirmed",
+   "corrected": "This is 5x+1 GLOBAL. It is equivalent to CLS-010 and CLS-029 and identical to CLS-024. NO here implies NO for CLS-027, 030, 020, 021 and 025, because T_d(dm)=dU(m) for odd d.",
+   "notes": "The dZ conjugacy is already in every par_5_d notes file. This is bookkeeping, not progress.",
+   "catalog_id": "CLS-022",
+   "sweep_id": "CLS-012"
+  },
+  {
+   "key": "five",
+   "outcome": "NO-PROGRESS",
+   "claim": "Still the open question of whether 7 diverges under 5x+1. CLS-009, 026 and 028 are exactly this orbit. A divergence proof cannot use an eventually periodic parity certificate: L5 proves that any orbit with eventually periodic parity is eventually periodic. Seeds divisible by 5 do not help either (L4).",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-023",
+   "sweep_id": "CLS-013"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "Literally the same question as CLS-022, because GLOBAL does not depend on the seed. This is a duplicate entry.",
+   "verdict": "confirmed",
+   "corrected": "Duplicate of CLS-022: GLOBAL does not depend on the seed.",
+   "notes": "Follows from the definition.",
+   "catalog_id": "CLS-024",
+   "sweep_id": "CLS-014"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "Under 5n+3, the orbit of 27 is 3 times the 5x+1 orbit of 7 from step 3 onward (7->36->18->9, and 27=3*9). So 'grows forever' is equivalent to CLS-023 'grows forever'. This restates the earlier notes.",
+   "verdict": "confirmed",
+   "corrected": "Under 5n+3 the orbit of 27 is 3 times the 5x+1 orbit of 9, and 9 lies on the 5x+1 orbit of 7. So 'grows forever' is equivalent to the 5x+1 orbit of 7 being unbounded. 'Returns to 27' corresponds to 9 returning to 9 under 5x+1, which is not the same event as CLS-023's return to 7.",
+   "notes": "Already in census/results/par_5_3_s27.md. Small caveat about the cycle branch. Open.",
+   "catalog_id": "CLS-026",
+   "sweep_id": "CLS-015"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(5n+3) holds exactly when every positive rational m/3 has an eventually periodic 5x+1 orbit (Lagarias rational extension). The question splits into 5x+1 GLOBAL on 3Z plus an invariant part on numbers coprime to 3. A NO for CLS-022 implies a NO here.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(5n+3) holds exactly when every n/3 (n>=1) has an eventually periodic rational 5x+1 orbit. This splits into 5x+1 GLOBAL on 3Z and an invariant 5n+3 problem on numbers coprime to 3. NO for CLS-022 implies NO here.",
+   "notes": "A trivial reformulation. The split and the invariant complement are already in par_5_3_s27.md.",
+   "catalog_id": "CLS-027",
+   "sweep_id": "CLS-016"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "Under 5n+5: 27->140=5*28, then 28->14->7 under 5x+1, so the orbit from step 3 onward is 5 times the 5x+1 orbit of 7. 'Grows forever' is equivalent to CLS-023. Returning to 27 is impossible, since every orbit stays in 5Z after its first odd step and 27 is not in 5Z.",
+   "verdict": "confirmed",
+   "corrected": "Under 5n+5 the orbit of 27 is 27, 140, 70, then 5 times the 5x+1 orbit of 7. Return to 27 is impossible. 'Grows forever' is equivalent to the 5x+1 orbit of 7 being unbounded.",
+   "notes": "Already in par_5_5_s27.md. Open.",
+   "catalog_id": "CLS-028",
+   "sweep_id": "CLS-017"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(5n+5) is exactly 5x+1 GLOBAL. Every orbit enters 5Z at its first odd step, and T(5m)=5U(m) there. The 5|d scaling therefore gives nothing beyond 5x+1: inside 5Z, the image orbit leaves 5Z at its first odd step.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(5n+5) is equivalent to 5x+1 GLOBAL, in both directions. Every 5x+1 seed k is reached from the 5n+5 seed 2k-1. The claim's wording needs fixing: it is the 5x+1 orbit m, not the 5n+5 orbit, that leaves 5Z, and the 5n+5 orbit stays in 5Z forever.",
+   "notes": "Already in par_5_5_s27.md. The wording in the claim is garbled but the substance is correct.",
+   "catalog_id": "CLS-029",
+   "sweep_id": "CLS-018"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(5n+7) holds exactly when every positive rational with denominator dividing 7 has an eventually periodic 5x+1 orbit. A NO for 5x+1 GLOBAL implies a NO here. The route through seeds divisible by 5 is empty: every odd step lands on a number not divisible by 5, and that set is forward invariant.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(5n+7) is equivalent to rational 5x+1 GLOBAL with denominators dividing 7. NO for CLS-022 implies NO here. The units mod 5 are forward invariant.",
+   "notes": "'The route through seeds divisible by 5 is empty' is only a remark, not an obstruction. The 7Z conjugacy is already in the notes.",
+   "catalog_id": "CLS-030",
+   "sweep_id": "CLS-019"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "Under 5n+11, the orbit of 27 is 11 times the 5x+1 orbit of the rational 27/11, which is an exact restatement. Numbers coprime to 11 form an invariant set, so the orbit never enters 11Z and never merges with an integer 5x+1 orbit. This is a separate single-orbit problem of the same type as CLS-023, and no certificate was found.",
+   "verdict": "confirmed",
+   "corrected": "Under 5n+11 the orbit of 27 is exactly 11 times the rational 5x+1 orbit of 27/11. Numbers coprime to 11 are invariant, so the orbit never enters 11Z. This is an exact restatement, and the FATE remains open.",
+   "notes": "The rational rephrasing is trivial. 'Separate problem' is informal. I did not check the md's appeal to binary_certificates_5np.pdf. The status entry already gives the essence.",
+   "catalog_id": "CLS-019",
+   "sweep_id": "CLS-020"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(5n+11) is equivalent to rational 5x+1 with denominators dividing 11. A NO follows from a NO for CLS-022, or from CLS-019 growing forever.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(5n+11) is equivalent to rational 5x+1 with denominators dividing 11. NO follows from NO for CLS-022 or from CLS-019 diverging.",
+   "notes": "A restatement. The conjugacy is already in the notes.",
+   "catalog_id": "CLS-020",
+   "sweep_id": "CLS-021"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(5n+131) is equivalent to rational 5x+1 with denominators dividing 131. A NO follows from a NO for CLS-022.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(5n+131) is equivalent to rational 5x+1 with denominators dividing 131 (131 is prime). NO for CLS-022 implies NO here.",
+   "notes": "A restatement. Already in par_5_131_s27.md.",
+   "catalog_id": "CLS-021",
+   "sweep_id": "CLS-022"
+  },
+  {
+   "key": "five",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL(5n+353) is equivalent to rational 5x+1 with denominators dividing 353. A NO follows from a NO for CLS-022.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(5n+353) is equivalent to rational 5x+1 with denominators dividing 353 (353 is prime). NO for CLS-022 implies NO here.",
+   "notes": "A restatement. Already in the notes.",
+   "catalog_id": "CLS-025",
+   "sweep_id": "CLS-023"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "EQUIVALENCE",
+   "claim": "CLS-034 and CLS-032 are literally the same question: GLOBAL for the 7n+1 map does not depend on the seed tag, so one entry can be dropped. Also proved: Theorem A (no congruence trap at any modulus) and Theorem C (the only cycle with at most 1000 odd terms is {1,8,4,2}).",
+   "verdict": "confirmed",
+   "corrected": "CLS-034 and CLS-032 are the same question: the steps par_7_1_s3 and par_7_1_s1 agree, and GLOBAL does not depend on the seed, so one entry can be dropped. Theorem A (q=7, every modulus) and Theorem C (only cycle with <=1000 odd terms is {1,8,4,2}) are confirmed. GLOBAL stays open.",
+   "notes": "This is trivial bookkeeping. The steps were checked equal on n<20000. The independent check is census/lhf/seven-nine/referee_check.py (exit 0, about 55 s).",
+   "catalog_id": "CLS-034",
+   "sweep_id": "CLS-025"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "EQUIVALENCE",
+   "claim": "GLOBAL for 7n+7 is exactly equivalent to GLOBAL for 7n+1 (CLS-032): 7Z is forward-invariant, every orbit enters it, and T(7m)=7U(m). Its cycles are exactly 7 times the 7n+1 cycles; the only one with at most 1000 odd terms is {7,56,28,14}. Every nonempty forward-closed union of residue classes, at any modulus, contains 7.",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(7n+7) is equivalent to GLOBAL(7n+1). This equivalence was already in census/results/par_7_7_s9.md and in the OPEN_PROBLEMS status line, so it is not new. New and correct: every forward-closed union of residue classes, at any modulus, contains 7 (via G={x:7x in F}), and {7,56,28,14} is the only cycle with <=1000 odd terms.",
+   "notes": "T(7m)=7U(m) and the 7Z entry were checked for n<1e5. Theorem A' was checked empirically for all M<=240, including odd M.",
+   "catalog_id": "CLS-035",
+   "sweep_id": "CLS-026"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "PARTIAL",
+   "claim": "Theorem A: for 7n+1 (and 9n+1), every nonempty forward-closed union of residue classes, at any modulus, contains 1. So route-(a) congruence traps are impossible, and no congruence separator can keep an orbit away from 1. Theorem C: the only cycle with at most 1000 odd terms is {1,8,4,2}. GLOBAL itself stays open.",
+   "verdict": "confirmed",
+   "corrected": "For 7n+1: Theorem A (every nonempty forward-closed union of residue classes, at any modulus, contains the periodic point 1, so route-(a) congruence traps are impossible) and Theorem C (L=1000) are proved. Correction: for 9n+1 the trap consequence does not follow. 1 is not known to be periodic, and if there are no cycles then Z_{>0} is a trap. For q=9, Theorem A only shows that every trap contains the orbit of 1, so a route-(a) certificate would have to prove the orbit of 1 (CLS-036) unbounded. GLOBAL stays open.",
+   "notes": "Steps 1-3 were re-derived line by line: the 2-adic loss, closure under g via the finite order of h, the translation x -> x-1/2 on Z/m', and on Z/p^e that g^j is constant for j>=e with value in <2> (LTE). The lemma was checked on Z/m for all odd m<1500. Referee strengthening: Theorem A also covers truncated traps {n>=N : n mod M in R}, because such an F contains a power of 2 and so reaches 1.",
+   "catalog_id": "CLS-032",
+   "sweep_id": "CLS-027"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "PARTIAL",
+   "claim": "The 7n+1 orbit of 3 does one of three things: it is unbounded, it reaches {1,8,4,2}, or it enters a cycle with more than 1000 odd terms. No congruence argument at any modulus can exclude it reaching 1, because the residue-graph closure of 22 contains the class of 1. Other-cycle versus infinite stays open.",
+   "verdict": "confirmed",
+   "corrected": "The 7n+1 orbit of 3 is unbounded, reaches {1,8,4,2}, or enters a cycle with >1000 odd terms. At every modulus the residue closure of 22 contains the class of 1, so no congruence argument can exclude reaching 1. Non-return to 3 was already known (mod-7 set {1,2,4}). Unbounded versus some cycle stays open.",
+   "notes": "This follows from Theorems A and C, both verified independently. The census only searched separators up to M<=800.",
+   "catalog_id": "CLS-033",
+   "sweep_id": "CLS-024"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "PARTIAL",
+   "claim": "9n+1 has no cycle at all with at most 1000 odd terms (checked); an extra run (not in the check) found none up to 3000. Every eventually periodic orbit therefore ends in a cycle with more than 1000 odd terms. Theorem A for q=9: every forward-closed union of residue classes contains 1. GLOBAL=no would follow from 'no cycles at all', but that was not proved for all k.",
+   "verdict": "confirmed",
+   "corrected": "Proved: 9n+1 has no cycle with <=1000 odd terms (independent re-run). The L=3000 run is unverified by the referee, since the referee run did not finish in budget. Proved: Theorem A for q=9, every forward-closed union of classes contains 1. Not justified, and contradicted by the file's own caveat: 'no congruence trap certifies a divergent orbit' for 9n+1. Corrected: every trap contains the orbit of 1, so route (a) would need to prove that orbit unbounded. GLOBAL stays open.",
+   "notes": "'No cycles implies GLOBAL=no' is a trivial reformulation. The overstatement is in the CLS-037.md text, not in the JSON claim, which says only 'contains 1'.",
+   "catalog_id": "CLS-037",
+   "sweep_id": "CLS-029"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "PARTIAL",
+   "claim": "The orbit of 5 (which is also the orbit of 1) is either unbounded or ends in a cycle with more than 1000 odd terms; this includes any return to 5. No congruence separator exists at any modulus, which proves for every M what the census only checked for M <= 3000.",
+   "verdict": "confirmed",
+   "corrected": "The 9n+1 orbit of 5 (a tail of the orbit of 1, since 1->10->5) is unbounded or ends in a cycle with >1000 odd terms; this includes any return to 5. At every modulus the residue closure of any class contains the classes of 1, 10 and 5. This proves for all M what the census checked for M<=3000. FATE stays open.",
+   "notes": "This relies on Theorem C with q=9 and L=1000 (verified independently) and on Theorem A.",
+   "catalog_id": "CLS-036",
+   "sweep_id": "CLS-028"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "PARTIAL",
+   "claim": "For m3_e, every nonempty forward-closed union of residue classes, at any modulus, contains 1 (the cycle {1,9,3}), so congruence traps are impossible. The only cycles with at most 1000 terms not divisible by 3 are {1,9,3} and the 14-cycle through 4. Also T(T(n)) = ceil(7n/3) for 3 not dividing n. GLOBAL stays open.",
+   "verdict": "confirmed",
+   "corrected": "For m3_e: every nonempty forward-closed union of residue classes at any modulus contains 1, so route-(a) traps are impossible. The only cycles with <=1000 non-multiples of 3 are {1,9,3} and the 14-cycle through 4. T(T(n))=ceil(7n/3) for 3 not dividing n. GLOBAL stays open.",
+   "notes": "g1 g2^{-1} = x+1 on Z/m'. 3 is a primitive root mod 7^e (3^6=729, which is not 1 mod 49). The bound with r_max=2 is valid. The enumeration was reproduced independently (minima [1,4]). Theorem A was checked for all M<=240 and the lemma for m<1500 with 3 not dividing m. This sharpens the census note, which covered only moduli 3^j.",
+   "catalog_id": "CLS-007",
+   "sweep_id": "CLS-045"
+  },
+  {
+   "key": "seven-nine",
+   "outcome": "PARTIAL",
+   "claim": "The orbit of 7 is unbounded, reaches {1,9,3} or the 14-cycle, or enters a cycle with more than 1000 non-multiples of 3; returning to 7 requires the last case. No congruence argument can separate it from {1,9,3}.",
+   "verdict": "confirmed",
+   "corrected": "The m3_e orbit of 7 is unbounded, reaches {1,9,3} or the 14-cycle, or enters a cycle with >1000 non-multiples of 3. Returning to 7 requires the last case, because 7 lies on neither known cycle. No congruence argument at any modulus separates the orbit from {1,9,3}. FATE stays open.",
+   "notes": "This follows from Theorems A and C for m3_e, both verified independently. Referee sections were appended to all eight .md files in /home/riv/Code/collatz/census/lhf/seven-nine/.",
+   "catalog_id": "CLS-006",
+   "sweep_id": "CLS-044"
+  },
+  {
+   "key": "perm-swap-c",
+   "outcome": "PARTIAL",
+   "claim": "For every modulus M, the only unions of residue classes mod M that perm_swap S maps into themselves are: the empty set, all of Z>0, 5Z>0, and its complement (the last two only when 5|M). n and S(n) always have the same 5-divisibility, so no periodic separator proves any S-orbit infinite. Also, for no k>=1 is an arithmetic progression mapped into itself by S^k while S^k is affine on it, so no increasing-affine-subsequence certificate exists. GLOBAL itself remains open.",
+   "verdict": "confirmed",
+   "corrected": "Proved for every M: the only S-closed unions of residue classes mod M are \u2205, Z>0, 5Z>0 and its complement (the last two only when 5|M). So no periodic separator exists at any seed. For no k>=1 is there an S^k-invariant arithmetic progression on which S^k is affine. This is only an obstruction to congruence and fixed-k affine certificates. GLOBAL remains open.",
+   "notes": "Re-derived by hand: Step 0 (5-divisibility), the fibre lifting (CRT, with a_i a unit mod 3^j), A1\u2218A2^{-1} = y+10/3, and that every branch acts as multiplication by 3 mod 5. Also the 2-adic suffix lemma (h>=b) and the integrality argument for Theorem B. Independent tests used the systems.py steps directly: reachability SCC structure for M<=160; brute force over all closed subsets for M<=14 matches the list exactly; the H_m structure for 3\u2224m<400; no invariant affine progressions for k<=3, m<40. The agent's checks also exit 0. S(n)=5T(n/5) and the 5Z-invariance were already in perm_swap_s8.md. The all-M two-SCC theorem for S is new. The iterate (k=2,3) claim is computational only, as the agent states.",
+   "catalog_id": "CLS-047",
+   "sweep_id": "CLS-035"
+  },
+  {
+   "key": "perm-swap-c",
+   "outcome": "EQUIVALENCE",
+   "claim": "perm_c C = S^{-1}, so GLOBAL(CLS-045) is the same question as GLOBAL(CLS-047). Periodic C-closed sets are exactly the complements of S-closed ones, so the only nontrivial ones are 5Z>0 and its complement, and no congruence separator exists at any seed or modulus. C^k slopes 3^k/2^h are never integers, so no invariant affine progression exists. GLOBAL remains open.",
+   "verdict": "confirmed",
+   "corrected": "C = S^{-1}, so GLOBAL(CLS-045) = GLOBAL(CLS-047). This equivalence was already in results/perm_c_s8.md and is not new. New and proved: the C-closed periodic sets are exactly \u2205, Z>0, 5Z>0 and its complement, so no congruence separator exists. No C^k-invariant affine progression exists, because the slopes 3^k/2^h are non-integral. GLOBAL is open.",
+   "notes": "Inverted the branches by hand and checked them against systems.py on 1..1e5. The complement lemma is valid for bijections. My brute-force enumeration of closed subsets (M<=14) and SCC check (M<=160) confirm the result. check_CLS-045.py exits 0. The agent itself says the census already noted the equivalence.",
+   "catalog_id": "CLS-045",
+   "sweep_id": "CLS-038"
+  },
+  {
+   "key": "perm-swap-c",
+   "outcome": "PARTIAL",
+   "claim": "For every M>=1 the residue graph of the 1932 map T mod M is strongly connected, and so is the graph of T^{-1}. So no periodic forward-closed set separates any n from T(n), and congruence certificates cannot prove any T-orbit infinite. This is a written proof of the previously unreviewed sketch in certificate_search_proofs.txt section 5. Also, no arithmetic progression is invariant under an affine T^k or T^{-k}. GLOBAL contains Collatz's 1932 orbit-of-8 problem and remains open.",
+   "verdict": "confirmed",
+   "corrected": "For every M>=1, G_M(T) and G_M(T^{-1}) are strongly connected, so no periodic separator exists. No T^k- or T^{-k}-invariant affine progression exists. This is a complete written proof of the sketch in certificate_search_proofs.txt \u00a75 and HANDOFF.md claim I1, not a new result. GLOBAL contains the 1932 orbit-of-8 problem and is open.",
+   "notes": "Same argument as CLS-047 Theorem A, with translation by -2/3, which is a unit mod every w coprime to 6. The prior sketches (certificate_search_proofs.txt \u00a75; collatz_8_handoff I1 'DERIVED; TO PEER-REVIEW') contain the same idea. This write-up fills in the fibre lifting and 2-adic suffix steps rigorously. I checked independently with the systems.py perm_1932_s44 and perm_1932inv_s8 steps: strongly connected for M<=160, and brute force finds only the closed sets \u2205 and Z>0 for M<=14. check_CLS-038.py exits 0. The k=2,3 iterate statement is computational only.",
+   "catalog_id": "CLS-038",
+   "sweep_id": "CLS-032"
+  },
+  {
+   "key": "perm-d",
+   "outcome": "PARTIAL",
+   "claim": "For perm_d (D), for every modulus M and all residues c,d mod M there exist n>0 with n=c (mod M) and k>=1 with D^k(n)=d (mod M). Hence no proper nonempty union of residue classes is forward-invariant under D or D^{-1}, so no congruence certificate of an infinite orbit exists at any modulus in either direction. There is also no class on which some D^k is a self-mapping affine map, and every cycle of length <=11 is {1}, {2,5,3}, {6,15,9} or {26,65,41}. GLOBAL itself remains open.",
+   "verdict": "confirmed",
+   "corrected": "For D = perm_d_s3, for every M and all residues c,d mod M there exist n = c (mod M), with n arbitrarily large, and k>=1 such that D^k(n) = d (mod M). So no forward-invariant proper union of residue classes exists, even above a threshold N, under D or D^{-1}, and no congruence certificate of an infinite orbit exists at any modulus. No class is mapped into itself by a single affine D^k, because the slope 5^k/2^e is never an integer. Every cycle of length <=11 is {1}, {2,5,3}, {6,15,9} or {26,65,41}. GLOBAL remains open.",
+   "notes": "I re-derived the letters, the itinerary-class affine form (*), Lemma A (O_3 o O_1^{-1} = z+1/4, so the group is transitive mod m' coprime to 10), Lemma B (D^b(C_s) are 5^b disjoint full classes mod 5^b because D is a bijection of Z), and the CRT construction (t mod 2^a is independent of the condition on t mod 5^b m'). All are correct. The author's check took 24.6 s and exited 0. Independent tests (scratchpad ref039.py) used the census/systems.py step: a level-wise enumeration of all words of length <=9 gives cycle minima {1,2,6,26}, and 300 random (M<=3000, c, d) triples are all realized with k<=60. The notes file only had M<=200 strong connectivity by computation. The all-M theorem and the length-<=11 cycle classification are new, and neither depends on an open conjecture. Part 2 is correct but trivial. The Referee section is appended to /home/riv/Code/collatz/census/lhf/perm-d/CLS-046.md.",
+   "catalog_id": "CLS-046",
+   "sweep_id": "CLS-039"
+  },
+  {
+   "key": "mixed",
+   "outcome": "PARTIAL",
+   "claim": "split5_1: under the odd map S (A(n)=(5n+1)/2 on n\u22611 mod 4, B(n)=(n+1)/2^v on n\u22613 mod 4), the only cycle with exactly one expanding run (one local minimum) is {1,3}, i.e. the T-cycle (1 6 3 4 2). S has no cycle without expanding steps. The other known cycle (min 13) has 4 runs.",
+   "verdict": "confirmed",
+   "corrected": "Proved (PARTIAL). For the odd map S of split5_1, the only cycle with exactly one expanding run (one local minimum) is {1,3}, i.e. the T-cycle (1 6 3 4 2). S has no cycle without A-steps. The known cycle with min 13 has S-length 14 and 4 runs. Cycles with 2 or more runs and GLOBAL remain open.",
+   "notes": "I re-derived the step facts, v2(3n0+1)=k+1, the descent bound j<=1.322k+0.415 and Lambda<=(1.53k+0.42)/n0. The LMN Cor. 2 setup is correct: log A1=1, log A2=log5, b'=K/log5+k; F(25000)=42.1 and F is increasing. My independent exact-Lambda finite part, run on S rebuilt from rewriting/systems.py, gives survivors k=1..6 and n0<=211 (author: 213). A brute force of cycles below 3e5 agrees. No prior one-run result is in the notes. The author check exits 0 in 0.4 s. Referee section appended; my scripts are census/lhf/mixed/referee_onerun.py and referee_onerun2.py.",
+   "catalog_id": "CLS-048",
+   "sweep_id": "CLS-040"
+  },
+  {
+   "key": "mixed",
+   "outcome": "PARTIAL",
+   "claim": "desc_split7_1: the odd map has NO cycle with exactly one expanding run. Its only cycle with no expanding steps is the fixed point 1, i.e. the T-cycle (1 8 4 2). So every further cycle has at least 2 separate runs of (7n+1)/4 steps.",
+   "verdict": "confirmed",
+   "corrected": "Proved (PARTIAL). The odd map of desc_split7_1 has no cycle with exactly one expanding run. Its only cycle with no expanding step is the fixed point 1, i.e. the T-cycle (1 8 4 2). Every other cycle has at least 2 runs of (7n+1)/4 steps.",
+   "notes": "The constants check out: v2(3n0+1)>=2k+1, non-A ratio <=0.9 for n>=5, j<=5.3116k+0.6126, Lambda<=(5.455k+0.613)/n0, b'<=2.443J+0.52, F(15100)=34.0. My independent exact-Lambda finite part scanned every admissible k and found 18 surviving J (<=26) with n0<=5483. The author's 20 survivors and n0<=23498 are weaker but valid. Brute force below 3e5 finds only {1}. The author check exits 0 in 3.8 s.",
+   "catalog_id": "CLS-053",
+   "sweep_id": "CLS-053"
+  },
+  {
+   "key": "mixed",
+   "outcome": "PARTIAL",
+   "claim": "desc_m3_4n5: on non-multiples of 3, the cycles with no expanding steps are exactly {1} and {2} (T-cycles (1 9 3) and (2 6)). The ONLY cycle with exactly one expanding run is {16,23}, i.e. the T-cycle (16 69 23 48).",
+   "verdict": "confirmed",
+   "corrected": "Proved (PARTIAL). On non-multiples of 3, the cycles of S with no expanding step are {1} and {2}, i.e. the T-cycles (1 9 3) and (2 6). The only cycle with exactly one expanding run is {16,23}, i.e. the T-cycle (16 69 23 48).",
+   "notes": "A(n)+5=(4/3)(n+5) gives v3(n0+5)>=k. The non-A ratio is <=5/6 for n>=4. LMN uses alpha2=3 with b'=L/log3+K, and F(10800)=62.1. g(k) is not monotone from k=1 to k=2 (low(1)=low(2)=4), but the author tests kmin and kmin+1, which is correct. My full-k scan gives 23 surviving L (<=38) and n0<=1837. Brute force finds {1}, {2} and {16,23}. The author check exits 0 in 1.2 s.",
+   "catalog_id": "CLS-051",
+   "sweep_id": "CLS-054"
+  },
+  {
+   "key": "mixed",
+   "outcome": "PARTIAL",
+   "claim": "desc_s32_plus9: the odd map has NO cycle with exactly one expanding run. Its only cycle with no expanding steps is the fixed point 1. The obstructing 2-adic 12-cycle through -227/115 is itself one-run, so the theorem shows that no positive-integer cycle has that shape.",
+   "verdict": "confirmed",
+   "corrected": "Proved (PARTIAL). The odd map of desc_s32_plus9 has no cycle with exactly one expanding run. Its only cycle with no expanding step is the fixed point 1. The obstructing 2-adic 12-cycle through -227/115 is one-run (rising residues 15, 7, 11; falling 1, 9), so no positive-integer cycle has that shape.",
+   "notes": "Checked: A(n)+1=(3/2)(n+1), so v2(n0+1)>=k+1. The non-A ratio is <=5/6 for n>=3, and every odd class not in R (19, 27, 31) gives v>=2. Lambda<=(2.558k+1.578)/n0 and F(17100)=50.4. My exact-Lambda finite part gives 14 surviving J and n0<=571 (author: 1191). I iterated the 2-adic 12-cycle exactly; it closes and has one run. Brute force below 3e5 finds only {1}. The author check exits 0 in 1.0 s.",
+   "catalog_id": "CLS-052",
+   "sweep_id": "CLS-055"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "split5_3: nothing cheap to add. Round 2 already proves convergence below 2^66 and that every further cycle has at least 201 expanding runs, which subsumes the one-run method.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-049",
+   "sweep_id": "CLS-041"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "m3_b: the one-run method does not apply. There are two expanding branches with 3-adic fixed points 1 and -1, and 1 is a positive integer, so no exponential lower bound on n0 holds.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-004",
+   "sweep_id": "CLS-042"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "m3_d: the one-run method does not apply. There are two expanding branches with fixed points -2 and -1, and rising words do not force n0 to be large.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-005",
+   "sweep_id": "CLS-043"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "m3_g: the one-run method does not apply. There are two expanding branches with fixed points -1/2 and -1.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-008",
+   "sweep_id": "CLS-046"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "div23_5n1: the one-run method does not apply. The expanding branches (5n+1)/2 and (5n+1)/4 have different fixed points.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-002",
+   "sweep_id": "CLS-047"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "div235_7n1: the one-run method does not apply. There are several expanding branches with different fixed points.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-001",
+   "sweep_id": "CLS-048"
+  },
+  {
+   "key": "mixed",
+   "outcome": "NO-PROGRESS",
+   "claim": "div23_7n1: the one-run method does not apply. The expanding branches (7n+1)/2 and (7n+1)/4 have fixed points -1/5 and -1/3.",
+   "verdict": null,
+   "corrected": "",
+   "notes": "",
+   "catalog_id": "CLS-003",
+   "sweep_id": "CLS-049"
+  },
+  {
+   "key": "perm-near",
+   "outcome": "EQUIVALENCE",
+   "claim": "perm_1932inv_s8 is exactly T^{-1}, the inverse of the 1932 permutation: U\u2218T = T\u2218U = id on Z>0, checked branch by branch. So the U-orbit of 8 returns iff the T-orbit of 8 returns. FATE is exactly Collatz's 1932 orbit-of-8 problem (CLS-039), which stays open.",
+   "verdict": "confirmed",
+   "corrected": "U = T^{-1} exactly on Z>0. Because U is injective, the FATE of 8 under U is exactly Collatz's 1932 orbit-of-8 problem (CLS-039), which is open. This was already recorded in OPEN_PROBLEMS.txt (KNOWN-HARD) and the notes, so it is not new progress.",
+   "notes": "I re-derived U\u2218T = T\u2218U = id by hand on every class and checked it against the catalog on 1..1e5 (census/lhf/perm-near/referee_check_identities.py). check_CLS-041.py exits 0. Nit: that check also fails if 8 returns within 2e4 steps, so its exit code partly depends on the open problem.",
+   "catalog_id": "CLS-041",
+   "sweep_id": "CLS-033"
+  },
+  {
+   "key": "perm-near",
+   "outcome": "EQUIVALENCE",
+   "claim": "Every U-orbit is periodic iff every T-orbit is periodic: for a bijection, eventually periodic means periodic, and x is U-periodic iff it is T-periodic. So GLOBAL is exactly GLOBAL for the 1932 permutation (CLS-040/CLS-038).",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(U) is equivalent to GLOBAL(T) (CLS-040/CLS-038), because for a bijection eventually periodic means periodic and the periodic points of U and T coincide. This was already known in substance. It sharpens the list's wording 'equivalent to the orbit of 8' to the stronger all-orbits question.",
+   "notes": "The argument is sound. check_CLS-042.py exits 0.",
+   "catalog_id": "CLS-042",
+   "sweep_id": "CLS-034"
+  },
+  {
+   "key": "perm-near",
+   "outcome": "EQUIVALENCE",
+   "claim": "B(n) = T(n+1) - 1 for all n >= 1. Since T(1) = 1, T is a bijection of Z>=2, so B is conjugate to T restricted to Z>=2. Then B^k(7) = T^k(8) - 1, and the fate of 7 under B is exactly the 1932 orbit-of-8 problem (CLS-039).",
+   "verdict": "confirmed",
+   "corrected": "B(n) = T(n+1) - 1 on Z>0. T(1) = 1 makes Z>=2 T-invariant and mapped onto itself, so B^k(7) = T^k(8) - 1 and the FATE of 7 is exactly the 1932 orbit-of-8 problem. This was already recorded in OPEN_PROBLEMS.txt and the notes.",
+   "notes": "I checked all three branches by hand and against the catalog on 1..1e5. The shift maps Z>0 onto Z>=2 exactly. check_CLS-043.py exits 0.",
+   "catalog_id": "CLS-043",
+   "sweep_id": "CLS-036"
+  },
+  {
+   "key": "perm-near",
+   "outcome": "EQUIVALENCE",
+   "claim": "Every B-orbit is periodic iff every m >= 2 is T-periodic, iff every T-orbit is periodic (T(1) = 1). So GLOBAL is exactly GLOBAL for the 1932 permutation (CLS-040).",
+   "verdict": "confirmed",
+   "corrected": "GLOBAL(B) is equivalent to GLOBAL(T) (CLS-040), by the same conjugacy and T(1) = 1. This was already known.",
+   "notes": "The proof is sound. check_CLS-044.py exits 0.",
+   "catalog_id": "CLS-044",
+   "sweep_id": "CLS-037"
+  },
+  {
+   "key": "perm-near",
+   "outcome": "EQUIVALENCE",
+   "claim": "P(n) = T(n+3) - 3 for all n >= 1. T permutes {1,2,3}, so Z>=4 is T-invariant and P^k(8) = T^k(11) - 3. Because T(8) = 11 and T is a bijection, 8 is P-periodic iff 8 is T-periodic. FATE is exactly the 1932 orbit-of-8 problem (CLS-039); this confirms the round-2 reduction.",
+   "verdict": "confirmed",
+   "corrected": "P(n) = T(n+3) - 3 on Z>0. T permutes {1,2,3}, so Z>=4 is invariant, and 8 is P-periodic iff 8 is T-periodic, using T(8) = 11 and injectivity. The OPEN_PROBLEMS.txt status line already states this verbatim, so it is a confirmation only.",
+   "notes": "I checked the branches by hand and against the catalog on 1..1e5. check_CLS-054.py exits 0.",
+   "catalog_id": "CLS-054",
+   "sweep_id": "CLS-057"
+  },
+  {
+   "key": "perm-near",
+   "outcome": "PARTIAL",
+   "claim": "FATE of 8 under Q = sigma_9\u2218T is still open. Proved obstruction: Q's residue graph mod K is strongly connected for every K with 3 not dividing K (general proof), for every K <= 1200, and for every K = 2^a 3^b <= 3e5 (exact computation). So at these moduli no union of residue classes is Q-forward-closed except the empty set and everything. Congruence traps therefore cannot prove that 8 never returns, nor that any Q-orbit is infinite. Also proved: no DFA certificate exists with <=6 states in base 2, <=4 in base 3 or <=3 in base 6, reading MSD- or LSD-first. Heuristic correction: Q's drift is about 0.177 bits/step, not T's 0.082.",
+   "verdict": "confirmed",
+   "corrected": "PARTIAL; the FATE of 8 under Q is still open. Proved: G_K is strongly connected for every K with 3 not dividing K, so no congruence trap or separator exists at such K. This only forces the minimal trap modulus to be divisible by 3. Computed exactly: strongly connected for K <= 1200 and for K = 2^a 3^b <= 3e5. I independently re-verified K <= 300 and selected 2^a 3^b <= 2592 by building the residue graph from actual integers, which gives a subgraph of the true graph, so that check is a valid proof. DFA exclusions hold to the stated sizes; I re-verified independently only base 2 with <= 4 states and base 3 with <= 2 states, MSD and LSD. The drift of about 0.177 bits/step is a heuristic only.",
+   "notes": "I checked each step of the 3\u2224K theorem: Q = T on classes 0, 1, 2 mod 27; the 2-adic steering induction; the translation by 2/3 mod m; the CRT combination; and Lemma 0. All are correct. check_CLS-055.py exits 0 in about 31 s. The larger DFA sizes rely on the author's backtracking, which I did not re-implement. Referee scripts: /home/riv/Code/collatz/census/lhf/perm-near/referee_check_identities.py and /home/riv/Code/collatz/census/lhf/perm-near/referee_check_dfa_small.py.",
+   "catalog_id": "CLS-055",
+   "sweep_id": "CLS-056"
+  },
+  {
+   "key": "traps",
+   "outcome": "EQUIVALENCE",
+   "claim": "The up_ct3 question (divergent set equals the trap basin, and (1 2) is the only untrapped cycle) is exactly Yolcu-Aaronson-Heule Conjecture 4.13: every C-trajectory that does not reach 1 meets 7 mod 8. That conjecture is one of their $500 prize problems, and it implies CLS-056. Also proved: the never-trapped set U has #(U \u2229 [1,X]) <= 2 t_L <= 4 X^{log2 \u03c4} \u2248 4 X^0.8792, where L = floor(log2 X) and \u03c4 is the tribonacci constant. So the trap basin has density 1, and it contains the explicit union of residue classes mod 2^L whose length-L parity word contains 111.",
+   "verdict": "confirmed",
+   "corrected": "PARTIAL. (1) Exact equivalence: the up_ct3 question (divergent set = trap basin, and (1 2) the only untrapped cycle) holds iff YAH Conj. 4.13 holds (every C-trajectory not reaching 1 meets 7 mod 8). This is a named $500 prize problem, and it implies CLS-056. (2) Proved unconditionally: #(U \u2229 [1,X]) <= 2 t_L <= 4 X^{log2 \u03c4} (log2 \u03c4 = 0.8792) for X >= 2, L = floor(log2 X). So the trap basin has natural density 1, and it contains every residue class mod 2^L whose parity word has a factor 111. The exponent is an upper bound, not an asymptotic. The open core is untouched.",
+   "notes": "I re-derived the equivalence (untrapped orbit = T-orbit, and 7 mod 8 is odd so T and C agree) and the Terras/tribonacci count, including the base cases. The equivalence to YAH 4.13 is new relative to up_ct3.md. My own test used the census up_ct3 step: the bound holds at all X < 5000 and at sampled X up to 2^18, and the exhaustive class count equals t_L for L = 3..14. The authors' check passes in 2.6 s. I appended a Referee section to census/lhf/traps/CLS-066.md.",
+   "catalog_id": "CLS-066",
+   "sweep_id": "CLS-050"
+  },
+  {
+   "key": "traps",
+   "outcome": "PARTIAL",
+   "claim": "Proved three things. (1) Let E be the set of n whose C-trajectory avoids 5 and 7 mod 8. Conj. 4.14 holds iff E is exactly the set of powers of 2, because any convergent n in E has last odd value (4^k-1)/3, which is 5 mod 8 for k >= 2. (2) #(E \u2229 [1,X]) <= 2 + 12.4 X^{log2 \u03c1} \u2248 X^0.4057, with \u03c1 the plastic number, so possible counterexamples up to X number O(X^0.406). (3) The conjecture becomes provable if one more class is forbidden: {5,7 mod 8} together with 57 mod 64, or together with 1 mod 32. Without the expanding branch of the YAH map G, orbits strictly decrease; without the contracting branch, the (9n+7)/8 runs end because 8^r | n+7. The open core is the infinite interleaving of both branches. CLS-066 implies CLS-056.",
+   "verdict": "confirmed",
+   "corrected": "PARTIAL. (1) Conj. 4.14 holds iff E (trajectories avoiding 5 and 7 mod 8) is exactly the powers of 2. (2) Proved: #(E \u2229 [1,X]) <= 2 a_L <= 2 + 12.4 X^{log2 \u03c1} = O(X^0.4057), an upper bound rather than '\u2248'. (3) The variants with an added forbidden class (57 mod 64, or 1 mod 32) are proved, but they repackage item 3 of yah_avoid57.md (finite B-runs, contracting A) and add no new content. 'CLS-066 implies CLS-056' is immediate. The conjecture itself stays open.",
+   "notes": "I re-derived the last-odd-value argument ((4^k-1)/3 = 5 mod 8 for k >= 2), the {100,111}-avoiding recurrence g(m) = g(m-2)+g(m-3) with no junction factors, the bound constant 2/(\u03c1-1) = 6.16, and the G-reduction from scratch. The G-reduction was also checked exhaustively for odd n = 1 mod 8 below 2^16. My own test used the census yah_avoid57 step: E \u2229 [1,2^18] is exactly the powers of 2, the bound holds for X up to 2*10^5, and the class count equals a_L for L = 3..14. No dependence on any open conjecture. The authors' check passes. I appended a Referee section to census/lhf/traps/CLS-056.md.",
+   "catalog_id": "CLS-056",
+   "sweep_id": "CLS-052"
+  },
+  {
+   "key": "q17-nonauto",
+   "outcome": "RESOLVED",
+   "claim": "For every integer base k>=2, no finite automaton reading base-k digits separates the basins of (1 6 3) and (5 13 10) on inputs coprime to 17. Every residue class containing a unit mod 17 holds arbitrarily large points of both basins. f(2n)=f(3n)=f(n) together with a kernel/Cobham argument then forces a periodic section, which gives a contradiction. This proof was already in the repo (commit 36553ef, census/round2/qr/qrA3_q17.md and output/tex/nonautomatic_basins_q17.tex). I re-derived every step independently and found no gap, and added a constructive check.",
+   "verdict": "confirmed",
+   "corrected": "For every integer base k>=2, the indicator of B_5 (with value 0 on multiples of 17) is not k-automatic. So no base-k DFA, reading MSD-first or LSD-first, separates the basins of (1 6 3) and (5 13 10) on inputs coprime to 17. This settles the strong-form BASIN question negatively for integer bases. It does not cover non-integer numeration systems or k-regularity. The result is NOT new: the full proof is already in the notes file census/round2/qr/qrA3_q17.md (commit 36553ef) and in output/tex/nonautomatic_basins_q17.tex. Only the OPEN_PROBLEMS.txt status line ('Non-automaticity is supported by evidence only') is stale.",
+   "notes": "I re-derived every step myself and found no gap, no dependence on a conjecture, and no simulation used as proof. Checked: branch integrality (c = n mod 3, which matches qrlib.famA); descent for n>17 and the exhaustive [1,17] table; B_17=17N; f(2n)=f(3n)=f(n); that L(y)=3y and R(y)=3y-34 are genuine odd inverse branches; that the permutation semigroup mod Q contains translation by -34, with 3^5=5 mod 17 joining the classes of 1 and 5; that lifting preserves parity and the residue mod 3 when the displacement is even; both laps have denominator product 18; in the kernel theorem, r_j is integral, 0<=r_j<D because r<2p^e<D, and 17 does not divide r_j when 17|D; the elimination argument over the finite set S is sound; Cobham's theorem applied to a finite-valued sequence; p in {2,3} is multiplicatively independent of k. One precondition to keep explicit: Theorem mix needs z>=c, which Lemma rough supplies. My first harness forgot it and failed, a harness bug only. The author's check_CLS-057.py exits 0 in about 1 s. My independent /home/riv/Code/collatz/census/lhf/q17-nonauto/referee_check_CLS-057.py imports the repo step from census/round2/qr/systems.py, rebuilds the witnesses by BFS words and replayed reverse paths, and verifies 1468 witnesses over 43 moduli plus kernel-section identities in 10 base pairs. It exits 0 in about 21 s. The Referee section is appended to /home/riv/Code/collatz/census/lhf/q17-nonauto/CLS-057.md.",
+   "catalog_id": "CLS-057",
+   "sweep_id": "CLS-051"
+  },
+  {
+   "key": "q17-structure",
+   "outcome": "RESOLVED",
+   "claim": "For every integer base k>=2, no finite automaton reading base-k digits decides whether n (coprime to 17) reaches (1 6 3) or (5 13 10). So the basin set is not k-automatic, and no transducer-computable invariant F with F(T(n))=F(n) exists in any base. This proof was already committed (36553ef, census/round2/qr/qrA3_q17.md); the CLS-057 entry in OPEN_PROBLEMS.txt is stale. This lane audited the proof independently and re-verified its constructive core.",
+   "verdict": "confirmed",
+   "corrected": "CLS-057 is resolved in the negative. For no integer base k>=2 is the indicator of the (5 13 10) basin, restricted to units mod 17, k-automatic, so no finite automaton separates the two basins. This is already proved in census/round2/qr/qrA3_q17.md (commit 36553ef, labelled CLS-054 there under open_collatz_systems.txt numbering). The lane's audit adds no new theorem. The OPEN_PROBLEMS.txt CLS-057 status line is stale. The phrase 'no transducer-computable invariant' needs the hypothesis that F separates the two cycles: the preimage of {F(1)} under a rational function is regular.",
+   "notes": "I re-derived every step. (1) f(2n)=f(3n)=f(n). (2) The reverse-path parity and positivity argument: -17 is 1 mod 3, and y-c even suffices. (3) Lap reversal: z -> c+18(z-c). (4) L=3y and R=3y-34 generate y->y-34 mod Q, and 3^5=5 mod 17. (5) The kernel section identity: r_j<D, and the unit condition when 17|D. (6) The elimination argument giving a state that reads every word. (7) The choice of p independent of k, followed by Cobham. Nothing depends on an open conjecture. The only external inputs are the Allouche-Shallit kernel characterization and Cobham 1969, both standard. The lane's check_CLS-057.py exits 0 in 0.4 s, and the original check_qrA3_q17.py also exits 0. My scratch test, using get('qrA3_q17')['step'] from census/round2/qr/systems.py, confirms f(2n)=f(3n)=f(n) to 5e4 and finds both basins in every unit class mod M (M<=60 plus 68, 102, 153, 289, 306) in [2e5,4e5). It also ran 289 constructions using random L/R seed words in place of BFS, each verified by forward iteration. All passed. The computations illustrate the proof but do not substitute for it. I appended a Referee section to /home/riv/Code/collatz/census/lhf/q17-structure/CLS-057.md.",
+   "catalog_id": "CLS-057",
+   "sweep_id": "CLS-051"
+  },
+  {
+   "key": "q17-family",
+   "outcome": "RESOLVED",
+   "claim": "Generalizes the existing q=17 theorem (commit 36553ef) to the whole mixed-multiplier family. Take any odd m>=3 and any q with gcd(q,2m)=1, and let T(n)=n/2 for even n and T(n)=(n+cq)/m for odd n, with c the digit that makes the division exact. If a coset G of <2,m> in (Z/q)^* contains at least two cycles, then for every k>=2 no basin of a cycle in G is k-automatic. When G holds exactly two cycles, no base-k automaton separates their basins. No hypothesis on the cycles is needed, so cycles made only of odd steps (as at q=121, m=3) are covered too. For q=17 this rules out every finite-valued 2-adic or 3-adic continuous invariant, every character of (Z/17^e)^*, and every function of (n mod M, v2(n), v3(n)), because every unit class mod M contains arbitrarily large members of both basins. The smallest family members are (q,m)=(5,11) overall, (13,7), (17,3) and (19,5).",
+   "verdict": "confirmed",
+   "corrected": "Theorem F is correct. Take any odd m>=3 and any q>=2 with gcd(q,2m)=1, and let T(n)=n/2 for even n and T(n)=(n+cq)/m for odd n. If a coset G of <2,m> in (Z/q)^* contains at least two cycles, then for every k>=2 the indicator of the basin of any cycle in G is not k-automatic. When G holds exactly two cycles, no base-k DFA separates their basins. For CLS-057 itself (q=17, m=3) this repeats what commit 36553ef already proved (census/round2/qr/qrA3_q17.md). The new content is the family statement: any odd m, composite q, cycles made only of odd steps (such as (121,3)), and even Q in Lemma (2). The OPEN_PROBLEMS entry for CLS-057 is stale and should read PROVED. Theorem F does not apply to the other qr systems (q23, q307, q251 with m=5, q95), because none of them has a coset holding two cycles.",
+   "notes": "I re-derived every step by hand and found no gaps. Descent holds because (m-1)q<(m-1)n. gcd(n,q) and the coset are invariant. f(mn)=f(n) holds for all n. The digits of the predecessor maps L, R, S are 0, 2, 1. The word R L^{o-1} acts as the integer map y -> m^o y - 2q, a translation by -2q mod Q. The congruence mod g lifts to mod 2g, which covers gcd(2q,Q). In the lift lemma, m | A_i keeps the digit and the even gap y-c keeps the parity. In the mix step, y \u2261 c (mod M_m Q). In the kernel step, p^j divides D d_j + r, r_j < D, and r_j \u2261 p^{-j} r (mod gcd(D,q)) with p in H. The elimination works on the functions themselves, p and k are independent, and Cobham's theorem finishes the argument. The author's check exits 0 in 1.75 s. My independent check, census/lhf/q17-family/referee_check_CLS-057.py, exits 0 in 1.6 s. It confirms that the step agrees with the step in census/round2/qr/systems.py, reproduces the table of smallest q, confirms there is no member with q<5, and reproduces the list of primes for m=3. It also gives finite evidence that both basins appear in every in-coset class mod 1900, 1320 and 7344. In a larger run at (13,7) mod 10192, 40 classes have no member of one basin below 3e6. All of them pick one up when the search is extended, so this fits the 'arbitrarily large' claim. I appended a Referee section to census/lhf/q17-family/CLS-057.md.",
+   "catalog_id": "CLS-057",
+   "sweep_id": "CLS-051"
+  }
+ ],
+ "summaries": {
+  "collatz3": "I worked on all nine items; none is resolved. The nine GLOBAL questions reduce, by proved equivalences, to six statements: P1, P-1, Q5, Q7, Q13 and Q17.\n- **Collapse.** CLS-031, CLS-013, CLS-014 and CLS-017 are each exactly P1, Collatz no-divergence. CLS-018 is exactly P-1, the same question for negative integers. Each of CLS-015, 016, 011 and 012 is P1 together with Q_p, for p = 5, 7, 13, 17 respectively. Q_p says no positive rational with denominator exactly p has a divergent 3x+1 orbit.\n- **General reduction (proved).** For gcd(d,6)=1, GLOBAL(3n+d) holds exactly when every positive rational whose denominator divides d has an eventually periodic 3x+1 orbit. Equivalently, Q_e holds for every divisor e of d.\n- **Cycle lists cannot be proved complete.** No d in the set has a cycle set that can be proved complete without settling the Collatz cycle question.\n- **Obstruction (Lemma O, proved, all odd d).** No union of residue classes mod 2^j other than all positive integers is forward-invariant. So neither a divergence certificate nor a trapping set built from residue classes mod 2^j can work. Moduli with an odd factor are not covered.\n- **Cycles with one local minimum (Theorem 1C).** I list all of them for every d in the set. The algebra and the exact search (k up to 1000) are proved. Completeness for all k relies on a published lower bound for |2^K-3^k| (Ellison 1971 or Rhin 1987) that I quote but did not reprove. A web search did not confirm Ellison's exact constant against the original paper.\n\nAll nine check scripts exit 0, each in under 2 s. The notes and checks are /home/riv/Code/collatz/census/lhf/collatz3/CLS-{031,013,018,014,015,016,017,011,012}.md and check_CLS-*.py, with shared code in /home/riv/Code/collatz/census/lhf/collatz3/_common.py.\n\nSources consulted for the Ellison citation: [Ellison, On a Theorem of S. Sivasankaranarayana Pillai (numdam)](https://www.numdam.org/item/STNB_1970-1971____A10_0/) and [Simons, On the nonexistence of 2-cycles (Math. Comp. 2005)](https://www.ams.org/mcom/2005-74-251/S0025-5718-04-01728-4/).",
+  "five": "Nothing was resolved. No 5n+d orbit was proved to diverge, and none is known in the literature for any map of this type.\n\nRoute (a) is shut by two proved lemmas, both in README_five.md:\n- **L4:** when 5 does not divide d, every odd step lands on a number not divisible by 5, and numbers not divisible by 5 stay that way. So a seed divisible by 5 becomes such a number after its first odd step. For d=5, every orbit is 5 times a 5x+1 orbit. Seeds divisible by 5 therefore give nothing beyond the existing binary-automaton and congruence obstruction.\n- **L5:** an orbit whose parity sequence is eventually periodic is itself eventually periodic. The proof is a 2-adic fixed-point argument. This rules out increasing affine subsequences on an invariant class and attracting 2-adic fixed-point certificates for every d.\n\nThe 14 items reduce as follows:\n- **Class A (the 5x+1 orbit of 7):** CLS-009, 023, 026 and 028. Each one grows forever exactly when the 5x+1 orbit of 7 is unbounded.\n- **Class B (5x+1 GLOBAL):** CLS-010, 022, 024 and 029 are exactly equivalent. CLS-024 is a literal duplicate of CLS-022.\n- **Class C (rational 5x+1 with denominator dividing d):** CLS-027 (d=3), 030 (d=7), 020 (d=11), 021 (d=131) and 025 (d=353). GLOBAL(5n+d) is equivalent to every positive rational with denominator dividing d having an eventually periodic 5x+1 orbit.\n- **CLS-019:** the orbit of 27 under 5n+11 is exactly the 5x+1 orbit of the rational 27/11. It never meets an integer 5x+1 orbit.\n\nThe implications run one way: Class A growing forever gives NO for Class B, which gives NO for every Class C item.\n\nFiles, all in /home/riv/Code/collatz/census/lhf/five/:\n- README_five.md: lemmas L1 to L5 with proofs\n- CLS-0xx.md: one note per item\n- check_CLS-0xx.py: one check per item, built on five_common.py\n\nAll 14 checks exit 0, each in well under a second.",
+  "seven-nine": "I worked on 8 items (CLS-033 to CLS-037 and CLS-006/007). None of their main questions is resolved, but each now has a proved partial result, and two of them collapse into CLS-032.\n\nEquivalences:\n- CLS-034 is the same question as CLS-032.\n- CLS-035 (7n+7) is exactly equivalent to CLS-032 by the scaling n = 7m.\n\nTheorem A (proved for every modulus): for 7n+1, 9n+1, 7n+7 and m3_e, any nonempty set made of whole residue classes that the map sends into itself contains 1 (or 7 for 7n+7). So route (a) cannot work: no such set can certify a divergent orbit, and no congruence argument can keep an orbit away from 1. This replaces the census's finite searches (moduli up to 800 or 3000) with a proof for every modulus.\n\nTheorem C (exact cycle search with a bound on a cycle's smallest element):\n- 7n+1: the only cycle with at most 1000 odd terms is {1,8,4,2}.\n- 9n+1: no cycle at all with at most 1000 odd terms. A separate run (149 s, not part of the checks) found none up to 3000.\n- m3_e: the only cycles with at most 1000 terms not divisible by 3 are {1,9,3} and the 14-cycle through 4.\n\nIf 9n+1 could be shown to have no cycles at all, every orbit would be unbounded, which would settle CLS-036 and CLS-037. Proving that for every cycle length is a hard Diophantine problem (Steiner / Simons\u2013de Weger type) and was not achieved.\n\nFiles are in /home/riv/Code/collatz/census/lhf/seven-nine/: one CLS-0xx.md per item (full proofs are in CLS-032.md and CLS-007.md), check_CLS-0xx.py for each item (all exit 0, each 3\u201315 s), and the shared sevnine_lib.py.",
+  "perm-swap-c": "None of the three GLOBAL questions is settled. No perm_swap or perm_c orbit has been proved infinite, and CLS-038 is still as hard as Collatz's 1932 problem.\n\nWhat I did prove are general obstructions, written out in /home/riv/Code/collatz/census/lhf/perm-swap-c/CLS-047.md:\n\n- **Theorem A (no congruence certificate).** At every modulus M, the 1932 map T and its inverse have only the trivial closed unions of residue classes (the empty set and everything). The same is true for S = perm_swap and C = perm_c = S^{-1}, except that they also have 5Z and its complement. Since n and S(n) are always both multiples of 5 or both not, no residue-class separator can prove any orbit of T, T^{-1}, S or C infinite, at any seed. This is the first written proof of the sketch in certificate_search_proofs.txt section 5, which had not been reviewed, and it extends that sketch to S and C.\n- **Theorem B (no affine certificate).** No arithmetic progression is mapped into itself by an iterate on which the iterate is affine. The slope would have to be an integer, but it is 2^h/3^k (or 3^k/2^h for the inverses). This rules out the strictly-increasing-affine-subsequence certificate.\n- **CLS-045 merges with CLS-047.** C and S have the same orbits, so these two items are one question.\n\nS on 5Z is exactly T, but no further equivalence between GLOBAL(S) and GLOBAL(T) was found.\n\nChecks pass (exact integers, exit 0, under 1 s each): check_CLS-038.py, check_CLS-047.py and check_CLS-045.py in /home/riv/Code/collatz/census/lhf/perm-swap-c/. They confirm the predicted structure for every modulus up to 300. check_iterates.py is computational evidence only: for the 2nd and 3rd iterates and moduli up to 60 there are no crossing edges, but this is not proved for all iterates.",
+  "perm-d": "CLS-046 (perm_d_s3) GLOBAL is still open, but I proved two partial results. (1) An obstruction for all moduli M: residue graphs of D and of D^{-1} are strongly connected, and in fact any class can reach any class along an actual orbit. So the congruence-trap route (a), including trapping neighbourhoods of 2-adic or 5-adic points, cannot certify an infinite orbit for any seed. This extends the referee's search, which only covered M<=200. Also no class C has D^k(C) inside C with D^k affine on C. (2) An exhaustive classification of cycles of length <=11: the only ones are {1}, {2,5,3}, {6,15,9} and {26,65,41}. The seed survey (n<=20000, 3000 steps) found no other returning starts, but that is evidence only. Files: /home/riv/Code/collatz/census/lhf/perm-d/CLS-046.md and /home/riv/Code/collatz/census/lhf/perm-d/check_CLS-046.py, which exits 0 in about 26 s.",
+  "mixed": "I got a cheap win on 4 of the 11 items, CLS-048, 053, 051 and 052, but none of them is settled. For each of these four I proved a complete list of the cycles that have exactly one expanding run, i.e. one local minimum of the accelerated map.\n\n**Why it works for these four.** Each map has a single expanding branch whose p-adic fixed point is not a positive integer:\n- split5_1: fixed point -1/3 (2-adic)\n- desc_split7_1: fixed point -1/3 (2-adic)\n- desc_m3_4n5: fixed point -5 (3-adic)\n- desc_s32_plus9: fixed point -1 (2-adic)\n\nSo a rising run of length k forces the cycle minimum to be at least about c^k. The descent back down has length linear in k, so the linear form in logs, 0 < X log P - Y log Q, is at most O(k)/c^k. The Laurent-Mignotte-Nesterenko two-logarithm bound (1995, Cor. 2) then caps k at 25000, 15100, 10800 and 17100 respectively. An exact-integer check up to that cap, plus a direct search over the few survivors (minimum at most 23498), finishes each proof.\n\n**Results.**\n- **CLS-048 (split5_1):** the only one-run cycle is {1,3}.\n- **CLS-053 (desc_split7_1):** there are none. Apart from the fixed point 1, every cycle has at least 2 runs.\n- **CLS-051 (desc_m3_4n5):** the only one is {16,23}, the T-cycle (16 69 23 48).\n- **CLS-052 (desc_s32_plus9):** there are none. The 2-adic 12-cycle that round 2 found blocking the descent method is itself one-run, so no positive-integer cycle has its shape.\n\n**Checks.** The four checks (`check_CLS-048.py`, `053`, `051`, `052`, sharing `onerun_lib.py`) all exit 0, each in under 5 s.\n\n**Caveats.**\n- The LMN corollary was quoted from memory, with constant 24.34 and the max(log b' + 0.14, 21) form; a referee should check it against the paper.\n- F being increasing beyond k0 is argued in the notes, not checked by the scripts.\n- Cycles with two or more runs remain open for all four maps, because the size bound only controls the run that starts at the global minimum.\n\n**The other 7 are NO-PROGRESS.**\n- **CLS-049 (split5_3):** round 2 already proved at least 201 runs for any new cycle, which covers this.\n- **CLS-004, 005, 008 (m3_b, m3_d, m3_g) and 002, 001, 003 (div23_5n1, div235_7n1, div23_7n1):** each has expanding branches with different fixed points, so nothing forces the cycle minimum to be large and the method gives no bound.\n\n**Equivalences.** I searched for affine conjugacies a\u00b7f^s(n)+b = g^r(a\u00b7n+b) between these 11 maps and every census and descent system, checking n < 400, and found none (evidence only). An exact affine conjugacy on all positive integers is impossible anyway, since the only affine bijection of the positive integers onto themselves is the identity.\n\n**Expected answer NO?** For none of the 11 did I find a provably divergent class.\n\nAll files are in /home/riv/Code/collatz/census/lhf/mixed/.",
+  "perm-near": "All files are in /home/riv/Code/collatz/census/lhf/perm-near/: one CLS-0xx.md and one check_CLS-0xx.py per item, plus the helpers _lib.py and _equiv.py. All six checks exit 0.\n\nEquivalences proved rigorously:\n- CLS-041 and CLS-042: perm_1932inv is exactly T^{-1}.\n- CLS-043 and CLS-044: perm_b satisfies B(n) = T(n+1) - 1, so B on Z>0 is conjugate to T on Z>=2.\n- CLS-054: flipT satisfies P(n) = T(n+3) - 3, using that T permutes {1,2,3} and T(8) = 11.\nEach lands exactly on the 1932 problem: FATE on CLS-039, GLOBAL on CLS-040. Mark them KNOWN-HARD.\n\nswT9_s8 (CLS-055) is still open; the result is PARTIAL. New proved obstruction: Q's residue graph is strongly connected modulo every K not divisible by 3 (general proof), and modulo every K <= 1200 and every 2^a 3^b <= 3e5 (exact computation). So no congruence trap exists at these moduli, either for the seed 8 or for proving any Q-orbit infinite, and a minimal trap modulus would have to be divisible by 3. No DFA certificate exists with <=6 states in base 2, <=4 in base 3 or <=3 in base 6, reading MSD- or LSD-first; the search was positive-controlled. The round-2 note says Q has T's drift; heuristically it does not. The stationary mass mod 3 is about (5/21, 9/21, 7/21), giving about 0.177 bits/step against T's 0.082, and this matches the 17478 bits the orbit of 8 reaches after 1e5 steps.",
+  "traps": "Neither problem is solved, but both now have proved partial results. Proofs are in /home/riv/Code/collatz/census/lhf/traps/CLS-066.md and /home/riv/Code/collatz/census/lhf/traps/CLS-056.md. The checks are /home/riv/Code/collatz/census/lhf/traps/check_CLS-066.py (about 3 s) and /home/riv/Code/collatz/census/lhf/traps/check_CLS-056.py (about 2 s); both exit 0 (PASS).\n\nCLS-066 (up_ct3) is exactly Yolcu-Aaronson-Heule Conjecture 4.13: every Collatz trajectory that does not reach 1 meets 7 mod 8. That is one of their $500 prize problems, so it is not low-hanging. It also implies CLS-056, which is their Conjecture 4.14. I checked the conjecture wording against the arXiv paper (2105.14697 v3, Section 4.5).\n\nNew proved facts for CLS-066:\n- All but at most 4X^0.879 integers up to X get trapped. The bound comes from the standard bijection between n mod 2^L and the first L parity steps of its orbit, plus counting words with no 111 block.\n- So the trap basin has density 1.\n\nNew proved facts for CLS-056:\n- The conjecture holds if and only if the integers whose trajectory avoids 5 and 7 mod 8 are exactly the powers of 2. Up to 2^20 that set is exactly the powers of 2.\n- There are at most O(X^0.406) possible counterexamples up to X.\n- The version with one more forbidden class is proved, adding either 57 mod 64 or 1 mod 32. This shows the open part is exactly the infinite alternation of the two branches of the reduced map from the YAH paper.\n\nThe full conjectures themselves remain open.",
+  "q17-nonauto": "CLS-057 (qrA3_q17) is already resolved in the repo; OPEN_PROBLEMS.txt is out of date. Commit 36553ef proves that no automaton in any integer base decides the basin. That commit uses the id CLS-054 for this item, but OPEN_PROBLEMS.txt uses CLS-054 for flipT_s8, so the numbering is inconsistent. I checked every step of the proof independently and found no gap. I also wrote a self-contained constructive check that builds and confirms 2124 explicit both-basin witnesses (exit 0, about 1 s). Files: /home/riv/Code/collatz/census/lhf/q17-nonauto/CLS-057.md and /home/riv/Code/collatz/census/lhf/q17-nonauto/check_CLS-057.py. Suggested follow-up: mark CLS-057 resolved in OPEN_PROBLEMS.txt and fix the id mismatch. Still open: the basin densities (about 0.628, 0.313 and 0.059).",
+  "q17-structure": "CLS-057 (qrA3_q17) is already resolved. Commit 36553ef proves that no finite-state basin rule exists in any integer base. The proof uses a progression lemma (both basins appear in every unit-containing progression, so no section is ultimately periodic) combined with the k-kernel, partial base-p transitions and Cobham's theorem. OPEN_PROBLEMS.txt still shows the old status. Its numbering also differs: open_collatz_systems.txt calls this item CLS-054. I audited every step of the proof and found no gap. I wrote an independent exact-integer check, /home/riv/Code/collatz/census/lhf/q17-structure/check_CLS-057.py (exit 0, 0.4 s). It runs the progression-lemma construction in 322 cases and checks the kernel section identity in bases 2, 3, 4, 6, 10, 12 and 18. The original check_qrA3_q17.py also passes again. The assigned search for transducer-computable invariants F in bases 2, 3, 6, 12 and 18 provably cannot succeed, so I did not run it. Whether the basin sequence is morphic is a separate, weaker question, and I made no progress on it. Write-up: /home/riv/Code/collatz/census/lhf/q17-structure/CLS-057.md. It recommends marking CLS-057 RESOLVED (negative).",
+  "q17-family": "CLS-057 (qrA3_q17) was already settled negatively by commit 36553ef: no finite automaton in any integer base decides the basin. OPEN_PROBLEMS.txt still shows it as open, and the notes file calls it CLS-054. In this lane I proved the general theorem for the whole family: for every odd multiplier m>=3 and every q with gcd(q,2m)=1, whenever a coset of <2,m> mod q holds two or more cycles, their basins are non-automatic in every base k. The proof needs only two facts about each map: basin(2n)=basin(n) and basin(mn)=basin(n), two independent scaling symmetries. That explains why the halving-only family B is different: in qrB7_c53 cycles 3 and 5 share a coset, yet its basin is 2-automatic, because it has only the doubling symmetry. The smallest covered systems are (q,m)=(5,11) overall; for m=3 it is q=17; for m=5, q=19; for m=7, q=13. For q=17, invariants of the kinds you suggested cannot separate the basins: 2-adic or 3-adic locally constant functions, characters of (Z/17^e)^*, and functions of (n mod M, v2(n), v3(n)). Every unit class mod M contains both basins. I made no progress on the densities, the window counts, whether the sequence is morphic, or family C. Files: /home/riv/Code/collatz/census/lhf/q17-family/CLS-057.md and /home/riv/Code/collatz/census/lhf/q17-family/check_CLS-057.py (exact integers, exits 0, about 1.6 s)."
+ }
+}
