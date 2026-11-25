@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.92in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,xcolor,fancyhdr}
+\usepackage[colorlinks=true,linkcolor=ink,urlcolor=accent]{hyperref}
+\definecolor{ink}{HTML}{182735}
+\definecolor{accent}{HTML}{16656B}
+\hypersetup{pdftitle={Five worked examples from a census of Collatz-like systems}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\small\sffamily\color{accent} Collatz-like systems census}
+\fancyfoot[R]{\small\sffamily\color{ink}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\tier}[2]{%
+  \section*{\color{accent}\sffamily Tier #1 \quad #2}%
+}
+\newcommand{\record}[1]{{\small\sffamily\color{accent} Census record \quad\texttt{#1}}\par}
+\begin{document}
+\color{ink}
+{\LARGE\sffamily\bfseries Five worked examples from a census\par
+of Collatz-like systems\par}
+\vspace{5pt}
+{\small\sffamily\color{accent} TWO-ROUND CENSUS \quad / \quad RESEARCH NOTE}
+\vspace{5pt}
+
+\textbf{Abstract.} A two-round census ranked 179 questions about 112 Collatz-like
+systems. The five examples below illustrate the methods that resolved questions
+at tiers 0--4. The tier counts, in order from 0 to 5, are 43, 54, 12, 2, 2 and 66.
+The census ranks the question and the form of its answer. The same map can have
+a directly computable seed orbit and a global question that requires proof.
+The census was written and cross-checked by agents and has had no human review.
+
+\tier{0}{A single orbit}
+\record{par\_1\_1\_s27}
+Let \(T(n)=n/2\) for even \(n\) and \(T(n)=n+1\) for odd \(n\).
+Which cycle does the orbit of \(27\) reach? Direct evaluation gives
+\[
+27\to28\to14\to7\to8\to4\to2\to1\to2.
+\]
+The repeated value \(2\) certifies that the orbit enters the cycle \((1,2)\).
+
+\tier{1}{Descent for every starting value}
+\record{par\_1\_1\_s27}
+For the same map, does every positive orbit reach \((1,2)\)?
+Every even \(n>2\) decreases in one step, and every odd \(n\ge3\)
+decreases in two steps, since \(T^2(n)=(n+1)/2<n\).
+Repeating these decreasing blocks must reach \(1\) or \(2\), since the
+block endpoints are positive integers.
+
+\tier{2}{Congruence classes and a finite table}
+\record{up\_qr7}
+Halve even \(n\), add \(28\) if \(n\equiv3\pmod{28}\), and add \(7\) to all
+other odd \(n\). Which starts diverge? The class \(3\bmod 28\) is a trap
+because each subsequent step adds \(28\). Modulo \(7\), both additions
+preserve the residue and halving multiplies by \(4\). Thus the three
+sets in the first column below are invariant.
+
+Temporarily replace the trap branch by \(n\mapsto n+7\). The resulting map
+decreases above \(7\) in at most two steps, since its odd block ends at
+\((n+7)/2\). Every orbit reaches \([1,7]\), and direct evaluation of these
+seven starts yields the cycles below. A trajectory agrees with this auxiliary
+map until the first trap visit. Only the cycle through \(3\) meets the trap,
+so exactly the starts in \(\{3,5,6\}\bmod 7\) diverge.
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Residues modulo \(7\)&Auxiliary cycle&Fate with the trap\\
+\midrule
+\(0\)&\((7,14)\)&Reaches \((7,14)\)\\
+\(1,2,4\)&\((1,8,4,2)\)&Reaches \((1,8,4,2)\)\\
+\(3,5,6\)&\((3,10,5,12,6)\)&Diverges\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+\tier{3}{A binary finite-state classification}
+\record{up\_tok3}
+Halve even \(n\), add \(3\) if \(n\equiv1\pmod4\), and add \(4\) if
+\(n\equiv3\pmod4\). The last class is an increasing trap. Strip the
+initial halvings from the orbit. If its odd part is \(3\bmod4\), it diverges.
+Otherwise the odd part is \(4B+1\), which reaches \(B+1\) in three steps.
+
+Write \(Q(B)\) for the assertion that \(B+1\) reaches the cycle \((1,4,2)\).
+Then \(Q(0)\) holds, \(Q(2Y+1)=Q(Y)\) by halving, and \(Q(4Z) = Q(Z)\)
+for \(Z\ge1\) by the same three steps. The input \(4Z+2\) gives a trapped
+start \(4Z+3\). The recursions decrease the argument and read the bits of
+\(B\) from the low end, consuming a \(1\) or a pair \(00\). An automaton
+starts in a state that accepts the end of input, stays there on a \(1\), and
+moves on a \(0\) to a state that requires one more \(0\) to return. An
+unpaired \(0\) causes rejection. Equivalently the canonical binary expansions
+of the original starts that reach the cycle match \texttt{(1(1|00)*01|1)0*}.
+
+The periodic basin contains every power of two. It has density zero, since
+for lengths up to \(k\) the expression counts \(O(\varphi^k)\) words, where
+\(\varphi=(1+\sqrt5)/2\) comes from tilings by single bits and pairs of bits.
+For \(2^{k-1}\le N<2^k\) this bound gives a proportion tending to zero.
+An infinite eventually periodic set has positive density. The tier here
+reflects the finite-state form of the classification, which follows from
+an elementary recursion.
+
+\tier{4}{Steiner's one-minimum cycle theorem}
+\record{steiner\_1cycle}
+For the shortcut Collatz map, use \(n/2\) on even \(n\) and \((3n+1)/2\)
+on odd \(n\). A cycle with one local minimum has one odd run of length
+\(k\ge1\) and one even run of length \(\ell\ge1\). If its minimum is
+\(2^k b-1\), with \(b\) odd, the odd steps end at \(3^k b-1\) because each
+step multiplies \(n+1\) by \(3/2\). Returning to the minimum gives
+\[
+b\bigl(2^{k+\ell}-3^k\bigr)=2^\ell-1.
+\]
+Hence \(d=2^{k+\ell}-3^k\) is positive and divides \(2^\ell-1\).
+In particular \(2^\ell(2^k-1)<3^k\), so \(\ell\le k\) and
+\[
+0<\Lambda=(k+\ell)\log 2-k\log 3
+=\log(1+d/3^k)<\frac{1}{2^k-1}\le 2^{1-k}.
+\]
+Rhin's bound, in the form applied by Simons~[2], gives
+\(\Lambda\ge(k+\ell)^{-13.3}\ge(2k)^{-13.3}\). This forces \(k\le103\):
+at \(k=104\) one has \(208^{133}<2^{1030}\), and
+\((k-1)\log 2-13.3\log(2k)\) increases thereafter.
+For each \(k\), take the least \(\ell\) with \(d>0\). Larger \(\ell\) violate
+\(2^\ell(2^k-1)<3^k\). Testing divisibility for those 103 pairs leaves
+only \((k,\ell)=(1,1)\), giving \((1,2)\). Steiner originally proved this
+cycle theorem using linear forms in logarithms~[1].
+
+\vspace{4pt}
+{\small
+\textbf{References.} [1] R. P. Steiner, \emph{A theorem on the Syracuse
+problem}, Proc. 7th Manitoba Conf. on Numerical Mathematics and Computing
+(1977), 553--559. [2] J. L. Simons, \emph{Cycles and divergent trajectories
+for a class of permutation sequences}, Lemma 10,
+\href{https://arxiv.org/abs/2205.10582}{arXiv:2205.10582} (2022), applying
+G. Rhin's 1987 proposition, p.~160.\par}
+
+\vspace{4pt}
+{\small
+\textbf{Open catalog.} \texttt{census/}\allowbreak\texttt{open\_collatz\_systems.txt}
+covers 66 entries. In CLS-057 (\texttt{qrA3\_q17}), every orbit
+reaches a known cycle, and the two basins among nonmultiples of \(17\)
+have no eventually periodic residue classification. The open question is
+whether a finite automaton can distinguish those basins in some integer base.\par}
+\end{document}

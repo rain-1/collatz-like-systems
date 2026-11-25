@@ -1,0 +1,409 @@
+OPEN QUESTIONS IN THE COLLATZ-LIKE SYSTEMS CENSUS
+Two-round snapshot | 66 tier-5 entries
+
+Cite the CLS ID when sharing work on an entry. Each ID identifies a ranked
+question and its census record. A map can have multiple questions, and
+some questions were revisited in round 2. See also the cross-references.
+An open label records the census status. The census used agent review
+and computational checks and has had no human review.
+
+All maps act on the positive integers. An arrow gives one iteration.
+In a rule such as 3q+1 -> 4q+1, q is an integer and the input is positive.
+Conditions with 'else' are evaluated in the listed order. An orbit is
+eventually periodic if it enters a finite cycle, including a fixed point.
+
+CLS-001  div235_7n1_s11  [round1]
+  Rule: 2|n -> n/2; else 3|n -> n/3; else 5|n -> n/5; else 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-058.
+  Census record: census/results/div235_7n1_s11.md
+
+CLS-002  div23_5n1_s7  [round1]
+  Rule: 2|n -> n/2; else 3|n -> n/3; else 5n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-059.
+  Census record: census/results/div23_5n1_s7.md
+
+CLS-003  div23_7n1_s5  [round1]
+  Rule: 2|n -> n/2; else 3|n -> n/3; else 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-060.
+  Census record: census/results/div23_7n1_s5.md
+
+CLS-004  m3_b_s8  [round1]
+  Rule: 3|n -> n/3; n=1 mod 3 -> (4n-1)/3; n=2 mod 3 -> (4n+1)/3.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-061.
+  Census record: census/results/m3_b_s8.md
+
+CLS-005  m3_d_s7  [round1]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 4n+2; n=2 mod 3 -> 4n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-062.
+  Census record: census/results/m3_d_s7.md
+
+CLS-006  m3_e_s7  [round1]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 7n+2; n=2 mod 3 -> 7n+1.
+  Open question: Does the orbit of 7 return to 7, enter a cycle omitting 7, or
+    have infinitely many distinct terms?
+  Census record: census/results/m3_e_s7.md
+
+CLS-007  m3_e_s7  [round1]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 7n+2; n=2 mod 3 -> 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/m3_e_s7.md
+
+CLS-008  m3_g_s7  [round1]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 5n+1; n=2 mod 3 -> 5n+2.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-063.
+  Census record: census/results/m3_g_s7.md
+
+CLS-009  par_10_2_s7  [round1]
+  Rule: even n -> n/2; odd n -> 10n+2.
+  Open question: Does the orbit of 7 return to 7, enter a cycle omitting 7, or
+    have infinitely many distinct terms?
+  Census record: census/results/par_10_2_s7.md
+
+CLS-010  par_10_2_s7  [round1]
+  Rule: even n -> n/2; odd n -> 10n+2.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_10_2_s7.md
+
+CLS-011  par_3_13_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+13.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_13_s27.md
+
+CLS-012  par_3_17_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+17.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_17_s27.md
+
+CLS-013  par_3_1_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_1_s27.md
+
+CLS-014  par_3_3_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+3.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_3_s27.md
+
+CLS-015  par_3_5_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+5.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_5_s27.md
+
+CLS-016  par_3_7_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+7.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_7_s27.md
+
+CLS-017  par_3_9_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n+9.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_9_s27.md
+
+CLS-018  par_3_m1_s27  [round1]
+  Rule: even n -> n/2; odd n -> 3n-1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_3_m1_s27.md
+
+CLS-019  par_5_11_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+11.
+  Open question: Does the orbit of 27 return to 27, enter a cycle omitting 27,
+    or have infinitely many distinct terms?
+  Census record: census/results/par_5_11_s27.md
+
+CLS-020  par_5_11_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+11.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_5_11_s27.md
+
+CLS-021  par_5_131_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+131.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_5_131_s27.md
+
+CLS-022  par_5_1_s5  [round1]
+  Rule: even n -> n/2; odd n -> 5n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Same map and global question as CLS-024.
+  Census record: census/results/par_5_1_s5.md
+
+CLS-023  par_5_1_s7  [round1]
+  Rule: even n -> n/2; odd n -> 5n+1.
+  Open question: Does the orbit of 7 return to 7, enter a cycle omitting 7, or
+    have infinitely many distinct terms?
+  Census record: census/results/par_5_1_s7.md
+
+CLS-024  par_5_1_s7  [round1]
+  Rule: even n -> n/2; odd n -> 5n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Same map and global question as CLS-022. See CLS-023 for the
+    seed-7 question.
+  Census record: census/results/par_5_1_s7.md
+
+CLS-025  par_5_353_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+353.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_5_353_s27.md
+
+CLS-026  par_5_3_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+3.
+  Open question: Does the orbit of 27 return to 27, enter a cycle omitting 27,
+    or have infinitely many distinct terms?
+  Census record: census/results/par_5_3_s27.md
+
+CLS-027  par_5_3_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+3.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_5_3_s27.md
+
+CLS-028  par_5_5_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+5.
+  Open question: Does the orbit of 27 return to 27, enter a cycle omitting 27,
+    or have infinitely many distinct terms?
+  Census record: census/results/par_5_5_s27.md
+
+CLS-029  par_5_5_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+5.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_5_5_s27.md
+
+CLS-030  par_5_7_s27  [round1]
+  Rule: even n -> n/2; odd n -> 5n+7.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_5_7_s27.md
+
+CLS-031  par_6_2_s27  [round1]
+  Rule: even n -> n/2; odd n -> 6n+2.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_6_2_s27.md
+
+CLS-032  par_7_1_s1  [round1]
+  Rule: even n -> n/2; odd n -> 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Same map and global question as CLS-034.
+  Census record: census/results/par_7_1_s1.md
+
+CLS-033  par_7_1_s3  [round1]
+  Rule: even n -> n/2; odd n -> 7n+1.
+  Open question: Does the orbit of 3 return to 3, enter a cycle omitting 3, or
+    have infinitely many distinct terms?
+  Census record: census/results/par_7_1_s3.md
+
+CLS-034  par_7_1_s3  [round1]
+  Rule: even n -> n/2; odd n -> 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Same map and global question as CLS-032. See CLS-033 for the
+    seed-3 question.
+  Census record: census/results/par_7_1_s3.md
+
+CLS-035  par_7_7_s9  [round1]
+  Rule: even n -> n/2; odd n -> 7n+7.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_7_7_s9.md
+
+CLS-036  par_9_1_s5  [round1]
+  Rule: even n -> n/2; odd n -> 9n+1.
+  Open question: Does the orbit of 5 return to 5, enter a cycle omitting 5, or
+    have infinitely many distinct terms?
+  Census record: census/results/par_9_1_s5.md
+
+CLS-037  par_9_1_s5  [round1]
+  Rule: even n -> n/2; odd n -> 9n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/par_9_1_s5.md
+
+CLS-038  perm_1932_s44  [round1]
+  Rule: 3q->2q; 3q+1->4q+1; 3q+2->4q+3.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Same map and global question as CLS-040. See CLS-039 for the
+    orbit of 8.
+  Census record: census/results/perm_1932_s44.md
+
+CLS-039  perm_1932_s8  [round1]
+  Rule: 3q->2q; 3q+1->4q+1; 3q+2->4q+3.
+  Open question: Does the orbit of 8 return to 8 or have infinitely many
+    distinct terms?
+  Related work: CLS-050 asks for the opposite outcome for this same orbit. See
+    CLS-041 for the inverse map.
+  Census record: census/results/perm_1932_s8.md
+
+CLS-040  perm_1932_s8  [round1]
+  Rule: 3q->2q; 3q+1->4q+1; 3q+2->4q+3.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Same map and global question as CLS-038.
+  Census record: census/results/perm_1932_s8.md
+
+CLS-041  perm_1932inv_s8  [round1]
+  Rule: 2q->3q; 4q+1->3q+1; 4q+3->3q+2.
+  Open question: Does the orbit of 8 return to 8 or have infinitely many
+    distinct terms?
+  Related work: The inverse of the map in CLS-039. The seed returns under one
+    map exactly when it returns under the other.
+  Census record: census/results/perm_1932inv_s8.md
+
+CLS-042  perm_1932inv_s8  [round1]
+  Rule: 2q->3q; 4q+1->3q+1; 4q+3->3q+2.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: The inverse of the map in CLS-040. All orbits are periodic
+    under one map exactly when they are periodic under the other.
+  Census record: census/results/perm_1932inv_s8.md
+
+CLS-043  perm_b_s7  [round1]
+  Rule: 3q->4q; 3q+1->4q+2; 3q+2->2q+1.
+  Open question: Does the orbit of 7 return to 7 or have infinitely many
+    distinct terms?
+  Census record: census/results/perm_b_s7.md
+
+CLS-044  perm_b_s7  [round1]
+  Rule: 3q->4q; 3q+1->4q+2; 3q+2->2q+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/perm_b_s7.md
+
+CLS-045  perm_c_s8  [round1]
+  Rule: 2q->3q; 4q+1->3q+2; 4q+3->3q+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/perm_c_s8.md
+
+CLS-046  perm_d_s3  [round1]
+  Rule: 2q->5q; 8q+1->5q+1; 8q+3->5q+2; 8q+5->5q+3; 8q+7->5q+4.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/perm_d_s3.md
+
+CLS-047  perm_swap_s8  [round1]
+  Rule: 3q->2q; 3q+1->4q+3; 3q+2->4q+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/results/perm_swap_s8.md
+
+CLS-048  split5_1_s27  [round1]
+  Rule: even n -> n/2; n=1 mod 4 -> 5n+1; n=3 mod 4 -> n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-064.
+  Census record: census/results/split5_1_s27.md
+
+CLS-049  split5_3_s27  [round1]
+  Rule: even n -> n/2; n=1 mod 4 -> 5n+3; n=3 mod 4 -> n+3.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Round 2 revisits the same question in CLS-065.
+  Census record: census/results/split5_3_s27.md
+
+CLS-050  auto_1932_s8  [round2/automata]
+  Rule: 3q->2q; 3q+1->4q+1; 3q+2->4q+3.
+  Open question: Does the orbit of 8 avoid 8 at every positive iterate?
+  Related work: Same map and seed as CLS-039, which asks for the full fate of
+    the orbit.
+  Census record: census/round2/automata/auto_1932_s8.md
+
+CLS-051  desc_m3_4n5  [round2/descent]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 4n+5; n=2 mod 3 -> 2n+2.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/round2/descent/desc_m3_4n5.md
+
+CLS-052  desc_s32_plus9  [round2/descent]
+  Rule: even n -> n/2; odd n -> 3n+1 if n mod 32 in
+    {1,3,5,7,9,11,13,15,17,21,23,25,29}, else (19,27,31 mod 32) n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/round2/descent/desc_s32_plus9.md
+
+CLS-053  desc_split7_1  [round2/descent]
+  Rule: even n -> n/2; n=1 mod 4 -> 7n+1; n=3 mod 4 -> n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Census record: census/round2/descent/desc_split7_1.md
+
+CLS-054  flipT_s8  [round2/downfrom5]
+  Rule: 3q -> 2q-1; 3q+1 -> 4q+2; 3q+2 -> 4q+4.
+  Open question: Does the orbit of 8 return to 8 or have infinitely many
+    distinct terms?
+  Related work: The census proves that return of 8 for this map is equivalent
+    to return of 8 in CLS-039.
+  Census record: census/round2/downfrom5/flipT_s8.md
+
+CLS-055  swT9_s8  [round2/downfrom5]
+  Rule: Apply T(3q)=2q, T(3q+1)=4q+1, T(3q+2)=4q+3, then replace the result y
+    by y+1 for y=9 mod 18, by y-1 for y=10 mod 18, and by y otherwise.
+  Open question: Does the orbit of 8 return to 8 or have infinitely many
+    distinct terms?
+  Census record: census/round2/downfrom5/swT9_s8.md
+
+CLS-056  yah_avoid57  [round2/literature]
+  Rule: n=5 or 7 mod 8 -> 1; else even n -> n/2; odd n -> 3n+1.
+  Open question: Does every positive orbit enter the cycle (1, 4, 2)? (Yolcu-
+    Aaronson-Heule, Conjecture 4.14.)
+  Census record: census/round2/literature/yah_avoid57.md
+
+CLS-057  qrA3_q17  [round2/qr]
+  Rule: n even -> n/2; n odd -> (n+17c)/3, c = n mod 3.
+  Open question: For inputs outside the basin of (17), give a finite-state
+    rule that distinguishes the basins of (1, 6, 3) and (5, 13, 10), or prove
+    that no such rule exists in any integer base.
+  Related work: Every orbit reaches one of the three listed cycles, and the
+    basin of (17) consists of multiples of 17. The census rules out an
+    eventually periodic residue classification for the other two basins. The
+    open question concerns a finite-state description in any integer base.
+  Census record: census/round2/qr/qrA3_q17.md
+
+CLS-058  div235_7n1_s11  [round2/rewriting]
+  Rule: 2|n -> n/2; else 3|n -> n/3; else 5|n -> n/5; else 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-001. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/div235_7n1_s11.md
+
+CLS-059  div23_5n1_s7  [round2/rewriting]
+  Rule: 2|n -> n/2; else 3|n -> n/3; else 5n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-002. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/div23_5n1_s7.md
+
+CLS-060  div23_7n1_s5  [round2/rewriting]
+  Rule: 2|n -> n/2; else 3|n -> n/3; else 7n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-003. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/div23_7n1_s5.md
+
+CLS-061  m3_b_s8  [round2/rewriting]
+  Rule: 3k -> k; 3k+1 -> 4k+1; 3k+2 -> 4k+3.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-004. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/m3_b_s8.md
+
+CLS-062  m3_d_s7  [round2/rewriting]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 4n+2; n=2 mod 3 -> 4n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-005. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/m3_d_s7.md
+
+CLS-063  m3_g_s7  [round2/rewriting]
+  Rule: 3|n -> n/3; n=1 mod 3 -> 5n+1; n=2 mod 3 -> 5n+2.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-008. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/m3_g_s7.md
+
+CLS-064  split5_1_s27  [round2/rewriting]
+  Rule: even n -> n/2; n=1 mod 4 -> 5n+1; n=3 mod 4 -> n+1.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-048. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/split5_1_s27.md
+
+CLS-065  split5_3_s27  [round2/rewriting]
+  Rule: even n -> n/2; n=1 mod 4 -> 5n+3; n=3 mod 4 -> n+3.
+  Open question: Is every positive orbit eventually periodic?
+  Related work: Revisits CLS-049. The round-2 notes record a partial descent
+    result.
+  Census record: census/round2/rewriting/split5_3_s27.md
+
+CLS-066  up_ct3  [round2/upfrom1]
+  Rule: n=7 mod 8 -> n+8 (trap); else even n -> n/2, odd n -> (3n+1)/2.
+  Open question: Which n have infinite orbits (is it exactly the trap basin,
+    with (1 2) the only untrapped cycle)?
+  Census record: census/round2/upfrom1/up_ct3.md
