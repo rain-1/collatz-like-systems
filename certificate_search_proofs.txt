@@ -1,0 +1,176 @@
+Finite certificates for seven Collatz-like systems
+
+Question and scope
+
+For a map T and positive seed n, a first-step separator is a set C with
+T(C) contained in C, n outside C, and T(n) in C. Induction excludes every
+positive-time return to n. A periodic separator uses a union of whole
+residue classes modulo one positive integer M. A basin label instead has
+L(T(n)) = L(n) and describes the eventual cycle.
+
+1. Existence of periodic first-step separators at arbitrary modulus
+
+For the 1932 permutation and every split map in the census, there is no
+periodic first-step separator at any positive seed. For the parity map
+T(even n)=n/2, T(odd n)=a*n+d, with a=3 or 5, the exact criteria are
+
+  gcd(a,d)=1:    a divides the seed;
+  d=a:           the exponent of a in the seed differs from 1.
+
+These cover all the offsets in the search, including d=-1 for a=3.
+The assertions concern separation from the first image. A finite transient
+orbit, for example, can have a binary automaton certificate even when this
+periodic criterion fails.
+
+2. Removing the binary part of a modulus along forward paths
+
+Write M=2^k*m with m odd. A full fiber above z means all residues modulo M
+congruent to z modulo m. For the parity map use two legitimate blocks:
+H(n)=n/2 on even inputs and V(n)=(a*n+d)/2 on odd inputs (one odd step and
+one halving). For the split map with prime p=1 mod 4 use H, and on the
+two odd classes use (3n+p)/4 and (n+p)/4 (one odd step and two halvings).
+
+All these blocks have odd numerator slope and denominator 2^b; the branch
+is specified by b low bits. Start from any representative and follow blocks
+until the accumulated exponent L is at least k. Changing the starting value
+by 2^L*m*t preserves its residue mod M and the entire branch word. The
+endpoint changes by A*m*t for odd A. Varying t through nonnegative
+integers produces every binary residue above that endpoint modulo m.
+Thus every nonempty forward-closed residue set contains a full fiber
+reachable from each of its vertices. From a full fiber, ANY of the blocks
+propagates another full fiber: choose its b low input bits and then vary
+the input by 2^b*m*t. Division on odd moduli below means multiplication
+by the modular inverse.
+
+3. Parity maps: proof of the criterion
+
+First assume gcd(a,d)=1. On multiples of a, each halving preserves
+divisibility by a, and the first odd step leaves it forever. For a given
+seed divisible by a, write t=v_2(n). Accept all integers coprime to a
+and all multiples of a with binary valuation strictly less than t.
+This is closed, separates the seed, and uses modulus a*2^t, including t=0.
+
+For the converse take a seed coprime to a. Write the odd part of the
+proposed modulus as m=a^e*u with gcd(u,a)=1. On u the normalized maps H
+and V are permutations: their finite semigroup is a group on each of its
+orbits. On a^e both maps preserve units. There is a word sending any
+unit to any specified unit, while simultaneously allowing any desired
+endpoint in the same group orbit modulo u, as follows.
+
+If e>0, V^e sends every starting residue modulo a^e to the same unit c:
+its slope contains a^e, and its final residue modulo a is d/2. Then H^j
+sends c to the target unit for a suitable j, because 2 generates the units
+modulo every power of 3 or 5. Indeed 2 has order a-1 modulo a and
+2^(a-1)-1 contains exactly one factor of a; the binomial expansion shows
+that raising to the a-th power increases this valuation by exactly one at
+each level. For e=0 use the empty suffix. This chosen suffix is a
+permutation modulo u. Prepend a word reaching its inverse image of the
+desired endpoint modulo u. The suffix erases that prefix's effect on the
+a-primary coordinate. This proves the simultaneous steering assertion.
+
+Now put the first image T(n) into any forward-closed residue set. It is a
+unit modulo a if e>0, and its u-coordinate lies in the group orbit of n.
+For an odd seed this last fact follows from T(n)=2*V(n), since multiplication
+by 2 is the inverse of H on u. Section 2 supplies a reachable full fiber;
+its coordinates still satisfy those two conditions. Steering full fibers
+as above reaches the fiber containing n. Every closed set containing T(n)
+therefore contains n.
+
+For d=a, the multiples of a form a closed set. An input outside this set
+enters it at its first odd step. The same binary-valuation construction
+as above (with the roles of multiples and nonmultiples reversed) separates
+every such input. On multiples of a, the exact conjugacy
+T_(a,a)(a*x)=a*T_(a,1)(x) applies. A periodic separator for x lifts by
+scaling to one for a*x; restriction to multiples and rescaling takes a
+periodic separator in the other direction. The preceding criterion now
+gives the assertion about exponent 1.
+
+4. Split maps: all forward-closed periodic sets
+
+For prime p=1 mod 4 in this family (hence p>=5), all such sets are unions
+of zero and multiplicative cosets of <2,3> modulo p. Each is conserved
+in both directions of membership across a step. Here is the converse.
+For a closed set modulo M, let F be its full fibers over the odd part m.
+Section 2 shows F is closed under H and the two normalized odd branches.
+It is also closed under multiplication by 2 on m, since H is a permutation
+of finite order. Undoing the divisions by 4 shows that F is closed under
+x -> x+p and x -> 3x+p. Translation by p gives whole classes modulo
+g=gcd(m,p); on g the induced multipliers 2 and 3 are invertible. Hence
+F consists of whole orbits of these multipliers modulo g. Every vertex
+of the original closed set reaches a full fiber without changing its
+multiplier orbit modulo g. Its own fiber is therefore full. This proves
+the classification; g is either 1 or p. Direct substitution in each branch
+proves that all the listed sets are conserved.
+
+For every positive start the odd subsequence descends into [1,p]: the next
+odd term is at most (3n+p)/4. Within [1,p] the same bound stays <=p.
+The exported odd-core arrays, indexed by (n-1)/2 for odd n<=p, give the
+minimum of the eventual cycle and the exact number of odd-to-odd steps
+before first entering it. All odd-core labels and ranks are finite evidence
+which can be checked against the three defining branches. This classifies
+basins even when distinct cycles occupy the same modular coset.
+
+5. Original 1932 permutation
+
+Let M=3^j*m with 3 not dividing m. For each input, fixing its first j
+ternary branch choices is ensured by fixing its residue modulo 3^j
+(induct on j). Changing it by M*t changes the j-th iterate by 2^h*m*t
+for some h, with those branches fixed. This covers a full fiber modulo
+3^j above a single m-coordinate. From a full fiber any branch can be
+chosen; starting differences 3*m*t propagate to 2*m*t or 4*m*t and
+again give full ternary fibers.
+
+On m the branch maps 2x/3, (4x-1)/3 and (4x+1)/3 are all available
+from each residue. Write m=2^b*u with u coprime to 6. On u all branches
+are permutations. Composing the last with the inverse of the middle one
+gives translation by 2/3, transitive on u. For a proposed target modulo
+m, take a positive representative and follow b inverse steps of the
+integer permutation; keep the resulting forward branch word as a suffix.
+Its numerator slope contains 2^b. Applied as affine residue maps on m,
+it forces the desired binary coordinate regardless of the suffix input
+and permutes the u-coordinate. A prefix can reach the required inverse
+image on u, so the target is reachable. The graph modulo m is strongly
+connected. Propagation of full ternary fibers now gives the same conclusion
+on M. This recovers the fixed-modulus argument in collatz_8_handoff/HANDOFF.md.
+
+6. How to reproduce and interpret the finite searches
+
+Run python3 certificate_search.py --json output/certificate_search.json
+and python3 verify_certificate_search.py output/certificate_search.json.
+The default parameters are all odd primes <=997, all moduli <=128 plus
+p,2p,4p in parameterized maps, and up to three accessible binary states
+after the leading 1. The extra start condition for positive canonical
+binary input is implicit. Nonconstant languages are represented once,
+as minimal automata numbered in breadth-first order. Accepting states
+are the set bits of accepting_mask; identifiers index the machines array
+starting at zero.
+
+For modulus M, a branch modulus B of 2, 3 or 4 makes B*M consecutive
+inputs a complete edge check. In the directed residue graph every closed
+set is a union of strongly connected components that contains all its
+successors. An edge distinguishes its endpoints by a forward-closed set
+iff it crosses components. The reachable set from its endpoint is the
+smallest such certificate. The output records moduli with any nontrivial
+closed set, with a crossing edge, and with a crossing at the designated
+seed, including a witness for its first successful modulus.
+The separate periodic_witness field uses the all-moduli theorem: accept n
+if scale divides n and x=n/scale satisfies either the indicated prime
+divisibility condition or binary_divisor does not divide x.
+
+Binary closure is checked on every affine branch (u*q+r) -> (v*q+s)
+for all q>=0. A small sample discards candidates with a concrete bad edge.
+For survivors, putting q=2t+b replaces the left offset by floor((u*b+r)/2)
+and pulls the accepting mask back through the discarded binary digit;
+the same operation applies to the right offset and the rejection mask.
+Testing the remaining quotient zero and exploring both bits exhausts all
+q. The offsets are bounded by the maximum of their original value and
+slope, and there are finitely many state masks. Skipping leading zeros
+uses a separate padding state. Thus the state bound limits the machines
+searched but no trajectory cutoff is used in validating their closure.
+
+For an exact repeating trace, terms lists the distinct states in order;
+the successor of the last is terms[repeat_index]. An index of zero gives
+a period of the seed. A positive index makes the listed states after the
+seed a finite forward-closed certificate. Unfinished traces have a stop
+reason and a number of checked terms. These counts alone certify neither
+divergence nor a later return.
