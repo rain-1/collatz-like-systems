@@ -23,3 +23,7 @@ and the orbit of 1 itself appears to diverge). No descent, invariant or automato
 
 ## Referee
 FATE: open-agreed (tier 5). Re-ran the check and an independent simulation (own step function, cross-checked against systems.get on n<5000). Reproduced 200000 steps without repetition, 79200 bits. Independent separator search over moduli 2..800 finds none. This agrees with the structural reason: the odd step gives 1 mod 9, halving multiplies by 5 = 2^{-1}, which generates (Z/9)^*, so every unit residue is reached. 1 -> 10 -> 5, so this is the 9n+1 orbit of 1. GLOBAL: open-agreed (tier 5). Positive drift (log 9 - 2 log 2 > 0) rules out descent, and 'no' needs a proved divergent orbit.
+
+## Positive cycles with few rising runs
+
+Every positive cycle, if one exists, has at least eight rising runs under the shortcut that combines an odd step with its mandatory halving. In particular there is no one-local-minimum cycle of any length in this convention. [Proof and exact checker](../lhf/seven-nine/CLS-037.md#exclusion-of-cycles-with-up-to-seven-local-minima)
