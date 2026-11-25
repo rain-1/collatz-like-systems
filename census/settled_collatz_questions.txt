@@ -1,0 +1,496 @@
+SETTLED QUESTIONS IN THE TWO-ROUND COLLATZ CENSUS
+Reconciled 25 November 2026
+
+114 of 179 question entries have recorded proofs, covering 85 distinct system IDs.
+Different IDs can represent the same map. A specified seed and a global claim count
+as separate questions. Historical tier counts include the formerly open CLS-057.
+Review basis: census proof records and the subsequent q=17 manuscript.
+Automated or author review is the default for local proofs. Published inputs are
+identified in the corresponding proof files. Paths below are relative to census/.
+
+ROUND 1 | GLOBAL: Is every positive orbit eventually periodic? (29 settled)
+
+div2_3n_s5   no
+  2|n -> n/2; else 3n
+  results/div2_3n_s5.md
+div3_2n_s5   no
+  3|n -> n/3; else 2n
+  results/div3_2n_s5.md
+mahler_s1   no
+  even n -> 3n/2; odd n -> (3n+1)/2
+  results/mahler_s1.md
+par_2_1_s27   no
+  even n -> n/2; odd n -> 2n+1
+  results/par_2_1_s27.md
+par_3_2_s27   no
+  even n -> n/2; odd n -> 3n+2
+  results/par_3_2_s27.md
+par_3_4_s27   no
+  even n -> n/2; odd n -> 3n+4
+  results/par_3_4_s27.md
+par_4_2_s27   no
+  even n -> n/2; odd n -> 4n+2
+  results/par_4_2_s27.md
+par_5_2_s27   no
+  even n -> n/2; odd n -> 5n+2
+  results/par_5_2_s27.md
+par_6_3_s27   no
+  even n -> n/2; odd n -> 6n+3
+  results/par_6_3_s27.md
+perm_ceil2_s1   no
+  2m->2(m+ceil(m/2)); 4q+1->2(3q+1); 4q+3->2q+1
+  results/perm_ceil2_s1.md
+perm_ceil3_s1   no
+  2m->2(m+ceil(m/3)); 4q+1->2(4q+1); 4q+3->2q+1
+  results/perm_ceil3_s1.md
+perm_suffix_a_s1   no
+  2q->4q; 4q+1->4q+2; 4q+3->2q+1
+  results/perm_suffix_a_s1.md
+perm_suffix_b_s8   no
+  2q+1->16q+12; 8q+4->2q+1; 4q+2->4q+2; 16q->8q; 16q+8->16q+4
+  results/perm_suffix_b_s8.md
+perm_suffix_c_s1   no
+  4q->2q; 4q+2->4q+3; 2q+1->4q+1
+  results/perm_suffix_c_s1.md
+perm_suffix_d_s1   no
+  2q->8q; 4q+1->2q+1; 8q+3->4q+2; 8q+7->8q+4
+  results/perm_suffix_d_s1.md
+farkas_s27   yes
+  1 -> 1; n=1 mod 3 -> (n-1)/3; else even -> n/2; else -> (3n+1)/2
+  results/farkas_s27.md
+m3_a_s100   yes
+  3|n -> n/3; n=1 -> (2n+1)/3; n=2 -> (2n+2)/3
+  results/m3_a_s100.md
+m3_c_s100   yes
+  3|n -> n/3; n=1 -> 2n+1; n=2 -> 2n+2
+  results/m3_c_s100.md
+m3_f_s100   yes
+  3|n -> n/3; n=1 -> n+2; n=2 -> n+1
+  results/m3_f_s100.md
+par_1_1_s27   yes
+  even n -> n/2; odd n -> 1n+1
+  results/par_1_1_s27.md
+par_1_5_s27   yes
+  even n -> n/2; odd n -> 1n+5
+  results/par_1_5_s27.md
+perm_flip_s27   yes
+  2q+1 -> 2q+2; 2q+2 -> 2q+1
+  results/perm_flip_s27.md
+splitB_71_s27   yes
+  even n -> n/2; n=1 mod 4 -> n+71; n=3 mod 4 -> 3n+71
+  results/splitB_71_s27.md
+splitB_7_s27   yes
+  even n -> n/2; n=1 mod 4 -> n+7; n=3 mod 4 -> 3n+7
+  results/splitB_7_s27.md
+split_13_s27   yes
+  even n -> n/2; n=1 mod 4 -> 3n+13; n=3 mod 4 -> n+13
+  results/split_13_s27.md
+split_5_s27   yes
+  even n -> n/2; n=1 mod 4 -> 3n+5; n=3 mod 4 -> n+5
+  results/split_5_s27.md
+split_7081_s27   yes
+  even n -> n/2; n=1 mod 4 -> 3n+7081; n=3 mod 4 -> n+7081
+  results/split_7081_s27.md
+split_73_s27   yes
+  even n -> n/2; n=1 mod 4 -> 3n+73; n=3 mod 4 -> n+73
+  results/split_73_s27.md
+split_97_s27   yes
+  even n -> n/2; n=1 mod 4 -> 3n+97; n=3 mod 4 -> n+97
+  results/split_97_s27.md
+
+ROUND 1 | FATE: What happens to the specified seed? (56 settled)
+
+div2_3n_s5   infinite
+  2|n -> n/2; else 3n
+  results/div2_3n_s5.md
+div3_2n_s5   infinite
+  3|n -> n/3; else 2n
+  results/div3_2n_s5.md
+mahler_s1   infinite
+  even n -> 3n/2; odd n -> (3n+1)/2
+  results/mahler_s1.md
+par_2_1_s27   infinite
+  even n -> n/2; odd n -> 2n+1
+  results/par_2_1_s27.md
+par_3_2_s27   infinite
+  even n -> n/2; odd n -> 3n+2
+  results/par_3_2_s27.md
+par_3_4_s27   infinite
+  even n -> n/2; odd n -> 3n+4
+  results/par_3_4_s27.md
+par_4_2_s27   infinite
+  even n -> n/2; odd n -> 4n+2
+  results/par_4_2_s27.md
+par_5_2_s27   infinite
+  even n -> n/2; odd n -> 5n+2
+  results/par_5_2_s27.md
+par_6_3_s27   infinite
+  even n -> n/2; odd n -> 6n+3
+  results/par_6_3_s27.md
+perm_ceil2_s1   infinite
+  2m->2(m+ceil(m/2)); 4q+1->2(3q+1); 4q+3->2q+1
+  results/perm_ceil2_s1.md
+perm_ceil3_s1   infinite
+  2m->2(m+ceil(m/3)); 4q+1->2(4q+1); 4q+3->2q+1
+  results/perm_ceil3_s1.md
+perm_suffix_a_s1   infinite
+  2q->4q; 4q+1->4q+2; 4q+3->2q+1
+  results/perm_suffix_a_s1.md
+perm_suffix_b_s8   infinite
+  2q+1->16q+12; 8q+4->2q+1; 4q+2->4q+2; 16q->8q; 16q+8->16q+4
+  results/perm_suffix_b_s8.md
+div235_7n1_s11   other-cycle
+  2|n -> n/2; else 3|n -> n/3; else 5|n -> n/5; else 7n+1
+  results/div235_7n1_s11.md
+div23_5n1_s7   other-cycle
+  2|n -> n/2; else 3|n -> n/3; else 5n+1
+  results/div23_5n1_s7.md
+div23_7n1_s5   other-cycle
+  2|n -> n/2; else 3|n -> n/3; else 7n+1
+  results/div23_7n1_s5.md
+farkas_s27   other-cycle
+  1 -> 1; n=1 mod 3 -> (n-1)/3; else even -> n/2; else -> (3n+1)/2
+  results/farkas_s27.md
+m3_a_s100   other-cycle
+  3|n -> n/3; n=1 -> (2n+1)/3; n=2 -> (2n+2)/3
+  results/m3_a_s100.md
+m3_b_s8   other-cycle
+  3|n -> n/3; n=1 -> (4n-1)/3; n=2 -> (4n+1)/3
+  results/m3_b_s8.md
+m3_c_s100   other-cycle
+  3|n -> n/3; n=1 -> 2n+1; n=2 -> 2n+2
+  results/m3_c_s100.md
+m3_f_s100   other-cycle
+  3|n -> n/3; n=1 -> n+2; n=2 -> n+1
+  results/m3_f_s100.md
+par_1_1_s27   other-cycle
+  even n -> n/2; odd n -> 1n+1
+  results/par_1_1_s27.md
+par_1_5_s27   other-cycle
+  even n -> n/2; odd n -> 1n+5
+  results/par_1_5_s27.md
+par_3_13_s27   other-cycle
+  even n -> n/2; odd n -> 3n+13
+  results/par_3_13_s27.md
+par_3_17_s27   other-cycle
+  even n -> n/2; odd n -> 3n+17
+  results/par_3_17_s27.md
+par_3_1_s27   other-cycle
+  even n -> n/2; odd n -> 3n+1
+  results/par_3_1_s27.md
+par_3_3_s27   other-cycle
+  even n -> n/2; odd n -> 3n+3
+  results/par_3_3_s27.md
+par_3_5_s27   other-cycle
+  even n -> n/2; odd n -> 3n+5
+  results/par_3_5_s27.md
+par_3_7_s27   other-cycle
+  even n -> n/2; odd n -> 3n+7
+  results/par_3_7_s27.md
+par_3_9_s27   other-cycle
+  even n -> n/2; odd n -> 3n+9
+  results/par_3_9_s27.md
+par_3_m1_s27   other-cycle
+  even n -> n/2; odd n -> 3n-1
+  results/par_3_m1_s27.md
+par_5_1_s5   other-cycle
+  even n -> n/2; odd n -> 5n+1
+  results/par_5_1_s5.md
+par_5_353_s27   other-cycle
+  even n -> n/2; odd n -> 5n+353
+  results/par_5_353_s27.md
+par_5_7_s27   other-cycle
+  even n -> n/2; odd n -> 5n+7
+  results/par_5_7_s27.md
+par_6_2_s27   other-cycle
+  even n -> n/2; odd n -> 6n+2
+  results/par_6_2_s27.md
+par_7_7_s9   other-cycle
+  even n -> n/2; odd n -> 7n+7
+  results/par_7_7_s9.md
+split5_1_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 5n+1; n=3 mod 4 -> n+1
+  results/split5_1_s27.md
+split5_3_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 5n+3; n=3 mod 4 -> n+3
+  results/split5_3_s27.md
+splitB_71_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> n+71; n=3 mod 4 -> 3n+71
+  results/splitB_71_s27.md
+splitB_7_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> n+7; n=3 mod 4 -> 3n+7
+  results/splitB_7_s27.md
+split_13_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 3n+13; n=3 mod 4 -> n+13
+  results/split_13_s27.md
+split_5_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 3n+5; n=3 mod 4 -> n+5
+  results/split_5_s27.md
+split_7081_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 3n+7081; n=3 mod 4 -> n+7081
+  results/split_7081_s27.md
+split_73_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 3n+73; n=3 mod 4 -> n+73
+  results/split_73_s27.md
+split_97_s27   other-cycle
+  even n -> n/2; n=1 mod 4 -> 3n+97; n=3 mod 4 -> n+97
+  results/split_97_s27.md
+m3_d_s7   returns
+  3|n -> n/3; n=1 -> 4n+2; n=2 -> 4n+1
+  results/m3_d_s7.md
+m3_g_s7   returns
+  3|n -> n/3; n=1 -> 5n+1; n=2 -> 5n+2
+  results/m3_g_s7.md
+par_5_131_s27   returns
+  even n -> n/2; odd n -> 5n+131
+  results/par_5_131_s27.md
+par_7_1_s1   returns
+  even n -> n/2; odd n -> 7n+1
+  results/par_7_1_s1.md
+perm_1932_s44   returns
+  3q->2q; 3q+1->4q+1; 3q+2->4q+3
+  results/perm_1932_s44.md
+perm_c_s8   returns
+  2q->3q; 4q+1->3q+2; 4q+3->3q+1
+  results/perm_c_s8.md
+perm_d_s3   returns
+  2q->5q; 8q+1->5q+1; 8q+3->5q+2; 8q+5->5q+3; 8q+7->5q+4
+  results/perm_d_s3.md
+perm_flip_s27   returns
+  2q+1 -> 2q+2; 2q+2 -> 2q+1
+  results/perm_flip_s27.md
+perm_suffix_c_s1   returns
+  4q->2q; 4q+2->4q+3; 2q+1->4q+1
+  results/perm_suffix_c_s1.md
+perm_suffix_d_s1   returns
+  2q->8q; 4q+1->2q+1; 8q+3->4q+2; 8q+7->8q+4
+  results/perm_suffix_d_s1.md
+perm_swap_s8   returns
+  3q->2q; 3q+1->4q+3; 3q+2->4q+1
+  results/perm_swap_s8.md
+
+ROUND 2 | Named questions (29 settled)
+
+auto_mix3_s7
+  Rule: 6|n -> n/2; n=2 mod 6 -> (3n+2)/2; n=4 mod 12 -> (3n-8)/4; n=10 mod 12 -> (3n-2)/4; n
+    odd -> (3n+1)/2 (a permutation)
+  Question: FATE of 7
+  Result: Infinite. The forward orbit looks chaotic. The smallest base-3 certificate has
+    exactly 7 states (SAT). The smallest base-2 certificate has between 10 (SAT: none with 9
+    or fewer) and 13 states (explicit).
+  round2/automata/auto_mix3_s7.md
+
+auto_sfx7_far
+  Rule: same 7-rule suffix permutation as auto_sfx7_s17
+  Question: FATE of 2^21+5 (side question: size of the smallest automaton certificate)
+  Result: Infinite. The smallest binary automaton certificate has between 10 and 29 states.
+    More generally, the seed 2^(2I+1)+5 needs at least I states.
+  round2/automata/auto_sfx7_far.md
+
+auto_sfx7_s17
+  Rule: Binary suffix permutation ..00->..00, ..001->..100110, ..00101->..1110, ..10->..1,
+    ..10101->..10110, ..11->..010, ..1101->..000110 (4q->4q, 8q+1->64q+38, 32q+5->16q+14,
+    4q+2->2q+1, 32q+21->32q+22, 4q+3->8q+2, 16q+13->64q+6)
+  Question: FATE of 17
+  Result: Infinite. The orbit rises and falls in every period in both time directions. The
+    smallest automaton certificate has exactly 5 states. The smallest congruence certificate
+    has modulus exactly 256: 6 classes {81,83,162,166,209,211}.
+  round2/automata/auto_sfx7_s17.md
+
+desc_s32_d65
+  Rule: even n -> n/2; odd n -> 3n+65 if n mod 32 in {1,3,5,7,11,13,15,17,21,23,25,29}, else
+    n+65
+  Question: CYCLES: list all cycles with a completeness proof
+  Result: exactly 8 cycles, with minima 1, 5, 7, 13, 39, 65, 299, 1135 and lengths 21, 5, 29,
+    4, 5, 3, 8, 13
+  round2/descent/desc_s32_d65.md
+
+desc_s32_max
+  Rule: even n -> n/2; odd n -> 3n+1 if n mod 32 in {1,3,5,7,11,13,15,17,21,23,25,29}, else
+    (9,19,27,31 mod 32) n+1
+  Question: GLOBAL: is every positive orbit eventually periodic?
+  Result: yes; every orbit reaches 1 -> 4 -> 2 -> 1
+  round2/descent/desc_s32_max.md
+
+desc_s8_35
+  Rule: even n -> n/2; n=3,5 mod 8 -> 3n+1; n=1,7 mod 8 -> n+1
+  Question: GLOBAL: is every positive orbit eventually periodic?
+  Result: yes; every orbit reaches the cycle {1,2}
+  round2/descent/desc_s8_35.md
+
+shiftT_s8
+  Rule: J: 3q->2q+2 (q>=1); 3q+1->4q+1; 3q+2->4q+3 (T with one constant changed; J-T ∈ {0,2};
+    injective, not surjective)
+  Question: FATE of seed 8
+  Result: Infinite
+  round2/downfrom5/shiftT_s8.md
+
+swD_s3
+  Rule: P(n)=sigma(D(n)), D = perm_d (2q->5q; 8q+r->5q+(r+1)/2), sigma swapping 3<->4,
+    11<->12, 14<->15 (mod 20); |P-D|<=1, a permutation
+  Question: FATE of seed 3
+  Result: Infinite (orbit 3,2,5,4,10,25,16,...; not monotone: 838 falls in 3000 steps)
+  round2/downfrom5/swD_s3.md
+
+swT3_9_15_s8
+  Rule: Q(n)=sigma(T(n)) with sigma swapping 3<->4 (mod 6); |Q-T|<=1, Q is a permutation
+  Question: FATE of seed 8
+  Result: Infinite; the orbit is strictly increasing. Also the only cycle of Q is {1}.
+  round2/downfrom5/swT3_9_15_s8.md
+
+swT9_15_s8
+  Rule: Q(n)=sigma(T(n)), with T the 1932 map (3q->2q, 3q+1->4q+1, 3q+2->4q+3) and sigma
+    swapping 9<->10 and 15<->16 (mod 18); |Q-T|<=1, Q is a permutation
+  Question: FATE of seed 8
+  Result: Infinite: the orbit never returns. It is unbounded (infinitely many rises) and its
+    branch itinerary is not eventually periodic. Infinitely many falls is NOT proved (340
+    falls observed in 3000 steps).
+  round2/downfrom5/swT9_15_s8.md
+
+twochanW_s8
+  Rule: n≡1 (6)->4n+1; n≡3 (6)->4n+5; n≡5 (6)->(2n-1)/3; n≡0 (4)->n/2; n≡2 (8)->(3n-4)/2; n≡6
+    (8)->3n/2 (a permutation; on odd n=2m-1 it is W(m)=T(m) if 3|m, 3T(m) otherwise, and W_acc
+    = 2*T_acc)
+  Question: FATE of seed 8
+  Result: Infinite. The orbit has infinitely many rises and falls (every rise is followed by a
+    run of v_3(4m∓1)>=1 falls) and a branch itinerary that is not eventually periodic.
+  round2/downfrom5/twochanW_s8.md
+
+farkas2005
+  Rule: m=2 mod 3 -> (m+1)/3; else m odd -> (m+1)/2; else m even -> 3m/2. This is Farkas's
+    F'(x) = x/3 if 3|x, (x+1)/2 if x=1 mod 4, (3x+1)/2 if x=3 mod 4, conjugated by x = 2m-1.
+  Question: GLOBAL: does every orbit reach the fixed point 1?
+  Result: Yes. 1 is the only cycle. Correction to round 1: catalog farkas_s27 IS Farkas's map
+    (YAH coordinates n=(x-1)/2): R(n) = G(n+1)-1 for n>=2, checked to 10^6.
+  round2/literature/farkas2005.md
+
+perm1932_1cycle
+  Rule: 3q -> 2q; 3q+1 -> 4q+1; 3q+2 -> 4q+3 (catalog perm_1932)
+  Question: CYCLES restricted to 1-cycles (one maximal block of non-multiples of 3): list them
+    all
+  Result: Exactly (1), (2,3), (4,5,7,9,6)
+  round2/literature/perm1932_1cycle.md
+
+steiner_1cycle
+  Rule: even n -> n/2; odd n -> (3n+1)/2
+  Question: CYCLES restricted to 1-cycles (one maximal odd block then one even block): list
+    them all
+  Result: Only (1,2)
+  round2/literature/steiner_1cycle.md
+
+yah_avoid15
+  Rule: n=1 or 5 mod 8 -> 1; else even n -> n/2; odd n -> 3n+1
+  Question: GLOBAL: does every orbit reach 1? (= every Collatz trajectory meets 1 or 5 mod 8;
+    YAH Sec. 4.5)
+  Result: Yes. Every Collatz trajectory meets 1 or 5 mod 8 in finitely many steps.
+  round2/literature/yah_avoid15.md
+
+yah_avoid6
+  Rule: n=6 mod 8 -> 1; else even n -> n/2; odd n -> 3n+1
+  Question: GLOBAL: does every orbit enter {1,4,2}? (= YAH Prop. 4.7 / Thm 4.10, class 6)
+  Result: Yes
+  round2/literature/yah_avoid6.md
+
+qrA3_q17
+  Rule: n even -> n/2; n odd -> (n+17c)/3, c = n mod 3
+  Question: BASIN (strong form): give a finite-state rule deciding whether n reaches (1 6 3)
+    or (5 13 10), or prove none exists
+  Result: All inputs reach the cycles through 1, 5 or 17. No finite automaton in any integer
+    base distinguishes the first two basins on inputs coprime to 17. See the subsequent
+    resolution at the start of the proof record.
+  round2/qr/qrA3_q17.md
+
+qrA3_q23
+  Rule: n even -> n/2; n odd -> (n+23c)/3, c in {0,1,2} minimal (c = n mod 3)
+  Question: BASIN: which cycle does each n reach?
+  Result: If 23 | n, n reaches the fixed point 23. If the Legendre symbol (n/23) = +1, n
+    reaches the cycle (1 8 4 2). If (n/23) = -1, n reaches the cycle (5 17 21 7 10).
+  round2/qr/qrA3_q23.md
+
+qrA3_q307
+  Rule: n even -> n/2; n odd -> (n+307c)/3, c = (-n) mod 3
+  Question: BASIN
+  Result: If 307 | n, n reaches 307. Otherwise the cubic character n^102 mod 307 decides:
+    value 1 -> cycle through 1 (length 18); value chi(5) -> cycle through 5 (length 28); value
+    chi(7) -> cycle through 7 (length 18).
+  round2/qr/qrA3_q307.md
+
+qrA3_q95
+  Rule: n even -> n/2; n odd -> (n+95c)/3, c in {0,1,2} minimal
+  Question: BASIN
+  Result: gcd(n,95) = 95 -> 95; gcd = 5 -> cycle (5 65 85 60 30 15); gcd = 19 -> cycle (19
+    38). For gcd = 1: Jacobi symbol (n/95) = +1 -> cycle (1 32 16 8 4 2); (n/95) = -1 -> cycle
+    through 7 (length 12).
+  round2/qr/qrA3_q95.md
+
+qrA5_q251
+  Rule: n even -> n/2; n odd -> (n+251c)/5, c in {0..4} minimal
+  Question: BASIN
+  Result: If 251 | n, n reaches 251. Otherwise n reaches the cycle through r, where r in
+    {1,3,7,9,21} is the unique element with r^50 = n^50 mod 251 (cycle lengths 8, 8, 15, 8,
+    8).
+  round2/qr/qrA5_q251.md
+
+qrB7_c53
+  Rule: n even -> n/2; n=1 mod 4 -> (n+35)/2; n=3 mod 4 -> (n+21)/2
+  Question: BASIN
+  Result: 7 | n -> cycle (7 14). n a QR mod 7 -> cycle (1 18 9 22 11 16 8 4 2). n a non-
+    residue mod 7 -> cycle (3 12 6) or (5 20 10): two cycles in one coset, decided by an
+    explicit 20-state LSB-first binary automaton given in the md file. No rule of the form
+    'basin depends only on n mod M' exists for any M.
+  round2/qr/qrB7_c53.md
+
+qrC_q311
+  Rule: n even -> n/2; n=1 mod 4 -> (n+311c)/3; n=3 mod 4 -> (n+311c)/5; c minimal
+  Question: BASIN
+  Result: If 311 | n, n reaches 311. If (n/311) = +1, n reaches the cycle through 3 (length
+    13). If (n/311) = -1, n reaches the cycle through 11 (length 16).
+  round2/qr/qrC_q311.md
+
+farkas5m_s27
+  Rule: n=3 mod 5 -> (n+2)/5; else even n -> n/2; else (5n-3)/2   (NEW)
+  Question: GLOBAL (and FATE of 27)
+  Result: Yes: every orbit reaches the fixed point 1, the only cycle. Seed: 27 -> 66 -> 33 ->
+    7 -> 16 -> 8 -> 2 -> 1.
+  round2/rewriting/farkas5m_s27.md
+
+up_ct11
+  Rule: n=3 mod 4 -> n+4 (trap); else even n -> n/2, odd n -> (3n+1)/2
+  Question: Which n have infinite orbits?
+  Result: Exactly the n whose T-orbit meets 3 mod 4 before reaching 1. All other orbits reach
+    (1 2); there is no other cycle and no untrapped divergence. Membership is decided in O(log
+    n) steps.
+  round2/upfrom1/up_ct11.md
+
+up_ct35
+  Rule: n=7 mod 8 -> n+8; n=27 mod 32 -> n+32 (traps = parity words 111..., 11011); else even
+    n -> n/2, odd n -> (3n+1)/2
+  Question: Which n have infinite orbits?
+  Result: Exactly the n whose T-orbit meets 7 mod 8 or 27 mod 32 before reaching 1. Every
+    other orbit reaches (1 2), with no other cycles and no untrapped divergence.
+  round2/upfrom1/up_ct35.md
+
+up_ct58
+  Rule: n mod 256 in R -> n+256 (R = 37 residues whose 8-step Collatz parity word has >=6
+    ones); else even n -> n/2, odd n -> (3n+1)/2
+  Question: Which n have infinite orbits?
+  Result: Exactly the n whose T-orbit meets R mod 256 before reaching 1. All other orbits
+    reach (1 2).
+  round2/upfrom1/up_ct58.md
+
+up_qr7
+  Rule: even n -> n/2; n=3 mod 28 -> n+28 (trap); other odd n -> n+7
+  Question: Which n have infinite orbits?
+  Result: Exactly n = 3,5,6 mod 7 (the quadratic non-residues mod 7). n = 0 mod 7 ends in the
+    cycle (7 14); n = 1,2,4 mod 7 ends in (1 8 4 2).
+  round2/upfrom1/up_qr7.md
+
+up_tok3
+  Rule: even n -> n/2; n=1 mod 4 -> n+3; n=3 mod 4 -> n+4 (trap)
+  Question: Which n have infinite orbits?
+  Result: The orbit is finite (reaches 1->4->2->1) iff n = 2^a(4B+1) with B>=0 and every
+    maximal 0-run of binary(B) of even length (trailing run included). Equivalently binary(n)
+    is in (1(1|00)*01 | 1)0*. Every other n diverges. |E cap [1,2^k)| = F_{k+2}-1 (Fibonacci,
+    checked k<=16).
+  round2/upfrom1/up_tok3.md
+

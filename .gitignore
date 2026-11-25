@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+q17/g.npy
+output/*.bundle
