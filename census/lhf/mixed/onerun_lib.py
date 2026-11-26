@@ -1,3 +1,6 @@
+# Note (26 Nov 2026): the LMN 1995 constant used below is superseded by Laurent 2008,
+# Corollary 2 (primary source), which gives smaller cutoffs; see
+# census/advance/constants-audit/theorem.md. The scans here still cover them.
 """Shared engine for the one-expanding-run cycle theorems (CLS-048, 053, 054, 055).
 
 Setting (see the .md files for the proofs of the inputs used here).

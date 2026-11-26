@@ -74,3 +74,6 @@ check_perm1932_1cycle.py, about 0.2 s, does:
 * Citation checked in the arXiv text: Simons Cor. 11(a) says "for m <= 2 no other cycles than (1), (2,3), (4,6,9,7,5)". His Lemma 10 applies Rhin with u1 = 2K + L and u2 = -(K + L), as here. The explorer's proof drops the X0 = 10^6 search for m = 1, and that is legitimate.
   - Side note, not affecting this claim: Simons's Cor. 11(b) lists the 44-cycle as 10 elements with m = 3. Under this map it has 12 elements (it also contains 93 and 62) and 4 descent blocks. Either his list has a typo or his m is counted differently.
 * Tier: the same near-coincidence 3^(k+l) ~ 2^(2k+l) as in Steiner's theorem. No elementary bound is known, so tier 4 stands. The why_not_lower is evidence, not a proof.
+
+## Constants audit (26 Nov 2026)
+The linear-forms constant quoted above is superseded. CORRECTED: with Laurent 2008 the cutoff is l < 4714; the audit extended the scan to that range and found the same 5 pairs and the same 2 cycles. The result now depends only on M. Laurent, Acta Arith. 133 (2008), Corollary 2, read in the primary source. See census/advance/constants-audit/theorem.md.

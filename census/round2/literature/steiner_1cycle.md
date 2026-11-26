@@ -78,3 +78,6 @@ check_steiner_1cycle.py, about 1.5 s:
 * Lower tier attempted. From d | 2^l - 1 it follows that d | 3^k - 2^k, which gives 3^k - 2^k = n d. This is an identity, not a contradiction.
   - arXiv:1805.10496 ("A Dual-Radix Approach to Steiner's 1-Cycle Theorem") gives "algebraic" proofs. The abstract's unconditional result is only for the 3x-1 system "under an exponential upper bound on the iterates", so it does not remove the transcendence input here.
   - The why_not_lower argument is evidence, not a proof. A tier-3 lower bound would itself be an effective irrationality measure for log2(3) by elementary means, which is not known. Tier 4 stands.
+
+## Constants audit (26 Nov 2026)
+The linear-forms constant quoted above is superseded. VERIFIED: with Laurent 2008 the cutoff is k < 3997, inside the existing scan. The result now depends only on M. Laurent, Acta Arith. 133 (2008), Corollary 2, read in the primary source. See census/advance/constants-audit/theorem.md.
