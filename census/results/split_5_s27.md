@@ -30,7 +30,17 @@ used to list the cycles, not to prove periodicity.
 Check: census/checks/split_5_s27.py (verifies the residues, the descent on a window, the g-invariance of
 [1, d] exhaustively, the cycle list, and the seed fate).
 
+## Which cycle does each start reach?
+
+The complete basin rule is divisibility by 5. Every positive multiple of 5 reaches
+$5\to20\to10\to5$. Every other positive integer reaches $1\to8\to4\to2\to1$.
+Indeed, modulo 5 the two odd branches act by multiplication by 3 and by 1,
+and halving an even integer acts by the inverse of 2. Each multiplier is a
+unit, so $5\mid T(n)$ if and only if $5\mid n$. The descent above forces every
+orbit into one of the two cycles, and exactly one cycle has each divisibility type.
+
 ## Referee
+
 Verdict: FATE confirmed (tier 0), GLOBAL confirmed (tier 1).
 I re-derived the argument myself. Both odd images are 0 mod 4 (this is an exact residue identity). The block
 map satisfies g(n) <= (3n+d)/4, which is < n for every n > d (no exceptions at small n), and g maps [1,d]
