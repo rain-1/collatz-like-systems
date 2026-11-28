@@ -88,3 +88,38 @@ Proof check. Descent and box [1,35] re-derived. The carry induction is correct: 
 Non-periodicity proof re-derived step by step and correct (g(2x)=g(x), g(x)=g(x+35), g(x)=g(x+21), 7 = 3*21 - 2*35, 5 = 3*4 mod 7). Strengthening: the same proof excludes ULTIMATE periodicity (basin(n) = f(n mod P) only for n >= N0): replace n by 2^{e*phi} n with e large, which is >= N0, and the argument goes through unchanged. So no congruence rule, even one valid only for large n, exists; tier 2 provably fails. Numerical witnesses at n ~ 10^6 for several moduli also found.
 
 Tier: the 20-state automaton plus one-line carry induction is a genuine tier-3 certificate; nothing at tier 2 can work by the theorem above. Agreed.
+
+## Exact basins on negative multiples of seven
+
+**Theorem.** Write the starting integer as $n=-7u$ with $u\ge1$. Its orbit reaches either 0 or the cycle $(7,14)$. To decide which, start in state $A$ and read the binary digits of $u$ from least to most significant. Use the row for the current state and the column for the next bit. After the last bit, the final column gives the destination.
+
+| State | Read 0 | Read 1 | Destination if finished |
+|---|---|---|---|
+| $A$ | $A$ | $B$ | 0 |
+| $B$ | $C$ | $A$ | $(7,14)$ |
+| $C$ | $D$ | $A$ | $(7,14)$ |
+| $D$ | $C$ | $C$ | $(7,14)$ |
+
+For example, $-7$ reaches 14 in one step. For $-21$ the bits of $u=3$ take the machine from $A$ through $B$ back to $A$, and indeed $-21\to0$. This resolves the basin question for negative multiples left open in the round-three integer-domain record.
+
+**Proof of the rule.** Write $T(-7u)=-7F(u)$. Since $-7\equiv1\pmod4$, the induced map is $F(u)=u/2$ on evens, $(u-5)/2$ for $u\equiv1\pmod4$, and $(u-3)/2$ for $u\equiv3\pmod4$. Every positive input decreases strictly and has image at least $-2$. Zero is fixed and $-1,-2$ form a cycle. These are the two possible outcomes.
+
+Let $b(u)=1$ if $F$ reaches 0, and 0 otherwise, with $b(-1)=b(-2)=0$. Halving and the two odd branches give, for $t\ge0$,
+$$
+b(2t)=b(t),\qquad b(4t+1)=b(t-1),\qquad b(4t+3)=b(t).
+$$
+For example, $4t+1\to2t-2\to t-1$. Interpret the four states as functions of the unread high digits $t$:
+$$
+A(t)=b(t),\quad B(t)=b(2t+1),\quad C(t)=b(t-1),\quad D(t)=b(2t-1).
+$$
+Reading a bit $e$ replaces the current function $H$ by $t\mapsto H(2t+e)$. The three identities give exactly the table, including $D(2t)=D(2t+1)=C(t)$ (at $t=0$ use $b(-1)=b(1)=0$). After the last bit, evaluate at $t=0$ to get $(1,0,0,0)$ in state order. This proves the rule for every input.
+
+Four states are necessary in this digit order. All four are reachable, via the empty prefix, 1, 10, and 100 in reading order. Appending the digits of $t=1$ or $t=2$ distinguishes every pair. Their output pairs in state order are $(0,0),(1,1),(1,0),(0,1)$. Both distinguishing continuations end in a most significant 1, so the lower bound also holds for canonical binary inputs.
+
+**Neither basin has a natural density among the negative multiples of seven.** To see how the proportion depends on the cutoff, fix a high part $t$ and let the low $k$ bits range uniformly. Those bits drive a four-state Markov chain with the two transitions in each row equally likely. The table makes the chain irreducible, and the self-loop at $A$ makes it aperiodic. Its unique stationary row is $(4,2,2,1)/9$, as direct multiplication shows. Consequently, in the block $t2^k\le u<(t+1)2^k$, the limiting fraction reaching 0 is
+$$
+\frac{4A(t)+2B(t)+2C(t)+D(t)}9.
+$$
+For $t=0,1,2$ the respective fractions are $4/9,4/9,3/9$. Thus the zero-basin fraction tends to $4/9$ below $2^k$ and to $11/27$ below $3\cdot2^k$. Omitting $u=0$ has no effect on either limit. Their difference, $1/27$, proves the assertion for the zero basin and its complement.
+
+In particular there is no ultimately periodic rule, since every ultimately periodic set has a natural density. As sets of indices $u$, the basins are recognizable by a finite automaton in exactly the integer bases $2^a$, $a\ge1$. Grouping bits gives recognition in those bases. Every other integer base is multiplicatively independent of 2, so simultaneous recognition would imply ultimate periodicity by Cobham's theorem. Reversing digit order preserves regularity. [Cobham (1969)](https://research.ibm.com/publications/on-the-base-dependence-of-sets-of-numbers-recognizable-by-finite-automata) · [Exact checker](check_qrB7_negative.py)
