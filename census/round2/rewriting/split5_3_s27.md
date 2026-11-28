@@ -1140,3 +1140,81 @@ $$
 \log_2|y_f-y_g|\ge TL-O((J+1)\log e).
 $$
 The family has $2^{kb}=2^{(5/12)e-O(\log e)}$ members and satisfies the separation constraint simultaneously for every fixed $J$. The constructed valuations concern pairwise differences. The absolute subset-sum residue of an individual start, including the digits between the free positions, remains essential to the unrestricted octave question.
+
+## A typical-octave count for freely labelled near-critical runs
+
+Put $\tau=1/T=0.13864688\ldots$. Write $\mathcal L_d$ for the distinct expansion lists of $d$ runs with cumulative counts
+$$
+K_j=-\lfloor t-\kappa j\rfloor,\qquad 0\le t<1,\quad 1\le j\le d,\qquad K_0=0.
+$$
+There are $d+1$ lists: the $d$ distinct cuts $\{\kappa j\}$ separate the phases, and crossing a cut changes the corresponding cumulative count. Each run after the first has three or four expansions. The following single-list estimates hold also if one adds one expansion to the first run, as in a link starting at a selected minimum. When counting a union, keep the ordinary and extra-expansion conventions separate. Write $H=2K_d+d$ for a list's halving count. Let $N_I(\ell)$ count shifted integer starts in a half-open interval $I$ following that list with any legal exit labels.
+
+**Count law.** Fix $0<\eta<\tau$. Apart from $O_\eta(M^{1-\eta/4})$ integer exponents $m\in[M,2M)$, for every interval $I$ of $2^m$ consecutive positive integers and every list under either convention with
+$$
+Td\le m+(\tau-\eta)\log_2 m
+$$
+one has
+$$
+N_I(\ell)=\frac34\,2^{m+d-H}\bigl(1+O_\eta(M^{-\eta/2})\bigr).
+$$
+Consequently the predictor for the union $\mathcal L_d$ is $(3/4)2^{m+d}\sum_{\ell\in\mathcal L_d}2^{-H(\ell)}$, with the same relative error. The lists in this sum are disjoint as sets of starts since the orbit determines its run lengths. The individual formula also holds for intervals of any integer length $X\in[2^m,2^{m+1})$ with $2^m$ replaced by $X$ on the right. The exceptional set of $m$ is independent of the interval's location, its length in that range, and the list.
+
+At target depth $Td_2=12m/5+O(1)$ this gives an **upper bound**, by restricting to a prefix of $d=\lfloor(m+(\tau-\eta)\log_2 m)/T\rfloor$ runs. For a fixed target list the bound is
+$$
+N_I(\ell_2)\ll_\varepsilon 2^{\tau m}m^{-\tau(1-\tau)+\varepsilon}.
+$$
+For the union of all target lists the right side is multiplied by $O(m)$, since their prefixes belong to $\mathcal L_d$ (or its first-run variant). Both statements hold on a density-one set of octaves for each $\varepsilon>0$. The saving $\tau(1-\tau)=0.1194239\ldots$ is a power of the octave exponent $m$, not of its starting value $2^m$.
+
+**Exact residue measure.** Set $D=H+1$, $h_i=2K_i+i$, and $\beta_i\in\{3/2,3\}$. With $p$ the final height parity, the legal starting residues modulo $2^D$ are
+$$
+-\sum_{i=1}^d\beta_i2^{h_i}5^{-K_i}+2^H5^{-K_d}p.
+$$
+The first $d-1$ labels are free, and the final pair $(\beta_d,p)$ has three possibilities, $(3/2,0),(3/2,1),(3,0)$. As in the terminal legality test, the next expansion enforces even output at internal exits of type 3. At the first differing label the valuation is $h_i-1$, while changing only the final parity has valuation $H$. Thus the residues are distinct and their number is $V_d=3\cdot2^{d-1}$. This gives the exact density $V_d/2^D$ used above.
+
+**Discrepancy after averaging the depth.** Let $\Delta_d$ be the maximum over the two list conventions and all their phase choices of the interval discrepancy of the uniform probability on the corresponding residues divided by $2^D$, on the unit circle. We prove
+$$
+\mathbb E_{M\le d<2M}\Delta_d\ll M^{-\tau}(\log M)^{O(1)}. \tag{2}
+$$
+Take $u=\lfloor\tau\log_2 M\rfloor$ and retain the first and last $u$ runs separately. Under the uniform measure just described the first labels, middle labels, and the final block (including parity) are independent. Their contributions to the residue are additive, so the absolute Fourier coefficient is at most the product of the moduli of the two outer factors. Independence here concerns label choices for the exact residue measure. The two factors as functions of $d$ need not be independent.
+
+For a head list with $a=K_u$ let $C=\sum_{i\le u}\beta_i2^{h_i}5^{a-K_i}$. The $2^u$ head label words give distinct $C\bmod 5^a$: in a difference, the last differing label has unique lowest 5-adic valuation $a-K_i$. Also $0<C/5^a\ll u$ by bounded prefix slope ratios. With $e_b(x)=\exp(2\pi i(x\bmod b)/b)$ for rationals with invertible denominator, reciprocity gives
+$$
+e_{2^D}(-\xi C/5^a)=e_{5^a}(\xi C2^{-D})\exp(-2\pi i\xi C/(2^D5^a)).
+$$
+For $1\le\xi\le M$ the last factor has exponentially small deviation from one. There are $O(u+1)$ possible head lists. For any full list $D=2\lfloor\kappa d\rfloor+d+O(1)$, with boundedly many integer offsets. For each offset these $D$ are distinct in an interval of length $O(M)$. Since $5^a\asymp2^{Tu}\asymp M$ up to absolute constant factors, averaging the squared head factor may be dominated by a constant times a complete character average over the units modulo $5^a$: $2$ has order $4\cdot5^{a-1}$, and each exponent residue occurs $O(1)$ times. Multiplication by $\xi$ reduces the modulus by $\gcd(\xi,5^a)$. On that reduced modulus each head value has multiplicity at most $5^{v_5(\xi)}$. Character orthogonality, enlarging the unit average to all characters at constant cost, gives
+$$
+\mathbb E_d (\max |\text{head factor}|)^2
+ \ll (u+1)^{O(1)}5^{v_5(\xi)}2^{-u}.
+$$
+The maximum is justified by summing squared factors over all the short head lists and all offsets, without conditioning on which occur together.
+
+For a tail list write $b=2(K_d-K_{d-u})+u+1$ and $A=K_{d-u}$. If $S$ is its set of legal starting residues modulo $2^b$, its factor is the normalized sum of $e_{2^b}(\xi5^{-A}z)$ over $z\in S$. This follows by pulling the tail contribution back through $d-u$ runs, which multiplies a tail residue by $2^{h_{d-u}}5^{-A}$ in the full modulus. There are $O(u+1)$ possible tail sets, each of size $3\cdot2^{u-1}$, and $2^b\asymp M$. The exponents $A=\lfloor\kappa(d-u)\rfloor+O(1)$ have bounded multiplicity in a range of length $O(M)$. The powers of five run through a subgroup of index two in the units modulo $2^b$, of order $2^{b-2}$. After removing the common power of two in $\xi$, the induced average is bounded by a constant times the all-character average on the reduced modulus, including the trivial small moduli. A projected residue acquires multiplicity at most $2^{v_2(\xi)}$. Summing over the short tail lists and offsets as above yields
+$$
+\mathbb E_d (\max |\text{tail factor}|)^2
+ \ll (u+1)^{O(1)}2^{v_2(\xi)}2^{-u}.
+$$
+The group orders used here follow from $v_5(2^{4\cdot5^j}-1)=j+1$ and $v_2(5^{2^j}-1)=j+2$. Cauchy–Schwarz in $d$ now bounds the mean maximum full coefficient by $(\log M)^{O(1)}M^{-\tau}2^{v_2(\xi)/2}5^{v_5(\xi)/2}$. The sum of the valuation weight divided by $\xi$ up to $M$ is $O(\log M)$ by summing geometric series in the two valuations. Erdős–Turán with cutoff $\lfloor M^{1/2}\rfloor$ proves (2). [Montgomery and Vaughan, Theorem F.4](https://personal.science.psu.edu/rcv4/571s25/montgomery-vaughanII.pdf)
+
+Outside $O_\eta(M^{1-\eta/2}(\log M)^{O(1)})$ depths $d\asymp M$ we have $\Delta_d\le M^{-\tau+\eta/2}$, by Markov's inequality. For any interval of integer length $X$, full periods and one residual arc give absolute error at most $V_d\Delta_d$ against $XV_d/2^D$. When $D\le m-\log_2 M$ the crude bound $V_d$ suffices even for arbitrary $X\ge2^m$. All other relevant depths have $Td=m+O(\log M)$, so each discarded $d$ affects only $O(\log M)$ exponents $m$; the constants allow the bounded variation in $D$ across lists. In the claimed range $X/2^D\gg M^{-\tau+\eta}$, giving the stated relative error. [Exact check of the terminal measure and character products](check_split5_3_family_count.py)
+
+### Using the phase to bound the length of one orbit segment
+
+For the exact link schedule the phase $\theta_i=\{\kappa(e-i)\}$ controls **both** the next $d$ expansion counts and the size of $Y_i$. Write $s=5/4$ and $r=s^{K_e}2^{-e}\in(1,s]$. For $1\le i\le e-d$,
+$$
+P_i=r s^{\theta_i},\qquad Y_i=P_i\left(y+\sum_{j\le i}\beta_j/P_j\right).
+$$
+The earlier unrestricted power bound implies $e=O(y^{1-\sigma})$. In particular, for large $y$ all these heights belong to $[y,2y)$. Distinct heights therefore give Fable's transfer $e\le d+F(y,d)$, where $F$ counts the union of lists on this interval, with the trivial interpretation when $d\ge e$. The smaller phase-dependent intervals give a stronger estimate.
+
+Indeed the phases for one list occupy a cell $[a,b)$ of the partition by the $d$ cuts $\{\kappa j\}$. All its visited heights lie in $[ry s^a,ry s^b+C e+1)$ with an absolute $C$. Summing these lengths over cells gives $O(y+d(e+1))=O(y)$ for $d=O(\log y)$. Rounding to integer intervals adds $O(d+1)$. Counting by full periods and discrepancy in each cell therefore bounds the number of distinct visited heights among positions $1,\ldots,e-d$ by
+$$
+O\!\left(2^d\left(y2^{-Td}+(d+1)\Delta_d\right)\right). \tag{3}
+$$
+The implied constant is uniform in $y,e$ and the slope $r$. In particular taking $d=\lfloor(m-\log_2 m)/T\rfloor$, $m=\lfloor\log_2 y\rfloor$, and using $\Delta_d\le1$ gives $e\ll y^\tau m^{1-\tau}$ for distinct heights in **every** octave.
+
+There is a further saving in typical octaves. For each fixed $\varepsilon>0$, on a density-one set of integer exponents $m$, **every** positive start in $[2^m,2^{m+1})$ following the exact link schedule, with any labels, has
+$$
+e\ll_\varepsilon y^\tau(\log_2 y)^{(1-\tau)^2+\varepsilon}.
+$$
+To see it choose a small fixed $\delta>0$ and take $d=\lfloor(m-(1-\tau+\delta)\log_2 m)/T\rfloor$. On $[M,2M)$ this function of $m$ has bounded multiplicity for large $M$. By (2) and Markov, all but $O_\delta(M^{1-\delta/2})$ exponents have $\Delta_d\ll m^{-\tau+\delta}$. Then the two terms inside the parentheses in (3) are $O(m^{1-\tau+\delta})$. Multiplication by $2^d$ gives the claimed exponent upon choosing $(1-\tau)\delta<\varepsilon$.
+
+For completeness, (3) bounds distinct values even if the path repeats. Let $B$ be an integer upper bound from (3). If $e>8(B+d+2)$, two of the first $B+1$ post-exit heights coincide, at indices $j,j+p\le B+1$. In both parameter choices above $B\ll y^\tau\log y$ (choose $\delta$ small). The lap argument from the preceding section then attaches a rational $a'/b$ with $y\asymp|\kappa-a'/b|^{-1}$ and $b\ll y^\tau\log y$. All octaves containing any such scale can be discarded at a cost of $O(\log(M+2))$ up to exponent $M$, by the same fourth-power spacing proof. This proves the typical statement for all starts. The count law reaches only logarithmically many extra halvings beyond the binary length, and (3) still has the factor $y^\tau$.
