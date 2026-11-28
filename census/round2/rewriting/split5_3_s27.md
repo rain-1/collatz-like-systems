@@ -840,3 +840,78 @@ $$
 Indeed among the $e-d$ possible post-exit starting positions $j=1,\ldots,e-d$, at most $(d+1)D$ have an exceptional exit among $j,\ldots,j+d$ (the bound is trivial if $e\le d$). Each remaining position has $P_j\le s^2$ and one of the same $d+1$ following run lists with all exit constants fixed. On an escape the earlier raw multiplier bound restarted at $y-3$ gives $Y_j-3\le1.000073(y-3)P_j$. Hence all these heights are below $2y$, independently of $e$, and they are distinct. At most one position per list is possible, giving the assertion. This penalizes a link for following the maximizing schedule. It gives no logarithmic upper bound on the length of an unrestricted link.
 
 **Finite-chain convention.** The raw halving count and the number of bits determining a labeled block word can differ. For example four expansions followed by the exit $Y\mapsto Y/2+3$ require $y\equiv512\pmod{1024}$: nine raw halvings, ten parity bits. Requiring $256\mid y'$ instead gives a single class modulo $2^{17}$, since the last bit already records evenness at the endpoint. Also a one-expansion finite link can start at $y=4$; the divisibility of every interior selected start uses the continuation through four expansions or a terminal divisibility condition. These endpoint conventions preserve Fable's finite-cylinder obstruction.
+
+## A sharp cutoff for the single-departure families
+
+Fable asked whether a single exceptional exit, or an expansion moved earlier and repaid later, can take a nearly maximizing link to $12m/5$ halvings. Both families have the sharper uniform asymptotic cutoff
+$$
+\ell\le (1+o(1))\log_2 y
+\qquad(y\to\infty).
+$$
+Here $y$ is the initial shifted positive integer and $\ell$ is the number of raw halvings in the link. The exceptional exit can be anywhere. The two ends of the moved expansion can be arbitrarily far apart. The starting orbit need not escape.
+
+**Theorem.** Retain $s=5/4$, $\kappa=1/\log_2 s$, $T=2\kappa+1$, $a=\lfloor\kappa e\rfloor+1$, $b_i=a-\lfloor\kappa(e-i)\rfloor$, and $\theta_i=\{\kappa(e-i)\}$ for exits $1\le i\le e$. Write $K_i=b_i+u_i$ for the actual cumulative expansion count and $\beta_i\in\{3/2,3\}$ for the exit constant. Fix $B,J\ge1$. Suppose $|u_i|\le B$. Partition the exit indices into at most $J$ consecutive intervals. On each, suppose the pair $(u_i,\beta_i)$ is a function of $\theta_i$ that is constant on each of at most $J$ arcs partitioning the circle. The cuts and the function may vary with the interval and the link. For every $\eta>0$, all sufficiently large positive starts of such links have $\ell<(1+\eta)\log_2 y$, uniformly for fixed $B,J$.
+
+For one changed exit take $u_i=0$ and split off that exit as a singleton. Moving one expansion forward gives $u_i=1$ on the interval between the two changed runs and zero elsewhere. In both cases at most three index intervals with constant values suffice. The theorem also permits a positive proportion of changed exits, for instance when the choice of exit constant is determined by membership of $\theta_i$ in a single arc. The coefficient one is sharp for each of Fable's two families: for every sufficiently large $e$ choose an interior change. Each resulting legal schedule has positive lifts $2^{\ell+8}\le y<2^{\ell+9}$ by the terminal congruence construction above. In the moved-expansion example choose the change after the first exit and repay before the last; each gap between exits still has at least two expansions. In the changed-exit example the exit with constant $3/2$ needs only integrality. Thus the lifts may require $256\mid y'$ as well.
+
+**1. A shift that almost preserves the schedule.** Suppose to the contrary that $\ell\ge(1+\eta)\log_2 y$ along an unbounded sequence of starts. Since $\ell=Te+O(1)$, we may use just the first
+$$
+N=\left\lfloor(1+\eta/2)\log_2 y/T\right\rfloor
+$$
+exits. Fix a small $0<\delta<1/4$, to be chosen below, and put $Q=\lfloor\delta N\rfloor$. Choose $1\le q\le Q$ minimizing $\|\kappa q\|$ (distance to the nearest integer), let $k$ be the nearest integer to $\kappa q$, and put $\Delta=\|\kappa q\|>0$. Define
+$$
+v_i=K_{i+q}-K_i-k,\qquad n=N-q,\qquad 1\le i\le n .
+$$
+Always $|v_i|\le 2B+1$. Away from at most $J-1$ index intervals of length at most $q$, $i,i+q$ are in the same piece of the partition. Their phases differ by a rotation of distance $\Delta$. The floor difference $b_{i+q}-b_i$ equals $k$ except on an arc of length $\Delta$, by subtracting $\kappa q$ inside the floor. Similarly a phase cut can change the pair of labels only on an arc of that length. Endpoints can be included in these exceptional arcs.
+
+Any $Q$ consecutive phase points have pairwise circular distance at least $\Delta$, by the minimizing choice of $q$. A closed arc of length $\Delta$ contains at most two such points. Splitting the indices into blocks of $Q$ shows that outside the index intervals above,
+$$
+v_i=0\quad\text{and}\quad\beta_{i+q}=\beta_i
+$$
+except at $O_{J,\delta}(1)$ single indices. This bound is uniform in the phase and in the sizes of continued-fraction coefficients.
+
+**2. Subtract the two affine trajectories.** Let $Y_i$ be the shifted integer height just after exit $i$, and put $Z_i=s^{-v_i}Y_{i+q}-Y_i$. The original link has $P_i=s^{K_i}2^{-i}=r s^{\theta_i+u_i}$ at these exits, where $1<r\le s$. Hence all $P_i$ and their reciprocals are bounded in terms of $B$. In particular $Y_i=P_i(y+\sum_{j\le i}\beta_j/P_j)\asymp_B y$ for $i\le N$. Subtracting the two recurrences gives the exact identity
+$$
+Z_i=(P_i/P_{i-1})Z_{i-1}+g_i,\qquad
+g_i=s^{-v_i}\beta_{i+q}-\beta_i\qquad(2\le i\le n).
+$$
+The terms $g_i$ are bounded and vanish off the exceptional set in step 1. A fixed positive integer $D$ with prime factors only 2 and 5 clears the denominators of every $Z_i$ and $g_i$, because $v_i$ ranges over a fixed finite set.
+
+The first term of the difference is large in the ordinary absolute value. Iterating from exit 1 to exit $1+q$ and using bounded slope ratios gives
+$$
+Z_1=(s^k2^{-q}-1)Y_1+O_B(q).
+$$
+The multiplier differs from one by unique factorization, and its denominator is at most $2^{2k+q}$, with $2k+q=Tq+O(1)$. Choose $\delta$ small enough that $TQ<\tfrac12\log_2 y$ for large $y$. It follows that $|Z_1|\gg_B\sqrt y\gg N$ and $|Z_1|\ll_B y$. This is the step that prevents subtraction from reducing the identity to a vanishing subsum.
+
+**3. Use the binary divisibility of the difference.** Write $A_i=K_i-K_1$, $H_i=2A_i+i-1$. Thus $P_i/P_1=5^{A_i}/2^{H_i}$ and $H_v-H_u=T(v-u)+O_B(1)$. Clearing the accumulated denominators gives
+$$
+D2^{H_n}Z_n=x_0+\sum_{i=2}^n 2^{H_i}5^{A_n-A_i}Dg_i,
+\qquad x_0=5^{A_n}DZ_1 .
+$$
+Group the exception intervals from step 1 into disjoint intervals and keep the other exceptional indices as singletons. There are $O_{J,\delta}(1)$ groups and the sum of their spans $v-u$ is at most $Jq$ (singletons cost zero). For a group $[u,v]$, factor its term as $2^{H_u}5^{A_n-A_v}C_{u,v}$. The remaining integer satisfies
+$$
+|C_{u,v}|\le C_B (v-u+1)2^{T(v-u)} .
+$$
+Indeed each inner factor is $2^{H_i-H_u}5^{A_v-A_i}$, and $5^{A_v-A_i}/2^{H_v-H_i}=P_v/P_i$ is bounded. After division by $5^{A_n}$ the sum of the absolute values of *all* correction terms is $O_B(N)$, since $2^{H_i}/5^{A_i}=P_1/P_i$. It is smaller than $|DZ_1|$. Delete zero terms and vanishing subsums until none remain. The leading term survives every deletion.
+
+For clarity, put $r_{10}(x)=|x||x|_2|x|_5$. For the remaining integer terms, Evertse's Theorem 2, equation (14), with places $\{\infty,2,5\}$ and subset $\{2\}$ gives, for every $\rho>0$,
+$$
+\left(\prod_j r_{10}(x_j)\right)\left|\sum_jx_j\right|_2
+\ge c\max_j|x_j|_2\,(\max_j |x_j|)^{-\rho}.
+$$
+Here the number of terms is bounded independently of $y$ for fixed $J,\delta$. The sum has 2-adic norm at most $2^{-H_n}$, and $\max_j|x_j|_2\ge|DZ_1|_2$. The leading factor divided by $|DZ_1|_2$ is at most $|DZ_1|\ll_B y$. Every other factor is at most $|C_{u,v}|$, and deletion only reduces their product. Every term has ordinary size at most $2^{O_B(N+\log_2 y)}$, with this height exponent independent of $\delta$ and $\rho$. Taking logarithms yields
+$$
+H_n\le\log_2 y+TJq+O_{B,J,\delta}(\log N)
+     +O_B(\rho(N+\log_2 y))+O_{B,J,\delta,\rho}(1).
+$$
+But $H_n=T(N-q)+O_B(1)$. Choose $\delta$ still smaller if necessary so that $T(J+1)\delta N<(\eta/6)\log_2 y$, then choose $\rho$ so its contribution is below $(\eta/6)\log_2 y$. The remaining errors are $o(\log y)$. This contradicts the choice of $N$ and proves the theorem. [Evertse, p. 228, Theorem 2](https://www.numdam.org/item/CM_1984__53_2_225_0.pdf)
+
+**Two extensions.** A concatenation of any fixed number of links from this theorem has the same cutoff. Indeed the proof uses only $K_i=\kappa i+O(1)$, the piecewise description relative to a common floor, and $\ell=Te+O(1)$. The surplus in $K_i-\kappa i$ accumulates by at most a constant per link. For total exit count $e$, a local floor $\lfloor\kappa(e_{\rm local}-i_{\rm local})\rfloor$ differs from $\lfloor\kappa(e-i)\rfloor$ by an integer constant and a step function of $\theta_i$ with at most one cut. The local phase is a translate of $\theta_i$, so its other cuts translate too. On each link this gives the required description with boundedly many cuts and bounded total offset. Links with no exits each add one expansion, which alters the bounded offsets or the terminal halving count by a bounded amount. The same argument applies if the last link is truncated, since its runs have bounded lengths. An unbounded number of links is a different case.
+
+There is also a restriction on where irregular exits can occur. Keep $|u_i|\le B$, but allow arbitrary labels on at most $J$ extra index intervals containing $L$ exits in total. Assume the rest satisfies the theorem's schedule hypothesis, with $B,J$ fixed. Along any sequence with $\ell/\log_2 y\to c>1$ finite,
+$$
+\liminf L/e\ \ge\ 1-1/c .
+$$
+In particular the lower limit is at least $7/12$ at the $12m/5$ scale. To see this use $N=e$ in the proof. If either $i$ or $i+q$ is in an extra interval $[u,v]$, put the corresponding correction in the group $[u-q,v]$ clipped to the summation range. After taking unions, the sum of spans increases by at most $L+Jq$. All estimates on $P_i$, denominators and ordinary sizes still hold by the fixed bound on $u_i$. This adds at most $TL+TJq$ to the upper estimate for $H_n$. Divide by $Te$, let $y\to\infty$ and then let $\delta,\rho\downarrow0$ to get the claim. This bounds the lengths of intervals *covering* the irregularities when their number is fixed. It does not give that density for individual changed exits scattered over many intervals.
+
+Unrestricted links can have unbounded displacements $K_i-b_i$ or schedules requiring more and more cuts. The argument gives an asymptotic exclusion for the stated families and supplies no numerical threshold octave. [Exact checks of the shifted identity and its support](check_split5_3_shifted_links.py)
