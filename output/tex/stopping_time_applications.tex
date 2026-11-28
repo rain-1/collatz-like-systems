@@ -1,0 +1,110 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[hmargin=26mm,vmargin=22mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{corollary}{Corollary}
+\newcommand{\F}{\mathbb F}
+\newcommand{\N}{\mathbb N}
+\title{What stopping-time counts can decide\\[2pt]\large A convergence criterion, a divergent polynomial orbit, and an integer basin}
+\author{}\date{}
+\begin{document}
+\maketitle\vspace{-3em}
+\section{A weaker target for an open integer system}
+Let $T$ on the positive integers be the census map \texttt{split5\_3},
+\[
+ T(n)=\begin{cases}n/2&2\mid n,\\5n+3& n\equiv1\pmod4,\\n+3&n\equiv3\pmod4.\end{cases}
+\]
+Write $N(X,b)$ for the number of $1\le n\le X$ surviving the first $b$ halvings without a strict drop below $n$, using actual orbit heights. The integer count conjecture E predicts this quantity up to small relative error and a finite allowance for permanent survivors. To prove that all orbits eventually cycle, even a logarithmically growing allowance can suffice.
+\begin{theorem}\label{thm:records}
+If some positive orbit of $T$ never becomes periodic, then for every sufficiently large $X$ and every depth $b$,
+\[
+  N(X,b)\ \ge\ \frac{\log_2 X}{\log_2(5/4)}-O(1).
+\]
+The additive constant can depend on the orbit. In particular, for any chosen depths $b_m$, the single inequality
+\[
+ \liminf_{m\to\infty}\frac{N(2^m,b_m)}m
+ < \frac1{\log_2(5/4)}=3.10628\ldots
+\]
+implies that every positive orbit of $T$ eventually cycles.
+\end{theorem}
+\begin{proof}
+An orbit that never becomes periodic never repeats an integer, so it eventually leaves each finite set. Let $s_0>3$ be the minimum of a sufficiently late tail. After the occurrence of $s_i$, take the minimum of the remaining tail as $s_{i+1}$. The $s_i$ are strictly increasing and each survives forever. Each is odd, since an even value immediately halves. None is $3\bmod4$, since $(s_i+3)/2<s_i$. From each $s_i\equiv1\bmod4$ the next three steps reach $(5s_i+3)/4$. Therefore
+\[
+ s_{i+1}+3\le\tfrac54(s_i+3),\qquad s_i+3\le(5/4)^i(s_0+3).
+\]
+Every $i\ge0$ with $(5/4)^i(s_0+3)\le X+3$ supplies a distinct permanent survivor below or at $X$. Counting these indices proves both assertions.
+\end{proof}
+The census gives Haar survival exponent $1-h$, with $h=0.580684\ldots$ for this map. At $b_m=\lceil 2.4m\rceil$ its predictor $2^m P(b_m)=2^{(1-2.4(1-h))m+o(m)}$ tends to zero. Thus an upper bound of $3m$ actual survivors at that one depth for infinitely many $m$ would settle eventual periodicity. That bound remains open. The argument allows undiscovered cycles.
+
+There is also a local test. On a divergent orbit take the last $s_i<X$. Since $(5/4)^3<2$, the next three tail minima all lie in $[X,2X)$ for sufficiently large $X$. Thus at most two survivors in $[2^m,2^{m+1})$ at the chosen depth for infinitely many $m$ would suffice as well. A single finite octave cannot establish this condition.
+\newpage
+\section{An explicit divergent orbit in negative mean drift}
+Write $\F_4=\{0,1,w,w^2\}$ with $w^2=w+1$. The census map Q4b on $\F_4[t]$ divides by $t$ once per step. For $g=1+t^3$ it is
+\[
+ Q(f)=\begin{cases}
+ f/t & f(0)=0,\\ g(f-1)/t & f(0)=1,\\ (f-w)/t+1 & f(0)=w,\\ (f-w^2)/t & f(0)=w^2 .
+ \end{cases}
+\]
+At large degree the four degree changes are $-1,2,-1,-1$, giving mean $-1/4$ under uniform constant terms. Earlier census work disproved the polynomial analogue of E by counting periodic survivors. The existence of a divergent Q4b orbit was left open. The binary subring $\F_2[t]$ is invariant. On it we can transfer the four-phase binary orbit from the census note \emph{Provably divergent orbits}, D1. The following calculation proves the transfer directly.
+\begin{theorem}
+For $u=(1+t^3)(1+t+t^2+t^4+t^6)$ and every $j\ge0$,
+\[
+ \deg Q^j(u)\ge 9+j/2,\qquad
+ \deg Q^{18(2^k-1)}(u)=9\cdot2^k\quad(k\ge0).
+\]
+In particular Q4b has a divergent orbit. For every even degree $D\ge18$ there is a polynomial on this orbit whose degree never subsequently falls below $D$.
+\end{theorem}
+\begin{proof}
+Put $d=g+t$, $P(x)=1+x^6+x^9$, and $u_N=gP(t^N)/d$ for $N=2^k$.
+Since $P(t)=d(1+t+t^2+t^4+t^6)$ and $P(t^N)=P(t)^N$, each $u_N$ is a polynomial of degree $9N$ and $u_1=u$.
+Use the coordinate $z=df/g$. Its constant term equals that of $f$. On the binary subring the two updates in this coordinate are $z/t$ at constant term zero and $1+g(z+1)/t$ at constant term one.
+
+Starting at $z=P(t^N)$, set $Y=t^{3N}$. The table gives the state at the end of each block. A block of zeros of length $r$ divides $z$ by $t^r$. A block of ones gives $1+g^r(z+1)/t^r$. Each length is the exact $t$-adic order of the entering $z$ or $z+1$, respectively, since $g(0)=1$. Frobenius gives $g^N=1+Y$.
+\[
+\begin{array}{ccl}
+\toprule
+ f(0)&\text{steps}&\text{ending }z\\\midrule
+ 1&6N&Y+Y^2+\cdots+Y^7\\
+ 0&3N&1+Y+\cdots+Y^6\\
+ 1&3N&Y^2+Y^6+Y^8\\
+ 0&6N&1+Y^4+Y^6=P(t^{2N})\\\bottomrule
+\end{array}
+\]
+Consequently $Q^{18N}(u_N)=u_{2N}$. The boundary degrees are $9N$, $21N$, $18N$, $24N$ and $18N$. They vary linearly between boundaries, and lie on or above the line of slope $1/2$ joining the endpoints. Summing the block lengths from $N=1$ proves the asserted bound. In the first rising block every degree $9N+2i\le18N$ survives forever, since both later troughs have degree $18N$ and all later blocks start at or above it. The intervals $[9N,18N]$ for $N=2,4,8,\ldots$ cover every even degree from 18 on.
+\end{proof}
+\newpage
+\section{Which negative integers cross zero for \texttt{split\_9}?}
+On $\mathbb Z$ let $S(n)=n/2$ at even $n$, $S(n)=3n+9$ at $n\equiv1\pmod4$, and $S(n)=n+9$ at $n\equiv3\pmod4$. Eventual periodicity was already known. The negative basin for $d=9$ was recorded in the census as a finite sample, with 2,659 of the first 3,000 negative starts reaching zero. An exact count comes from stopping at the first change of sign or the first multiple of three.
+\begin{theorem}
+Let $\mathcal B$ consist of all integers obtained from either $1$ or $5$ by a finite word, possibly empty, in $L(u)=2u$ and $R(u)=4u+9$. For $u>0$, the orbit of $-u$ becomes positive if and only if $u\in\mathcal B$. In that case its eventual cycle is $(3,12,6)$. Every other negative start reaches zero.
+
+If $B(X)=\#(\mathcal B\cap[1,X])$ and $\varphi=(1+\sqrt5)/2$, then
+\[
+ B(X)=\Theta\bigl(X^{\log_2\varphi}\bigr).
+\]
+\end{theorem}
+\begin{proof}
+On magnitudes $u=-n$ use one halving at even inputs and take the two forced halvings after each odd update. Until the first crossing this gives
+\[
+ u\longmapsto
+ \begin{cases}
+ u/2&u\text{ even},\\
+ (u-9)/4&u\equiv1\pmod4,\\
+ (3u-9)/4&u\equiv3\pmod4 .
+ \end{cases}
+\]
+Every positive magnitude strictly decreases. A crossing into positive $n$ occurs precisely from $u=1$ or $5$, leading in the raw map to $8$ or $4$. Both reach $1\to12\to6\to3\to12$. Multiples of three are invariant and cannot reach either crossing seed. The third branch enters those multiples, so every pre-crossing path consists solely of the first two branches. Their positive inverse branches are exactly $L$ and $R$. Conversely each such inverse word follows its prescribed path, with every earlier magnitude positive. Distinct words and seeds have distinct outputs, since even outputs have unique parent under $L$, odd nonseeds in the tree have unique parent under $R$, and neither seed has a parent.
+
+Give $L$ weight one and $R$ weight two. There are $F_{k+1}$ words of weight $k$, where $F_1=F_2=1$, by the recurrence for compositions into ones and twos. Starting at $s\in\{1,5\}$, a word of weight $k$ ends between $2^k$ and $8\cdot2^k$. Indeed, after dividing the output by $2^k$, the initial value is $s$ and each $R$ adds $9/2^j$, where $j$ is its cumulative weight. The $i$th such $j$ is at least $2i$, so the total addition is at most $3$. Summing the Fibonacci counts through $\lfloor\log_2 X\rfloor-3$ and through $\lfloor\log_2 X\rfloor$ gives the lower and upper bounds.
+\end{proof}
+Thus almost every negative start reaches zero, although infinitely many enter the positive cycle. Here the counted event is a basin crossing. In Theorem~\ref{thm:records} the counted event is survival above the starting height, and proving the required upper bound is the remaining integer convergence problem.
+
+\smallskip\noindent\small\raggedright
+\emph{Sources.} Collatz census (paths relative to \texttt{census/}).\\
+\texttt{round3/deep/split5\_3\_deep.md} (Haar exponent),
+\texttt{round3/polynomial/divergence.md} (D1), \texttt{round5/funcfield} (Q4b) and
+\texttt{round3/domains/split\_family.md} (Theorem S2).\\
+For prior work on polynomial stopping times see D. Nichols, \emph{Analogues of the $3x+1$ problem in polynomial rings of characteristic 2}, \href{https://arxiv.org/abs/1610.02545}{arXiv:1610.02545}.
+\end{document}
