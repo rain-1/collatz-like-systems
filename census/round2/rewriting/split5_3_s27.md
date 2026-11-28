@@ -675,3 +675,95 @@ The averaged estimate above controls a relative error while the predictor is lar
 In fact let $G=\mathbb Z/Q$ be any finite cyclic group, $R\ne\varnothing$, $I=[0,X)$ with $X\le Q$, and $f(t)=|R\cap(t+I)|$. Along any sequence with $X\to\infty$ and $\mu=X|R|/Q\to0$, its Fourier algebra norm $M_f=\sum_{\xi}|\widehat f(\xi)|$ (normalized coefficients) tends to infinity. To see this, Sanders's quantitative idempotent theorem expresses the integer-valued $f$ as a sum of at most $L(M_f)$ signed subgroup-coset indicators, with $L$ bounded at each fixed norm bound, independently of $Q$. A subgroup coset in a cyclic group is one residue class modulo a divisor of $Q$. On any interval $J$ of consecutive residues its count differs from $|J|$ times its density by at most one. Choose $r\in R$ and take $J=r-I$. On every one of these $X$ translates $f\ge1$. Summing the signed decomposition on $J$ and subtracting the global mean forces $L(M_f)\ge X(1-\mu)$. The right side tends to infinity, proving the claim. [Sanders, *Bounds in Cohen's Idempotent Theorem*](https://arxiv.org/abs/1610.07092)
 
 For the split map take $Q=2^{b+1}$, $X=2^m$ and $R$ the passing residues in shifted coordinates. The zero word gives a member of $R$. At $b=\lceil2.4m\rceil$, the prefix test at $j=b$ requires at most $qb+O(1)$ ones. The binomial bound thus gives $\mu\le2^{m-(1-H)b+o(b)}\to0$. The sharp interval kernel vanishes on nonzero frequencies of order dividing $X$, but all those zeros are already included in $M_f$. In the unnormalized transforms of $1_R,1_I$, the usual sum-of-absolute-values upper bound including the zero frequency equals $M_f=Q^{-1}\sum_\xi |\widehat{1_R}(\xi)\widehat{1_I}(\xi)|$. It eventually exceeds two on every subsequence. This leaves open methods exploiting phase cancellation at the specific octave, including methods that combine selected frequencies before estimating a remainder.
+
+## Cancellation from both ends of a passing word
+
+Write $q=1-2/\log_2 5$, $p=1-q$, $H=-p\log_2p-q\log_2q$ and $H_2=-\log_2(p^2+q^2)$. Here $H_2$ denotes the order-two Rényi entropy, and $H$ the binary Shannon entropy. Put
+$$
+ c_*=H/2+H_2/\log_2 5=0.45991803957\ldots .
+$$
+
+**Theorem.** Fix $0<\eta<c_*$. For all sufficiently large $M$, apart from $O_\eta(M^{1-\eta/4})$ integers $m\in[M,2M)$, the following holds simultaneously for every integer $1\le b\le m+(c_*-\eta)\log_2 m$:
+$$
+ N_m(b)=2^mP(b)\bigl(1+O_\eta(M^{-\eta/2})\bigr).
+$$
+$N_m$ counts actual survivors in the ordinary octave, on the halving clock of the preceding theorem. The extra term $H_2/\log_2 5$ comes from retaining the signs of the initial word phases while averaging the terminal word phases. No independence between the two averages is needed.
+
+### Splitting the Fourier coefficient
+
+Set $D=b+1$ and $Q=2^D$. A passing $D$-bit word obeys $5^{A_i}\ge2^{i-s_i}$ through $i<D$, and at $i=D$ when $s_D=1$. Let $W_D$ be the number of passing words and $\mu_D$ the uniform probability on their shifted starting residues $y/Q$ on the circle, with $0\le y<Q$. The coding bijection gives $P(b)=W_D/Q$. If a segment $w$ of length $l$ uses $a$ factors of five and ends at $z'$, write its affine update as $2^l z'=5^a z+C_w$ with $C_w\ge0$. On a fixed entry flag, put $r_w=-C_w/5^a$ in the rationals with odd denominator. For consecutive segments $u,v$, where $u$ uses $a$ factors of five,
+$$
+ r_{uv}=r_u+(2^{|u|}/5^a)r_v .
+$$
+In particular the starting residue is $r_w\bmod Q$. Use the convention $e_Q(x)=\exp(2\pi i(x\bmod Q)/Q)$ for such rational $x$.
+
+Average over integer $D\in[M,3M]$, with fixed lengths $d=2\lfloor\log_5 M\rfloor$ at the beginning and $k=\lfloor\log_2 M\rfloor+2$ at the end. The intervening length is $D-d-k$. Group the initial words by their number $t$ of ones. In a group, the entry flag for the middle and $a=\lfloor(d-t)/2\rfloor$ are fixed. Let $V_t$ be the number of live initial words in this group, $p_{t,D}$ its probability under $\mu_D$, and
+$$
+ U_{t,D}(\xi)=V_t^{-1}\left|\sum_{u} e_Q(\xi r_u)\right|.
+$$
+Omit empty groups. Every initial word in a group admits exactly the same collection of middle and terminal words. For any fixed live prefix through time $D-k$, let $A=A_{D-k}$ and let $S\subseteq\mathbb Z/2^k$ be its accepted terminal residues, including the last-flag convention. Its normalized terminal factor has modulus
+$$
+ |S|^{-1}\left|\sum_{z\in S} e_{2^k}(\xi 5^{-A}z)\right|.
+$$
+Let $T_D(\xi)$ be the maximum over live prefixes. Grouping first by $t$ and then by the middle word, the concatenation identity factors each sum into the initial sum, one middle phase, and the terminal sum. Taking absolute values **after** the first and last sums gives
+$$
+ |\widehat\mu_D(\xi)|\le T_D(\xi)\sum_t p_{t,D}U_{t,D}(\xi). \tag{1}
+$$
+The weights here are the actual shares of completed passing words.
+
+### The initial group weights
+
+Write $B_n$ for the number of binary words whose every prefix has at most $q$ times its length in ones. The prefix-count theorem above gives $B_n\asymp 2^{Hn}(1+n)^{-3/2}$. Also $W_D\gg 2^{HD}D^{-3/2}$ by prefixing two zeros to such a word of length $D-2$. For a live initial word its weighted surplus $g=qd-t$ is nonnegative. Until position $D-1$ its remaining bits must stay above surplus $-g$ relative to their own start. This follows from the raw multiplier being at most the weighted multiplier.
+
+To estimate the number of such continuations of length $n=D-d-1$, introduce $l=(d+2)^2$ artificial initial bits with exactly $u=\lfloor ql-g\rfloor$ ones (nonnegative for large $d$). At least $\binom lu/l$ of these words have nonnegative prefix surplus, by cyclic rotation, and they all end with surplus at least $g$. Prepending each to any allowed continuation produces a word counted by $B_{n+l}$. Stirling and Taylor's formula give, uniformly for $0\le g\le qd$,
+$$
+ \binom lu/l\gg l^{-3/2}2^{Hl-H'(q)g},\qquad H'(q)=\log_2(p/q),
+$$
+since $(g+1)^2/l=O(1)$. Divide the upper bound on $B_{n+l}$ by this lower bound, allow either final bit and normalize by $W_D$. Consequently for some absolute exponent $C$,
+$$
+ p_{t,D}\ll (1+d)^C V_t 2^{-Hd+H'(q)(qd-t)}
+          =(1+d)^{O(1)}V_t p^{d-t}q^t. \tag{2}
+$$
+
+### Two second-moment estimates
+
+All expectations below use the same uniform $D\in[M,3M]$. For the initial words, $C_u/5^a$ is the sum of $3\cdot 2^i/5^{A_i}$ over their one positions. The raw prefix test gives $2^i/5^{A_i}\le2$, hence $0\le C_u\le6d\,5^a$. The $C_u$ in a group are distinct: equal $C_u$ would give equal starting residues modulo $2^d$ and identical words. Each residue modulo $5^a$ thus occurs at most $6d+1$ times. With $h=5^a$ and $h>1$, reciprocity of inverses gives
+$$
+ e_Q(-\xi C_u/h)=e_h(\xi C_u Q^{-1})\exp(-2\pi i\xi C_u/(Qh)).
+$$
+For $1\le\xi\le M$ the last factor differs from one by $O(Md/2^M)$. Also $h\le M$. The quantities $Q^{-1}=2^{-D}$ run through the units modulo $h$ in complete periods with bounded relative frequency. Indeed $2$ has order four modulo five and $v_5(2^{4\cdot5^i}-1)=i+1$ by binomial expansion. After multiplying by $\xi$ the relevant modulus is $h'=h/\gcd(\xi,h)$. Each residue modulo $h'$ has multiplicity at most $(6d+1)5^{v_5(\xi)}$. Orthogonality over all characters modulo $h'$ bounds the mean square of the unnormalized sum by this multiplicity times $V_t$. Restriction to the units costs at most a constant. The same bound is trivial for $h'=1$ (including $h=1$). Thus
+$$
+ \mathbb E U_{t,D}(\xi)^2\ll (1+d)5^{v_5(\xi)}/V_t. \tag{3}
+$$
+The exponentially small reciprocity error is absorbed since $V_t\le2^d$.
+
+For the terminal sets, the preceding one-ended proof gives three facts. Each has size $\gg2^{Hk}/k^{3/2}$. A non-full set has $A=\lfloor(D-k)/\log_2 5\rfloor+v$ for one of $O(k)$ slots $v$. For fixed slot and flag there are $O(k)$ threshold patterns as $D$ varies. A full set gives zero at $1\le\xi\le M<2^k$. In a fixed slot each exponent $A$ occurs at most three times, so its distribution modulo $2^{k-2}$ is bounded by a constant times uniform probability. For each pattern occurring on a live prefix, enlarge its average to all $D$ in the slot, without any condition on the pattern. If $e=v_2(\xi)$, then $5^{-A}$ times the odd part of $\xi$ ranges over a coset containing at least a quarter of all residues modulo $2^{k-e}$. The number of elements of $S$ in one residue modulo $2^{k-e}$ is at most $2^e$. Orthogonality gives mean square at most $O(2^e/|S|)$ for the normalized terminal sum. Bounding the squared maximum by the sum over the slots, flags and patterns gives
+$$
+ \mathbb E T_D(\xi)^2\ll (1+k)^{O(1)}2^{v_2(\xi)}2^{-Hk}. \tag{4}
+$$
+
+Apply Cauchy–Schwarz to $\mathbb E(U_{t,D}T_D)$ in (1), using the deterministic bound (2) on the weights. The remaining sum is bounded by
+$$
+ \sum_t p^{d-t}q^t\sqrt{V_t}
+ \le\sqrt{d+1}\,(p^2+q^2)^{d/2},
+$$
+since $V_t\le\binom dt$. Equations (3) and (4), with the chosen $d,k$, now prove
+$$
+ \mathbb E|\widehat\mu_D(\xi)|\ll
+ (\log M)^{O(1)} 2^{v_2(\xi)/2}5^{v_5(\xi)/2}M^{-c_*}
+ \qquad(1\le\xi\le M). \tag{5}
+$$
+
+### Counting the ordinary octave
+
+Apply the Erdős–Turán inequality with cutoff $\lfloor M^{3/4}\rfloor$ to the interval discrepancy $\Delta_D=\sup_J|\mu_D(J)-|J||$ on the circle. In the Fourier sum weighted by $1/\xi$, the valuation factors in (5) cost only $O(\log M)$: write $\xi=2^i5^j l$ with $\gcd(l,10)=1$ and sum the two geometric series and the harmonic sum over $l$. Since $3/4>c_*$,
+$$
+ \mathbb E\Delta_D\ll M^{-c_*}(\log M)^{O(1)}.
+$$
+[The Erdős–Turán inequality, Montgomery and Vaughan, Theorem F.4](https://personal.science.psu.edu/rcv4/571s25/montgomery-vaughanII.pdf)
+
+Markov's inequality discards $O_\eta(M^{1-\eta/3}(\log M)^{O(1)})$ depths at tolerance $M^{-c_*+\eta/3}$. When $D>m$, the shifted octave represents the half-open interval beginning at $(2^m+3)/2^D$ of length $2^{m-D}$ on the circle. In the asserted range that length is $\gg_\eta M^{-c_*+\eta}$, so relative error is $O_\eta(M^{-2\eta/3})$ at a retained depth. Each discarded $D$ affects at most $O(\log M)$ exponents $m$ in the range; absorbing logarithms gives the theorem. For $D\le m$ there are whole periods. The earlier exact multiplier-to-height test applies to these octaves at all the depths used here.
+
+The estimate controls all interval locations at the discrepancy step, including the specified ordinary octave. At $b=\lceil2.4m\rceil$ the corresponding length on the circle is exponentially small in $m$, while (5) yields polynomial accuracy in $m$. This is the remaining scale gap.
+
+The checker reconstructs the signed decomposition for three initial/middle/terminal splits and four frequencies, including frequencies divisible by two and five. It evaluates the character identities in a prime field with a primitive $2^D$-th root, so equality is exact there. It enumerates raw passing residues directly through 16 bits and by both lifts of each passing parent through 23 bits, checking the count against the independent halving-clock recurrence at every depth. [Exact signed-sum checker](check_split5_3_two_ends.py)
