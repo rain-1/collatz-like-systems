@@ -40,6 +40,8 @@ The recorded computations certify that every positive $n<2^{66}$ reaches one of 
 
 **A restriction at the proposed two-survivor depth.** Set $b=\lceil 2.4m\rceil$. For all sufficiently large $m$, no survivor starting in $[2^m,2^{m+1})$ has half of its first $b$ encoded bits covered by a fixed number of disjoint stretches of sublinear period. The proof bounds the two-adic cancellation in a sum of integers. The number of survivors with more varied bits remains open. [Theorem and proof](../round2/rewriting/split5_3_s27.md#a-restriction-on-survivors-at-the-two-survivor-depth)
 
+**Actual stopping-time counts beyond the binary length.** In almost every octave the Haar prediction holds with vanishing relative error up to $m+(0.29034206\ldots-\eta)\log_2 m$ halvings for fixed positive $\eta<0.29034206\ldots$. At the proposed two-survivor depth the unsigned sum in the sharp-interval Fourier formula diverges, so that particular bound cannot settle the integer question. [Count theorem and Fourier obstruction](../round2/rewriting/split5_3_s27.md#almost-every-octave-beyond-its-binary-length)
+
 ## Original census investigation
 Odd-to-odd map: n = 1 mod 4 -> (5n+3)/2^v with v >= 2 (5n+3 = 0 mod 4); n = 3 mod 4 -> (n+3)/2
 (exactly one halving, since n+3 = 2 mod 4), which decreases n when n > 3.

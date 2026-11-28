@@ -624,3 +624,54 @@ There is a quantitative consequence for the expanding bits themselves. The numbe
 **What remains.** The real growth condition allows extensive variation. For example, concatenate either of the eleven-bit blocks $0^{10}1$ and $0^9 1 0$ independently. Both restore flag zero, have terminal multiplier $5^5/2^{11}>1$, and maintain raw block-end multiplier at least one at all prefixes. For the second block the only contraction follows four complete expansions, with multiplier $(5/4)^4/2>1$ after the contraction. The intervening raw heights in an expanding or contracting block are at least the smaller endpoint, so each word is a legal survival pattern. Each specifies a residue modulo $2^b$ at length $b$ by the coding bijection.
 
 For $b=11k$ there are $2^k$ of these words. At most $2^{k/2+o(b)}$ of them can have half their bits covered by at most $R$ intervals of period at most $p(b)=o(b)$. Indeed the interval endpoints, periods and period words have only $2^{o(b)}$ choices; the covered intervals determine at least $k/2-2R$ whole eleven-bit blocks. Thus many residue classes pass the multiplier test and escape the periodic-block restriction. Whether more than two surviving residues have representatives $y=n+3$ in the target octave for all sufficiently large $m$ remains undecided. There are arbitrarily large $m$ with $11\mid b$, for instance $m=55j$.
+
+## Almost every octave beyond its binary length
+
+Let $N_m(b)$ count actual survivors in $[2^m,2^{m+1})$ through $b$ halvings, including the height reached on the last halving. Let $P(b)$ be the Haar probability of survival for the raw linear multipliers on the same clock. Put $q=1-2/\log_2 5$ and $H=-q\log_2 q-(1-q)\log_2(1-q)=0.58068412\ldots$.
+
+**Theorem.** Fix $0<\eta<H/2$. For large $M$, apart from $O_\eta(M^{1-\eta/3})$ integers $m\in[M,2M)$, simultaneously for all integers
+$$
+ 1\le b\le m+(H/2-\eta)\log_2 m,\qquad
+ N_m(b)=2^mP(b)\bigl(1+O_\eta(M^{-\eta/3})\bigr).
+$$
+This is an asymptotic count on actual integer octaves. The coefficient of the additional logarithmic term can be taken arbitrarily close to $0.29034206$. The two-survivor target has $b=\lceil2.4m\rceil$ and remains open. The proof adapts the averaged progression discrepancy argument for the $3x+d$ map to the two possible entry flags and to the pending last halving.
+
+**Splitting the word.** By the exact multiplier test above, use $D=b+1$ bits, testing all raw slopes at bit boundaries except the last when its flag is zero. This equality with actual survival holds throughout the asserted range for all sufficiently large $m$. If $D\le m$, the octave contains whole periods of length $2^D$, giving equality with the Haar predictor. Otherwise set
+$$
+ j=D-m,\quad k=\lfloor\log_2 M\rfloor+2,\quad Q=2^k,\quad d=D-k=m+j-k.
+$$
+In our range $1\le j<k$ for large $M$. Write the shifted start $y=n+3=r+2^d t$ with $0\le r<2^d$. Each $r$ admits $2^{k-j}$ consecutive values of $t$ in the shifted octave. The first $d$ bits, their five-count $A=A_d$, and the end flag $s$ depend only on $r$. At this boundary $z_d=5^At+B_r$. Discard prefixes that have already dropped. For a remaining prefix let $S\subseteq\mathbb Z/Q$ be the set of continuation inputs $z_d\bmod Q$ that pass. Contributions from this residue are counts on a progression of length $2^{k-j}$, slope $5^A$, and arbitrary intercept.
+
+**The possible continuation sets.** Write $L=\log_2 5$, $A=\lfloor d/L\rfloor+v$ and $\theta=\{d/L\}$. If the next $i$ bits, from entry flag $s$, use $a_i$ factors of five and end with flag $s_i$, their cumulative test is
+$$
+  v+a_i\ge\left\lceil \theta+(i-s_i)/L\right\rceil .
+$$
+Use every $1\le i<k$ and use $i=k$ precisely when $s_k=1$. For fixed $(s,v)$ there are $O(k)$ patterns as $\theta$ varies, since each $i-s_i\in[0,k]$ gives at most one interior breakpoint. Prefix survival gives $5^A\ge2^{d-s}$, so $v\ge-1$. If $A\ge(d+k)/L$ every continuation passes. Only $O(k)$ nontrivial slots $v$ need attention.
+
+Every continuation set arising from a live prefix has size at least $c\,2^{Hk}/k^{3/2}$. To see this, let $\lambda=\sqrt5/2$. A zero bit has weighted multiplier $\lambda$ and a one has $1/2$. The unweighted multiplier of a continuation prefix is the corresponding product times $\lambda^{s-s_i}$, as follows from $2a_i=(\#\text{zeros})+s-s_i$. Begin with a zero, which creates a weighted buffer $\lambda$ and cannot lower the unweighted multiplier. For the remaining $k-1$ bits take words with exactly $\lfloor q(k-1)\rfloor$ ones whose partial weighted products are all at least one. Every word with this many ones has total weighted product at least one and some cyclic rotation with all prefix products at least one. Dividing the binomial count by $k-1$ and applying Stirling gives the bound. The initial buffer covers either flag, so all these words pass all the required tests. Distinct words from either fixed entry flag give distinct residues modulo $Q$ by the bit-coding bijection.
+
+**Averaging the progression error.** For $N=2^{k-j}$, define $G(a)=\sum_{0\le t<N}\exp(2\pi iat/Q)$. For each fixed set $S$ above and uniform $u$ in the subgroup generated by $5\bmod Q$, Fourier inversion and Parseval give
+$$
+ \mathbb E_u\max_B\left|\sum_{0\le t<N}1_S(ut+B)-|S|2^{-j}\right|\ll k\sqrt{|S|}.
+$$
+Indeed, at a nonzero frequency of order $2^l$ the geometric sum vanishes if $2^l\mid N$. Otherwise $u$ times its odd numerator is uniform on a coset containing at least a quarter of the residues modulo $2^l$, since $5$ has order $2^{l-2}$ for $l\ge3$ (successive squaring gives $v_2(5^{2^t}-1)=t+2$). The mean of $|G|$ on the coset is $O(l)$ by the geometric-series bound and the harmonic sum over nonzero residues. Applying this frequency bound to the triangle inequality and then using $Q^{-1}\sum_\xi|\widehat{1_S}(\xi)|\le\sqrt{|S|}$ proves the estimate.
+
+For fixed $j,v$, as $m$ runs through $[M,2M)$, each $A=\lfloor(m+j-k)/L\rfloor+v$ occurs at most three times, in an interval of length $O(M)$. Each exponent residue modulo $2^{k-2}\le M$ occurs $O(M/2^{k-2})$ times. For any fixed continuation pattern that is actually encountered on a live prefix, bound its bad exponents using the unrestricted average just derived. This avoids assuming independence of the threshold pattern and the multiplier. With relative tolerance $\epsilon=M^{-\eta/3}$, Markov's inequality and the union over the $O(k^2)$ choices of slots, patterns and flags discard at most
+$$
+ O\!\left( M k^{15/4}\,2^j\,2^{-Hk/2}/\epsilon\right)
+$$
+values of $m$. Sum this over $j\le1+(H/2-\eta)\log_2(2M)$ to obtain $O_\eta(M^{1-\eta/3})$ exceptions. For every other $m$, summing the relative estimates over the live prefix residues preserves the same tolerance. Their progression means add to $2^mP(b)$ because each such prefix has Haar mass $2^{-d}$ and conditional survival probability $|S|/2^k$. This proves the theorem.
+
+**Haar probability at a pending halving.** In a fresh state the shifted input has unrestricted parity. An even-known state has one parity bit already fixed. Let $F_h,E_h$ be the surviving cylinder counts ending a completed block at halving $h$ in these states; the cylinder masses are respectively $2^{-h}$ and $2^{-(h+1)}$. Paths can also be halfway through a two-halving expansion. For $b\ge1$, the exact probability is
+$$
+ P(b)=\frac{2F_b+E_b+F_{b-1}+E_{b-1}}{2^{b+1}} .
+$$
+The last two terms arise by choosing the expansion from either state ending at $b-1$. Its conditional probability is $1/4$ or $1/2$, respectively, and its intermediate slope rises. The resulting $2^mP(\lceil12m/5\rceil)$ is $0.01416015625$ at $m=8$, $0.00171803$ at $32$, $0.000330225$ at $100$, and $8.18407\cdot10^{-10}$ at $2000$. These are model means, not observed octave counts. The checker compares the recurrence and bit-clock condition against raw multiplier iteration on complete residue systems through $b=13$, and checks the progression decomposition for both entry flags. [Exact probability and clock checker](check_split5_3_microrange.py)
+
+### A limitation of taking absolute values in the exact Fourier count
+
+The averaged estimate above controls a relative error while the predictor is large. At the two-survivor depth, even the *exact* Fourier magnitudes, multiplied by the exact interval kernel and then added in absolute value, give an upper bound tending to infinity. This assertion concerns the sharp interval and this particular use of the triangle inequality.
+
+In fact let $G=\mathbb Z/Q$ be any finite cyclic group, $R\ne\varnothing$, $I=[0,X)$ with $X\le Q$, and $f(t)=|R\cap(t+I)|$. Along any sequence with $X\to\infty$ and $\mu=X|R|/Q\to0$, its Fourier algebra norm $M_f=\sum_{\xi}|\widehat f(\xi)|$ (normalized coefficients) tends to infinity. To see this, Sanders's quantitative idempotent theorem expresses the integer-valued $f$ as a sum of at most $L(M_f)$ signed subgroup-coset indicators, with $L$ bounded at each fixed norm bound, independently of $Q$. A subgroup coset in a cyclic group is one residue class modulo a divisor of $Q$. On any interval $J$ of consecutive residues its count differs from $|J|$ times its density by at most one. Choose $r\in R$ and take $J=r-I$. On every one of these $X$ translates $f\ge1$. Summing the signed decomposition on $J$ and subtracting the global mean forces $L(M_f)\ge X(1-\mu)$. The right side tends to infinity, proving the claim. [Sanders, *Bounds in Cohen's Idempotent Theorem*](https://arxiv.org/abs/1610.07092)
+
+For the split map take $Q=2^{b+1}$, $X=2^m$ and $R$ the passing residues in shifted coordinates. The zero word gives a member of $R$. At $b=\lceil2.4m\rceil$, the prefix test at $j=b$ requires at most $qb+O(1)$ ones. The binomial bound thus gives $\mu\le2^{m-(1-H)b+o(b)}\to0$. The sharp interval kernel vanishes on nonzero frequencies of order dividing $X$, but all those zeros are already included in $M_f$. In the unnormalized transforms of $1_R,1_I$, the usual sum-of-absolute-values upper bound including the zero frequency equals $M_f=Q^{-1}\sum_\xi |\widehat{1_R}(\xi)\widehat{1_I}(\xi)|$. It eventually exceeds two on every subsequence. This leaves open methods exploiting phase cancellation at the specific octave, including methods that combine selected frequencies before estimating a remainder.
