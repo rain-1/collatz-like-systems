@@ -804,3 +804,39 @@ $$
 g(t)=\tfrac43(1-|t|_Q/(2X))_+
 $$
 dominates an interval of length $X$ centered at zero and has nonnegative Fourier coefficients: it is a positive multiple of the autocorrelation of an interval of length $2X$. The subgroup indicator also has nonnegative Fourier coefficients. Consequently the absolute Fourier bound for $\sum_{r\in R}g(r-t)$ is its value at $t=0$, exactly $4/3$, uniformly in $Q$. Translating the majorant preserves this bound. One may take $Q=2^D$, $d=2^{\lfloor(1-H)D\rfloor}$ and $X=2^{\lfloor5D/12\rfloor}$ for large $D$, matching the exponential sizes of the problem. This example does not settle what majorants work for the actual passing residues. It identifies why mean square alone cannot rule them all out.
+
+## How long can a link attain either endpoint of its sharp strip?
+
+Take a finite block segment of the type between consecutive multiplier minima. Its full relative slope is $1<r\le s=5/4$, and every nonempty proper prefix has slope strictly greater than $r$. Suppose it has $e\ge1$ exits. Write $y$ for its starting shifted height, $y'$ for its endpoint, $R=y'-ry$, $\kappa=1/\log_2 s$, $a=\lfloor\kappa e\rfloor+1$, and $\ell=2a+e$ for its number of **raw halvings**. Let $\{u\}=u-\lfloor u\rfloor$.
+
+**Sharp bounds.** For each $e$ the exact minimum and maximum possible corrections are
+$$
+L_e=3(1-2^{-e}),\qquad U_e=3\sum_{k=0}^{e-1}s^{-\{\kappa k\}}.
+$$
+Both occur at arbitrarily large positive integer starts, even with $256\mid y,y'$. The first $e$ for which $U_e-L_e\ge256$ is 97. Thus the enclosing interval alone always contains a multiple of 256 from that point onward. Attaining a particular value inside it requires a legal path.
+
+Let $K_j$ be the cumulative number of expansions through exit $j$, and let its additive constant be $\beta_j\in\{3/2,3\}$. The last block must be an exit. The slope just after exit $j$ is $P_j=s^{K_j}2^{-j}$, giving $R=\sum_j\beta_j r/P_j$. For $1\le j<e$, $P_j>r$ implies
+$$
+b_j:=a-\lfloor\kappa(e-j)\rfloor\ \le K_j\le a .
+$$
+Set $b_e=a$. The upper choice $K_j=a$ for every $j$ and $\beta_j=3/2$ gives the minimum. The lower choice $K_j=b_j$ for every $j$ and $\beta_j=3$ gives the maximum since $s^{b_j}2^{-j}/r=s^{\{\kappa(e-j)\}}$. These choices are forced at equality. In the maximizing schedule there are four or five expansions up to the first exit and three or four between subsequent exits. In both schedules the first expansion has slope $s>r$ (equality would force $e=0$), and the proper interior slopes all exceed $r$.
+
+For realizability, either prescribed word has affine formula $2^\ell y'=5^a y+C$ with integral $C$. Impose $5^a y+C\equiv0\pmod{2^{\ell+8}}$, a single class because $5^a$ is odd. Every intermediate quotient is integral: reducing the final numerator at any earlier denominator removes all subsequent additive terms and leaves an odd multiple of the earlier numerator. Integrality at an expansion forces its input to be divisible by four, and at an exit with $\beta=3/2$ it forces an odd input. An exit with $\beta=3$ also requires an even output. In the maximizing word this follows from the next expansion or from the terminal divisibility. The first four expansions give $256\mid y$. Finally $U_e-L_e$ increases strictly, since the increment in $U_e$ exceeds $12/5$ and the increment in $L_e$ is at most $3/4$ for $e\ge1$. The widths at 96 and 97 lie respectively in $(255,256)$ and $(258,259)$ by exact rational arithmetic. [Sharp-strip checker](check_split5_3_link_strip.py)
+
+**A logarithmic cutoff.** At a minimizing link, $\ell\le(1+1/(2\kappa))\log_2 y$, since its first $a$ blocks expand and $4^a\mid y$. At a maximizing link starting at any sufficiently large positive integer,
+$$
+\ell\le 2\log_2 y+O(1).
+$$
+In particular neither extremizer can constitute a whole link of at least $\lceil12m/5\rceil$ halvings starting in a sufficiently large octave $2^m\le y-3<2^{m+1}$.
+
+To see what limits the maximizing link, put $T=2\kappa+1$ and $d=\lceil(\log_2 y+4)/T\rceil$. The number of expansions in a run after the first exit is a difference of successive floors of $\kappa n$, read in reverse order. There are at most $d+1$ possible lists of $d$ such runs: the forward list is determined by the initial fractional part, partitioned by the $d$ cut points $\{-i\kappa\}$, $1\le i\le d$. Reversal preserves the bound. Each list has at least $\kappa d-1$ expansions by telescoping, hence consumes at least $Td-2$ raw halvings. Since all exit types are fixed, integrality at the end of a list specifies its initial height in one residue class modulo at least $2^{Td-2}$ (the modulus is $2^h$ for its integer halving count $h$).
+
+Suppose $e\ge2d+2$. Consider the first $d+2$ post-exit heights and the $d$-run lists following them. All those heights lie between $y$ and $2y$ for sufficiently large $y$. Indeed $r\le P_j<sr\le s^2$ and $Y_j=P_j(y+\sum_{i\le j}\beta_i/P_i)\le s^2(y+3j)$ for $j\le d+2$. Two lists agree. Their starting heights are congruent modulo at least $4y$, hence equal. On an escaping orbit this already contradicts nonrepetition. For any positive orbit the intervening lap has $O(\log y)$ halvings and slope $M<1$, since its affine correction is positive. All its heights are at least $y$. Each exit increases height relative to its linear part by a factor at most $1+6/y$. Returning to the same height therefore requires $1-M=O((\log y)/y)$. The earlier two-logarithm bound gives $1-M\ge c(1+\log y)^{-C}$ for these unequal powers of 5 and 2, a contradiction for large $y$. Thus $e\le2d+1$ and $\ell=Te+O(1)$ proves the claim. [Matveev's logarithm bound](https://www.mathnet.ru/eng/im314)
+
+**A deficit on any escaping orbit.** The same counting argument gives a quantitative statement for mixed links. Call exit $j$ exceptional if $K_j\ne b_j$ or $\beta_j\ne3$. Each costs at least $12/25$ in $U_e-R$: an extra expansion reduces its maximal summand by a factor at most $4/5$, and choosing $3/2$ instead of $3$ halves it. If $D$ exits are exceptional, with $d$ as above and $y$ sufficiently large, then
+$$
+D\ \ge\ \max\left(0,\frac{e-2d-1}{d+1}\right),\qquad U_e-R\ \ge\ \frac{12}{25}D.
+$$
+Indeed among the $e-d$ possible post-exit starting positions $j=1,\ldots,e-d$, at most $(d+1)D$ have an exceptional exit among $j,\ldots,j+d$ (the bound is trivial if $e\le d$). Each remaining position has $P_j\le s^2$ and one of the same $d+1$ following run lists with all exit constants fixed. On an escape the earlier raw multiplier bound restarted at $y-3$ gives $Y_j-3\le1.000073(y-3)P_j$. Hence all these heights are below $2y$, independently of $e$, and they are distinct. At most one position per list is possible, giving the assertion. This penalizes a link for following the maximizing schedule. It gives no logarithmic upper bound on the length of an unrestricted link.
+
+**Finite-chain convention.** The raw halving count and the number of bits determining a labeled block word can differ. For example four expansions followed by the exit $Y\mapsto Y/2+3$ require $y\equiv512\pmod{1024}$: nine raw halvings, ten parity bits. Requiring $256\mid y'$ instead gives a single class modulo $2^{17}$, since the last bit already records evenness at the endpoint. Also a one-expansion finite link can start at $y=4$; the divisibility of every interior selected start uses the continuation through four expansions or a terminal divisibility condition. These endpoint conventions preserve Fable's finite-cylinder obstruction.
