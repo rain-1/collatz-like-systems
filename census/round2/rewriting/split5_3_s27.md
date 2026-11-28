@@ -767,3 +767,40 @@ Markov's inequality discards $O_\eta(M^{1-\eta/3}(\log M)^{O(1)})$ depths at tol
 The estimate controls all interval locations at the discrepancy step, including the specified ordinary octave. At $b=\lceil2.4m\rceil$ the corresponding length on the circle is exponentially small in $m$, while (5) yields polynomial accuracy in $m$. This is the remaining scale gap.
 
 The checker reconstructs the signed decomposition for three initial/middle/terminal splits and four frequencies, including frequencies divisible by two and five. It evaluates the character identities in a prime field with a primitive $2^D$-th root, so equality is exact there. It enumerates raw passing residues directly through 16 bits and by both lifts of each passing parent through 23 bits, checking the count against the independent halving-clock recurrence at every depth. [Exact signed-sum checker](check_split5_3_two_ends.py)
+
+## Arithmetic links between permanent survivors
+
+Fable proposed studying consecutive survivors on the same orbit. An increase in height alone does not imply that the intervening multiplier exceeds one, because an exit adds a positive constant. Selecting minima of the *multipliers* gives both properties.
+
+**Theorem.** Suppose a positive orbit escapes. Write $y=x+3$ for shifted height and $\alpha=\log_2(5/4)$. There is an infinite increasing sequence of shifted heights $y_i$ on this orbit with the following properties.
+
+1. Each $y_i-3$ survives forever, both in height and in raw multiplier. Every $y_i$ is divisible by 256.
+2. If the link $y_i\to y_{i+1}$ contains $e$ exits, its number of expanding blocks is exactly $a=\lfloor e/\alpha\rfloor+1$. Put $r_e=(5/4)^a2^{-e}$. For $e=0$ the next height is $5y_i/4$. For $e>0$ it satisfies
+   $$
+   r_e y_i+3/2\ \le\ y_{i+1}\ \le\ r_e y_i+3e.
+   $$
+3. For each fixed integer $L\ge1$, every sufficiently late interval $[2^m,2^{m+L})$ contains at least $\lfloor L/\alpha\rfloor$ of the selected **unshifted** starts. In particular every ten consecutive sufficiently late octaves contain at least 31 selected starts. At least one octave in each such window contains four.
+
+**Proof.** At block boundaries the map in shifted coordinates has one expansion $y\mapsto5y/4$ when $4\mid y$, and two exits $y\mapsto y/2+\beta$. The exit constant is $3/2$ for odd $y$ and $3$ for $y\equiv2\pmod4$. Let $Y_t$ be the shifted height after $t$ blocks and $P_t$ the product of their linear slopes from time zero. Use the earlier multiplier theorem in “How accurately the multipliers would track a divergent orbit.” It gives $P_t\to\infty$ and bounds $(Y_t-3)/P_t$ on an escaping orbit. Thus $Z_t=Y_t/P_t$ is bounded and positive. It is also nondecreasing, since an exit adds $\beta/P_{t+1}$ to $Z_t$ and an expansion leaves it fixed. It follows that $Z_t$ converges to a positive finite limit.
+
+Products at distinct boundaries differ: a nonempty segment with $a$ expansions and $e$ exits has multiplier $5^a/2^{2a+e}\ne1$. Take $t_0$ to be the unique minimizer of $P_t$ over all $t\ge0$, and recursively take $t_{i+1}$ to minimize $P_t$ over $t>t_i$. These minima exist because $P_t\to\infty$. Set $y_i=Y_{t_i}$. Every later block boundary has larger relative multiplier and larger shifted height. Inside an expanding block the raw slopes relative to its start are $5,5/2,5/4$, and inside a two-step exit they are $1,1/2$. The intermediate raw heights are at least the smaller endpoint. This proves permanent survival. The first exit after $t_i$ requires at least four preceding expansions, since $(5/4)^3/2<1$. Such an exit exists since $Y_{t_i}$ has finite 2-adic valuation. Four successive expansions require $4^4\mid y_i$.
+
+The first block of the link must expand. Hence $1<P_{t_{i+1}}/P_{t_i}\le5/4$, by minimality on the tail containing $t_i+1$. Taking logarithms gives $0<a\alpha-e\le\alpha$, which fixes $a$. If $e>0$, the last block is an exit: otherwise its predecessor would have relative multiplier smaller than the minimum on this tail. For each exit ending at $j$ in the link, its contribution to $y_{i+1}-r_e y_i$ is $\beta_j P_{t_{i+1}}/P_j$. Each ratio is at most one, and the last equals one. This proves the strip bounds.
+
+For the count, let $x_i=y_i-3$. Then $x_i/P_{t_i}$ also tends to the same positive limit. For fixed $k$ this gives $x_{i+k}/x_i\le(5/4)^k(1+o(1))$. With $k=\lfloor L/\alpha\rfloor$ one has $(5/4)^k<2^L$ by unique factorization. Choose the last $i$ with $x_i<2^m$. For large $m$, the next $k$ starts all lie in $[2^m,2^{m+L})$. For $L=10$, $31\alpha<10<32\alpha$. This proves the claim.
+
+**A window criterion for global eventual periodicity.** At the usual target depth $b_j=\lceil12j/5\rceil$, let $N_j$ count survivors in octave $j$. It suffices to show $\sum_{j=m}^{m+9}N_j\le30$ for infinitely many $m$. More selectively it suffices to exclude a chain of 31 survivors in infinitely many such windows if successive members must obey the link conditions above (each member is tested at the depth of its own octave). For fixed $y_i$ and $e>0$ the strip contains at most $1+\lfloor(3e-3/2)/256\rfloor$ possible multiples of 256. No uniform upper bound on $e$ along these links is known here. These criteria concern eventual periodicity and do not enumerate cycles.
+
+### Exact grid experiment
+
+At bit depth $D=b+1$ put $Q=2^D$. A passing word with five-count $A$ and numerator $C$ represents the shifted residue $y\equiv-5^{-A}C\pmod Q$. For each $A$ form the sorted grid of $-5^Ay\bmod Q$ for $2^m+3\le y<2^{m+1}+3$. Count both equality with a grid point and occupancy of the half-open circular gaps between consecutive grid points. The uniform reference for a gap length $g$ occurring $k$ times in a class of $W$ words is $Wkg/Q$. Only equality counts as a hit.
+
+At the target depths for $1\le m\le16$, every class has zero exact multiplier hits. At $m=16$, $D=40$, there are 126,604 passing words, and the uniform reference for *all* exact hits is 0.007546. For the largest class ($A=17$, 98,679 words), the three gap lengths in increasing order contain 12,529, 37,534 and 48,616 numerators. Their uniform references are 12,447.3, 37,581.6 and 48,650.1. Agreement in these coarse bins gives no bound on equality at the left endpoints.
+
+As a positive control, $m=18,D=26$ gives six unshifted starts: 278525, 281853, 303101, 348157, 435197 and 524285. The checker emits their words and exit flags, verifies total class sizes against the separate halving-clock recurrence, and cross-checks every hit list against direct raw multiplier iteration on its octave. These finite statements test multipliers; the earlier equivalence with height survival is asymptotic. [Exact grid and direct-orbit checks](check_split5_3_grid.py)
+
+**Scope of the Fourier obstruction.** The sharp-interval obstruction above is rigorous. The global Parseval identity in Fable's review does not by itself extend it to every smooth majorant. For example, in $\mathbb Z/Q$ take a subgroup $R$ of spacing $d\mid Q$, with even $X$ and $4X<d$. For cyclic distance $|t|_Q$, the triangular majorant
+$$
+g(t)=\tfrac43(1-|t|_Q/(2X))_+
+$$
+dominates an interval of length $X$ centered at zero and has nonnegative Fourier coefficients: it is a positive multiple of the autocorrelation of an interval of length $2X$. The subgroup indicator also has nonnegative Fourier coefficients. Consequently the absolute Fourier bound for $\sum_{r\in R}g(r-t)$ is its value at $t=0$, exactly $4/3$, uniformly in $Q$. Translating the majorant preserves this bound. One may take $Q=2^D$, $d=2^{\lfloor(1-H)D\rfloor}$ and $X=2^{\lfloor5D/12\rfloor}$ for large $D$, matching the exponential sizes of the problem. This example does not settle what majorants work for the actual passing residues. It identifies why mean square alone cannot rule them all out.
