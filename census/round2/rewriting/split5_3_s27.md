@@ -1065,3 +1065,78 @@ Since $Y_q=P_q(y+\sum_{j\le q}\beta_j/P_j)$, we have $W_0\asymp y+q$. Also $h_q=
 Finally choose successive record denominators $q$ for $\|q\kappa\|$, which exist indefinitely by irrationality and the pigeonhole principle. Take $k$ nearest to $q\kappa$. The exceptional phase arc has length $\|q\kappa\|$ and contains at most two of the first $q$ phase points by their spacing. Under the all-complement rule, split off each exceptional index as a singleton piece. The same proof applies with uniformly boundedly many pieces, regardless of its chosen label. This gives $2^q$ words at those depths.
 
 A bounded number of intervals of free labels already gave positive-entropy examples via the earlier $7/12$ cover criterion. The construction here allows choices throughout the first half at the record depths and tests their complements throughout the second half. For unrestricted independent choices in **both** halves the virtual additive terms still depend on unknown bits, and the $2\log_2 y$ theorem has not been proved for that family. [Exact checks of residues, reverse decoding and the two-half identity](check_split5_3_free_labels.py)
+
+## A length bound allowing every exit label
+
+Retain the exact near-critical schedule above, including $T=2\kappa+1$, $h=Te+O(1)$ and $1\le P_i\le(5/4)^2$. There is an absolute $\sigma>0$ such that every positive integer start $y$ following this schedule satisfies
+$$
+e=O(y^{1-\sigma}).
+$$
+If the post-exit heights in the segment are distinct, the stronger bound $e=O(y^{1/T}\log y)$ holds. Both estimates allow every legal choice of the $e$ exit labels. They do not give a logarithmic cutoff.
+
+**Distinct heights.** Set $d=\lceil(\log_2 y+4)/T\rceil$ and $M=(d+1)2^d+1$. We may take $y$ large. If $e<M+d$ the stronger estimate already holds. Otherwise the first $M$ post-exit heights each have $d$ further runs available. All are below $2y$ for sufficiently large $y$, since $Y_i=P_i(y+\sum_{j\le i}\beta_j/P_j)\le(5/4)^2(y+3M)$ and $M=o(y)$. Their following expansion lists have at most $d+1$ possibilities, by the rotation-cut argument, and there are at most $2^d$ following label lists per expansion list. A fixed pair of lists determines its starting integer modulo $2^H$, where $H$ is the number of halvings in those runs. Telescoping the floor differences gives $H\ge Td-2$, so $2^H\ge4y$. Two of the $M$ heights must therefore be equal. This proves the distinct-height bound and locates an early repetition in the remaining case.
+
+**Repeated heights.** It suffices to treat $e\ge8(M+d)$. Write $Y_j=Y_{j+p}$ for a repetition among the first $M$ positions, with $p\ge1$. Determinism makes all subsequent complete runs periodic with period $p$ as long as the specified segment continues. Let $k$ be the expansion count on one lap. Its multiplier $S=s^k2^{-p}$ is less than one since the additive correction is positive. More precisely,
+$$
+(1-S)Y_j=\sum_{t=j+1}^{j+p}\beta_t P_{j+p}/P_t\asymp p.
+$$
+Here $Y_j\asymp y$, all the displayed slope ratios are bounded on both sides and $p\le M=o(y)$. Consequently $\epsilon=\kappa p-k=-\log S/\log s\asymp p/y$ is positive and less than $1/2$ for large $y$.
+
+Let $g(p)$ be the largest circular gap among $p$ consecutive phases of the $\kappa$ rotation. Put $R=\lfloor(e-j-p)/p\rfloor\gg e/p$. From each of the positions $t=j,\ldots,j+p-1$ the next $Rp$ runs have exactly $Rk$ expansions. The floor formula gives
+$$
+Rk=K_{t+Rp}-K_t=Rk-\lfloor\theta_t-R\epsilon\rfloor,
+\qquad \theta_t=\{\kappa(e-t)\}.
+$$
+Thus each of these $p$ phases is at least $R\epsilon$. The resulting empty arc gives $R\epsilon\le g(p)$, including the possibility of a phase at its right endpoint. It follows that $e\ll y g(p)$. Irrationality alone yields $e=o(y)$ here: bounded $p$ is impossible since $0<\|p\kappa\|\asymp p/y$, and $g(p)\to0$.
+
+Reduce $k/p$ to $a'/b$. The lap estimate says $|\kappa-a'/b|=\epsilon/p\asymp1/y$ with absolute comparison constants. Since $b\le p\le M=o(\sqrt y)$, the first $b$ multiples of $\kappa$ lie within $O(b/y)$ of the corresponding points of the complete $1/b$ grid. The grid is complete by coprimality. Cyclic spacing is invariant under translation and reflection, so
+$$
+g(p)\le 1/b+O(b/y)\ll1/b,\qquad e\ll y/b .
+$$
+Choose a fixed $B\ge2$ such that $\|t\kappa\|\gg t^{-B}$ for $t\ge1$. Such a $B$ follows from the two-logarithm bound applied to $t\log 2-k\log(5/4)$ with $k$ the nearest integer to $t\kappa$. The approximation above forces $b^{-B}\ll b/y$, hence $b\gg y^{1/(B+1)}$. Thus $e\ll y^{1-1/(B+1)}$, which also absorbs the initial $O(y^{1/T}\log y)$ alternative. [Matveev's bound for two logarithms](https://www.mathnet.ru/eng/im314)
+
+**Almost every octave has the distinct-height bound for all starts.** Among exponents $m\le M_0$, at most $O(\log(M_0+2))$ octaves can contain a start needing the long repeated-height alternative above. This assertion does not require an irrationality-measure estimate. To see it, associate the reduced rational $a'/b$ to the scale $X=|\kappa-a'/b|^{-1}$. Such a start has $y\asymp X$ and $b\ll X^{1/T}\log X$. One scale therefore affects only $O(1)$ octaves. If two distinct rationals have scales $X_1\le X_2$, their distance is at least $1/(b_1 b_2)$ and at most $2/X_1$, so $b_1 b_2\ge X_1/2$. For large $X_1$ this rules out $X_2\le X_1^4$, since the upper bounds would give $b_1 b_2\ll X_1^{5/T}(\log X_1)^2=o(X_1)$. Hence the logarithms of successive large scales grow at least geometrically. There are only $O(\log(M_0+2))$ such scales up to a constant times $2^{M_0+1}$. Outside these octaves every start satisfies $e=O(y^{1/T}\log y)$, including starts on eventual cycles. This is still much larger than the target depth.
+
+### What a sum of several shifted paths proves
+
+Fix a bounded number of shifts $0=q_0<\cdots<q_r<e$ and bounded nonzero integer coefficients $c_j$. Choose $k_j$ from the two adjacent possible values of $K_{i+q_j}-K_i$ for $i\ge1$, with $k_0=0$. Write $n=e-q_r$, $v_{ij}=K_{i+q_j}-K_i-k_j$ and $G=\sum_j c_j s^{k_j}2^{-q_j}$. Then
+$$
+W_i=\sum_j c_j s^{-v_{ij}}Y_{i+q_j},\qquad
+W_i=(P_i/P_{i-1})W_{i-1}+b_i^*,\qquad
+b_i^*=\sum_j c_j s^{-v_{ij}}\beta_{i+q_j}.
+$$
+All denominators in the $W_i,b_i^*$ divide a fixed integer and the $b_i^*$ are bounded. In particular the condition to test is on the **weighted** sum. Complementary labels have unweighted sum one, but on a site with $v=1$ their weighted correction can be either $3/2+3/s$ or $3+(3/2)/s$. Thus the unweighted relation alone does not make the correction independent of the chosen bit. Likewise integrality of the final affine quotient alone needs a terminal legality check if the final exit has constant 3. For instance $y=1024$, four expansions and that exit give the formal integer endpoint 1253; the pre-exit height is 2500, which must expand again. On this schedule the exact terminal test is integrality plus evenness when the last label has constant 3. Backwards reduction of the numerator enforces integrality at every intermediate quotient. An expansion then has input divisible by four, a $3/2$ exit has odd input, and a 3 exit has the required input $2\pmod4$ precisely when its output is even. The next expansion enforces this at every internal exit.
+
+**Quantitative criterion.** Suppose $b_i^*$ on $1\le i\le n$ is described by boundedly many time intervals and phase cuts as in the whole-prefix theorem, apart from a bounded number of intervals containing $L$ exits in total. If $h\asymp\log_2 y$ and $G\ne0$, then
+$$
+T(n-L)\le\log_2 y+o(e).
+$$
+In particular, at the target $h=(12/5)\log_2 y+O(1)$, such a pattern is impossible when $q_r+L\le(7/12-\eta)e$ for fixed $\eta>0$. Both the span of the shifts and the length of the exceptions enter this test.
+
+Indeed $W_0=Gy+O(e)$ by the affine formula for the shifted starts. A uniform positive lower bound on $|G|$ is unnecessary on this scale. Each summand of $G$ is a bounded nonzero real number in absolute value up to constants depending on the coefficient bound, and is a rational $\{2,5\}$-unit times $c_j$. Clear all denominators by the same power of two of size $2^{O(e)}$, and delete vanishing subsums. Since $G\ne0$ at least one term remains. Apply Evertse (14) at the **real** place to the remaining integers. Their prime-to-10 parts are bounded, their heights are $2^{O(e)}$, and their maximum real size is comparable to the common denominator. Dividing it out yields $|G|\ge2^{-o(e)}$, uniformly for the stated bounds. Hence $|W_0|\ge y2^{-o(e)}-O(e)$ and $\log_2|W_0|\le\log_2 y+O(1)$.
+
+Use the whole-prefix identity for the virtual recurrence, clearing its fixed denominator. As before multiply by $1-\gamma$ for a rotation return of length $q\le\delta e$. The ordinary leading size $|1-\gamma|\,|W_0|$ dominates $O(e)$ on taking $\delta$ small, even for signed coefficients. On the exceptional intervals keep the untranslated and translated contributions on their original index sets: equivalently, first remove the $L$ exceptional indices as whole intervals from the sum, then pair only within each remaining good piece. Each exceptional interval contributes **one** core multiplied by $1-\gamma$. Its prime-to-10 cost is at most its halving span plus $O(q+\log e)$ bits, by factoring the common endpoint powers as above and retaining $2^{2k+q}-5^k$ as a single factor. The fixed number of these intervals costs at most $TL+O(\delta e+\log e)$ bits. The remaining end cores cost $O(\delta e+\log e)$ and the phase mismatches are bounded in number at fixed $\delta$. The binary-place application of (14), followed by the same limits in $\delta$ and its exponent parameter, gives $h_n\le \log_2 y+TL+o(e)$ as claimed. [Evertse, Theorem 2, equation (14)](https://www.numdam.org/item/CM_1984__53_2_225_0.pdf)
+
+With Fable's stronger $|G|\ge c>0$, if $n-L\gg e$, this conclusion holds without the comparable-scale assumption (as an asymptotic upper bound for $T(n-L)$). Indeed $e=o(y)$ by the unrestricted result above, hence $|W_i|\asymp y$ throughout, using $W_i=P_i(W_0+O(e))$. Some uninterrupted good interval then has length $\gg e$. The sharp one-phase proof on that interval, truncated at the scale of $\log y$ if necessary, gives $e=O(\log y)$. All its ordinary comparisons use absolute values and bounded corrections and apply equally to signed virtual heights. When $e=o(\log y)$ the asserted upper bound is immediate; on the remaining subsequences the comparable-scale criterion applies.
+
+**Example with three shifts.** Let $p$ run through the record denominators of $\|p\kappa\|$, take $e=6p$ and use shifts $0,p,2p$, all coefficients one. For each $1\le j\le p$ choose one of the triples $100,010,001$, independently. Put it in the three positions $j,j+p,j+2p$ and repeat it at $j+3p,j+4p,j+5p$. These are $3^p$ legal words. For $1\le i\le4p$ the three labels at the shifts sum to one. With $k_1$ nearest to $p\kappa$ and $k_2=2k_1$, both shifted discrepancies vanish except at $O(1)$ positions: their crossing arcs have lengths at most $2\|p\kappa\|$, and any $p$ consecutive phases are spaced by at least $\|p\kappa\|$. Here $p$ is sufficiently large that $2\|p\kappa\|<1/2$. Elsewhere $b_i^*=6$, and $G\ge1$. Thus $T(4p)\le\log_2 y+o(p)$ and $h\le(3/2+o(1))\log_2 y$. The one choice per column is unrestricted; choices at its six positions are linked. [Checks of the rotation, recurrence, and signed coefficients](check_split5_3_multishift.py)
+
+### Sharpness of the separation obstruction as a coding bound
+
+The pairwise separation law alone permits the full exponential rate $5/12$ at the target, even if the putative starts are ordinary integers in their stated octave and the first differing label must give the correct 2-adic valuation. The following construction strengthens the random-word obstruction. These integers are assigned for a coding example; whether the dynamical congruences hold is a separate condition.
+
+Take $m$ with $h=12m/5+O(1)$ and set $b=\lceil\log_2(e+1)\rceil$. Split the labels into $n=\lfloor e/b\rfloor$ full symbols of $b$ bits, followed by a common zero tail. Choose the largest $k\le n$ with $h_{kb}\le m$ (allowing $k=0$). Then $kb=m/T-O(\log e)$ up to a bounded rounding error. In the field $\mathbb F_{2^b}$ choose $n$ distinct elements $x_0,\ldots,x_{n-1}$. For arbitrary coefficients $a_0,\ldots,a_{k-1}$ form the polynomial
+$$
+f(X)=\sum_{j=0}^{k-1}a_j\prod_{u<j}\frac{X-x_u}{x_j-x_u}.
+$$
+The word is the list of $f(x_i)$ in a fixed binary basis, least significant coordinate first. Let $A_1,\ldots,A_{kb}$ be the bits of the **coefficients**, in the same order, and assign the integer
+$$
+y_f=2^m+\sum_{i=1}^{kb} A_i 2^{h_i-1}.
+$$
+All assigned integers lie in $[2^m,2^{m+1})$. For the first differing coefficient, say $a_j$, earlier evaluations agree and the difference at $x_j$ is exactly the coefficient difference. Field addition is bitwise XOR in the chosen basis. Thus the first differing label $i$ gives precisely $v_2(y_f-y_g)=h_i-1$.
+
+Let $t$ be the degree of $f-g$. It is the index of the last differing coefficient. If the words agree on at most $J$ intervals containing $L$ bits in total, at least $L/b-2J-1$ full evaluation symbols agree; only the two ends per interval and the final tail need be discarded. Each such agreement is a distinct root, so $t\ge L/b-2J-1$. The most significant differing bit of the assigned integers is at position at least $h_{tb+1}-1$. Since successive occupied bit positions are at least seven apart, all smaller contributions together have magnitude at most $1/127$ of that bit's weight. It follows that
+$$
+\log_2|y_f-y_g|\ge TL-O((J+1)\log e).
+$$
+The family has $2^{kb}=2^{(5/12)e-O(\log e)}$ members and satisfies the separation constraint simultaneously for every fixed $J$. The constructed valuations concern pairwise differences. The absolute subset-sum residue of an individual start, including the digits between the free positions, remains essential to the unrestricted octave question.
