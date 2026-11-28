@@ -915,3 +915,83 @@ $$
 In particular the lower limit is at least $7/12$ at the $12m/5$ scale. To see this use $N=e$ in the proof. If either $i$ or $i+q$ is in an extra interval $[u,v]$, put the corresponding correction in the group $[u-q,v]$ clipped to the summation range. After taking unions, the sum of spans increases by at most $L+Jq$. All estimates on $P_i$, denominators and ordinary sizes still hold by the fixed bound on $u_i$. This adds at most $TL+TJq$ to the upper estimate for $H_n$. Divide by $Te$, let $y\to\infty$ and then let $\delta,\rho\downarrow0$ to get the claim. This bounds the lengths of intervals *covering* the irregularities when their number is fixed. It does not give that density for individual changed exits scattered over many intervals.
 
 Unrestricted links can have unbounded displacements $K_i-b_i$ or schedules requiring more and more cuts. The argument gives an asymptotic exclusion for the stated families and supplies no numerical threshold octave. [Exact checks of the shifted identity and its support](check_split5_3_shifted_links.py)
+
+## Large jumps and stretches of consecutive exits
+
+Fable proposed a bound for links that make arbitrarily large excursions above the near-critical expansion schedule. The full affine identity gives the **same sharp coefficient one** as for bounded offsets. Neither the initial run of expansions nor an internal jump incurs a length penalty. There is also no minimum-length condition on the pieces.
+
+**Theorem.** Start at a positive shifted integer $y$. Consider a finite path of complete blocks whose cumulative linear slope at every block boundary is at least one. Let $h$ count its raw halvings. Up to and including exit $i$, write $K_i$ for the number of expansions and $h_i=2K_i+i$ for the number of halvings. Fix integers $B,J\ge1$. Suppose the exit indices split into at most $J$ consecutive pieces of the following forms.
+
+* On a piece with near-critical expansion counts there are constants $c\in\mathbb Z$ and $t\in\mathbb R$ such that
+  $K_i=c-\lfloor t-\kappa i\rfloor+w_i$.
+  The pair $(w_i,\beta_i)$ is constant on each of at most $J$ arcs of the phase $\{t-\kappa i\}$, with $|w_i|\le B$. The constants $c,t$ may change at each boundary, and $c$ has no size bound.
+* On a piece of consecutive exits, $K_i$ is constant. Every legal choice of exit types is allowed.
+
+For each $\eta>0$, uniformly over these paths, $h<(1+\eta)\log_2 y$ for all sufficiently large $y$. The path may end partway through a run of expansions at a complete-block boundary. In particular this covers the proposed up-jumps, constant-offset pieces and down-ramps, even when the first run is long or the last piece consists entirely of exits. It excludes these paths at $12m/5$ for all sufficiently large octaves. The first type also allows bounded fluctuations governed by the rotation phase.
+
+**Exit types on a ramp.** An exit with $\beta=3$ uses an input $Y\equiv2\pmod4$ and outputs $Y/2+3$, which is even. If the next block is another exit, it therefore also has $\beta=3$. Consequently the exit constants on any constant-$K$ piece consist of a string of $3/2$'s followed by a string of $3$'s, either possibly empty. Splitting at the switch gives at most two constant-type strings. A decrease in $K_i-b_i$ can also occur with one or two intervening expansions. The constant-$K$ hypothesis describes the specified ramp shape, not every possible decrease.
+
+**The whole-prefix identity.** If the assertion fails, truncate at the first block boundary with at least $(1+\eta/2)\log_2 y$ halvings. For large $y$ that boundary exists, and the count $h$ exceeds the truncation depth by less than two. Restriction preserves each piece condition. Let $A,Y$ be the expansion count and integer height at the truncated endpoint. At each exit put
+$$
+P_i=5^{K_i}/2^{h_i},\qquad \tau_i=\beta_i/P_i .
+$$
+Positivity of the prefix multipliers gives $0<\tau_i\le3$. Iteration of the affine maps, including any expansions after the last exit, gives
+$$
+y+\sum_i\tau_i=2^hY/5^A. \tag{1}
+$$
+Use a fixed small $\delta>0$, $Q=\lfloor\delta h\rfloor$, and choose $1\le q\le Q$ minimizing $\|\kappa q\|$. Write $k$ for the nearest integer to $\kappa q$, $d=2k+q=Tq+O(1)$, $\gamma=5^k/2^d$, $M=2^d-5^k$. Then $M$ is a nonzero odd integer and $\gamma=s^{k-\kappa q}$ is bounded above and below by absolute constants. Multiply (1) by $1-\gamma$. The leading term is $(1-\gamma)y$ and the right side is still an explicit multiple of $2^h/5^A$ times that same factor. No large correction to an endpoint or its denominator needs to be estimated.
+
+**Cancellation within each piece.** On a near-critical piece $[u,v]$ let $l=\min(q,v-u+1)$. Write its contribution as
+$$
+(1-\gamma)\sum_{i=u}^v\tau_i
+=\sum_{i=v-l+1}^v\tau_i-\gamma\sum_{i=u}^{u+l-1}\tau_i
+ +\sum_{i=u}^{v-q}(\tau_i-\gamma\tau_{i+q}).
+$$
+The last sum is empty on a short piece. When both indices lie in this piece its offset $c$ drops out. If $K_{i+q}-K_i=k$ and $\beta_{i+q}=\beta_i$, the paired term vanishes exactly. The floor difference fails its comparison only on an arc of length $\Delta=\|\kappa q\|$, and every phase cut contributes at most one further exceptional arc of that length. Among $Q$ consecutive indices any such arc contains at most two phase points by the minimizing property of $q$. There are at most $h$ exit indices. Thus at most $O_{J,\delta}(1)$ pairs remain, uniformly in the jump sizes. Keep their two terms separate.
+
+Each of the two end sums on this piece, ignoring its sign or factor $\gamma$, has the form
+$$
+\sum_{i=p}^{v'}\tau_i=\frac{2^{h_p}}{2\cdot5^{K_{v'}}}C,\qquad
+C=\sum_{i=p}^{v'} (2\beta_i)2^{h_i-h_p}5^{K_{v'}-K_i}\in\mathbb Z.
+$$
+Here $v'-p<q$. Within a piece $K_j-K_i=\kappa(j-i)+O_B(1)$, so $P_j/P_i=O_B(1)$ and $|C|\le C_B(q+1)2^{Tq}$. Both end sums use only differences of exponents **inside** the piece.
+
+On a constant-$K$, constant-type string $[p,v]$, summation is exact:
+$$
+\sum_{i=p}^v\tau_i=\beta\,(2/P_v-1/P_p).
+$$
+Expand its factor $1-\gamma$, obtaining at most four signed terms with only the primes 2, 3 and 5. Each has bounded ordinary magnitude, since $P_i\ge1$. Across all pieces, the sum of the ordinary absolute values of the displayed correction terms *before clearing denominators* is $O_J(h+1)$. This follows for the near-critical pieces by $\tau_i\le3$, including the positive end sums before applying their signs.
+
+**Binary divisibility and nondegeneracy.** Multiply by $2^{d+1}5^A$. All terms are integers. The full sum becomes $2M2^hY$ and the leading term becomes $x_0=2M5^A y$. Choose $\delta$ so small that $d<\tfrac12\log_2 y$ for large $y$. Then $|1-\gamma|y\ge2^{-d}y\gg h+1$. No vanishing subsum can contain the leading term, even after expanding the geometric sums into signed endpoints. Delete other vanishing subsums and zero terms.
+
+Apply Evertse's Theorem 2, equation (14), as in the preceding proof. For $r_{10}(x)=|x||x|_2|x|_5$, we have $r_{10}(x_0)/|x_0|_2\le 2|M|y\ll 2^d y$. Each surviving term from an end sum has $r_{10}\le|C|$, and there are at most $2J$ such terms. All remaining correction terms have $r_{10}\le3$. The number of terms is bounded for fixed $J,\delta$. Their maximum ordinary magnitude is $2^{O(h+\log y)}$, with an exponent independent of $\delta$: before clearing denominators the total absolute size is $O_J(h+y)$, and $A\le h/2$. The 2-adic norm of the sum is at most $2^{-h}$. It follows for every $\rho>0$ that
+$$
+h\le\log_2 y+d+2JTq+O_{B,J,\delta}(\log(h+2))
+   +O(\rho(h+\log_2 y))+O_{B,J,\delta,\rho}(1).
+$$
+Choose $\delta$ and then $\rho$ small enough, with $\eta,B,J$ fixed, that the linear errors total less than $(\eta/3)\log_2 y$. The remaining errors are $o(\log y)$, contradicting the truncation depth. This proves the theorem. [Evertse, p. 228, Theorem 2](https://www.numdam.org/item/CM_1984__53_2_225_0.pdf)
+
+**Sharpness with a growing excursion.** Take $e=3L$ and the previous baseline $b_i=a-\lfloor\kappa(e-i)\rfloor$. Set $K_i=b_i$ except on $L\le i\le2L$, where $K_i=b_{2L}$. The jump at $L$ grows linearly in $L$ and is followed by $L$ exits without intervening expansion. Choose every exit of type $3/2$. The prefix multipliers pass because $K_i\ge b_i$, with the same terminal slope as the maximizing schedule. The congruence $5^a y+C\equiv0\pmod{2^{h+8}}$ for the prescribed path gives a lift $2^{h+8}\le y<2^{h+9}$, and integrality forces the stated expansion and odd-exit branches. Thus $h/\log_2 y\to1$ even in this family. Putting the plateau at the beginning instead gives examples with an unbounded initial run.
+
+The same proof allows a fixed number of pieces on which the pairs (expansions since the preceding exit, exit type) have bounded period and bounded expansion counts. On residue classes within a period, successive $1/P_i$ have a fixed rational ratio $\lambda=2^{2a+p}/5^a\ne1$ for $p$ exits and $a$ expansions. The geometric sum is a difference of endpoint terms divided by $1-\lambda$. Only finitely many such ratios are possible under the two bounds. A fixed common denominator therefore suffices and the ordinary endpoint terms stay bounded. This includes periodic ramps with intervening expansions. The argument leaves open irregular paths requiring an unbounded number of pieces. [Exact checks of the full-prefix decomposition](check_split5_3_excursions.py)
+
+### Pieces with different rates of expansion
+
+In the theorem one may replace $\kappa$ on each near-critical piece by **its own arbitrary real rate** $\omega\ge0$, using that same rate for both its floor and its phase. The rates may vary with the path and need no uniform upper bound. Thus a bounded number of increasing or decreasing excursions with these schedules obeys $h\le(1+o(1))\log_2 y$, even if their rates differ. This permits different rotation phases on successive pieces. It does not assume that two independent phases acting at the same exit are interchangeable with one phase.
+
+Here are the details needed when the shifts and their multipliers differ. Truncate as in the proof above. Treat pieces containing fewer than $2/\delta$ exits as individual terms. On a remaining piece of length $n$ choose $Q_p=\lfloor\delta n\rfloor$ and minimize $\|\omega q_p\|$ over $1\le q_p\le Q_p$. Let $k_p$ be the nearest integer to $\omega q_p$, $d_p=2k_p+q_p$, $\gamma_p=5^{k_p}/2^{d_p}$ and $U_p=\max(1,\gamma_p)$. If the minimum distance is zero, every interior pair matches exactly. Otherwise the same separation argument leaves $O_J(n/Q_p+1)=O_{J,\delta}(1)$ exceptions. Nonnegativity of the run counts and the global bound $K_i\le h/2$ imply $\omega(n-1)\le h/2+O_B(1)$ from the two endpoints of the piece. Thus $q_p,\omega q_p,k_p,d_p=O(\delta h+1)$ with constants independent of the rate (with the additive constant depending on $B$).
+
+Multiply (1) by $F=\prod_p(1-\gamma_p)$ over the long pieces treated by shifting. On piece $p$ apply the preceding pairing identity with its own shift. Expand $\prod_{p'\ne p}(1-\gamma_{p'})$ into signed monomials in the other multipliers. For individual terms from short pieces, or geometrically summed terms from constant-type ramps, expand all factors. Each monomial has only 2 and 5 in its numerator and denominator. The number of copies grows by at most $2^J$, a fixed factor. Rational rates, including zero, cause no zero factor: $2^{2k_p+q_p}\ne5^{k_p}$ for $q_p>0$.
+
+For an end group of at most $q_p$ exits, each integer summand of its core $C$ is bounded by $6\cdot 2^{O_B(\delta h+1)}$ since its expansion span is at most $\omega q_p+O_B(1)$ and its halving span is at most $2\omega q_p+q_p+O_B(1)$. This bound is uniform even if $P_v/P_u$ is large. Let $U=\prod_p U_p$. Before clearing denominators, the sum of absolute correction terms is $O_J((h+1)U)$ using $\tau_i\le3$. For each factor,
+$$
+\frac{|1-\gamma_p|}{U_p}\ge \frac1{\max(2^{d_p},5^{k_p})}.
+$$
+Consequently $|F|y/U\ge y\,2^{-O_{B,J}(\delta h+1)}\gg\sqrt{y}$ for sufficiently small $\delta$. This again protects the leading term. It also covers the empty product when all pieces are short or geometrically summed.
+
+Clear denominators by $2^{1+\sum_p d_p}5^A$. The resulting sum is $2\prod_p(2^{d_p}-5^{k_p})2^hY$. For the leading term, $r_{10}(x_0)/|x_0|_2$ is at most $y\,2^{O_{B,J}(\delta h+1)}$. Each singleton has bounded $r_{10}$ and each end core costs at most $O_B(\delta h+\log(h+2))$ bits. There are at most $2J2^J$ end cores, independently of $\delta$. All ordinary term sizes are $2^{O_{B,J}(h+\log y)}$. The same nondegenerate application of Evertse now gives
+$$
+h\le\log_2 y+O_{B,J}(\delta h)+O_{B,J,\delta}(\log(h+2))
+ +O_{B,J}(\rho(h+\log_2 y))+O_{B,J,\delta,\rho}(1).
+$$
+Choosing $\delta$, then $\rho$, then $y$ proves the asserted cutoff. The constants use only a bounded number of phase cuts and pieces, even though their locations, rates and vertical offsets may all change.
