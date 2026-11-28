@@ -39,6 +39,8 @@ is used in any proof or check.
 | `p3_a`, `p3_b`, `p3_c`, `p3_d` | F3 | `g` ∈ {`2+t^2`, `1+t+t^2`, `1+2t^2`, `2+t+2t^2`}, `h = (g−t)/g0` | GLOBAL | **false**, e.g. `T^{8N}(1+t^{2N}) = 1+t^{6N}` | PROVED (new) | 3 |
 | `p2_sq111`, `p2_1034` | F2 | `g = (1+t+t^2)^2` resp. `1+t^3+t^4`, `h = t+g` | GLOBAL | **false** | PROVED | 3 |
 
+**Subsequent binomial classification.** For every odd twist, the map with multiplier `1+t^m` has a divergent polynomial orbit exactly when m ≥ 2. This includes the previously open untwisted quintic entry. The proof embeds one quadratic step in m raw steps and gives the starting polynomial and its degree at infinitely many explicit times. [Proof](../../../output/pdf/binomial_polynomial_orbits.pdf) · [Checker](check_binomial_orbits.py)
+
 Each divergence result also holds for every twist `k·h` with `k(0) = 1` (R3).
 
 ## Open, with what was proved and tried

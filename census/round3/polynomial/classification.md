@@ -75,7 +75,8 @@ So the `F_2`, `deg ≤ 2` classification is complete except for the zero-drift m
 | other degree 4 | OPEN | none found | — |
 | `(1+t)^5` | **false**; orbit of 1 diverges (PROVED, new) | — | D2 (`k = 2`) |
 | `1+t+t^5` | OPEN | false for `h ∈ C_2 F_2[t]` | D3 (`k = 2`) |
-| `1+t^5`, `1+t^3+t^5` | OPEN | twisted line certificates found by the scan; not written up | scratch |
+| `1+t^5` | **false (PROVED)** | false for every admissible twist; the same holds for every binomial `1+t^m`, m ≥ 2 | [Two-branch embedding and explicit orbit](../../../output/pdf/binomial_polynomial_orbits.pdf) · [Checker](check_binomial_orbits.py) |
+| `1+t^3+t^5` | OPEN | twisted line certificates found by the scan; not written up | scratch |
 | infinite family `(1+t)^{2^k+1}` | **false** for all `k ≥ 1` (PROVED) | — | D2 |
 | infinite family `1+t+t^{2^k+1}` | OPEN for `h = 1` | false for `h ∈ C_k F_2[t]`, all `k ≥ 1` (PROVED) | D3 |
 

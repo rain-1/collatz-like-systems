@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm}
+\usepackage[margin=26mm]{geometry}
+\usepackage[colorlinks,linkcolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\F}{\mathbb F_2}
+\newcommand{\Tm}{T_{m,1}}
+\title{A divergent polynomial orbit for every binomial multiplier \(1+t^m\), \(m\ge2\)}
+\author{Collatz-like systems census}
+\date{28 November 2026}
+\begin{document}
+\maketitle
+
+Work over \(\F[t]\). Call a polynomial even or odd according as its constant coefficient is zero or one. Fix a positive integer \(m\) and \(h\in\F[t]\) with \(h(0)=1\). Define
+\[
+ T_{m,h}(f)=
+ \begin{cases}
+ f/t,& f\text{ even},\\
+ ((1+t^m)f+h)/t,& f\text{ odd}.
+ \end{cases}
+\]
+The round-3 census marked the case \(m=5,\ h=1\) open. Its question was whether every polynomial orbit eventually repeats.
+
+\begin{theorem}
+For \(m=1\) every orbit is eventually periodic. For every \(m\ge2\) and every admissible \(h\), the polynomial
+\[
+ f_0=h(t)(1+t+t^m)(1+t^m+t^{3m})
+\]
+has a divergent orbit under \(T_{m,h}\). More precisely, for every \(j\ge0\),
+\[
+ \deg T_{m,h}^{\,5m(2^j-1)}(f_0)=\deg h + m+3m\,2^j .
+\]
+\end{theorem}
+
+The ingredient for \(m=2\) is the divergent orbit of Matthews and Leigh \cite{ml}. We give its calculation on page 2. The following identity transfers it to every \(m\), including odd \(m\).
+
+\begin{lemma}
+Let \(S=T_{2,1}\) in a variable \(u\). For \(m\ge2\), put \(g=1+t^m\), \(C=g+t\), and \(L_m(F)=C F(t^m)\). Then
+\[
+    \Tm^{\,m}(L_m(F)) = L_m(S(F))\qquad(F\in\F[u]).
+\]
+\end{lemma}
+\begin{proof}
+If \(F\) is even, \(L_m(F)\) is divisible by \(t^m\), so all \(m\) steps divide by \(t\).
+If \(F\) is odd, \(L_m(F)\equiv1+t\pmod {t^m}\).
+Since \(g\equiv1\pmod {t^m}\) and \(m\ge2\), the first odd step leaves an odd polynomial. After the second odd step the value is
+\[
+ \frac{g^2 C F(t^m)+g+t}{t^2}
+ =\frac{C\bigl(g^2 F(t^m)+1\bigr)}{t^2}.
+\]
+The parenthesis is divisible by \(t^m\), so the remaining \(m-2\) steps divide by \(t\). Since \(g^2=1+(t^m)^2\), the value after all \(m\) steps is \(L_m(((1+u^2)F+1)/u)\).
+\end{proof}
+
+\newpage
+\section*{The quadratic orbit and its exact return times}
+
+Let \(p=1+u^2\), \(r=1/(1+u+u^2)\), \(d=1+r\). For \(N\) a power of two put
+\[
+ F_N=r+u^{3N}d
+     =\frac{1+u^{3N}(u+u^2)}{1+u+u^2}.
+\]
+Each \(F_N\) is a polynomial of degree \(3N\), since \(u^3=1\) and \(u+u^2=1\) modulo the denominator. In particular \(F_1=1+u+u^3\).
+
+We claim \(S^{5N}(F_N)=F_{2N}\). To track parities one may perform the updates in the formal power series ring, where \(r\) is defined. Two series congruent modulo \(u^\ell\) follow the same branches for the next \(\ell\) steps: at each step their difference is divided by \(u\) and may be multiplied by \(p\), so at most one power of \(u\) is lost.
+
+The odd series \(r\) is fixed, as \(pr+1=ur\). The first \(3N\) steps from \(F_N\) therefore follow \(r\), giving \(r+p^{3N}d\). Write \(U=u^N\). In characteristic two \(p^N=1+U^2\), hence this value is
+\[
+     1+(U^2+U^4+U^6)d.
+\]
+It agrees with \(1\) modulo \(u^{2N}\). The next \(2N\) steps thus follow \(N\) laps of \(1\mapsto u\mapsto1\). Their difference multiplier is \(p^N/u^{2N}\), giving
+\[
+  1+(1+U^2)(1+U^2+U^4)d
+   =1+(1+U^6)d
+   =r+U^6d=F_{2N}.
+\]
+Summing the successive time intervals gives \(S^{5(2^j-1)}(F_1)=F_{2^j}\).
+
+\begin{proof}[Proof of the theorem]
+The lemma now gives \(\Tm^{\,5m(2^j-1)}(L_m(F_1))=L_m(F_{2^j})\), of degree \(m+3m\,2^j\). For arbitrary \(h\), multiplication by \(h\) preserves the constant coefficient of the argument and satisfies \(T_{m,h}(hf)=h\Tm(f)\). This gives the displayed degree formula. Unbounded degrees exclude repetition. Since there are only finitely many polynomials of each bounded degree, the degree along the full orbit tends to infinity. When \(m=1\), both branches preserve the degree bound \(\max(0,\deg f,\deg h)\) (with \(\deg 0=-\infty\)); every orbit then lies in a finite set.
+\end{proof}
+
+For the open quintic entry, take \(h=1\). The seed \((1+t+t^5)(1+t^5+t^{15})\) has degrees \(20,35,65,125,\ldots\) at times \(0,25,75,175,\ldots\). The smaller seed \(1\) itself is periodic: it maps to \(t^4\) and returns to \(1\) after four divisions.
+
+\begin{thebibliography}{1}
+\bibitem{ml} K. R. Matthews and G. M. Leigh, \emph{A generalization of the Syracuse algorithm in \(\mathbb F_q[x]\)}, Journal of Number Theory 25 (1987), 274--278. \href{https://www.sciencedirect.com/science/article/pii/0022314X87900321}{Publisher's record}.
+\end{thebibliography}
+\end{document}
