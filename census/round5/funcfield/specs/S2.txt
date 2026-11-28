@@ -1,0 +1,5 @@
+# F_2 split analogue: f/t ; f=1 mod t^2: (1+t+t^3)(f-1)/t^2 ; f=1+t mod t^2: (1+t)(f-1-t)/t^2 + 1
+q 2
+B 1 0 G 0 1 C 0 0
+B 2 1 0 G 3 1 1 0 1 C 0 0
+B 2 1 1 G 1 1 1 C 0 1

@@ -1,0 +1,820 @@
+{
+ "prove:funcfield": {
+  "folder": "/home/riv/Code/collatz/census/round5/funcfield",
+  "success_level": "ANALOGUE_DECIDED",
+  "theorems": [
+   {
+    "name": "Theorem A (E_F and M_F false for A3)",
+    "statement": "The system A3 over F_3 has negative drift (-1/3 per digit) and free re-entry. Its branches are f/t; (1+t^2)(f-1)/t when f(0)=1; (f-2)/t+1 when f(0)=2. Take L=2*3^k, X=3^{L+2} and h=log_3(2 sqrt 2). Then for every b, including b=infinity, N(X,b) >= (2 sqrt 2)^L/(L(L+1)) - 1 >= X^h/(9 log_3^2 X) - 1, while X P(b) <= X 3^{-(1-h)b}. So the count law fails for every K>1, and sigma(f)=infinity for polynomials of unbounded degree. The count law holds exactly inside the horizon.",
+    "status": "PROVED",
+    "proof_file": "theory.md",
+    "check_file": "check_theoremA.py",
+    "novelty": "new as far as checked; the explicit bound overtakes X P(2 log X) from L=486 on, and the enumeration shows the excess already at D=10"
+   },
+   {
+    "name": "Theorem F (Frobenius cycles)",
+    "statement": "Suppose a branch word w of digit length L has G_w = t^L + c with c a nonzero constant. Then -H_w/c is a polynomial periodic point lying in the cylinder of w, and these points are distinct for distinct words. Consequently #{f != 0 : deg f <= L+kappa, sigma(f)=infinity} >= |W_L|/L - 1, where W_L is the set of such words. For binomial systems (A3 with L=2*3^k, Q4b with L=3*2^k, S2c with L=2^k) W_L is the set of all zero-slope words of length L.",
+    "status": "PROVED",
+    "proof_file": "theory.md",
+    "check_file": "check_frobenius_cycles.py",
+    "novelty": "new"
+   },
+   {
+    "name": "Theorem A' (Q4b, S2c)",
+    "statement": "The same failure of E_F and M_F holds for Q4b over F_4 for every K>1, since the two exponents agree exactly: 4^h = 60.75^{1/3}. For S2c over F_2 it holds for K >= 1.05, from exact counts at L=2048. Extending S2c to all K>1 needs the standard method-of-types limit, which is quoted, not proved here.",
+    "status": "PROVED (S2c for all K>1 uses a quoted standard result)",
+    "proof_file": "theory.md",
+    "check_file": "check_frobenius_cycles.py"
+   },
+   {
+    "name": "Lemma T and Corollaries T1, T2 (top-digit decoupling, cycle inequality, Frobenius sawtooth)",
+    "statement": "Write T^n f = (G_w f + H_w)/t^L. Then deg H_w <= L + kappa + R, so the top digits of the orbit depend only on the branch counts. If f is periodic with deg f = D, then deg(t^L - G_w) <= L + kappa + R - D. When only one multiplier is non-constant, every cycle at degree D satisfies nu * p^{v_p(n_1)} >= D - kappa - R.",
+    "status": "PROVED",
+    "proof_file": "theory.md",
+    "check_file": "check_topdigits.py",
+    "novelty": "the function-field analogue of the integer cycle inequality |2^L-3^a| <= CL2^L/n"
+   },
+   {
+    "name": "Horizon lemma",
+    "statement": "N_D(b) = (q-1) q^D P(b) exactly whenever b + e_max - 1 <= D (and D >= D_0).",
+    "status": "PROVED",
+    "proof_file": "theory.md",
+    "check_file": "check.py"
+   },
+   {
+    "name": "Corrected law (binomial systems)",
+    "statement": "For all b >= log_q X, N(X,b) = X^{h+o(1)} along X = q^{L+kappa+1}: survivors stop thinning at the horizon.",
+    "status": "PROVED along the subsequence",
+    "proof_file": "theory.md"
+   },
+   {
+    "name": "Integer counterpart (Catalan words)",
+    "statement": "Under 3x+d, parity words with 2^L - 3^a = +-1 give exactly the cycles {-1}, {1,2}, {-5,-7,-10} (times d). By Mihailescu's theorem (quoted) there are no others, so the Frobenius mechanism yields only finitely many integer exceptions.",
+    "status": "PROVED (finite part checked; Mihailescu quoted)",
+    "check_file": "check_integer_catalan.py"
+   },
+   {
+    "name": "Generic systems (B3, G3, S2, Q4)",
+    "statement": "The count law holds within noise up to b of about 2D; after that cycles create an excess, with a deficit for Q4. Cycle counts grow in a sawtooth at powers of p. Heuristically about q^{p^k(hM - deg Delta)} Frobenius cycles exist, so E_F fails generically as well.",
+    "status": "EVIDENCE / HEURISTIC / CONJECTURE",
+    "proof_file": "theory.md"
+   },
+   {
+    "name": "Possibly divergent orbits despite negative drift",
+    "statement": "Orbits in A3, B3, G3, S2c and Q4b pass degree 4000 without repeating (for example the A3 orbit grows at about 0.33 degrees per step). No certificate was found.",
+    "status": "EVIDENCE / OPEN"
+   }
+  ],
+  "evidence": "Seven systems were enumerated exhaustively (F_3 up to D=16, F_2 up to D=24, F_4 up to D=12), with stopping times capped at 400 digits. All in-horizon cells match (q-1)q^D P(b) exactly.\n\nBeyond the horizon, observed/expected by b/D range:\n\n| system | 1-1.5 | 1.5-2 | 2-3 | 3-4 | 4-6 | 6-10 |\n|---|---|---|---|---|---|---|\n| A3 | 1.06 | 1.75 | 4.45 | 16.1 | 82 | 1380 |\n| G3 (chi2/cell) | 1.0001 (0.66) | 0.9995 (2.3) | 0.9955 (3.6) | 1.01 (23) | 1.73 | 16.9 |\n| S2 | 0.9993 | 1.005 | 0.997 | 1.11 | 2.95 | - |\n\nA3 has 52,672 distinct cycles with minimum at degree 15. All exact checks exit 0: check_frobenius_cycles.py, check_theoremA.py, check_topdigits.py, check_integer_catalan.py, and the runner check.py, about 6 minutes in total.",
+  "blocking_points": "For generic (non-binomial) systems the failure of E_F rests on numbers and a heuristic. What is missing is a proof that Delta^{p^k} divides H_w for exponentially many words whose branch counts are divisible by p^k. No positive theorem beyond the horizon was found for any polynomial system: the linear-algebra reformulation (equidistribution of H_w mod G_w) is as hard as E itself. The apparently divergent orbits with negative drift have no certificate; a line-renormalization search covered 12,446 of 927,866 candidate directions without success. The S2c case for all K>1, and the Baker and Mihailescu statements, are quoted rather than proved.",
+  "summary": "The function-field analogue of Conjecture E, and of its minimal form M, is false. I proved this for A3 over F_3, a system with negative drift and free re-entry, and also for Q4b over F_4 and S2c over F_2.\n\nThe mechanism is Frobenius. (1+t^2)^{3^k} = 1 + t^{2*3^k}, so for every zero-slope word w of length 2*3^k the periodic point -H_w/c is a polynomial. That gives at least X^h/(log X)^2 polynomials with sigma = infinity, while the Haar prediction X P(b) tends to 0. The count law therefore holds exactly up to the horizon and fails for every K>1. For binomial systems the corrected law is that survivors stop thinning at the horizon.\n\nLemma T shows the cause: without carries, the top digits evolve only through the branch counts, and Frobenius gives them near-returns. Its corollary deg(t^L - G_w) <= L + kappa + R - D is the analogue of the integer cycle inequality. In Z, Baker's theorem rules out near-returns and Mihailescu leaves exactly the cycles -1, {1,2}, {-5,-7,-10} (checked).\n\nLesson for the integer proof: an argument using only the digit, cylinder and affine structure would also prove E for A3, so a proof of E needs an archimedean input (Baker-type separation, or equidistribution of a log_2 3 mod 1) carried into the middle digits by carries.\n\nGeneric polynomial systems follow the Haar count to about twice the horizon and then break; this is evidence and a heuristic, not a proof. Orbits with negative drift that look divergent remain open."
+ },
+ "prove:microrange": {
+  "folder": "/home/riv/Code/collatz/census/round5/microrange/",
+  "success_level": "BEYOND_HORIZON_PROVED",
+  "theorems": [
+   {
+    "name": "Theorem R (reduction, uniform in the intercept)",
+    "statement": "Setting: 3x+1 Terras map, coefficient stopping time tau; N(m,b) = #{n < 2^m : tau(n) > b}. For every m, j >= 1 and split depth j' with j <= j' <= m, put d = m - j' and K = j + j'. Then Sum_A Cnt_d(A) min_B Phi(3^A,B) <= N(m,m+j) <= Sum_A Cnt_d(A) max_B Phi(3^A,B), and Sum_A Cnt_d(A) Phi_bar = 2^m P(m+j). Here Phi(u,B) = #{s < 2^{j'} : u s + B mod 2^K in S_{d,A}}, S_{d,A} is the in-horizon survivor set, and B ranges over all of Z/2^K. Hence |N/2^mP(m+j) - 1| <= max_A r_A. No information about the intercept T^d(r), whose low bits are the beyond-horizon data, is used.",
+    "status": "PROVED; checked against brute-force counts in 1369 cases (3x+1 up to n < 2^34; 3x-1 and 3x+5 up to n < 2^32; j <= 8)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/check_exact.py",
+    "novelty": "New to the repo. The key point is bounding uniformly over the intercept B, which avoids the circularity of conditioning on B's middle bits."
+   },
+   {
+    "name": "Theorem C (certified beyond-horizon counts)",
+    "statement": "For m = 100, 1000, 3000 and j = 1..12: N(2^m, m+j) = 2^m P(m+j)(1+delta), with |delta| <= 2e-5 (j = 1) up to 0.019 (j = 12); for example |delta| <= 0.0093 at m = 1000, j = 12. For every m in [35,1000] at j = 4: |delta| <= 0.0062. The in-horizon sandwich gives about [-0.97,+0.69] at j = 12.",
+    "status": "PROVED (exact integer computation)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/data/certified.txt",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/certify.py",
+    "novelty": "new"
+   },
+   {
+    "name": "Lemma F (averaged uniform discrepancy)",
+    "statement": "For any S in Z/2^K, j' >= j = K - j' >= 1, and u uniform on a coset of <3> in (Z/2^K)^*: E_u max_B |Phi(u,B) - Phi_bar| <= g_K sqrt(|S|(1 - |S|/2^K)), with g_K = 4(1 + 0.3466(K-1)).",
+    "status": "PROVED (Fourier, complete geometric sums over the cyclic group, Parseval); checked exactly in 432 cases, worst ratio 0.064",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/analytic.py",
+    "novelty": "standard technique applied to the new problem"
+   },
+   {
+    "name": "Theorem D (almost all octaves, log log X digits beyond the horizon)",
+    "statement": "Fix eta > 0. For large M, all but at most M^{1-eta/3} of the m in [M,2M) satisfy |N(2^m,b) - 2^m P(b)| <= 2 m^{-eta/3} 2^m P(b) for every b with m < b <= m + (h0/2 - eta) log2 m, where h0 = 0.9430 is certified (h0/2 = 0.4715). Explicit finite form: the number of bad m is <= 2 n_s (lambda+3)(K+1) g_K 2^j M / (eps sqrt(#surv(K))). The same holds for every 3x+d with d odd.",
+    "status": "PROVED (uses Lemmas F, P, M and elementary counting of the drifting window A ~ m lambda mod 2^{K-2}); the constants become effective only for M >= about 2^65",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/analytic.py",
+    "novelty": "new"
+   },
+   {
+    "name": "D' (explicit densities at K = 16)",
+    "statement": "Weyl plus exact computation over all 2^14 multipliers and all 172 slot patterns. The upper density of the m with |N(2^m,m+1)/2^mP(m+1) - 1| > 0.05 is <= 0.002; at j = 2 and eps = 0.1 it is <= 0.002; at j = 4 and eps = 0.1 it is <= 0.136.",
+    "status": "PROVED",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/analytic.py",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "novelty": "new"
+   },
+   {
+    "name": "O1 (obstruction to route (i))",
+    "statement": "Only A in [amin(d), amin(d+K)), a window of about 0.63K consecutive integers, matter, because A is fixed by the slope level. So a local limit theorem for A mod 2^{2j-2} among survivors cannot supply equidistribution of 3^A. The randomness has to come from the specific value of 3^A (Theorem C) or from the window drifting with m (Theorem D).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "novelty": "new observation"
+   },
+   {
+    "name": "Generalisation to 3x+d",
+    "statement": "Theorems R, C, D and D' hold for every odd d, with multiplier 3^A d^{-1}. This uses T_d(x) = d T_1(x/d) on Z_2. The extra cycles of 3x-1 and 3x+5 are tolerated.",
+    "status": "PROVED; checked against brute force",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/check_exact.py",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "novelty": "new"
+   }
+  ],
+  "evidence": "check_exact.py exits 0 in about 2 s. It checks fast vs naive discrepancy code, the Terras identity, the conjugacy for 3x+d, the in-horizon identity for m <= 34, and L <= N <= U against brute force in 1369 cases. At the median, the certified interval is 13x narrower than the in-horizon sandwich. certify.py exits 0 in about 12 min and writes data/certified.txt. analytic.py exits 0 in about 5 min: Lemma F exact in 432 cases, Lemma P for K <= 24, Lemma M, h0 = 0.9430 from #surv(2000), the Theorem D constants, and the D' density table. Integer stopping time sigma versus tau: the brute-force counts differ only by n = 1 for n < 2^34.",
+  "blocking_points": "(1) All-m version (not just almost all m) is OPEN. Bad multipliers exist: 3^a with a 2-adically near -i for small i; at K = 16, slot 0, r = 0.28 against a mean of 0.036. No theorem controls the discrepancy of the specific dilations 3^A against the 2-adic survivor set; only its average over A is controlled. A sharp hypothesis (r bounded via mu(a) = max_{|i|<=K} v2(a+i)) is stated but untested. (2) The depth gained is limited to (0.47 - eta) log2 m: 2^{j'} line points must represent 2^{j'+j} residues, and the averaging needs 2^{K-2} <= m. Conjecture E (j up to a multiple of m) is untouched. (3) Lower-bound constructions: no improvement over sigma(n) >= (log2 3 - o(1)) log2 n. (4) split5_3 and K7 were not done; the transfer is expected but the U/O-state bookkeeping is not written or checked. (5) The upper bound for the integer stopping time sigma needs sigma = tau for almost all counted n; this is evidence only. (6) The Theorem D constants are poor (effective only from M of about 2^65); between m = 3000 and there, any given m can be certified only individually.",
+  "summary": "For 3x+1 counted by the coefficient stopping time, I proved a reduction, Theorem R. It brackets N(2^m, m+j), the number of n < 2^m not dropped after m+j steps, between two sums that depend only on data mod 2^{m-j'} and on the multipliers 3^A mod 2^{j+j'}. The bracket holds uniformly over the unknown intercept T^d(r), whose low bits are exactly the beyond-horizon information, so there is no circularity. Evaluated exactly (Theorem C), it certifies the count law of Conjecture E beyond the horizon. Examples: within 0.93% at m = 1000, j = 12; within 0.62% for every m in [35,1000] at j = 4. The in-horizon sandwich only gives about +-50-90%. Combining a Fourier/Parseval averaged-discrepancy lemma (Lemma F) with Lemma P (patterns no harder than the root), Lemma M (supermultiplicativity, h0 = 0.943) and the drift of the window A ~ m log_3 2 gives Theorem D: for all but M^{1-eta/3} of the m in [M,2M), the count law holds with relative error 2m^{-eta/3} at every depth up to log2 X + (0.4715 - eta) log2 log2 X. Everything holds for every 3x+d with d odd, and agrees with brute force for 3x+1, 3x-1 and 3x+5. Route (i) as proposed fails, provably: A is pinned to a window of about 0.63K values by the slope level. The all-m version, larger depths and split5_3/K7 remain open; README.md in the folder records exactly where each one stalls."
+ },
+ "prove:fourier": {
+  "folder": "/home/riv/Code/collatz/census/round5/fourier/",
+  "success_level": "CONDITIONAL_REDUCTION",
+  "theorems": [
+   {
+    "name": "F1 (exact Fourier identity)",
+    "statement": "For X = k p^{b-m}: N(X,b) - X P(b) = p^{-b} sum over xi != 0 with v_p(xi) < m of S^(xi) conj(I_X^(xi)). Frequencies with v_p(xi) >= m are annihilated. Hence |N/(XP) - 1| <= B_F(b,m) = X^{-1} sum_{v_p(xi)<m} |mu_b^(xi)| |I_X^(xi)|.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_fourier.py",
+    "novelty": "standard Plancherel; the valuation restriction is the useful point"
+   },
+   {
+    "name": "F2 (bounded distance past the horizon <=> pointwise Fourier decay)",
+    "statement": "These are equivalent: (a) N(k p^{b-m}, b)/(k p^{b-m} P(b)) -> 1 for every fixed m, k; (b) mu_b -> Lebesgue weak-*; (c) mu_b^(xi) -> 0 for every fixed xi != 0.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md",
+    "novelty": "standard equidistribution argument, applied to E"
+   },
+   {
+    "name": "F3 (conditional: H => E up to 1/(1-h/2))",
+    "statement": "If B_F(b,m) <= C p^m |R_b|^{-1/2+eps} (hypothesis H), then E holds for b <= log_p X / (1 - (1/2 - 2eps) h). That is 1.90 log X for 3x+1 and 1.41 log X for split5_3, short of C*.",
+    "status": "PROVED (conditional); H is EVIDENCE: the ratio B_F/(2^m |R_b|^{-1/2}) is 1.3-1.9 for 3x+1, 2.5-3.3 for K7 and 3.3-4.2 for split5_3, b = 18..26",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/l1test.py"
+   },
+   {
+    "name": "F4 (ceiling of the Fourier method)",
+    "statement": "B_F(b,m) >= (2/pi)(1/(2 X P(b)) - 1) for all b, m. So no bound that puts absolute values on Fourier coefficients certifies anything once X P(b) < 1/(2+pi) = 0.194. In particular no such bound can give M or E_0.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_fourier.py"
+   },
+   {
+    "name": "Lemma T and Theorem U (transfer bound uniform in depth)",
+    "statement": "Above an alive node r1 mod p^j, the surviving lifts t are exactly those with (U t + floor(x/p^s)) mod p^L in All(sigma, A), a finite set fixed by the state and the threshold. Consequently, for all b >= L: |mu_b^(xi)| <= kappa_{L, v_p(xi)} and |N(k p^{b-m}, b)/(X P(b)) - 1| <= D_{L,m,k}. Both bounds are computable from finitely many sets. For 3x+1, L = 22: D <= 0.1948, 0.4330, 0.8777 for m = 1, 2, 3, valid for every b >= 22.",
+    "status": "PROVED (identity checked exactly; the numerical bounds use double-precision FFT, error far below the margins but not certified exactly)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_fourier.py",
+    "novelty": "new here. Weak: at fixed b the trivial sandwich gives bounds of the same size; useless for split5_3 (D = 3.5) and near-trivial for K7 (D = 0.999)"
+   },
+   {
+    "name": "Proposition Z",
+    "statement": "3x+1: if no power of 3 lies in [2^{b-1}, 2^b), then R_b = R_b + 2^{b-1}, all odd-frequency coefficients vanish, and N(2^{b-1}, b) = |R_b|/2 exactly.",
+    "status": "PROVED (a restatement of in-horizon data)",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_fourier.py"
+   },
+   {
+    "name": "S (2-adic Syracuse form)",
+    "statement": "3x+1: r = -sum_k 3^{-k} 2^{e_k} mod 2^b for every r in R_b. So mu_b^ is the characteristic function of a 2-adic Syracuse variable conditioned on survival. It is exactly uniform without the conditioning.",
+    "status": "PROVED",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_fourier.py"
+   },
+   {
+    "name": "G (gap in E => M)",
+    "statement": "E with additive error X^{eps(X)} does not imply M. The corrected form E_0, with additive error eps(X) -> 0 beyond the finite set of exceptional starts, does imply M.",
+    "status": "PROVED (logic)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md"
+   },
+   {
+    "name": "N2/N3 (non-decay of the top-level sup; its arithmetic structure)",
+    "statement": "For 3x+1 the maximum of |mu_b^| over odd xi stays about 0.05 for b = 20..27 (random-set baseline 0.003-0.02). The maximisers are xi = +-2^v u^a with a near (b - v) log_u 2 - 1; at b = 27 the maximiser is exactly xi = 3^15. Low frequencies 1 <= xi <= 64 decay like |R_b|^{-1/2}.",
+    "status": "EVIDENCE",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/decay.py"
+   }
+  ],
+  "evidence": "I computed the exact sets R_b with rb.c for split5_3, 3x+1 and K7 up to b = 30. FFTs at b = 24 to 28 are in spectrum_b24.txt, decay.txt, decay_c31_28.txt, profile_b26.txt and powers_b24.txt. The L1 criterion was tested on real data (l1test_b26.txt, l1_vs_b.txt). At b = 26 it certifies the 3x+1 count up to m = 9 digits past the horizon (B_F = 0.87) and fails from m = 10 on, which matches the 1/(1-h/2) ceiling. Theorem U numbers are in ub_*.txt. check_fourier.py runs exact checks [1]-[7] and exits 0. A mutation test showed it fails, with 2592 failures, when the transfer identity or the Syracuse identity is perturbed. The exact top-digit counts (topdigits.txt) deviate from the Haar prediction by less than 0.003, well inside the proved bound.",
+  "blocking_points": "E_bdd (mu_b^(xi) -> 0 for fixed xi) is open for every system. Theorem U loses the outer phases through the triangle inequality, so it is capped at kappa_L. Numerically kappa_L flattens at about 0.059 for 3x+1 (0.087, 0.074, 0.065, 0.059, 0.059 at L = 16..24), which matches the observed non-decaying sup. Getting cancellation over r1 needs the pairs (U(r1), floor(x/p^s)) mod p^L to be equidistributed over alive nodes, and that is E again: the argument is circular. Hypothesis H is supported only for b <= 26 and, even if true, reaches only 1/(1-h/2). F4 proves that absolute-value Fourier arguments can never reach M; a proof would have to use the signs of the coefficients. A Tao-type uniform-in-xi decay for the conditioned 2-adic Syracuse variable is numerically false because of the xi = +-2^v u^a spikes. All results use the slope-sense count, not the lead's actual-value count. G was not treated.",
+  "summary": "I put Conjecture E into Fourier form exactly. m digits past the horizon involve only the frequencies with v_p(xi) < m (F1). E at bounded distance past the horizon is equivalent to mu_b -> Lebesgue, i.e. to pointwise decay of mu_b^ (F2). A square-root L1 hypothesis H, numerically supported for the three systems, gives E up to b = log X/(1-h/2) (F3). F4 proves this method cannot certify anything once X P(b) < 0.194, so it can never give M. A transfer identity (Lemma T, checked exactly) gives Theorem U: finite computations at depth L bound the Fourier coefficients and the counts m digits past the horizon uniformly for every b >= L. For 3x+1 the error is within 19.5%, 43%, 88% for m = 1, 2, 3 and all b >= 22. This is valid but no better than trivial bounds at fixed b, and it is useless for split5_3. I also found that the lead's 'E => M' does not follow with the X^eps error term and gave a corrected form E_0. Numerically, the top-level coefficients do not decay. Their worst frequencies are exactly +-2^v u^a, which is the S-unit 'middle digits' structure, and it rules out Tao-type uniform decay statements. The literature survey (Tao, Sahlsten-Stevens, Bourgain-Dyatlov, Li, Shmerkin-Wu, Mahler/intrinsic approximation) explains why none applies; sources I checked online are labelled as checked, the rest as from memory. Everything is written up in README.md."
+ },
+ "referee:microrange": {
+  "verdicts": [
+   {
+    "claim": "R: reduction uniform in the intercept",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived line by line. The middle step N = sum_r Phi(3^A, T^d(r) mod 2^K) holds as an exact identity, checked from scratch in 324 brute-force cases (3x+1, 3x-1, 3x+5). The mutation test fails as it should. The bounds use only in-horizon data. The result is genuinely beyond the horizon: it is about the residues mod 2^{m+j} whose top j bits are zero."
+   },
+   {
+    "claim": "C: certified instances m = 100, 1000, 3000; j = 4 for m in [35, 1000]",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The exact computation was reproduced identically, and Table 2 and the m = 1000 bounds match my independent code. Fixes: only j in {1,2,3,4,6,8,10,12} were computed, not 1 <= j <= 12, so list them or run j = 5, 7, 9, 11. At j = 1 the error reaches 3.18e-5 at m = 1000, so the stated 2e-5 is wrong; use 3.2e-5."
+   },
+   {
+    "claim": "F: averaged discrepancy lemma",
+    "verdict": "CONFIRMED",
+    "detail": "Proof re-derived: Fourier inversion, vanishing for v2(xi) >= j', the index bound on H_L, the harmonic sum, then Parseval and Cauchy-Schwarz. Checked exactly on arbitrary sets (random sets, an interval, a 2-adic ball) and three cosets: max LHS/RHS is 0.072. The prover's 432 cases were reproduced. It is a standard Erdos-Turan-type tool."
+   },
+   {
+    "claim": "P, M: patterns no harder than the root; supermultiplicativity; h0 >= 0.9430",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "P was verified exactly for all d < 6000 at K = 8, 16, 24, and the slot and pattern bounds are sharp. M and h0 were reproduced. Fix: Corollary D needs #surv(K) >= c 2^{h0 K}. This does not follow from 'lim >= h0' (Fekete gives the sup as an upper bound). It does follow from superadditivity: log2 #surv(K) >= (K - 2000) h0. State this line."
+   },
+   {
+    "claim": "D: almost all octaves, depth up to (h0/2 - eta) log2 m",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof and corollary re-derived: Markov per pattern, the window-counting step, the choice of K, and the exponent bookkeeping all hold. Constants reproduced (M >= 2^65). Prose fix: the claim that 'the count law of Conjecture E holds' overstates. D is the tau-version at X = 2^m for a density-one set of m, while E is phrased with sigma and for all X. Keep (h0/2 - eta), not 0.47."
+   },
+   {
+    "claim": "D': explicit densities at K = 16 via Weyl",
+    "verdict": "CONFIRMED",
+    "detail": "The joint equidistribution argument is correct, and the bad sets are Jordan measurable. Table reproduced. The pattern search uses floating point with tolerance 1e-9; the resulting error is below 1e-9 and does not affect the printed values."
+   },
+   {
+    "claim": "G: R, C, D, D' hold verbatim for 3x+d",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "R and D hold for every odd d. C is not verbatim for d other than +-1: at m = 200, j = 3 the interval is [-0.024, +0.024] for 3x+1 but [-0.018, +0.017] for 3x+5. No sibling certificates were computed. 3x-1 certificates and D' are verbatim, but for an unstated reason: the reflection Phi(-u,B) = Phi(u, B - u(N-1)) plus units = <3> u -<3>. I verified this exactly. Rephrase accordingly."
+   },
+   {
+    "claim": "O1: why route (i) fails",
+    "verdict": "CONFIRMED",
+    "detail": "Window-size argument correct. It is an informal meta-statement, but accurate."
+   },
+   {
+    "claim": "Bad multipliers (EVIDENCE)",
+    "verdict": "CONFIRMED",
+    "detail": "Reproduced r = 0.284 at a = -8 mod 2^12, slot 0, K = 16, j = 2, against means of 0.013-0.037."
+   },
+   {
+    "claim": "O2: all m (OPEN)",
+    "verdict": "CONFIRMED",
+    "detail": "Honestly labelled OPEN. The hypothesis is loosely stated (mu defined mod q but applied to the integer A), which is harmless for an open item."
+   },
+   {
+    "claim": "sigma: lower bound PROVED, upper bound EVIDENCE",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "sigma >= tau holds for 3x+1 (and 3x+d, d > 0) because c_i >= 0; verified for n < 2^20. Say explicitly that it is not claimed for d < 0. Nit: N_sigma - N_tau = 0, not 1, at m = b = 1."
+   },
+   {
+    "claim": "LB: nothing new (OPEN)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "'No explicit family beats (log2 3) log2 n' is an unsourced literature claim made from memory. Reword to 'I know of no ...'. The 2^k - 1 bound itself is correct."
+   },
+   {
+    "claim": "Labels and novelty",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Mostly honest and candid about the limits. Scope 'a first rigorous step beyond the horizon' to this census, since no literature search was done. The PROVED-row overstatements in C and G need textual repair."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "All PROVED mathematics (R, F, P, M, D, D') holds under a line-by-line re-derivation and independent exact checks. The results genuinely control counts beyond the digit horizon. The argument does not prove anything false (3x-1 and 3x+5 are consistent with it) or anything famous: it gains only O(log m) digits, for almost all octaves. Repairs needed are textual: in C, the j-range and the j = 1 constant (3.2e-5, not 2e-5); in G, C is not verbatim for d other than +-1, and D' is verbatim by a reflection argument the README does not state; in Corollary D, the wording overstates it as Conjecture E's count law, when it is the tau-version for X = 2^m only; and the explicit lower bound for #surv(K) should be spelled out. Report: /home/riv/Code/collatz/census/round5/microrange/REFEREE1.md. Checker: /home/riv/Code/collatz/census/round5/microrange/referee1_check.py (exits 0, with a mutation test showing it can fail)."
+ },
+ "referee:funcfield": {
+  "verdicts": [
+   {
+    "claim": "H Horizon lemma",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Own enumeration finds 0 in-horizon mismatches (A3, S2c, Q4b) and many beyond-horizon differences. The prover's check finds 0 over all 7 systems. Minor: the README table omits D>=D_0."
+   },
+   {
+    "claim": "T Lemma T",
+    "verdict": "CONFIRMED",
+    "detail": "Degree bookkeeping re-derived. Affine form and deg H bound checked exactly on 300 random (f,n) per system."
+   },
+   {
+    "claim": "T1 cycle inequality",
+    "verdict": "CONFIRMED",
+    "detail": "Immediate from T."
+   },
+   {
+    "claim": "T2 Frobenius sawtooth",
+    "verdict": "CONFIRMED",
+    "detail": "The proof is correct. The data interpretation is loose: the G3 collapse at D=10 is the boundary case that T2 still allows. Rephrase as evidence consistent with T2."
+   },
+   {
+    "claim": "F Theorem F (Frobenius cycles)",
+    "verdict": "CONFIRMED",
+    "detail": "All steps re-derived (uniqueness of the fixed point since t^L-G=-c, the cycle lemma, at most L points per cycle). Independent exact check for A3, Q4b and S2c, plus random words at higher levels; never-dropping counts match the prover's."
+   },
+   {
+    "claim": "A Theorem A (A3): E_F and M_F false",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Constants, Chernoff bound and the L=486 crossing were verified exactly; the failure is genuinely beyond the horizon (K>1). Fix: 'E_F holds exactly inside the horizon' is only per octave; for cumulative N(X,b) it needs b <= log X - omega(1)."
+   },
+   {
+    "claim": "A' Q4b",
+    "verdict": "CONFIRMED",
+    "detail": "Binomial identity, kappa=2, binomial bound and the Chernoff optimum lambda^3=3/2 verified; the two rates coincide at 60.75^{1/3}."
+   },
+   {
+    "claim": "A' S2c",
+    "verdict": "WRONG",
+    "detail": "h=0.8703 is a biased finite-b estimate (the true rate is 0.87585), and the prover's own log2 Z_L/L=0.872 at L=2048 already exceeds it. 'At L=2048 E_F fails for K>=1.05' cannot falsify an asymptotic statement; the correct single-X threshold is K>=1.087. Fix: an elementary multinomial/Stirling lower bound plus the martingale bound P(b)<=2 rho^{b-1}. Also correct h and C* for S2c and S2."
+   },
+   {
+    "claim": "C corrected law for binomial systems",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The upper bound misapplies the horizon lemma to lower octaves; fix by bounding each octave with N_{D'}(D'+1-e_max) and summing. Proved only for A3 and Q4b; S2c and general binomial systems need the large-deviation input."
+   },
+   {
+    "claim": "Z integer counterpart (Catalan words)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Computation correct (it omits the trivial (1,0) giving {0}); Mihailescu is unnecessary because the case is elementary. WRONG sub-claim: 'this is the finite set of exceptions G allows'. G's exceptions include the -17 cycle and the 3x+5 cycles 187 and 347, whose denominators are not units. Fix: 'a finite subset'."
+   },
+   {
+    "claim": "README item 2: Frobenius obstruction provably absent in Z",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Only provable: exact returns give the three cycles, and Baker forces cycle length L >= n^{1/(C+1)}, so Z has no O(log n)-length cycles. It does not bound the number of cycles. Reword."
+   },
+   {
+    "claim": "Section 5 obstruction 'PROVED in the sense stated': a proof of E must use archimedean input",
+    "verdict": "GAP",
+    "detail": "An informal relativisation remark; ingredients are not formalised, and (iii) 'exact size walk' is false for Z. Relabel as HEURISTIC/REMARK."
+   },
+   {
+    "claim": "G generic-system evidence; Gh heuristic; U long orbits",
+    "verdict": "CONFIRMED",
+    "detail": "Correctly labelled EVIDENCE/HEURISTIC/OPEN. B3 and G3 have no Frobenius words with L<=40. The A3 orbit reaches degree 2179 after 6000 steps."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "Main result sound: Theorems F, A and A'(Q4b) are complete elementary proofs that the F_q[t] analogue of Conjecture E and its minimal form M fail beyond the horizon for binomial systems. The S2c part is wrong: h is 0.87585, not 0.8703, and the single-X K>=1.05 argument is invalid. Repairs needed: the S2c proof, the C upper-bound argument, the false 'exceptions G allows' claim, and relabelling the section 5 obstruction as heuristic. Report: /home/riv/Code/collatz/census/round5/funcfield/REFEREE1.md; independent check: /home/riv/Code/collatz/census/round5/funcfield/referee1_check.py (exits 0, prints the two refuted S2c claims). The prover's check.py exits 0."
+ },
+ "repair:microrange": {
+  "folder": "/home/riv/Code/collatz/census/round5/microrange/",
+  "success_level": "BEYOND_HORIZON_PROVED",
+  "theorems": [
+   {
+    "name": "Theorem R (reduction uniform in the intercept)",
+    "statement": "For 3x+d (any odd d), all m, j>=1 and j<=j'<=m: Sum_A Cnt_d(A) min_B Phi(3^A d^-1, B) <= N(2^m, m+j) <= Sum_A Cnt_d(A) max_B Phi(3^A d^-1, B), with 2^m P(m+j) = Sum_A Cnt_d(A) Phi-bar. L and U use only in-horizon data.",
+    "status": "PROVED (confirmed by REFEREE1)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/check_exact.py",
+    "novelty": "elementary; new in this census"
+   },
+   {
+    "name": "Theorem C (certified instances)",
+    "statement": "For 3x+1 and 3x-1, m in {100,1000,3000} and every j in 1..12: N(2^m,m+j) = 2^m P(m+j)(1+delta) with |delta| <= 3.2e-5 at j=1 (exact 0, 3.184e-5, 1.832e-5) up to 0.0192 at j=12; every m in [35,1000] at j=4 with |delta| <= 0.0062. For d=5,-3,7 certificates only at m=1000, K=24, j<=8.",
+    "status": "PROVED (exact computation); j=5,7,9,11 and the j=1 constant repaired after REFEREE1",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/certify.py",
+    "novelty": "new numbers"
+   },
+   {
+    "name": "Theorem D (almost all octaves)",
+    "statement": "tau-version, X=2^m: for eta in (0,3], all but M^{1-eta/3} of m in [M,2M) satisfy |N(2^m,b) - 2^m P(b)| <= 2 m^{-eta/3} 2^m P(b) for all m < b <= m + (h0/2 - eta) log2 m, h0 >= 0.9430. Holds for every odd d. Not Conjecture E as stated (sigma, all X); for sigma only the lower bound transfers (d>0).",
+    "status": "PROVED (prose overstatement withdrawn after REFEREE1; Lemma M explicit bound log2 #surv(K) >= (K-2000)h0 added)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/analytic.py",
+    "novelty": "combination of standard Fourier/Erdos-Turan lemma with in-horizon structure"
+   },
+   {
+    "name": "Reflection identity / G",
+    "statement": "Phi(-u,B) = Phi(u, B-u(N-1)) and (Z/2^K)^* = <3> u -<3>; hence the 3x-1 certificate equals the 3x+1 one exactly and the D' densities are the same for every odd d.",
+    "status": "PROVED (added after REFEREE1)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/microrange/check_revision.py",
+    "novelty": "small"
+   },
+   {
+    "name": "O2 all-m statement",
+    "statement": "Theorem D for all large m, not almost all",
+    "status": "OPEN",
+    "proof_file": "/home/riv/Code/collatz/census/round5/microrange/README.md"
+   }
+  ],
+  "evidence": "After the repairs, check_exact.py, check_revision.py (new: reflection identity with a mutation test, Lemma M bound, sigma-tau data, completeness of the tables, exact j=1 constant, sibling tables) and referee1_check.py all exit 0. certify.py odd (326 s) computed j=5,7,9,11 at m=100,1000,3000 with K=28; all half-widths are <= 0.0156, so the j<=12 claim now holds as stated. certify.py siblings: the d=-1 certificate equals d=1 exactly, and d=5,-3,7 give different numbers of the same order. The exact j=1 half-widths are 0, 3.184e-5 and 1.832e-5, which matches the referee.",
+  "blocking_points": "Unchanged by the revision. (1) All m (O2): no estimate controls the discrepancy of the specific dilations 3^A mod 2^K against the 2-adic survivor set; only the average over A is controlled. (2) The depth limit j <= (h0/2) log2 m comes from 2^{j'} line points standing in for 2^{j'+j} residues and from needing q = 2^{K-2} <= M. (3) The sigma upper bound needs Terras' coefficient stopping time conjecture. (4) split5_3 and K7 were not done. (5) The lower-bound family question gained nothing. Conjecture E itself is untouched.",
+  "summary": "I repaired every REFEREE1 item in /home/riv/Code/collatz/census/round5/microrange/. README.md now has a new section 9, \"Revision after REFEREE1\", with one table row per item.\n\nWithdrawn or corrected false claims:\n- The j=1 constant was 2e-5. It is now 3.2e-5.\n- \"R, C, D, D' hold verbatim for every odd d\" was wrong for C when d is not 1 or -1. The corrected statement is that C holds verbatim only for 3x-1, by a reflection identity that is now proved. For other d the certificate must be recomputed; sibling certificates were computed for d=5, -3, 7.\n- The Corollary D headline \"count law of Conjecture E\" is replaced by \"the tau-version for X=2^m on a density-one set of m, up to log2 X + (h0/2 - eta) log2 log2 X\".\n\nGaps closed:\n- The four missing j (5, 7, 9, 11) were computed, so \"every j <= 12\" is now true.\n- Lemma M now states the explicit per-K bound log2 #surv(K) >= (K-2000)h0 instead of relying on the Fekete limit.\n\nScoping and wording:\n- The sigma lower bound is claimed for d>0 only.\n- The sigma data nit at m=b=1 is corrected.\n- The literature claim in LB is now marked as from memory.\n- The title is scoped to \"in this census\".\n- The d=0 edge case in Lemma P, the floating-point handling in D', the O2 mu definition and the n=0 point are now noted.\n\nNew and changed files:\n- check_revision.py (new; exits 0 and has a mutation test).\n- certify.py, with new modes odd and siblings.\n- data/certified_odd.txt and data/certified_siblings.txt (new).\n\nAll checks pass, including the referee's own checker. No proof changed except the Lemma M line."
+ },
+ "repair:funcfield": {
+  "folder": "/home/riv/Code/collatz/census/round5/funcfield/",
+  "success_level": "ANALOGUE_DECIDED",
+  "theorems": [
+   {
+    "name": "Theorem A (A3 over F_3)",
+    "statement": "For L=2*3^k, X=3^{L+2}, h=log_3(2 sqrt 2): N(X,b) >= X^h/(9 log_3^2 X) - 1 for all b including infinity, while X P(b) <= X 3^{-(1-h)b}. So E_F fails for every K>1 and M_F fails.",
+    "status": "PROVED (confirmed by referee, unchanged except the in-horizon wording)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/funcfield/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/funcfield/check_theoremA.py",
+    "novelty": "The Frobenius mechanism is folklore. Using it against the count law E_F is new to the census."
+   },
+   {
+    "name": "Theorem A' (Q4b over F_4)",
+    "statement": "Same as Theorem A, with L=3*2^k, X=4^{L+3}, h=0.98747.",
+    "status": "PROVED (confirmed by referee)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/funcfield/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/funcfield/check_theoremA.py",
+    "novelty": "as A"
+   },
+   {
+    "name": "Theorem A'' (S2c over F_2)",
+    "statement": "Let lambda*>1 solve 2 lambda=(lambda^2-1)^2, rho*=(lambda*^2-1)/2=0.917543 and h=1+log2 rho*=0.875848. Then P(b) <= rho*^{b-1} for b>=1. For L=2^k>=256, N(2^{L+3},infinity) >= 2^{hL-4}/(L(L+1)^2) - 1. So E_F fails for every K>1 and M_F fails.",
+    "status": "PROVED (new in this revision; replaces the quoted method of types and the withdrawn h=0.8703)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/funcfield/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/funcfield/check_s2c.py",
+    "novelty": "Elementary: optional stopping, largest multinomial, C(n,k)>=2^{nH}/(n+1), and the tilt identity phi(theta*)=h."
+   },
+   {
+    "name": "Proposition H' (cumulative count inside the horizon)",
+    "statement": "For D>=D_0, X=q^{D+1}, b<=D+2-e and B=max(D_0,b+e-1): 0 <= N(X,b)-(X-q^B)P(b) <= Gamma (q-1) q^{b+2e-2} P(b) + q^{D_1}, with Gamma=sum 1/(q^j P(j)) finite (Lemmas S and B). So E_F holds for b <= log_q X - omega(X). This holds for all seven systems.",
+    "status": "PROVED (new; repairs the wrong 'E_F holds exactly inside the horizon')",
+    "proof_file": "/home/riv/Code/collatz/census/round5/funcfield/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/funcfield/check_cumulative.py",
+    "novelty": "routine"
+   },
+   {
+    "name": "Corrected law C",
+    "statement": "For A3, Q4b and S2c: N(X,b) <= C X^h for all X and all b >= log_q X - e_max (proved octave by octave), and N(X,b) >= X^h/poly(log X) along X=q^{L+kappa+1}.",
+    "status": "PROVED for A3, Q4b and S2c only. For general binomial systems the type count is needed as a hypothesis.",
+    "proof_file": "/home/riv/Code/collatz/census/round5/funcfield/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/funcfield/check_s2c.py",
+    "novelty": "routine"
+   },
+   {
+    "name": "Z (integer unit-denominator cycles)",
+    "statement": "2^L-3^a=+-1 holds exactly for (L,a)=(1,0),(1,1),(2,1),(3,2) (elementary, mod 3 and mod 4). These give the 3x+1 cycles {0},{-1},{1,2},{-5,-7,-10}. This is a finite SUBSET of the exceptions allowed by G, which also include the -17 cycle (denominator -139) and the 3x+5 cycles 187 and 347 (denominator 5077565).",
+    "status": "PROVED; the earlier claim that these 'equal G's exceptions' is WITHDRAWN",
+    "proof_file": "/home/riv/Code/collatz/census/round5/funcfield/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round5/funcfield/check_integer_catalan.py",
+    "novelty": "classical"
+   }
+  ],
+  "evidence": "The full check.py run exits 0 (output in /home/riv/Code/collatz/census/round5/funcfield/scratch/check_run_r1.txt). check_s2c.py verifies the following: the saddle algebra to 50 digits; h=0.875848 and C*=8.055; P(b)/rho*^{b-1} <= 0.5 for b<=400; the Z_L formula against brute force for L<=16; the exact binomial bound for n<=300; the proved rate bound for L=2^8..2^22 (it reaches 0.875837 against h=0.875848). check_cumulative.py verifies H' two-sided on all 1337 exhaustive data cells of the seven systems. A mutation test with a deliberately shrunk bound makes it fail, so the check can fail. check_integer_catalan.py now includes (1,0) and the non-unit G exceptions. Horizon lemma: 0 mismatches in all seven systems.",
+  "blocking_points": "The disproof covers only binomial systems (A3, Q4b, S2c), which have exact Frobenius identities. For generic systems (B3, G3, S2, Q4) the failure of E_F is still EVIDENCE plus a heuristic. The stall: proving that Delta^{p^k} divides H_w for exponentially many Frobenius-divisible words. No positive beyond-horizon theorem was found for any polynomial system; H' lies strictly inside the horizon. The section-5 'obstruction' has been downgraded to a heuristic REMARK: it is not formalised, and its exact-size-walk ingredient is false in Z. The literature references (Hicks et al. 2008, Matthews-Leigh 1987) and the Baker/Rhin exponent are quoted from memory and were not checked. The possibly divergent negative-drift orbits (U) remain OPEN.",
+  "summary": "All REFEREE1 items are repaired in /home/riv/Code/collatz/census/round5/funcfield/.\n\nWithdrawals:\n- The S2c/S2 value h=0.8703 is withdrawn; the correct value is 0.875848, giving C*=8.055.\n- The claim that log2 Z_L/L tends to 0.8703 is withdrawn.\n- The single-X sentence \"K>=1.05 at L=2048\" is withdrawn. At that X the proved bounds give K>1.083, stated only as an illustration.\n- \"Catalan words = G's exceptions\" is withdrawn and replaced by \"a finite subset\", with checked counterexamples.\n- \"Provably absent in Z\" is replaced by the precise Baker statement (no cycles of length O(log n)).\n- The T2 \"explanation\" of the data sawtooth is downgraded to EVIDENCE.\n- The section-5 obstruction is relabelled as a heuristic REMARK.\n\nGaps closed:\n- S2c now has a complete elementary proof, Theorem A'', for every K>1 (optional stopping, largest multinomial, elementary binomial bound, tilt identity).\n- The wrong \"E_F holds exactly inside the horizon\" is replaced by Proposition H' (with Lemmas S and B), which gives the cumulative count rigorously for b <= log_q X - omega.\n- The upper bound of the corrected law C is re-proved octave by octave, and C is restricted to A3, Q4b and S2c.\n\nSmaller fixes:\n- Z now includes (1,0) and uses an elementary proof instead of Mihailescu.\n- D>=D_0 is added to the horizon lemma row.\n- A literature and novelty note is added.\n\nNew check scripts are check_s2c.py and check_cumulative.py; check_integer_catalan.py, check.py and the analyse.py label are updated, and all checks pass. README has a section \"Revision after REFEREE1\" with an item-by-item table, and theory.md marks every change."
+ },
+ "referee:fourier": {
+  "verdicts": [
+   {
+    "claim": "F1 exact Fourier identity",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived it via Parseval and checked it numerically for all m and several k at b=14. The annihilation for v_p(xi)>=m is exact."
+   },
+   {
+    "claim": "F2 E_bdd <=> mu_b -> Leb <=> pointwise Fourier decay",
+    "verdict": "CONFIRMED",
+    "detail": "This is the standard Weyl/portmanteau argument and it is correct. No novelty is claimed."
+   },
+   {
+    "claim": "F3 H(eps) => E for b <= log X/(1-(1/2-eps)h)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "It follows from F1. The table says 1/2-eps and the text says 1/2-2eps; make them consistent. The proof covers only X=p^{b-m}; for general X, split [0,X) into base-p translates (|I^| does not change under translation)."
+   },
+   {
+    "claim": "F4 inequality B_F >= (2/pi)(1/(2XP)-1)",
+    "verdict": "CONFIRMED",
+    "detail": "The proof is correct (edge case X=1 is harmless). It is not sharp: a translation argument gives B_F >= 1/(XP)-1, so B_F<1 forces XP>1/2."
+   },
+   {
+    "claim": "F4 consequence: no absolute-value Fourier argument can prove M or E_0",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "F4 does not imply this. To certify N=0 one only needs (1+B_F)XP<1, and F4 gives only (1+B_F)XP >= ~1/pi (0.33 at b=m=16). The claim is true by the translation bound: XP*B_F >= max_t #(R cap (t+I)) - XP >= 1-XP. This bound holds for any majorant, so absolute-value bounds never certify N=0. Replace the derivation with it."
+   },
+   {
+    "claim": "Lemma T transfer identity",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived it and checked it exactly with my own code for 3x+1, 3x-1 and 3x+5 at (j,L) in {(6,6),(9,5),(4,10)}."
+   },
+   {
+    "claim": "Theorem U uniform bound for all b>=L",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. The states and super-level-set enumeration are complete, valuation classes are permuted, and the rearrangement step is valid. A node-level exact check passes, and a mutation of it fails as it should."
+   },
+   {
+    "claim": "U-3x+1: for b>=22 the deviations are <= 0.1948/0.4330/0.8777 for m=1,2,3",
+    "verdict": "CONFIRMED",
+    "detail": "I reproduced the constants independently to 6 digits (FFT error budget 8e-12). Recommended upgrade: an exact sup over all odd units and shifts at L=14 gives 213/1627=0.1309, 213/749=0.2844, 349/749=0.4660 for all b>=14, with no floating point. Checked against exact counts. It is genuinely beyond the horizon (parity of T^{b-1}(n) on boundary nodes), but only by 1 to 3 digits, as stated. The siblings 3x-1 and 3x+5 satisfy the same bound; nothing false follows."
+   },
+   {
+    "claim": "U numbers for K7, split5_3",
+    "verdict": "CONFIRMED",
+    "detail": "Not independently recomputed. They are >=1 or 0.999 and so carry no content, as the prover says."
+   },
+   {
+    "claim": "Proposition Z",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived and checked exactly for b=2..24. The 37% frequency is right (0.369)."
+   },
+   {
+    "claim": "Identity S",
+    "verdict": "CONFIRMED",
+    "detail": "Holds for every r mod 2^b, not only on R_b. Checked for all r at b=12 and on R_18."
+   },
+   {
+    "claim": "G: E as stated does not imply M",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The inference in CONJECTURE.md is invalid: E allows N=1 for every b, i.e. one divergent orbit. Reword as 'the inference is invalid'. 'E does not imply M' cannot be proved for a fixed system, because it holds vacuously if Collatz is true."
+   },
+   {
+    "claim": "G: E_0 => M",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The proof is right only if E_0 uses the lead's actual-drop count. The folder's theorems use the slope-sense count, under which actual survivors need not lie in R_b and 3x+5 cycle minima are not exceptional. State E_0 for the actual count."
+   },
+   {
+    "claim": "N1 low frequencies ~1.5|R_b|^{-1/2}",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The ratio in decay.txt ranges from 1.27 to 3.1. Give the range instead of ~1.5."
+   },
+   {
+    "claim": "N2 top-level sup does not decay",
+    "verdict": "CONFIRMED",
+    "detail": "Matches decay.txt. The random baseline 0.004 holds at b=26 only."
+   },
+   {
+    "claim": "N3 maximisers +-2^v u^a with small a",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "R_b lies in 3+4Z, so |mu^(xi+2^{b-2}d)|=|mu^(xi)|. Printed exponents such as 3145742 are 3^14(1+2^22c). Add 'up to this symmetry'. Without the condition on a the statement is vacuous."
+   },
+   {
+    "claim": "N4 hypothesis H on data",
+    "verdict": "CONFIRMED",
+    "detail": "Ratios recomputed from l1_vs_b.txt and l1test_b26.txt."
+   },
+   {
+    "claim": "Literature and labels honesty",
+    "verdict": "CONFIRMED",
+    "detail": "Statements quoted from memory are flagged. The ones I can check (Tao Prop 1.17 form, Shmerkin and Wu in Annals 189) are accurate. None is used in a proof, and no novelty is overclaimed."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "All PROVED items hold up under a line-by-line re-derivation, and my own script reproduces them independently. Theorem U is correct and genuinely beyond the horizon, but only by 1 to 3 digits, which the prover says honestly. An exact L=14 computation improves its constants (0.1309/0.2844/0.4660 for all b>=14) and removes the floating-point caveat. Two repairs are substantive. (A) The headline consequence of F4 ('no absolute-value Fourier argument can prove M/E_0') does not follow from F4, because certifying N=0 needs only an absolute error below 1. It is true by a one-line translation bound, XP*B_F >= 1-XP, which also improves F4 to B_F >= 1/(XP)-1. (D) E_0 => M is valid only for the actual-drop count, not the slope-sense count used throughout the folder; also reword 'E does not imply M'. Smaller fixes: F3 eps consistency and general X, the N1 range, the N3 symmetry. The report is /home/riv/Code/collatz/census/round5/fourier/REFEREE1.md and the script is /home/riv/Code/collatz/census/round5/fourier/referee1_check.py. Both the quick and --full runs exit 0. The prover's check_fourier.py passes and fails under mutation."
+ },
+ "referee2:funcfield": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 items resolved",
+    "verdict": "CONFIRMED",
+    "detail": "All 13 REFEREE1 GAP/WRONG/fix items were honestly addressed: the withdrawn claims are named, S2c h corrected to 0.875848 (independently recomputed), S2c gap closed by an elementary proof, H' added, C restricted, Z made elementary, the catalan/G claim corrected, and the section 5 remark relabelled. One leftover phrase in theory §4 ('with the sawtooth of Corollary T2')."
+   },
+   {
+    "claim": "H horizon lemma",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Own enumeration: 0 mismatches in 269 in-horizon cells and 1420 differing beyond-horizon cells (the test discriminates). Prover: 0 mismatches in all 7 systems. Prover's script uses D_0=2 for B3/G3 where the definition gives 1; harmless, and H/H' also checked with D_0=1."
+   },
+   {
+    "claim": "H' cumulative count (Lemmas S, B)",
+    "verdict": "CONFIRMED",
+    "detail": "Every octave range re-derived. Lemma S holds exactly for b<=150; Lemma B for j<=300; Gamma = 2.6547/2.3488/4.4456 matches the quoted values; the two-sided bound holds on 311 own cells while the naive equality fails on 60. Nit: the README revision table omits the O(1/G(D+1)) term."
+   },
+   {
+    "claim": "T Lemma T, T1, T2",
+    "verdict": "CONFIRMED",
+    "detail": "Degree bookkeeping re-derived. Affine form and degree bound checked on random orbits (A3, Q4b, S2c, G3); T1 and T2 checked on 138 A3 cycles. T2's data reading is correctly EVIDENCE."
+   },
+   {
+    "claim": "F Theorem F",
+    "verdict": "CONFIRMED",
+    "detail": "S2c L=16: all 1330 zero-slope words are Frobenius and periodic, 136 cycles >= 82.1, min degree <= 18. At L=12 there are 90 non-Frobenius words (discrimination). Random words at larger L verified for A3, Q4b and S2c."
+   },
+   {
+    "claim": "A (A3) and A' (Q4b)",
+    "verdict": "CONFIRMED",
+    "detail": "Constants and Chernoff bounds checked exactly (P^2<=(8/9)^b, P^3<=(243/256)^b, b<=300); crossing at L=486 reproduced. Genuinely beyond the horizon (K>1); uses an exact algebraic identity, not equidistribution."
+   },
+   {
+    "claim": "A'' (S2c) new elementary proof",
+    "verdict": "CONFIRMED",
+    "detail": "Saddle, optional stopping, multinomial count, binomial bound, tilt identity phi(theta*)=h, derivative formula and segment monotonicity (analytic, valid for all L>=256) all re-derived. Exact big-integer Z_L(L+1)^2>=2^{hL-4} for L=2^8..2^13; P(b)<=rho*^{b-1} exactly for b<=400; rho=0.9 is refuted, so the check can fail. No external theorem is used."
+   },
+   {
+    "claim": "C corrected law",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The octave-by-octave proof is valid; ratio N(X,D+1-e)/X^h is bounded in own data. Fix the wording of the slogan 'every polynomial that survives its own digits survives forever' to a count-level statement along X=q^{L+kappa+1}."
+   },
+   {
+    "claim": "Z integer counterpart",
+    "verdict": "CONFIRMED",
+    "detail": "Elementary mod 3 / mod 4 proof re-derived; no other solution for L<400. 'Finite subset of G's exceptions' is correct (-17, 17 in 3x-1, 187, 347 have non-unit denominators)."
+   },
+   {
+    "claim": "Baker remark (README item 2, theory §5)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Flagged as quoted from memory; the deduction is correct. Fix: say 'positive cycles' for the cycle inequality."
+   },
+   {
+    "claim": "G, Gh, U, §5 REMARK labels",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Labels honest. Fix: the B3 multiplier is mislabelled (1+t)^2 in the README and theory §4; spec/data use 1+t+t^2=(1-t)^2 over F_3 (theory's (t+2)^{2a} argument is correct). Replace '§4 sawtooth of T2' with 'consistent with T2'."
+   },
+   {
+    "claim": "Honesty / novelty",
+    "verdict": "CONFIRMED",
+    "detail": "Literature flagged as quoted from memory, F called likely folklore, no literature search stated; the modest novelty claim is fair."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "Second-pass referee of census/round5/funcfield: every PROVED claim was re-derived and holds, including the new elementary Theorem A'' (S2c) and Proposition H'. The disproof of E_F/M_F for A3, Q4b and S2c is complete, genuinely beyond the horizon, and implies nothing false for the integer siblings. All REFEREE1 items were honestly resolved. Remaining items are wording nits only: the B3 multiplier label (1+t)^2 should be 1+t+t^2=(1-t)^2, the H' README error term, the C slogan, a §4 'sawtooth of T2' leftover, and 'positive cycles' in the Baker remark. Own independent check /home/riv/Code/collatz/census/round5/funcfield/referee2_check.py exits 0 (about 50 s, with discrimination tests); the prover's check.py exits 0 (7m53s). Report: /home/riv/Code/collatz/census/round5/funcfield/REFEREE2.md."
+ },
+ "referee2:microrange": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 items resolved",
+    "verdict": "CONFIRMED",
+    "detail": "All 13 items were honestly resolved. The odd j rows were computed, and I reproduce them byte for byte with certify.py odd and independently with my own code. The j=1 constant is now 3.2e-5 (exact values 3.184e-5 and 1.832e-5). The Lemma M per-K bound is fixed correctly. The overstatement in Corollary D is withdrawn. The siblings are rescoped, and the new reflection identity is proved correctly. Sigma is scoped to d>0. The title is scoped, but see N1."
+   },
+   {
+    "claim": "R: reduction uniform in the intercept",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived line by line. The exact identity N = sum_r Phi(3^A, T^d(r)) is checked by direct simulation for 3x+1, 3x-1 and 3x+5. The mutated multiplier 3^(A+1) breaks it in 12 of 12 cases. 180 bound cases pass, including 3x-3."
+   },
+   {
+    "claim": "C: certified instances",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Reproduced by structurally different numpy code: Table 2 rows, sibling rows by direct simulation of 3x+d, and the K=28 rows (m=1000 j=11; m=100 j=12). Nit: the results row says 'up to 0.019' but the certified value is 0.01923; write 0.0193."
+   },
+   {
+    "claim": "F: averaged discrepancy lemma",
+    "verdict": "CONFIRMED",
+    "detail": "Proof re-derived. Checked exactly on 180 arbitrary sets with cosets 1, -1, 7 and -5; max LHS/RHS is 0.065."
+   },
+   {
+    "claim": "P, M",
+    "verdict": "CONFIRMED",
+    "detail": "Checked exactly: th_i <= amin(i), with at most floor(K lam)+1 nontrivial slots (the bound is attained). h0 >= 0.9430 exactly. #surv(K) >= #surv(2000)^floor(K/2000) for K <= 4100."
+   },
+   {
+    "claim": "D: almost every octave, (h0/2-eta) log2 m extra digits, tau-version, X=2^m",
+    "verdict": "CONFIRMED",
+    "detail": "Markov step, depth counting and corollary arithmetic re-derived. Correctly scoped: it is not Conjecture E."
+   },
+   {
+    "claim": "D': explicit Weyl densities at K=16",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The table is reproduced, and the per-pattern core matches disc allu. Wording fix: 'use the worst slot' is wrong; the code takes a union bound summed over slots, which is why one entry is 1.216 > 1."
+   },
+   {
+    "claim": "G: siblings 3x+d",
+    "verdict": "CONFIRMED",
+    "detail": "R holds for every odd d, checked by direct simulation. D and D' hold by Lemma F on every coset plus the reflection identity. The 3x-1 certificate is identical to 3x+1. Certificates for d=5, -3 and 7 differ from 3x+1 and are reproduced."
+   },
+   {
+    "claim": "O1",
+    "verdict": "CONFIRMED",
+    "detail": "This is a meta-statement, and it is correct."
+   },
+   {
+    "claim": "O2 all m OPEN",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "'Error tending to 0 for all m' really is open. But Theorem R plus Lemma P already give an explicit all-m bound by a finite maximum over the multipliers and patterns. My computation at K=16: 0.122, 0.284 and 0.466 for j=1, 2 and 3, for every m >= 16. These beat the concurrent fourier-lens bounds. The fix is recommended: restate O2 and mention or add this bound."
+   },
+   {
+    "claim": "sigma lower bound; sigma-tau data",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "sigma >= tau is proved for d>0 and checked for n<2^24. Nit: under the README's own convention n=0 is counted, and sigma(0)=infinity, so the difference would be 2. The statement 'exactly 1' holds for n>=1; say so."
+   },
+   {
+    "claim": "Novelty/title and section-1 remark",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The concurrent round-5 fourier lens (U-3x+1) also claims a weaker beyond-horizon bound for all b, so drop 'first' or mention it. The section-1 claim that tau <= C log n implies Collatz is true but needs a Baker-type bound and is unsourced; phrase it with sigma or cite."
+   },
+   {
+    "claim": "LB, bad multipliers (EVIDENCE)",
+    "verdict": "CONFIRMED",
+    "detail": "LB is labelled OPEN and honestly worded. The bad-multiplier evidence was reproduced by REFEREE1; I confirmed the disc allu core."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "Second referee pass. Every proof labelled PROVED (R, F, P, M, D, D', the reflection identity, sigma >= tau) was re-derived without finding a gap. The results really reach beyond the horizon: N(2^m, m+j) depends on orbit parities past step m. Weyl is applied within its exact range. Nothing false or famous follows, and the argument is consistent with the extra cycles of 3x-1 and 3x+5. All prover checks were re-run on a scratch copy and exit 0, and the regenerated data match the shipped files. My independent checker /home/riv/Code/collatz/census/round5/microrange/referee2_check.py exits 0, uses mutation tests and reproduces the K=22, K=24 and K=28 certified rows. Every REFEREE1 item was honestly resolved. What remains is wording: C rounding, the D' 'worst slot' phrase, novelty relative to the concurrent fourier lens, n=0 in the sigma data, and the unsourced remark in section 1. There is also one recommended strengthening: an explicit all-m bound (0.122, 0.284, 0.466 at j=1..3, K=16) follows from the prover's own Theorem R and Lemma P. Report: /home/riv/Code/collatz/census/round5/microrange/REFEREE2.md"
+ },
+ "repair:fourier": {
+  "folder": "/home/riv/Code/collatz/census/round5/fourier/",
+  "success_level": "BEYOND_HORIZON_PROVED",
+  "theorems": [
+   {
+    "name": "Theorem U' (exact transfer bound, combinatorial form of U(ii))",
+    "statement": "For a system, depth L and G the group generated by its multiplier mod 2^L, let D'_{L,m,k} be the max over stuck states, non-full allowed sets S, u in G and shifts c of |#{t<k2^{L-m}: ut+c in S}/(|S|k2^{-m}) - 1|. Then for every b >= L: |N(k2^{b-m},b)/(k2^{b-m}P(b)) - 1| <= D'_{L,m,k}. The constants are exact rationals. 3x+1: 213/1627=0.1310, 213/749=0.2844, 349/749=0.4660 (m=1,2,3) for all b>=14, and 129/1057=0.1221 (m=1) for all b>=16. The L=14 constants also hold for 3x-1 and 3x+5 (slope sense). K7: 19/66=0.2879 (m=1) and 61/79=0.7722 (m=2) for all b>=17. split5_3: 17/25=0.68 (m=1) for all b>=16.",
+    "status": "PROVED (exact integer arithmetic; finite part checked)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md (section R-B)",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_revision.py",
+    "novelty": "The referee proposed the exact form for 3x+1 at L=14. Extended here to L=16 (3x+1), to K7 and split5_3 at L=16 and 17 (where the floating-point U gave nothing or nearly nothing), and to the siblings. The bound is beyond the horizon, uniform in b, but only m<=3 digits past and with an error that does not tend to 0."
+   },
+   {
+    "name": "F4' translation bound",
+    "statement": "For any nonempty R in Z/p^b and X: p^{-b} sum_{xi!=0}|S^||I^| >= max_t #(R cap (t+[0,X))) - XP >= 1 - XP. Hence B_F >= 1/(XP) - 1 and (1+B_F)XP >= 1.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md (R-A)",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_revision.py",
+    "novelty": "Replaces the invalid derivation of the consequence from F4 (referee fix A)."
+   },
+   {
+    "name": "Proposition Mod (moduli-only obstruction)",
+    "statement": "No property of the moduli |S^(xi)| alone can imply that R misses an interval: translates of R keep the moduli and can contain any given point. So moduli-only Fourier hypotheses (H included) cannot prove slope-sense M, nor E_0 for 3x+1. This also covers smooth majorants.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md (R-A)",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_revision.py",
+    "novelty": "Obstruction for the Fourier lens."
+   },
+   {
+    "name": "F3' (conditional, all X)",
+    "statement": "Under H(eps): |N(X,b)-XP(b)| <= C(p-1)(log_p X+1)|R_b|^{1/2+eps} for every X. Hence E holds for b <= log_p X/(1-(1/2-2eps)h).",
+    "status": "PROVED (conditional on H, which is EVIDENCE only)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md (R-C)",
+    "check_file": "/home/riv/Code/collatz/census/round5/fourier/check_revision.py",
+    "novelty": "Fix C: consistent eps and general X."
+   },
+   {
+    "name": "E_0 => M' (actual-drop count)",
+    "statement": "Take N_act(X,b) = #{n<=X: sigma(n)>=b} and Exc = the cycle minima. If N_act <= (1+eps)XP + #(Exc cap [1,X]) + eps(X) for b <= K log X, then sigma(n) < (C*+eta) log_p n for all large n not in Exc. The derivation of M from E in CONJECTURE.md is invalid, because E's additive X^eps term allows exceptional starts.",
+    "status": "PROVED (logic)",
+    "proof_file": "/home/riv/Code/collatz/census/round5/fourier/README.md (R-D)",
+    "check_file": "",
+    "novelty": "Fix D wording."
+   }
+  ],
+  "evidence": "Three check scripts exit 0. check_fourier.py takes 2 s. check_revision.py takes about 1 min, and its --full run (about 4 min, log in check_revision_full.txt) passes. The referee's referee1_check.py still passes.\n\nWhat check_revision.py tests:\n- exactD.c agrees exactly with a brute-force evaluation of the D' definition at L=8 for 3x+1 (all odd units and <3>) and K7, with an independently written g.\n- The L=14 fractions are recomputed exactly, and the subgroup and all-odd-unit versions agree.\n- Exact counts never exceed D': 3x+1 at b=22..30 and 3x+1, 3x-1, 3x+5 at b=14..21. The worst observed deviation is 0.146 D'.\n- At node level (b=24) the worst node reaches 0.474 D'. A mutation to 0.4 D' produces 23 violations, so the check can fail.\n- K7 and split5_3 have only the stuck states (0,0) and (1,1), checked exactly.\n- F4' is tested on 5 systems with exact translate maxima. The old F4 consequence is confirmed insufficient: (1+floor)XP = 0.33 < 1.\n\nrevision_n3.py exits 1 if the revised N3 fails. For 3x+1 and K7, all 29 nonzero top maximisers are +-2^v u^a modulo the 2^{b-w} period with |a - ((b-v)log_u 2 - 1)| <= 1. For split5_3 only 1 of 15 is, so N3 is withdrawn for split5_3.\n\nThe trivial sandwich (sandwich.txt) gives at most 0.225 / 1.17 / 2.72 for 3x+1, against U' 0.122 / 0.284 / 0.466.",
+  "blocking_points": "E, E_bdd and H stay OPEN.\n\nU' only reaches 1 to 3 digits past the horizon, with errors bounded away from 0. The 3x+1 constants for m=2 and 3 stop improving between L=14 and 16; I did not find out why. Pushing L further costs about 4.5x per extra level, so L=18 would take about 40 minutes or more.\n\nProposition Mod shows that any route to M must use the phases of the Fourier coefficients, not only their sizes. Keeping the phases needs the joint (U mod p^L, x' mod p^L) node statistics to be equidistributed, which is circular with E itself.\n\nTwo errors the referee did not list are also corrected in the README:\n- N2 said \"10 to 50 times the random baseline\". Those were ratios to |R_b|^{-1/2}; against the random-set baseline the true ratio is 2.3 to 13 for 3x+1.\n- N3 is withdrawn for split5_3.",
+  "summary": "All of REFEREE1's fixes A to E are made. The README has a new \"Revision after REFEREE1\" section, and every corrected statement is marked [revised] in place.\n\n- **Fix A:** the F4 consequence was not proved by F4. It is now proved by a translation bound (B_F >= 1/(XP) - 1) and by Proposition Mod: no property of the moduli |S^(xi)| can force the survivor set to miss an interval.\n- **Fix B, extended:** Theorem U' gives exact integer constants, valid for every b >= L, computed by a new C program checked against brute force. For 3x+1 they are 0.1221, 0.2844, 0.4660 for m=1, 2, 3, and they also hold for 3x-1 and 3x+5. They are new and non-trivial for K7 (0.2879 and 0.7722) and for split5_3 (0.68 at m=1), where the old floating-point bound U gave nothing. U' beats the trivial sandwich for m=2 and 3; my earlier claim that the two are \"the same size\" holds only for m=1.\n- **Fix C:** F3' now holds for every X, with a consistent eps margin.\n- **Fix D:** E_0 is restated for the actual-drop count, and \"E does not imply M\" is reworded as \"the inference in CONJECTURE.md is invalid\".\n- **Fix E:** the N1 ratio range is given, and the 2^{b-w} frequency symmetry is added to N3.\n\nI also withdrew two claims the referee did not flag: the \"10 to 50 times\" figure in N2, and N3 for split5_3. Everything beyond the horizon remains a bounded-error statement only 1 to 3 digits past it. E, E_bdd and H remain open."
+ },
+ "referee2:fourier": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 items A-E resolved",
+    "verdict": "CONFIRMED",
+    "detail": "A: F4' and Prop. Mod. B: U' with exact constants. C: F3' with eps (1/2-2eps). D: E_0 stated for the actual-drop count, plus the 'inference invalid' wording. E: N1 given as a range, N3 symmetry added. The prover's two self-corrections (N2 ratio, N3 for split5_3 withdrawn) are also right."
+   },
+   {
+    "claim": "F1 Fourier identity",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived; the annihilation for v_p(xi) >= m is a full character sum."
+   },
+   {
+    "claim": "F2 E_bdd <=> weak-* convergence <=> pointwise Fourier decay",
+    "verdict": "CONFIRMED",
+    "detail": "Standard; no novelty claimed."
+   },
+   {
+    "claim": "F3/F3' conditional on H",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived the block decomposition and the exponent bound. Remark, not an error: H is automatic at m = b by Cauchy-Schwarz, so H has content only for m < b."
+   },
+   {
+    "claim": "F4 inequality",
+    "verdict": "CONFIRMED",
+    "detail": "Proof correct; its old consequence is correctly marked as superseded."
+   },
+   {
+    "claim": "F4' translation bound",
+    "verdict": "CONFIRMED",
+    "detail": "Proof correct; my check [A] tests it on five systems at b = 14."
+   },
+   {
+    "claim": "Prop. Mod and R-A(ii)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Correct. One side remark is false: 'false as stated for K7 (negative intercept)'. Lemma: with x_t = sigma_t n + c_t, the K7 maps keep c >= -1/3, so slope survival implies actual survival for K7 too (over the decided steps, at least b-1 halvings). Fix: delete or replace the sentence. Checked on all 104 survivors at b = 16. Not used in any proof."
+   },
+   {
+    "claim": "Lemma T",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived; checked exactly with my own Python-integer code for 3x+1, K7 and split5_3."
+   },
+   {
+    "claim": "Theorem U (rearrangement)",
+    "verdict": "CONFIRMED",
+    "detail": "Unchanged since REFEREE1."
+   },
+   {
+    "claim": "Theorem U' exact constants (3x+1 b>=14: 213/1627, 213/749, 349/749; b>=16: 129/1057; K7, split5_3)",
+    "verdict": "CONFIRMED",
+    "detail": "Proof re-derived. Stuck states (0,0) and (1,1) proved in general. My own exact computation reproduces every 3x+1 fraction at L = 10, 12, 14 (<3> and all odd units) and 129/1057 at L = 16. K7 and split5_3 constants agree with the prover's at L = 12; the L = 16, 17 values were not independently recomputed. The constants bound exact counts for b up to 24 in all five systems. The node-level bound holds, worst 0.474 D' at b = 24. A mutation (units {1} only) is violated for split5_3. It is genuinely beyond the horizon by m digits and proves nothing false."
+   },
+   {
+    "claim": "U' for siblings 3x-1, 3x+5 (slope sense)",
+    "verdict": "CONFIRMED",
+    "detail": "Conjugation x -> dx; exact counts consistent. Says nothing about cycles."
+   },
+   {
+    "claim": "Prop Z and identity S",
+    "verdict": "CONFIRMED",
+    "detail": "Z checked exactly for b = 4..22; honestly labelled as in-horizon."
+   },
+   {
+    "claim": "G (the inference in CONJECTURE.md is invalid) and E_0 => M'",
+    "verdict": "CONFIRMED",
+    "detail": "Logic re-derived. The claim that 3x+5 cycle minima are not slope survivors is correct."
+   },
+   {
+    "claim": "Sandwich comparison",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed for b = 16..24. U' is better for m = 2, 3 at every b, narrowly at b = 20, m = 2 (0.2911 vs 0.2844)."
+   },
+   {
+    "claim": "N1-N4 evidence",
+    "verdict": "CONFIRMED",
+    "detail": "Matches the output files; revision_n3.py re-run with identical output."
+   },
+   {
+    "claim": "Literature section",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Shmerkin-Wu is quoted without its hypotheses: p, q multiplicatively independent and u != 0. Add them. Items quoted from memory are flagged and none is used in a proof."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "All five REFEREE1 items were honestly resolved, and the prover's two self-corrections are right. Every PROVED claim survives a line-by-line re-derivation. My own independent exact computation (referee2_check.py, exit 0 in both default and --full runs, with mutations that bite) reproduces the U' constants for 3x+1 at L = 10, 12, 14 and 16. The constants bound the exact counts in all five systems up to b = 24. U' is genuinely beyond the horizon by m digits, but weak, as the prover says. Two minor text fixes, neither touching a proof: (1) R-A(ii) wrongly says slope survival does not imply actual survival for K7; the referee's lemma (c >= -1/3) shows it does, with at least b-1 halvings. (2) State the Shmerkin-Wu hypotheses. Report: /home/riv/Code/collatz/census/round5/fourier/REFEREE2.md; script: /home/riv/Code/collatz/census/round5/fourier/referee2_check.py."
+ }
+}

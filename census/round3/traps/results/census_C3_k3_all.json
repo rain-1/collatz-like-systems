@@ -1,0 +1,195 @@
+{
+ "map": "C3",
+ "k": 3,
+ "universe": "all",
+ "stats": {
+  "P": 247,
+  "H": 9
+ },
+ "time": 0.0,
+ "minimal_provable": [
+  {
+   "A": [
+    2
+   ],
+   "type": "P1",
+   "B": 1,
+   "cycles": [],
+   "simple_points": [
+    "-1",
+    "0"
+   ],
+   "kinds": {
+    "contracting": 0,
+    "simple": 2,
+    "trivial": 4
+   }
+  },
+  {
+   "A": [
+    3
+   ],
+   "type": "P1",
+   "B": 7,
+   "cycles": [
+    [
+     1,
+     4,
+     2
+    ]
+   ],
+   "simple_points": [
+    "-1"
+   ],
+   "kinds": {
+    "contracting": 1,
+    "simple": 1,
+    "trivial": 0
+   }
+  },
+  {
+   "A": [
+    4
+   ],
+   "type": "P1",
+   "B": 1,
+   "cycles": [],
+   "simple_points": [
+    "0",
+    "-1"
+   ],
+   "kinds": {
+    "contracting": 0,
+    "simple": 2,
+    "trivial": 4
+   }
+  },
+  {
+   "A": [
+    6
+   ],
+   "type": "P0",
+   "B": 7,
+   "cycles": [
+    [
+     1,
+     4,
+     2
+    ]
+   ],
+   "simple_points": [],
+   "kinds": {
+    "contracting": 1,
+    "simple": 0,
+    "trivial": 2
+   }
+  },
+  {
+   "A": [
+    0,
+    1
+   ],
+   "type": "P1",
+   "B": 1,
+   "cycles": [],
+   "simple_points": [
+    "-1"
+   ],
+   "kinds": {
+    "contracting": 0,
+    "simple": 1,
+    "trivial": 4
+   }
+  },
+  {
+   "A": [
+    1,
+    5
+   ],
+   "type": "P1",
+   "B": 1,
+   "cycles": [],
+   "simple_points": [
+    "-1",
+    "0"
+   ],
+   "kinds": {
+    "contracting": 0,
+    "simple": 2,
+    "trivial": 3
+   }
+  },
+  {
+   "A": [
+    1,
+    7
+   ],
+   "type": "P0",
+   "B": 7,
+   "cycles": [],
+   "simple_points": [],
+   "kinds": {
+    "contracting": 1,
+    "simple": 0,
+    "trivial": 0
+   }
+  }
+ ],
+ "maximal_H": [
+  [
+   0,
+   5,
+   7
+  ],
+  [
+   1
+  ]
+ ],
+ "witnesses": [
+  {
+   "x": "-2",
+   "L": 2,
+   "mult": "3/2^1",
+   "z": "-26/9",
+   "j": 5,
+   "W": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7
+   ]
+  },
+  {
+   "x": "-1",
+   "L": 2,
+   "mult": "3/2^1",
+   "z": "-17/9",
+   "j": 8,
+   "W": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ]
+  },
+  {
+   "x": "-20",
+   "L": 5,
+   "mult": "9/2^3",
+   "z": "-28",
+   "j": 3,
+   "W": [
+    1,
+    2,
+    3,
+    4,
+    6
+   ]
+  }
+ ]
+}

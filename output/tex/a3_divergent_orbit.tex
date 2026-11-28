@@ -1,0 +1,243 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[hmargin=26mm,vmargin=22mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\F}{\mathbb F}
+\newcommand{\CT}{\operatorname{CT}}
+\title{A divergent orbit of a polynomial Collatz-type map\\ with negative mean drift}
+\author{}\date{28 November 2026}
+\begin{document}
+\maketitle\vspace{-3em}
+
+\begin{abstract}
+We study the map $T$ on $\F_3[t]$ that sends $f$ to $f/t$, to $(1+t^2)(f-1)/t$, or to
+$(f-2)/t+1$ according to whether $f(0)$ is $0$, $1$ or $2$. Under uniformly distributed constant
+terms its degree changes by $-1,+1,-1$, a mean drift of $-1/3$ per step. We prove that the orbit
+of $f=1+t+t^2+2t^4+2t^5+2t^7$ nevertheless has degree tending to infinity, with the explicit
+bound $\deg T^{6n}(f)\ge 6\bigl(\sqrt{2n/3}-2\bigr)+7$. The proof is elementary. Every six steps
+the orbit returns to a one-parameter family on which $T^6$ acts by a simpler map that never
+lowers the degree, and the identity $(1+s)^{3^m}=1+s^{3^m}$ forces its degree-raising branch to
+recur. The argument has no counterpart for integer maps, where carries destroy that identity.
+\end{abstract}
+
+\section{The map and the result}
+
+Let $\F_3=\{0,1,2\}$ and define $T\colon\F_3[t]\to\F_3[t]$ by
+\[
+T(f)=\begin{cases}
+ f/t & f(0)=0,\\[2pt]
+ (1+t^2)\,(f-1)/t & f(0)=1,\\[2pt]
+ (f-2)/t+1 & f(0)=2.
+\end{cases}
+\]
+This is the system called A3 in the census of Collatz-like systems from which this note arises.
+It is a polynomial analogue of the $3x+1$ map: the constant term plays the role of the residue,
+division by $t$ the role of halving, and multiplication by $1+t^2$ the role of multiplication by
+an odd number. For $\deg f\ge1$ the three branches change the degree by $-1$, $+1$ and $-1$
+(the last by $0$ when $\deg f\le 1$). If the constant terms met along an orbit were uniformly
+distributed, the degree would decrease by $1/3$ per step on average.
+
+The census had found, by computation, an orbit whose degree passes $4000$ without repeating, and
+left its fate open.
+
+\begin{theorem}\label{thm:main}
+Let $f=1+t+t^2+2t^4+2t^5+2t^7$. Then $\deg T^n(f)\to\infty$ as $n\to\infty$. More precisely there
+is a nondecreasing sequence of integers $D_n$ with
+\[
+ \deg T^{6n}(f)=6D_n+7,\qquad D_n\ \ge\ \sqrt{2n/3}-2\qquad(n\ge0),
+\]
+and $|\deg T^{6n+j}(f)-\deg T^{6n}(f)|\le 6$ for $0\le j\le 6$.
+\end{theorem}
+
+Numerically $D_n$ grows like $n/3$: after $60000$ blocks of six steps, $D_n=19896$. We prove
+only the square-root bound.
+
+\section{Renormalisation}
+
+Put $s=t^6$ and
+\[
+ c=1+2t,\qquad q=2t+t^2+2t^4+2t^5+2t^7,\qquad f_K=c+K(t^6)\,q\quad(K\in\F_3[s]).
+\]
+The seed of Theorem~\ref{thm:main} is $f_1$. For $K\ne0$ we have $\deg f_K=6\deg K+7$.
+
+Define $\Theta\colon\F_3[s]\to\F_3[s]$, writing $k_0=K(0)$, by
+\[
+\Theta(K)=\begin{cases}
+ \bigl((1+s)^2K-1\bigr)/s+1 & k_0=1,\\[2pt]
+ \bigl((1+s)K-k_0\bigr)/s & k_0\in\{0,2\}.
+\end{cases}
+\]
+Both expressions are polynomials, since the numerators vanish at $s=0$.
+
+\begin{lemma}[cylinders]\label{lem:cyl}
+Let $g\in\F_3[t]$ and $j\ge0$. The constant terms of $g,T(g),\dots,T^{j-1}(g)$ depend only on
+$g\bmod t^{j}$. If these constant terms contain exactly $a$ ones, then for every $h\in\F_3[t]$
+\[
+ T^{j}(g+t^{j}h)=T^{j}(g)+(1+t^2)^{a}\,h .
+\]
+\end{lemma}
+\begin{proof}
+Induction on $j$; the case $j=0$ is trivial. Let $g'=g+t^jh$ with $j\ge1$. Then $g'(0)=g(0)$, so
+$g$ and $g'$ take the same branch, and in each of the three cases
+$T(g')=T(g)+u\,t^{j-1}h$ with $u=1+t^2$ if $g(0)=1$ and $u=1$ otherwise. In particular
+$T(g')\equiv T(g)\pmod{t^{j-1}}$. Apply the induction hypothesis to $T(g)$ and $j-1$, with $uh$ in
+place of $h$.
+\end{proof}
+
+\begin{proposition}[conjugacy]\label{prop:conj}
+For every $K\in\F_3[s]$, $T^6(f_K)=f_{\Theta(K)}$. The constant terms met in these six steps are
+$1,1,1,1,1,1$ if $k_0=1$; $1,2,1,2,1,2$ if $k_0=0$; and $1,0,2,1,0,1$ if $k_0=2$.
+\end{proposition}
+\begin{proof}
+Write $K=k_0+sM$. Then $f_K=f_{k_0}+t^6M(t^6)q$, so by Lemma~\ref{lem:cyl} the six constant terms
+are those of $f_{k_0}$, and
+\[
+ T^6(f_K)=T^6(f_{k_0})+(1+t^2)^{a}M(t^6)\,q ,
+\]
+where $a$ is the number of ones among them. A direct computation of six steps for the three
+polynomials $f_0=1+2t$, $f_1$ and $f_2=1+2t^2+t^4+t^5+t^7$ gives the stated constant terms and
+\[
+ T^6(f_0)=f_0,\qquad T^6(f_1)=f_s,\qquad T^6(f_2)=f_2 .
+\]
+So $a=3,6,3$ for $k_0=0,1,2$. In characteristic $3$, $(1+t^2)^3=1+t^6=1+s$ and
+$(1+t^2)^6=(1+s)^2$. Hence $T^6(f_K)=f_{\Theta(k_0)+GM}$ with $G=(1+s)^2$ if $k_0=1$ and $G=1+s$
+otherwise, where $\Theta(0)=0$, $\Theta(1)=s$, $\Theta(2)=2$. Finally
+$\Theta(k_0+sM)=\Theta(k_0)+GM$ by the definition of $\Theta$.
+\end{proof}
+
+The polynomials $f_0$ and $f_2$ are periodic points of $T$. The seed $f_1$ is not.
+
+\begin{lemma}[degrees]\label{lem:deg}
+If $k_0=1$ then $\deg\Theta(K)=\deg K+1$. If $k_0\in\{0,2\}$ and $K\ne0$ then
+$\deg\Theta(K)=\deg K$.
+\end{lemma}
+\begin{proof}
+The leading term of $(1+s)^eK$ is $s^e$ times that of $K$, and subtracting a constant and
+dividing by $s$ lowers the degree by one, except that for a nonzero constant $K=2$ one checks
+$\Theta(2)=2$ directly. Adding $1$ does not change the degree when it is at least one, and
+$\Theta(1)=s$.
+\end{proof}
+
+So along any orbit of $\Theta$ the degree is nondecreasing, and it rises exactly at the steps
+with $k_0=1$. We call these the \emph{raising steps}.
+
+\section{The raising branch recurs}
+
+Let $N(K)=\bigl((1+s)K-k_0\bigr)/s$ be the map applied at a non-raising step. If
+$K=\sum_i k_is^i$ then $N(K)=\sum_i(k_i+k_{i+1})s^i$. For a Laurent polynomial $P$ in $s$ write
+$[P]_{\ge0}$ for the sum of its terms of nonnegative degree and $\CT(P)$ for its constant term.
+
+\begin{lemma}\label{lem:N}
+For every $n\ge0$, $N^n(K)=\bigl[(1+s^{-1})^nK\bigr]_{\ge0}$. In particular the constant term of
+$N^n(K)$ is $\CT\bigl((1+s^{-1})^nK\bigr)$.
+\end{lemma}
+\begin{proof}
+For $n=1$ this is the coefficient formula above. Multiplication by $1+s^{-1}$ maps terms of
+negative degree to terms of negative degree, so
+$\bigl[(1+s^{-1})P\bigr]_{\ge0}=\bigl[(1+s^{-1})[P]_{\ge0}\bigr]_{\ge0}$, and the claim follows by
+induction.
+\end{proof}
+
+\begin{proposition}\label{prop:recur}
+Suppose a raising step is taken at $K=1+sM$, and let $m\ge1$ satisfy $3^m-2>\deg M$ (any $m\ge1$
+if $M=0$). Then another raising step occurs among the next $3^m-1$ steps.
+\end{proposition}
+\begin{proof}
+The image of the raising step is
+\[
+ L=\frac{(1+s)^2(1+sM)-1}{s}+1=s+(1+s)^2M .
+\]
+Put $n=3^m-2$. If one of the $n$ steps starting at $L$ is a raising step we are done. Otherwise
+they are all applications of $N$, and by Lemma~\ref{lem:N} the constant term reached is
+\[
+ \CT\bigl((1+s^{-1})^n s\bigr)+\CT\bigl((1+s)^{n+2}s^{-n}M\bigr).
+\]
+The first term is the coefficient of $s^{n-1}$ in $(1+s)^n$, namely $n$. For the second,
+$(1+s)^{n+2}=(1+s)^{3^m}=1+s^{3^m}$ in characteristic $3$, so it equals
+$\CT\bigl(s^{2-3^m}M\bigr)+\CT\bigl(s^{2}M\bigr)$, which is the coefficient of $s^{3^m-2}$ in $M$
+plus zero. That coefficient vanishes by the choice of $m$. Hence the constant term is
+$n=3^m-2\equiv1\pmod 3$, and the next step is a raising step. It is the $(n+1)$-st step after the
+one we started from.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Let $K_n=\Theta^n(1)$ and $D_n=\deg K_n$. By Proposition~\ref{prop:conj},
+$T^{6n}(f)=f_{K_n}$, so $\deg T^{6n}(f)=6D_n+7$ (note $K_n\ne0$: $K_0=1$ and the degree never
+decreases). A single step of $T$ changes the degree by at most one, which gives the statement
+about intermediate degrees.
+
+The step from $K_0=1$ is a raising step, so $D_1=1$. Suppose the degree has just been raised to
+$D\ge1$ by a raising step at $K=1+sM$. Then $\deg M=D-2$ if $D\ge2$ and $M=0$ if $D=1$. Let $m$ be
+least with $3^m>D$; then $3^m-2>\deg M$ and $3^m\le3D$. By Proposition~\ref{prop:recur} the next
+raising step, which lifts the degree to $D+1$, occurs within $3D-1$ further steps. Therefore the
+degree reaches $D$ after at most $1+\sum_{j=1}^{D-1}3j\le 3D^2/2$ steps of $\Theta$. If
+$n\ge 3D^2/2$ then $D_n\ge D$, which gives $D_n\ge\sqrt{2n/3}-1$ for all $n$, and in particular
+the stated bound. Since $D_n\to\infty$ and the degrees inside a block differ from $6D_n+7$ by at
+most six, $\deg T^n(f)\to\infty$. \qed
+
+\section{Remarks}
+
+\begin{remark}[a dichotomy on the invariant family]
+Proposition~\ref{prop:recur} applies to every orbit of $\Theta$ that takes a raising step. An orbit
+that never does is an orbit of $N$ on polynomials of a fixed degree $d$ with fixed leading
+coefficient; on that finite set $N$ is injective (from $N(K)$ one recovers $k_d,k_{d-1},\dots,k_0$
+in turn), so the orbit is periodic from its first point. Hence on the family $\{f_K\}$ every
+orbit of $T^6$ is either periodic from the start or divergent, and it is divergent exactly when
+some $K$ on it has constant term $1$.
+\end{remark}
+
+\begin{remark}[the mechanism]
+Two Frobenius identities carry the proof. The first, $(1+t^2)^3=1+t^6$, makes the multiplier of a
+six-step block a polynomial in $s=t^6$ and so makes the family $\{f_K\}$ invariant. The second,
+$(1+s)^{3^m}=1+s^{3^m}$, shows that the linear dynamics between raising steps returns the constant
+term to $1$. The same identities were used in the census to show that the polynomial analogue of
+the stopping-time count law fails for this system, by producing many periodic points. Here they
+produce a divergent orbit instead.
+\end{remark}
+
+\begin{remark}[what this does and does not say about integers]
+For integer Collatz-type maps it is commonly expected that negative mean drift excludes divergent
+orbits. Theorem~\ref{thm:main} shows that the corresponding statement is false for polynomial
+maps. It gives no information about integer maps: the analogue of $(1+s)^{3^m}=1+s^{3^m}$ would be
+a near-coincidence between powers of two coprime integers, which is rare, and carries have no
+counterpart here.
+\end{remark}
+
+\begin{remark}[related systems]
+A divergent orbit for a similar map over $\F_4$ (called Q4b in the census) was obtained separately
+by transferring a known binary orbit. Three further candidates with apparently divergent orbits
+(called B3 and G3 over $\F_3$ and S2c over $\F_2$) are not treated here. Polynomial analogues of the
+$3x+1$ problem have been studied before; we have not surveyed that literature and make no claim
+about which of the statements here are new.
+\end{remark}
+
+\section{Verification}
+\sloppy
+
+The proof is short enough to check by hand, but every finite statement in it was also verified by
+an exact computation over $\F_3$ (script \texttt{check\_a3\_divergence.py} in
+\texttt{census/round6/a3\_divergence}):
+\begin{itemize}
+\item the identity $T^6(f_K)=f_{\Theta(K)}$ and the three lists of constant terms, for all $2187$
+  polynomials $K$ of degree at most $6$ and for $400$ random $K$ of degree up to $58$;
+\item Lemma~\ref{lem:deg} on $300$ random $K$;
+\item the conclusion of Proposition~\ref{prop:recur} on $200$ random $M$ of degree up to $23$, by
+  iterating $N$ directly;
+\item along $60000$ steps of the orbit of $K=1$, that every gap between raising steps is at most
+  $3^m-1$ with $m$ as in the proof; the final degree is $19896$.
+\end{itemize}
+An independent referee re-derived the proof and confirmed it, with a separate script written from
+scratch (\texttt{referee\_check.py} in the same folder). That script also iterates the original map $T$
+directly on the seed for $60000$ steps, checks $T^{6n}(f)=f_{\Theta^n(1)}$ at every block, and includes
+mutation tests that it detects. In that run no intermediate degree is more than one below its block
+value, and the bound $3^m-1$ of Proposition~\ref{prop:recur} is attained.
+
+\end{document}

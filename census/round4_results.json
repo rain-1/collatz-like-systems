@@ -1,0 +1,1311 @@
+{
+ "prove:transport": {
+  "folder": "/home/riv/Code/collatz/census/round4/transport",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "Theorem E (transport by bounded first-return identities) + Lemma S (sufficient classes)",
+    "statement": "If R_A^X and R_B^Y are bounded and h_X^{-1}R_A^X h_X = h_Y^{-1}R_B^Y h_Y as canonical tables, then eventual periodicity and cycles (with multipliers) correspond between the classes; with Lemma S on both sides GLOBAL(A) <=> GLOBAL(B), with Lemma S on B's side only GLOBAL(A) => GLOBAL(B).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Proposition C (normal form of 3x+1 on 2 mod 3)",
+    "statement": "For n = 3y-1: Collatz <=> every orbit of G'(y) = 3y/2 (y even), (3y+1)/4 (y=1 mod 4), (y+1)/4 (y=3 mod 4) is eventually periodic. G' is a unit 2-adic table of type (c), decide.py OBST.",
+    "status": "PROVED (equivalence; GLOBAL open)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem F (four more S-family members are exactly 3x+1)",
+    "statement": "For S mod 16 with S∩{3,7,11,15}={3,7,15} and S∩{5,13}=∅ (4 sets), the first return of T_S to 3 mod 4 equals G of Prop. C; GLOBAL(T_S) <=> no divergent 3x+1 orbit; all four are OBST and type (c).",
+    "status": "PROVED (equivalence; GLOBAL open)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem O1 (no transport from certificate-settled systems)",
+    "statement": "If A is a unit p-adic OBST table whose expanding cycle is reachable from X, and A-orbits from X appear (affine h, bounded gaps, or as subsequence) inside B-orbits, then B has no plain descent certificate at any modulus, unit or not. Rests on Lemma B (a plain certificate bounds orbits linearly) and Lemma R (OBST orbits have unbounded max/start ratio in every reaching class).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem O2 (p-adic transports preserve type (c))",
+    "statement": "A bounded first-return identity through p-adic classes between unit p-adic tables carries a type-(c) component meeting X to infinitely many expanding periodic orbits of B, so B is type (c). No transport from Theorem-H or certifiable systems.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "S-family transport classes and the 8 cores",
+    "statement": "m<=5: 42 classes, 264 members (3x+1 class has 20), none mixing types or containing a settled system. No searched identity joins two of the 8 cores or a core with 3x+1, but only 43 of their first returns are bounded, so this negative is weak.",
+    "status": "PROVED per join (finite); negative part is a finite statement about the searched class",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "novelty": "not checked"
+   }
+  ],
+  "systems": [
+   {
+    "id": "G' (3x+1 normal form)",
+    "rule": "y even -> 3y/2; y=1 mod 4 -> (3y+1)/4; y=3 mod 4 -> (y+1)/4",
+    "result": "equivalent to 3x+1 GLOBAL",
+    "status": "OPEN (equivalence PROVED)",
+    "type_c_verified": "yes (unit_type: 9/8 cycle in 4-node SCC; decide OBST)"
+   },
+   {
+    "id": "sf4_{3,7,15}, sf4_{1,3,7,15}, sf4_{3,7,9,15}, sf4_{1,3,7,9,15}",
+    "rule": "even n/2; odd n: 3n+1 if n mod 16 in S else n+1",
+    "result": "GLOBAL <=> 3x+1 no-divergence; cycles = 3x+1 cycles plus (1 2) or (1 4 2)",
+    "status": "OPEN (equivalence PROVED)",
+    "type_c_verified": "yes, decide OBST"
+   },
+   {
+    "id": "8 cores of accel/sfamily_obst.md",
+    "rule": "S-family m=3",
+    "result": "no transport identity found to each other, to 3x+1, or to any settled system",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   }
+  ],
+  "blocking_points": "Bounded first returns through p-adic classes keep type (c) (O2). Every certificate-settled source is ruled out for any modulus (O1). The only remaining sources are non-unit systems with unbounded excursions (Farkas pairing, dressing), and Theorem-H systems reached through classes mod q with p not dividing q. In the non-unit systems the branch depends on n mod a, and after each up-run block that residue is fresh. So a first return either keeps the mod-a dependence (not a unit table) or has unbounded return time (infinitely many pieces, which the canonical-table method cannot represent). Across 117,390 class pairs, only 31 first returns were bounded, all scaling symmetries. Still open: unbounded-return conjugacies, and O2 for classes mod q.",
+  "summary": "The hard criterion was not met: no unit-multiplier type-(c) system was settled by a convergence proof. Second-best outcome reached, the wall extended to transport proofs. Theorem O1 shows no OBST system can get a transport from any plainly certified system, at any modulus, unit or not. This covers decide.py CERT systems such as the 2466-step dch_C27_2466 and the plain mixed-radix certificates in mixedbase. Theorem O2 shows that p-adic bounded first-return identities preserve type (c), so Theorem-H systems are excluded too. The positive output links open problems to open problems. Proposition C is a 4-branch unit 2-adic type-(c) normal form equivalent to 3x+1. Theorem F shows four further S-family members (m=4) are exactly 3x+1. The searcher found 42 transport classes in the S-family at m<=5, with 264 members. No identity joins any of the 8 cores. Round-3 divergence systems fx10_64 and fx26_32 are type (c) with proved divergent orbits, so the wall only blocks convergence proofs. check_transport.py exits 0 in about 4 s, and its independent identity verifier was confirmed to fail on corrupted inputs."
+ },
+ "referee:transport": {
+  "verdicts": [
+   {
+    "claim": "Lemma P (pieces)",
+    "verdict": "CONFIRMED",
+    "detail": "Refinement conditions (Q, M_X divide a*Mod/d) are correct; every piece is a residue class containing positives, so the bound on positive integers carries over."
+   },
+   {
+    "claim": "Theorem E (transport of eventual periodicity / GLOBAL / cycles)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived (1)-(4), including the D_X vs D_Y boundary point and the one-way form. Multiplier preservation spot-checked: Collatz (4 2 1) and the G' fixed point y=1 both have 3/4."
+   },
+   {
+    "claim": "Lemma S",
+    "verdict": "CONFIRMED",
+    "detail": "Proof correct. My own implementation (exact rational potential and theta<1 certificate) agrees on all 4857 join members and rejects the two expanding-outside controls. Nit: the transport_lib.sufficient docstring is stale ('acyclic')."
+   },
+   {
+    "claim": "Proposition C (G, G' normal form of 3x+1)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Identity re-derived, proved by my own symbolic engine (return time 3), brute force z<4e5, Lemma S ok, type (c). Fix: 'every C-cycle meets 2 mod 3 by Lemma S and bounded return' does not follow, because G={1,2} is not X. The claim is true by a direct 2-step argument for n≡1 mod 3. Nits: the 9/8 vs 3/2 cycle wording; the 'exactly why Collatz-hard' sentence should be marked as a heuristic remark."
+   },
+   {
+    "claim": "Theorem F (four S-family sets are exactly 3x+1)",
+    "verdict": "CONFIRMED",
+    "detail": "Three cases re-derived. Own engine proves the identity for all 4 sets and rejects 5 out-of-hypothesis sets. Brute force z<4e5. Lemma S components {1,2}/{1,2,4} confirmed. Type (c) via a 9/8 cycle in a 10-node SCC. Brute force of all starts n<=1e6: cycles exactly (1 2) or (1 4 2) plus (3 10 5 6)."
+   },
+   {
+    "claim": "S-family equivalence classes (42 classes, 264 members, Collatz class of 20)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "All 4857 join members re-proved with my own engine and Lemma S. Each of the 20 Collatz-class members has a direct identity with G. Fix: state tmax=24/pmax=20000/Lmax=4096. 'This is forced by the theorems below' is overstated: O2 does not cover Theorem-H systems on non-p-adic classes (which the search used), and dressed, mixed and divergent systems are excluded by observation only."
+   },
+   {
+    "claim": "8 cores pairwise not joined (43 bounded first returns)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "No collision. Still 43 bounded returns and no collision with tmax raised from 24 to 64. Fix: 'bounded' means 'returns within 24 steps'; reword."
+   },
+   {
+    "claim": "Lemma B, Lemma R",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Lemma R also applies to type (b), consistently."
+   },
+   {
+    "claim": "Theorem O1 (no transport from certificate-settled systems, incl. dch_C27_2466)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The proof in transport_theorems.md is correct (use time |P|+d|C| rather than the max); dch_C27_2466 is a unit 3-adic plain-certificate system and is correctly excluded as a source. Fix: the README row says 'if A is OBST', but the theorem needs A unit p-adic with an expanding cycle reachable from X (Lemma R); non-unit OBST systems such as dressed maps are not covered."
+   },
+   {
+    "claim": "Theorem O2 (no transport from Theorem-H systems via p-adic classes)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof correct. Fix: the conclusion 'B is type (c)' needs the standing hypothesis (no division-free cycle) for B. Otherwise B is 'critical', not type (c). Put the hypothesis in the statement or weaken the conclusion."
+   },
+   {
+    "claim": "Non-unit sources search (EVIDENCE)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Independent engine reproduces 31 bounded returns at M<=144, all on 0 mod M_Y, none unit. Fix: only 24 are pairing scaling symmetries x*Z; 7 are dressed returns to qZ. check_transport part G reproduces only M<=48."
+   },
+   {
+    "claim": "Hard criterion not met / open door / honest limits",
+    "verdict": "CONFIRMED",
+    "detail": "Accurately stated, no type-(c) system claimed settled. 3x+1 has only 4 bounded returns on M<=48, all type (c), so no false 'proof' of Collatz arises."
+   },
+   {
+    "claim": "Labels and novelty statements",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "'Novelty: not checked' is honest. Label overstatements are listed in items 4, 6, 7, 9 and 11. All are text-only repairs."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "I found no mathematical error, and the lens honestly does not claim the hard criterion: no unit type-(c) system is settled. Proposition C and Theorem F tie open systems to 3x+1 (equivalence only, GLOBAL still open), and they are correct. I re-derived them by hand, proved them with my own engine and brute-forced them: cycles to 1e6. Theorems O1 and O2 hold. O1 correctly rules out dch_C27_2466, the 2466-step certificate system, and every other plain-certificate system as a transport source. I re-proved all 4857 recorded join members independently. Text-only repairs are needed where wording claims more than is proved: Prop C's cycle-meeting argument, 'forced by the theorems' in §2, the search cutoffs, the README O1 hypothesis, O2's standing hypothesis, and the description of the non-unit hits. Report: /home/riv/Code/collatz/census/round4/transport/REFEREE1.md. Check script: /home/riv/Code/collatz/census/round4/transport/referee1_check.py (exits 0; it includes negative controls that must be rejected). The prover's check_transport.py exits 0."
+ },
+ "repair:transport": {
+  "folder": "/home/riv/Code/collatz/census/round4/transport/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "Proposition C (normal form of 3x+1 on 2 mod 3)",
+    "statement": "First return of 3x+1 to n = 2 mod 3, y=(n+1)/3: G'(y)=3y/2 (y even), (3y+1)/4 (y=1 mod 4), (y+1)/4 (y=3 mod 4); Collatz iff every G'-orbit eventually periodic; every 3x+1 cycle meets 2 mod 3 (justification corrected: direct two-step argument replaces the wrong appeal to Lemma S). G' unit 2-adic type (c) (self-loop 0->0, multiplier 3/2; also 2->1->2, 9/8), decide OBST.",
+    "status": "PROVED (equivalence; GLOBAL OPEN)",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py (parts A/B, B2)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem F",
+    "statement": "For the 4 S-family sets S = {3,7,15} u S0, S0 subset {1,9}: first return to 3 mod 4 equals G of Prop C; GLOBAL(T_S) iff 3x+1 has no divergent orbit; all four OBST, type (c).",
+    "status": "PROVED (equivalence; GLOBAL OPEN)",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem O1",
+    "statement": "If A is a unit p-adic table with an expanding cycle reachable from the p-part of X (Lemma R) and A-orbits from X are sampled with bounded gaps through affine h inside B-orbits, then B has no plain descent certificate at any modulus. Proof now uses fixed time t_d=|P|+d|C|. Non-unit OBST sources (dressed maps) not covered; README row corrected.",
+    "status": "PROVED",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py (parts D/E witnesses)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem O2",
+    "statement": "Bounded first-return identities between unit p-adic tables through p-adic classes carry a type-(c) component meeting X to infinitely many expanding periodic orbits of B; B is type (c) or critical (type (c) under the standing no-division-free-cycle hypothesis, now stated).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/transport/transport_theorems.md",
+    "novelty": "not checked"
+   },
+   {
+    "name": "8 cores not joined",
+    "statement": "On classes M <= 32 the 8 cores and 3x+1 have 34 first returns within 24 steps (43 canonical maps with the maps themselves), still 34 within 64 steps / 60000 pieces, pairwise distinct across systems; on 2-power classes boundedness is decided exactly (residue-graph criterion via dichotomy Lemma 1, 16 bounded), so there the statement is complete; on odd-factor classes returns longer than 64 steps are not excluded.",
+    "status": "PROVED (finite, stated class)",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/check_transport.py (parts F, F2)",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Non-unit search",
+    "statement": "30 pairing/dressed systems, 117,390 classes M <= 144: 31 bounded returns = 24 pairing P2 scaling symmetries + 7 dressed returns to qZ, all to 0 mod M_Y, none a unit p-adic table (earlier 'all scaling symmetries' withdrawn).",
+    "status": "EVIDENCE (exact per case)",
+    "check_file": "/home/riv/Code/collatz/census/round4/transport/nonunit_breakdown.py; check_transport.py part G now reproduces M<=144"
+   }
+  ],
+  "systems": [
+   {
+    "id": "G' (3x+1 normal form) and T_S for 4 S-family sets",
+    "rule": "see Prop C / Theorem F",
+    "result": "exactly equivalent to 3x+1; type (c), decide OBST",
+    "status": "OPEN (equivalent to Collatz)",
+    "type_c_verified": "yes (unit_type, decide.py)"
+   },
+   {
+    "id": "8 cores of sfamily_obst.md",
+    "rule": "sf3_7, sf3_17, sf3_57, sf3_157, sf3_357, sf3_137, sf3_13, sf3_135",
+    "result": "not joined to each other or to 3x+1 in the searched class",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "dch_C27_2466",
+    "rule": "unit 3-adic table with 2466-step plain certificate",
+    "result": "settled by certificate; by Lemma B its orbits are linearly bounded, so by O1 it cannot be a transport source for any table with realised growth",
+    "status": "SETTLED (round 3); excluded as transport source",
+    "type_c_verified": "no (CERT)"
+   }
+  ],
+  "blocking_points": "The hard criterion is still not met: no unit type-(c) system is settled. O1 and O2 rule out bounded-return transport from certificate systems, and from Theorem-H systems through p-adic classes. Three doors are still open: unbounded (infinite-piece) first returns of pairing or dressed systems; O2 for mod-q classes with p not dividing q; and, for the core-distinctness claim, returns longer than 64 steps on classes with an odd factor.",
+  "summary": "I made all seven REFEREE1 repairs. The referee found no mathematical error. Two claims are explicitly corrected or withdrawn in the files. (1) Prop C said every 3x+1 cycle meets 2 mod 3 \"by Lemma S\". That reason was wrong; it is replaced by a direct two-step residue argument, checked symbolically in part B2. (2) \"All 31 non-unit bounded returns are scaling symmetries\" was wrong. The correct split is 24 pairing P2 symmetries and 7 dressed returns to qZ, checked by the new nonunit_breakdown.py. The overstated claim that the class outcomes are \"forced by the theorems\" is withdrawn and now split into O1, O2 and observation. Other changes: §2 and Honest limits now state the search cut-offs (tmax 24, pmax 20000, Lmax 4096). The O1 README row carries the precise Lemma R hypothesis, and the O1 proof uses the fixed time t_d. The O2 conclusion is now \"type (c) or critical\", with the standing hypothesis. The 9/8 vs 3/2 wording is fixed, the interpretive sentence is marked as a remark, and the stale docstring of sufficient() is fixed. New part F2 strengthens the core-distinctness claim: boundedness of returns is now decided exactly on 2-power classes, and a re-run at 64 steps still gives 34 returns with no collision. Part G now reproduces M <= 144 itself. README.md and transport_theorems.md each gain a \"Revision after REFEREE1\" section, which also restates the dch_C27_2466 (2466-step certificate) consequence. check_transport.py exits 0 in about 15 s, and referee1_check.py still exits 0. Nothing was committed."
+ },
+ "prove:integrality": {
+  "folder": "/home/riv/Code/collatz/census/round4/integrality/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "Theorem M (full-branch / low digits irrelevant)",
+    "statement": "For any unit-multiplier p-adic table and any closed walk C with a division, the run map maps every lap-count class D_d affinely onto the same set D_0, and the first-return map to a node is full-branch. Excursion data are therefore i.i.d. under Haar measure, and every finite excursion word is realized by exactly one residue class of positive integers. Taking u = 1 mod p^s gives no control over the post-run digits. There is no counterexample family among unit systems.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/mixing.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_mixing.py",
+    "novelty": "not checked (Terras/Lagarias-style restatement of the Markov property)"
+   },
+   {
+    "name": "Theorem N-hat",
+    "statement": "For a unit table whose branch is read p-adically and that has a type-(c) SCC, no generalized certificate exists whose cover uses residue classes of ANY modulus (cylinders of Zhat), with finitely many exceptional periodic orbits. Congruences to other primes cannot get past the wall.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/mixing.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_mixing.py",
+    "novelty": "small extension of round-3 Theorem N; not checked"
+   },
+   {
+    "name": "Theorem R (run map not automatic)",
+    "statement": "For any unit system with an expanding cycle, the graph of the run map on positive integers is not a rational relation on base-p digit strings, because the powers U^d are not p-automatic (Cobham). The 'GLOBAL as an automata question via a transducer excursion map' route is closed.",
+    "status": "PROVED (cites Cobham 1969)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/mixing.md",
+    "check_file": "",
+    "novelty": "direct application of Cobham; not checked"
+   },
+   {
+    "name": "Theorem C (cycle length from integrality)",
+    "statement": "Take a map with multipliers in {1,a}, offsets 0<=v<=beta*u, and at most gamma*X steps with v>0. If a cycle has all elements > Z0 and X below Z0 ln2/(beta gamma), then 1 < p^X/a^Y <= 1 + 2 beta gamma X/Z0. An exact search over Y (cycle_bound.py) then gives a length bound.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/cycles.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_cycles.py",
+    "novelty": "classical Steiner/Eliahou method, applied to new maps"
+   },
+   {
+    "name": "Corollary C1 (seven S-family cores incl. K7)",
+    "statement": "For sf3_7 (K7), sf3_17, sf3_57, sf3_157, sf3_357, sf3_13 and sf3_135, every cycle other than the listed ones has all elements > 10^11 and length >= 492531. In K7's z-form: elements >= 5*10^10 and length >= 190537. Round 3 had this only for period <= 26.",
+    "status": "PROVED (exact C verification to 10^11 in runs/results.txt; the default check proves the 10^9 version)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/cycles.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_cycles.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Corollary C2 (new core G3)",
+    "statement": "G3(n) = (4n+1)/3 if n = 8 mod 9, else ceil(n/3). It is type (c_mixed) and decide.py says OBST. Every n <= 10^11 reaches 1, and every cycle other than {1} has all elements > 10^11 and length >= 222404.",
+    "status": "PROVED (10^11 run in runs/results_g3.txt); GLOBAL OPEN",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/cycles.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_cycles.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "K7 excursion map and sharp inequality (task 3)",
+    "statement": "For odd z = 2^j u - 1, the excursion map is S(z) = odd part of 3^{j-1}u - 1 (3x+1 with one factor 3 removed per excursion). S(z)+1/2 <= (3^{j-1}/2^{j+1})(z+1) and S(z) <= ((z+1)^{log2 3}-3)/6, and both bounds are attained. S(z) < z whenever j <= 4. The one-excursion bad set has density 0.036275... among odd z. For every k there are explicit z whose first k excursions all rise.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/k7.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_k7.py",
+    "novelty": "routine; not checked"
+   }
+  ],
+  "systems": [
+   {
+    "id": "G3",
+    "rule": "n = 8 mod 9 -> (4n+1)/3; else ceil(n/3)",
+    "result": "type c_mixed at levels 2 and 3, decide.py OBST. Every n <= 10^11 reaches 1. Any other cycle has length >= 222404 and all elements > 10^11.",
+    "status": "GLOBAL OPEN; cycle bound PROVED",
+    "type_c_verified": "yes (intlib.scc_types, check_census.py [E-G3], check_mixing.py [type])"
+   },
+   {
+    "id": "sf3_7 / K7",
+    "rule": "z even -> z/2; z=3 mod 4 -> (3z+1)/2; z=1 mod 4 -> (z-1)/4",
+    "result": "Exact excursion map and sharp inequality. Any cycle other than 0 has elements >= 5e10 and length >= 190537.",
+    "status": "GLOBAL OPEN",
+    "type_c_verified": "yes (round 3 plus check_mixing.py [type])"
+   },
+   {
+    "id": "sf3_17, sf3_57, sf3_157, sf3_357, sf3_13, sf3_135",
+    "rule": "S-family cores (n/2; 3n+1 on S mod 8, else n+1)",
+    "result": "Every unlisted cycle has all elements > 10^11 and length >= 492531.",
+    "status": "GLOBAL OPEN; cycle bound PROVED",
+    "type_c_verified": "yes (round 3)"
+   },
+   {
+    "id": "census F2m2/F2m3/F3m2/F3m2b",
+    "rule": "small unit tables mod 4, 8, 9",
+    "result": "168 / 6044 / 16668 / 31225 c_mixed tables, all OBST, sorted by (u, s=v_p(u-1), sign of x*). High s does not make a class tamer.",
+    "status": "counts and types PROVED; orbit statistics EVIDENCE",
+    "type_c_verified": "yes, all, plus level m+1 on samples"
+   }
+  ],
+  "blocking_points": "I did not settle any type-(c) system. Theorem M shows that every unit system's excursion process is full-branch and i.i.d. on finite windows, whatever congruence the multiplier satisfies. Theorem N-hat shows that congruences to other moduli cannot help. Theorem R shows that the transducer route never applies. What is left is Archimedean size. In its 'n >= p^depth' form, size only caps the growth of a single excursion: at z^{log2 3}/6 for K7 and n^{log3 4} for G3, and both caps are attained. It says nothing about how many rising excursions follow. Through the cycle product identity, size settles cycles, but only up to a length bound. That bound is limited by rational approximation of log a / log p, the same near-critical ratios behind the 80/81 cycle that gives dch_C27_2466 its 2466-step depth. Divergent orbits have no product identity, so the divergence half of GLOBAL is untouched. Every designed system I tried reduced to an avoidance or Mahler-type problem of 3x+1 difficulty.",
+  "summary": "The hard criterion was not met: no type-(c) system is settled. What is in /home/riv/Code/collatz/census/round4/integrality/ is the following. (1) The second-best outcome: three proved theorems in mixing.md close the lens's three proposed routes past Theorem N. Theorem M: predictable low digits of u^k are irrelevant, because every unit system's first-return process is full-branch and i.i.d. Theorem N-hat: other moduli do not help. Theorem R (via Cobham): the run map is never automatic. (2) An integrality method that works on half of GLOBAL. Theorem C (cycles.md) is the Steiner/Eliahou cycle identity with an exact continued-fraction-style search. I verified the 7 open S-family cores, K7 among them, and the new base-3 core G3 exactly to 10^11 (C, 128-bit). The results: any unknown cycle has all elements > 10^11 and length >= 492531 for the S-family cores, >= 190537 for K7 in z-form and >= 222404 for G3. Round 3 had this only for period <= 26. The method says nothing about divergence. (3) Task 1: an exact census of 54,105 c_mixed tables in four families, all OBST, sorted by excursion structure. It also yields the clean new core G3 = ceil(n/3) except n = 8 mod 9 -> (4n+1)/3. (4) Task 3: K7's exact excursion map (3x+1 with one factor 3 removed per excursion), sharp attained inequalities, the density 0.036275 of the one-excursion bad set, and explicit z with k rising excursions. All four checks exit 0. check_cycles.py --full reproduces the 10^11 runs, whose outputs are in runs/. Novelty was not checked by literature search; Theorem C is a classical method applied to new maps."
+ },
+ "prove:wpotential": {
+  "folder": "/home/riv/Code/collatz/census/round4/wpotential/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "Lemma S (soundness of potential certificates)",
+    "statement": "If V: Z_{>0} -> R_{>=0} (or into a well-order) satisfies V(Tn) <= V(n) - delta (resp. V(Tn) < V(n)) for all n outside a finite set F, then every orbit is eventually periodic and every cycle meets F.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "",
+    "novelty": "not checked (standard)"
+   },
+   {
+    "name": "Theorem W (coarse-monotonicity wall)",
+    "statement": "For any residue-class affine map (no unit hypothesis, mixed moduli allowed), a potential certificate V is not coarsely monotone at any expanding periodic point y: for all N, R, rho there are integers n, n' in y + Q^N Z_hat with n >= R, n' >= rho n and V(n') < V(n). Proof: integers n = y mod Q^M shadow y for kL steps, T^{kL}(n) = y + lambda^k (n - y).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_wall.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Corollary W1 (type (c): failure set dense in a Cantor set)",
+    "statement": "For a unit-multiplier p-adic map with a type-(c) SCC Sigma, Lambda_Sigma is closed, perfect and uncountable, expanding periodic points are dense in it, so B(V) is dense in Lambda_Sigma for every potential certificate V.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_wall.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Corollary W2 (CM classes reach only CERT systems)",
+    "statement": "Residue weight times n plus o(n), n^gamma e^psi with psi locally bounded, mantissa factors, c*(digit count)+bounded, lexicographic/ordinal combinations: for unit-multiplier maps such certificates exist iff every cycle of G_K contracts. Adding counters v_p(n - x_i) at finitely many points never reaches type (c) (Theorem N restated for potentials).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem A (digit-window potentials collapse)",
+    "statement": "Let T be a 2-adic table map with a branch (u n + v)/2^e, u = 3 or 5, and an expanding periodic point. No potential V = sum_i f(n_i..n_{i+s-1}) + bounded boundary terms certifies T, for s <= 10 (u=3) and s <= 8 (u=5). Descent forces Phi <= 0 on the x u transducer cycles (pumping); the cycles at odd length k are permuted by x -> u x mod 2^k - 1, so Phi = 0; hence E_f(uh) = E_f(h); exact mod-p rank 2^{s-1} forces f = constant + coboundary, so V = c*len(n) + bounded, which is CM, and Theorem W applies. This covers all 8 cores, K7, 3x+1, 5x+1, and even type-(b) systems.",
+    "status": "PROVED for the stated s; general s OPEN (EVIDENCE: rank pattern)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_windows.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Automaton reduction",
+    "statement": "For deterministic additive automata in general, pumping plus a Haar-measure argument reduce the wall to a rigidity lemma: a weighting of a complete strongly connected automaton with x3-invariant cycle sums is a constant plus a coboundary. If that holds, these automata are also walled off for systems where Lambda_Sigma has interior (K7: Lambda_Sigma = Z_2).",
+    "status": "OPEN (reduction sketched, not written in full)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Rewriting encodings of K7 and six cores",
+    "statement": "Mixed binary/ternary SRS whose termination implies GLOBAL with the known cycle list. Every rule is value-correct and the canonical derivation simulates the map (checked for z < 3000, n < 2000). Natural matrix-interpretation chains found by z3 remove only bookkeeping rules and never a map rule.",
+    "status": "encoding PROVED (finite parts checked); search EVIDENCE (negative)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/srs.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_srs.py",
+    "novelty": "not checked (YAH-style encoding)"
+   }
+  ],
+  "systems": [
+   {
+    "id": "sf3_7 / K7 (z even -> z/2; z=3 mod 4 -> (3z+1)/2; z=1 mod 4 -> (z-1)/4)",
+    "rule": "S-family S={7} mod 8, z-form K7",
+    "result": "Type (c) confirmed (barrier_witness; level-2 SCC is all of Z/4, so Lambda_Sigma = Z_2); decide.py OBST (n-form). Theorems W, A apply: no CM or window potential. z3: no matrix interpretation removes any map rule (dims 3/4, timeouts).",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_17",
+    "rule": "even n/2; odd 3n+1 if n mod 8 in {1,7}, else n+1",
+    "result": "type (c), OBST; Theorems W, A apply; z3 finds nothing on the core",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_57",
+    "rule": "S={5,7} mod 8",
+    "result": "type (c), OBST; Theorems W, A apply; z3 finds nothing on the core",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_157",
+    "rule": "S={1,5,7} mod 8",
+    "result": "type (c), OBST; Theorems W, A apply; z3 finds nothing on the core",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_357",
+    "rule": "S={3,5,7} mod 8",
+    "result": "type (c), OBST; Theorems W, A apply; z3 finds nothing on the core",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_137 (W)",
+    "rule": "S={1,3,7} mod 8",
+    "result": "type (c), OBST; Theorems W, A apply; not encoded for MI (it has extra cycles and divergence is expected)",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_13",
+    "rule": "S={1,3} mod 8",
+    "result": "type (c) via x*=-5 (9/8), OBST; Theorems W, A apply; z3 finds nothing on the core",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "sf3_135",
+    "rule": "S={1,3,5} mod 8",
+    "result": "type (c) via x*=-5, OBST; Theorems W, A apply; z3 finds nothing on the core",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "mb_s3_27 (mixedbase blocked)",
+    "rule": "n=26 mod 27 -> (n+1)/27; else even n/2; else (3n+1)/2",
+    "result": "Not unit-multiplier. Theorem W applies. Exact: the cycle -5,-7,-10 (9/8), an expanding 11-cycle through -10138/139 (2187/2048), and expanding rational periodic points that shadow the -5 cycle 10, 20 and 40 times. A potential must fail CM at all of them. Infinitely many such points: EVIDENCE only.",
+    "status": "OPEN",
+    "type_c_verified": "n/a (mixed modulus)"
+   },
+   {
+    "id": "3x+1 (control)",
+    "rule": "n/2, (3n+1)/2",
+    "result": "type (c), OBST; Theorems W, A apply, as expected for a wall result",
+    "status": "OPEN",
+    "type_c_verified": "yes"
+   }
+  ],
+  "blocking_points": "1) Theorem W: any potential that is coarsely monotone in real size on small p-adic cylinders fails at every expanding periodic point, and for type (c) these points are dense in an uncountable Cantor set. Every residue/size/counter class, and their lex/ordinal combinations, is therefore defeated, and type (b) is defeated too unless counters are added. 2) Theorem A: digit-window weights are forced by the x3 branch to collapse to c*(digit count) + bounded. 3) For general deterministic additive automata the missing piece is a rigidity lemma: are x3-invariant cycle-sum weightings of a complete strongly connected automaton cohomologous to constants? 4) Matrix interpretations of the rewriting encoding are the only class here not covered by a wall. z3 could not orient any arithmetic rule at dims 2-4 within the time limits (EVIDENCE only). No type-(c) system was settled.",
+  "summary": "No type-(c) system was settled. The result is an extension of the wall, which is the second-best outcome the task named.\n\nTheorem W (proved) holds for any residue-class affine map, with or without unit multipliers. It says that a descending potential cannot be coarsely monotone in real size near any expanding periodic point. Its proof is short: integers that shadow the periodic point grow by lambda^k while V has to decrease. For type (c), Corollary W1 makes the failure set dense in an uncountable Cantor set. Corollary W2 then rules out residue x n (+ o(n)), n^gamma e^psi, mantissa factors, digit count, finite sets of counters, and lex/ordinal combinations of these. For unit-multiplier maps, those classes certify exactly the CERT systems.\n\nTheorem A (proved for window width s <= 10 with a x3 branch, s <= 8 with a x5 branch, checked by exact mod-p rank) covers sliding-window digit potentials. The argument combines pumping, the permutation x -> 3x mod 2^k - 1 at odd k, and rigidity, which forces V = c*len(n) + bounded. So these potentials cannot certify any OBST 2-adic system, including all 8 cores, K7, 3x+1, 5x+1 and the type-(b) systems that Theorem H settles. An LP on K7 is infeasible, as the theorem predicts.\n\nFor general deterministic automata I only have a reduction to a precise rigidity lemma, which is open. Rewriting encodings of K7 and six cores (YAH style) were built and checked. z3 natural matrix interpretations removed only bookkeeping rules (evidence, not a proof). For mb_s3_27 I found exact homoclinic expanding points that shadow the -5 cycle 10, 20 and 40 times, so Theorem W blocks it too.\n\nChecks, all exiting 0: check_wall.py, check_windows.py, check_srs.py. Write-up: README.md, theory.md, srs.md. A local .venv holds numpy, scipy and z3. Nothing was committed. Novelty was not checked."
+ },
+ "prove:schema": {
+  "folder": "/home/riv/Code/collatz/census/round4/schema/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "A1 exact depth formula (designed family D)",
+    "statement": "Family D(m, word, h, i0) at Q=2^m: a loop of U (x3) and D (/2) letters with lap multiplier lam<1, a chain of h x3 nodes, and resets n -> floor(n/Q)+1 everywhere else; no translation nodes. CERT iff lam<1 and G_exit<Q. Complete cycle list = {(1), the loop residues}. k* = max(h + t*(i0, 3^h), max_i t*(i,1)), with t*(i,G) = min{t : G P_i(t) < 1}.",
+    "status": "PROVED",
+    "proof_file": "depth.md",
+    "check_file": "check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "A2 unbounded depth via near-critical loops",
+    "statement": "With Christoffel loops, k* >= h+1+L(floor(h log3/|log lam|)-1). Using the convergents p/q > log2 3 (8/5, 65/41, 485/306, ...), lam -> 1 and k* >= c Q^2 log Q along a subsequence of moduli. This proves the round-3 conjecture for this class of tables.",
+    "status": "PROVED",
+    "proof_file": "depth.md",
+    "check_file": "check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "A3 polynomial upper bound",
+    "statement": "Every CERT base-2 table with u in {1,3} has k* <= Q + (log3/log2)(a_{k+1}+2) Q^2 (Q-1), where q_k <= Q < q_{k+1} are convergent denominators of log2 3. So depth is O(Q^{mu+1}), with mu the irrationality measure of log2 3. The gap between Q^2 log Q and Q^3 is OPEN.",
+    "status": "PROVED",
+    "proof_file": "depth.md",
+    "check_file": "check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "A-rec depth records",
+    "statement": "k* = 41362 (Q=256) and k* = 133534 (Q=512), each with an integer witness of 25 or 82 kbit checked by direct iteration; k* = 304506 (Q=1024) by the exact formula only. Previous record: 2466 (Q=27).",
+    "status": "PROVED",
+    "proof_file": "depth.md",
+    "check_file": "check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "B1 cut-off wall",
+    "statement": "If T (unit multiplier, p-adic) has a type-(c) SCC and F is a finite set, there is J0 such that every unit-multiplier T' agreeing with T off the p^-J neighbourhood of F (J >= J0) again has a type-(c) SCC. So T' has no descent or generalized certificate, and Theorem H does not apply. Instances: 3x+1 cut at -1 mod 2^j is CERT only for j=2 and type (c) for all j>=3 (witness -5, multiplier 9/8); K7 cut at z=-1 mod 2^j is CERT for j=2..5 (single cycle z=0) and type (c) for all j>=6 (witness z=-49/17, multiplier 81/64).",
+    "status": "PROVED",
+    "proof_file": "cutoff.md",
+    "check_file": "check_cutoff.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "W1 window approximants certifiable; W1' dist->0",
+    "statement": "Resetting exactly the residues whose window has multiplier > p^{-delta D} gives a CERT system, for every unit-multiplier T. For 3x+1: dist_{2^N}(3x+1) <= sum_{k>5N/8} C(N,k) <= 2^{0.954N}, so dist/2^N -> 0. This was an OPEN question in round3/dichotomy section 7.",
+    "status": "PROVED",
+    "proof_file": "window.md",
+    "check_file": "check_window.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "W2 explicit schema for 3x+1",
+    "statement": "For all N>=4, c(r) = max_{s<N} gamma^s prod_{i<s} q(b_i) with gamma=161/160 (and c=1/2 on R_N) is a strict potential for the window approximant T_N. Its exceptional set lies in [1, ceil(80.5 (3gamma/2)^{floor(5N/8)})].",
+    "status": "PROVED",
+    "proof_file": "window.md",
+    "check_file": "check_window.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "W3 exact reduction",
+    "statement": "For each N in [4,26], a 3x+1 orbit reaches (1 2) iff it eventually avoids R_N. Each member alone is equivalent to the conjecture, so taking N -> infinity gives nothing.",
+    "status": "PROVED",
+    "proof_file": "window.md",
+    "check_file": "check_window.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "W4 closing statement",
+    "statement": "(S_C): for all n>=2 and N >= max(4, C log2 n), no N consecutive steps of the orbit of n have more than 5N/8 odd steps. (S_C) for some C implies that every 3x+1 orbit reaches (1 2). (S_C) itself is OPEN; EVIDENCE: max A(n)/log2 n is about 17 on the record holders.",
+    "status": "PROVED (implication); OPEN (S_C)",
+    "proof_file": "window.md",
+    "check_file": "check_window.py",
+    "novelty": "not checked"
+   }
+  ],
+  "systems": [
+   {
+    "id": "K7_cut_j (j=2..5)",
+    "rule": "K7 (z even->z/2; z=3 mod 4->(3z+1)/2; z=1 mod 4->(z-1)/4), except z=-1 mod 2^j -> reset",
+    "result": "CERT, single cycle z=0",
+    "status": "PROVED",
+    "type_c_verified": "no (these are type (a); certified neighbours, cheap)"
+   },
+   {
+    "id": "K7_cut_j (j>=6)",
+    "rule": "as above, any replacement on the cut cylinder",
+    "result": "type (c), no certificate (Theorem B1, J0=6)",
+    "status": "PROVED",
+    "type_c_verified": "yes (exact witness; decide OBST for j=6..14)"
+   },
+   {
+    "id": "3x+1_cut_j (j>=3)",
+    "rule": "3x+1, any change on n=-1 mod 2^j",
+    "result": "type (c), no certificate (J0=3)",
+    "status": "PROVED",
+    "type_c_verified": "yes"
+   },
+   {
+    "id": "D_9 record",
+    "rule": "designed family D, m=9, Christoffel(94,149) loop, i0=16, h=6",
+    "result": "CERT, cycles (1) and the 243-cycle of loop residues, k*=133534",
+    "status": "PROVED",
+    "type_c_verified": "n/a (type a)"
+   },
+   {
+    "id": "T_N window approximants of 3x+1 (N=4..26)",
+    "rule": "3x+1 with resets on R_N",
+    "result": "CERT, only cycle (1 2)",
+    "status": "PROVED",
+    "type_c_verified": "n/a"
+   }
+  ],
+  "blocking_points": "No type-(c) system was settled. The cut-off method fails provably: Theorem B1 shows that for j >= J0 every cut-off approximant is again of type (c), because the re-entry orbits (-5 for 3x+1, z=-49/17 for K7) stay a bounded distance from x*. Window approximants are certifiable, but converting them into a proof of T needs \"every orbit eventually avoids R_N\", which is the conjecture itself (W3). The size-based strengthening (S_C) would close it (W4), but it was not proved for 3x+1, for K7, or for any designed type-(c) system. Part A limits: the family uses resets (not the S-family or C(3^k)); the Q^2 log Q vs Q^3 gap is open; the m=11 member was not finished.",
+  "summary": "I did not settle any type-(c) system, so the hard success criterion was not met. The result is the second-best outcome the task allowed: the wall is extended. Theorem B1 (cutoff.md) proves that a type-(c) system cannot be reached as a limit of certifiable cut-off systems. If T is of type (c), any table that changes T only near finitely many points is again of type (c), whatever it does on the cut-off region. The thresholds are exact: 3x+1 cut at depth j is certifiable only for j = 2 (type (c) from j = 3, witness cycle -5); K7 is certifiable for j = 2..5 and of type (c) from j = 6 (witness z = -49/17, multiplier 81/64).\n\nThe alternative family that does work, window approximants (reset wherever an N-step window expands too much), is certifiable for every unit-multiplier system. For 3x+1 it has an explicit certificate formula uniform in N. It answers the round-3 open question: the distance of 3x+1 to provability, as a fraction of residues, goes to 0, bounded by 2^{0.954N}/2^N. But turning these approximants into a proof requires \"every orbit eventually avoids the reset set\", and for each N in [4, 26] that statement is equivalent to the Collatz conjecture (W3), so the induction on N is empty. A size-based statement (S_C), that no window longer than C log2 n in the orbit of n expands too much, would imply the conjecture (W4). It is unproved; the numbers fit C near 20.\n\nPart A is fully proved (depth.md). A designed base-2 family (multipliers 3 and 1/2 plus resets, no translation nodes) has an exact formula for the least certificate depth k*. With near-critical loops built from the continued fraction of log2 3, k* grows at least like Q^2 log Q along a subsequence of moduli, and every base-2 multiplier-3 table has k* at most polynomial in Q. The gap between Q^2 log Q and Q^3 is open. New records: k* = 41362 at Q = 256 and 133534 at Q = 512, both with integer witnesses checked by direct iteration; 304506 at Q = 1024 by the formula only. The previous record was 2466. The family is not the S-family, so the round-3 conjecture is proved for this class of tables only.\n\nChecks (all exit 0, exact arithmetic): check_cutoff.py (about 1 min), check_window.py (about 2 min), check_depth.py (about 11 min). evidence_window.py is evidence only. Novelty was not checked for anything. Files are in /home/riv/Code/collatz/census/round4/schema/; start with README.md."
+ },
+ "referee:wpotential": {
+  "verdicts": [
+   {
+    "claim": "Lemma S (soundness of potential certificates)",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived it and it holds. The orbit meets the finite set F infinitely often, and every cycle meets F. The well-order variant is also fine."
+   },
+   {
+    "claim": "Theorem W (a certificate is not coarsely monotone at any expanding periodic point, for any residue-class affine map)",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived the shadowing, growth, F-avoidance and contradiction steps. Reduced denominators divide Q because the map is integral on each whole class. referee1_check [SHADOW] rebuilds the configuration independently for 5 systems and shows that the c(r)n and bitlength potentials fail descent."
+   },
+   {
+    "claim": "Corollary W1 (in type (c), the expanding periodic points are dense in a perfect, uncountable set Lambda_Sigma)",
+    "verdict": "CONFIRMED",
+    "detail": "The proof is correct. [DENSE] in my check constructs the points for random walks in K7z, sf3_13 and 3x+1 and verifies each residue by direct iteration. K7z G_2 is a single SCC, so Lambda = Z_2."
+   },
+   {
+    "claim": "W2 items 1-4 and 6 (no counters): CM everywhere, so they certify exactly the CERT systems",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Item 2: psi must be a bounded function of the mantissa. Item 3: the ratio hypothesis is unnecessary. 'Only if': add that a division-free expanding cycle gives a divergent class (or infinitely many cycles) directly, since (M) needs a division."
+   },
+   {
+    "claim": "theory.md §0 / README W2 / §2 'iff CERT': the W2 classes including counters exist only for CERT systems and 'do not even reach type (b)'",
+    "verdict": "WRONG",
+    "detail": "Counterexample: acc_h16 (type b). V = (DAG level of the SCC, phi), lexicographic, with phi = c(r)n on the contracting SCC, 2 v_2(n+1) on node 15, 2 v_2(n/2+1)+1 on node 14 and 0 on transient nodes. It descends off a finite set (proof in REFEREE1.md; [TYPEB] verifies it for n < 3e5, with all failures below 165 against a bound of 2783). Fix: restrict the CERT-only claim to the classes without counters, and say that counters can reach type (b) but never type (c), as the paper's own §2 already states."
+   },
+   {
+    "claim": "W2: with finitely many counters, never a type-(c) system",
+    "verdict": "CONFIRMED",
+    "detail": "B(V) lies in a finite set E, and Theorem W plus W1 give infinitely many expanding periodic points."
+   },
+   {
+    "claim": "Theorem A (window potentials collapse; u=3, s<=10 and u=5, s<=8)",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived steps 1-4 and checked them independently. [PUMP]: exact M-linear identity. [BIJ]: holds, with an even-k control that correctly fails. [STEP3]: exact. [RANK]: rank mod 1e9+7 is 2^(s-1), the kernel basis is verified exactly, and the u=1 control gives rank 0. The general-s OPEN/EVIDENCE label is correct."
+   },
+   {
+    "claim": "Type (c) of the 8 cores, K7 z-form and 3x+1 (and OBST)",
+    "verdict": "CONFIRMED",
+    "detail": "My own G_K at K=m and m+2: the standing hypothesis holds, x* is expanding, and its SCC is non-simple. 5x+1 is also type (c), and acc_h16 correctly comes out not type (c). Brute force to 2e5 matches the stopping values; sf3_137 has orbits that escape, as round 3 expects."
+   },
+   {
+    "claim": "mb_s3_27: shadowing, 16274 periodic orbits of period <=12, the two expanding orbits, homoclinic points for d=10,20,40; 'infinitely many' OPEN",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "My independent enumeration reproduces 16274 orbits and exactly {-10 (9/8), -10138/139 (11, 2187/2048)}, and the scratch counts 7..64 reproduce. Fix: check_wall.py does not assert the count or the expanding list."
+   },
+   {
+    "claim": "SRS encodings correct; matrix chains remove only bookkeeping rules, never a map rule (EVIDENCE)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The semantics are correct, and I re-verified the K7 chain with my own code. The removed small1 (LtR -> LR) is the map instance T(1)=0, so the wording should be qualified."
+   },
+   {
+    "claim": "§6.3: the 3x+1 2-adic conjugacy is not computed by any finite automaton",
+    "verdict": "GAP",
+    "detail": "This is unlabelled and unproved. Label it as a heuristic or conjecture, or cite a source."
+   },
+   {
+    "claim": "W2 item 5: 'accelerated certificates along finitely many orbits are of this kind'",
+    "verdict": "GAP",
+    "detail": "Minor. This identification is unproved, because Theorem N's certificates are covers with stopping times, not potentials. Label it as a remark."
+   },
+   {
+    "claim": "Outcome and novelty labels (no type-(c) system settled; novelty not checked)",
+    "verdict": "CONFIRMED",
+    "detail": "Honest. Theorem W is the same shadowing mechanism as round-2 Lemma B and round-3 Theorem N, and the README correctly calls it an extension of that wall."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "The folder does not settle any type-(c) system, and it says so honestly. The round's main goal was therefore not met. Its negative wall results are sound: Lemma S, Theorem W, Corollary W1, Corollary W2 without counters, and Theorem A for the stated (u, s). I re-derived each of them, and my from-scratch script /home/riv/Code/collatz/census/round4/wpotential/referee1_check.py (exact arithmetic, with negative controls; exits 0) checks them independently. The prover's three check scripts also pass.\n\nOne summary claim is false and needs repair. theory.md §0, README row W2 and the §2 'iff CERT' sentence say that the W2 classes, counters included, reach only CERT systems and 'not even type (b)'. I constructed a lexicographic counter certificate for the type-(b) system acc_h16 that refutes this ([TYPEB]). Smaller items:\n- two unlabelled claims (§6.3 and W2 item 5);\n- one unasserted printed claim in check_wall [MB];\n- a wording qualifier for small1 in srs.md;\n- minor docstring and runtime mismatches.\n\nThe report is at /home/riv/Code/collatz/census/round4/wpotential/REFEREE1.md. The 2466-step certificate the user mentioned is not in this folder; it appears in round4/integrality, schema and transport."
+ },
+ "referee:integrality": {
+  "verdicts": [
+   {
+    "claim": "Hard criterion: a type-(c) unit system settled by a new method",
+    "verdict": "CONFIRMED",
+    "detail": "Nothing is claimed as settled. The README says honestly that the criterion was not met, and GLOBAL is labelled OPEN for K7, G3 and all 8 cores."
+   },
+   {
+    "claim": "Theorem M (full-branch run map, i.i.d. excursions, realization by residue classes)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof re-derived. Fix 1: the text says n follows d laps if its 'first dℓ residues' match C^d, which is off by one. For G3, n=8 follows by that wording but lies in D_0. It should say 'first dℓ steps (residues at times 0..dℓ)'; the check already uses the correct cylinder. Fix 2: in (3) the proportion should be among n in [r0]_K. My exact mod-3^13 test confirms P(d2=j | d1, return time) = (2/3)3^-j on 165 decided events."
+   },
+   {
+    "claim": "Theorem N-hat (no profinite certificate)",
+    "verdict": "CONFIRMED",
+    "detail": "Proof re-derived. It also covers certificates restricted to one class mod M' coprime to p. Suggested wording: 'cannot get past the wall as part of a cover/stopping-time certificate'."
+   },
+   {
+    "claim": "Theorem R (run map not a rational relation, via Cobham)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof correct. The n_d identity was checked exactly for F5 with d<12. The stated Consequence ('no excursion map is a finite transducer') is too broad: first-return maps can be rational (the 3x+1 Syracuse map is). Restrict it to the run map, or to excursion maps that contain a full run."
+   },
+   {
+    "claim": "Theorem C (Steiner/Eliahou-type cycle bound)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived; the constants c=2 (S-family) and c=4 (G3) are correct. A full independent scan reproduces (15601,24727), (190537,301994), (25254,31867), (176251,222404). Falsification test: holds on all 815 cycles of 3x+k (k<400) and on the 5x+1 cycles, while a planted too-small constant is violated. Nit: Y=0 is not scanned, but it is trivially excluded."
+   },
+   {
+    "claim": "C1: 7 S-cores have no unlisted cycle with an element <=10^11 or length <492531; K7 has none with elements <5e10 or length <190537",
+    "verdict": "CONFIRMED",
+    "detail": "The strong-induction argument is valid. The 28 recorded jobs cover 1..10^11 with rc=0, and I re-ran the top slices with the recompiled C verifier. Independent Python check: drop to 10^7 and cycle enumeration to 3e5 give exactly the listed cycles. Negative controls fire. The K7 to sf3_7 correspondence was verified."
+   },
+   {
+    "claim": "C2: G3 has no other cycle below 10^11 or of length <222404",
+    "verdict": "CONFIRMED",
+    "detail": "Recorded runs complete, top slice re-run, own drop check to 10^7, beta=2, gamma=1, c=4."
+   },
+   {
+    "claim": "G3 is type (c) and not a disguised easy case; GLOBAL OPEN",
+    "verdict": "CONFIRMED",
+    "detail": "Checked independently on G_2 and G_3: the -1 self-loop (4/3) and the 1 self-loop (1/3) are in one SCC. The full-branch i.i.d. structure was confirmed. No settlement is claimed."
+   },
+   {
+    "claim": "K1-K3 (K7 excursion map, sharp inequalities, density of B1, rising families)",
+    "verdict": "CONFIRMED",
+    "detail": "All re-derived and checked. delta1 = 0.0362745023...; nit: the text writes '0.036275...', which reads as a truncation. Exactly one class mod 2^(7k+1) gives k rising (6,1) excursions, k<=8."
+   },
+   {
+    "claim": "Census counts and types (54,105 c_mixed tables, all OBST)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Counts sum correctly and the prover's check passes. Fixes: (1) the 36 type-(b) tables are called 'settled by Theorem H' but Theorem H was never run on them; label 'in principle'. (2) 'c_exp is trivially divergent' is unproved."
+   },
+   {
+    "claim": "README: after M, N-hat, R the only usable extra information is Archimedean size",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "This does not follow from the theorems, which exclude specific proof shapes only. Relabel as HEURISTIC/interpretation."
+   },
+   {
+    "claim": "Connection: near-critical ratios behind dch_C27_2466's 2466-step depth are 'the same objects', both governed by rational approximation of log a/log p",
+    "verdict": "WRONG",
+    "detail": "dch_C27_2466 is a settled base-3 table with multipliers 1,2,4,5. Its depth k*=2466 is a finite max-cycle-mean quantity from one 11-step cycle with multiplier 80/81 = 2^4*5/3^4; no Diophantine approximation is involved. Theorem C's threshold comes from the convergents of log_2 3 and is unbounded in Z0. Rewrite as a loose analogy (products of multipliers near 1)."
+   },
+   {
+    "claim": "Novelty statements",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Honest overall. cycles.md's 'nobody has done it for these maps' contradicts 'literature not checked'; replace it with 'not found in this repository'."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "Round 4 integrality lens: the hard criterion was not met, and the prover says so honestly. No type-(c) system is claimed as settled. The proved results hold. I re-derived Theorems M, N-hat, R and C, the corollaries C1 and C2 (cycle bounds up to 10^11 for the 7 S-cores, K7 and G3), K1-K3 and the census counts. My own exact script reproduces them: /home/riv/Code/collatz/census/round4/integrality/referee1_check.py, 58 checks, ALL PASS at N=10^7, and it exits 1 on planted errors. All prover checks pass. Repairs needed are wording only: (1) the lap-count definition in Theorem M is off by one; (2) Theorem R's Consequence is too broad; (3) the 'only Archimedean size remains' sentence should be labelled HEURISTIC; (4) the type-(b) 'settled' and c_exp 'trivially divergent' labels in the census are unbacked; (5) one novelty phrase contradicts itself; (6) the analogy with dch_C27_2466 is WRONG. That certificate's 2466-step depth is a finite max-cycle-mean effect of one 80/81 residue cycle, not rational approximation of log a/log p. Report: /home/riv/Code/collatz/census/round4/integrality/REFEREE1.md"
+ },
+ "repair:wpotential": {
+  "folder": "/home/riv/Code/collatz/census/round4/wpotential/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "Lemma S (soundness of potential certificates)",
+    "statement": "V >= 0 with V(Tn) <= V(n) - delta off a finite set F (or V into a well-order, strictly decreasing off F) implies every orbit is eventually periodic and every cycle meets F.",
+    "status": "PROVED (referee CONFIRMED)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem W (coarse-monotonicity wall)",
+    "statement": "For any residue-class affine map, a potential certificate is not coarsely monotone at any expanding periodic point.",
+    "status": "PROVED (referee CONFIRMED)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_wall.py",
+    "novelty": "not checked; same shadowing mechanism as round-3 Theorem N"
+   },
+   {
+    "name": "Corollary W1",
+    "statement": "Type (c): Lambda_Sigma is closed, perfect and uncountable, and expanding periodic points are dense in it, so B(V) is dense in Lambda_Sigma for every certificate V.",
+    "status": "PROVED (referee CONFIRMED)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_wall.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Corollary W2 (revised)",
+    "statement": "Counter-free classes (c(r)n + o(n), n^gamma e^psi with psi locally bounded, c*len + bounded, lex/ordinal combinations) certify exactly the CERT unit-multiplier systems. With counters at finitely many points they certify at most systems whose expanding periodic points lie on finitely many orbits; this includes type (b) (acc_h16), never type (c). The original claim that the counter classes only reach CERT systems is WITHDRAWN as wrong.",
+    "status": "PROVED (as revised)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/referee1_check.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Remark: counter certificate for acc_h16 (referee's example)",
+    "statement": "Lexicographic (SCC level, c(r)n / 2v_2(n+1) / 2v_2(n/2+1)+1) descends off a finite set for the type-(b) system acc_h16.",
+    "status": "PROVED (referee's argument, now written out in theory.md section 2)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/referee1_check.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem A (window potentials collapse)",
+    "statement": "Sliding-window binary digit potentials of width s certify no 2-adic map with a x3 branch (s<=10) or x5 branch (s<=8) and an expanding periodic point; descent forces V = c*len + bounded.",
+    "status": "PROVED for those s; general s OPEN (EVIDENCE)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/wpotential/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/wpotential/check_windows.py",
+    "novelty": "not checked"
+   }
+  ],
+  "systems": [
+   {
+    "id": "K7 and the other 7 S-family cores, 3x+1",
+    "rule": "see round3/accel/sfamily_obst.md",
+    "result": "type (c) confirmed, decide.py OBST; no certificate found; all walls apply",
+    "status": "OPEN",
+    "type_c_verified": "yes (check_wall.py [TYPE], referee1_check.py)"
+   },
+   {
+    "id": "mb_s3_27",
+    "rule": "n=26 mod 27 -> (n+1)/27; even -> n/2; else (3n+1)/2",
+    "result": "16274 rational periodic orbits of period <= 12, exactly two expanding (-10 with 9/8; -10138/139 with 2187/2048), now asserted exactly; homoclinic expanding points for d=10,20,40",
+    "status": "OPEN",
+    "type_c_verified": "not unit-multiplier; Theorem W applies"
+   },
+   {
+    "id": "acc_h16",
+    "rule": "even n/2; odd: n+1 (5,9 mod 16), n+5 (13), else 3n+1",
+    "result": "type (b); certified by a counter potential (referee's counterexample to old W2 claim)",
+    "status": "settled already in round 3 (Theorem H)",
+    "type_c_verified": "no (type b)"
+   }
+  ],
+  "blocking_points": "No type-(c) system is settled. Potentials that read residues, digit windows or real size monotonically are walled off at every expanding periodic point. Counters at finitely many points get past only finitely many orbits, which is enough for type (b) but never for type (c). Two things stay open: a rigidity lemma for general deterministic additive automata (theory.md section 4, sketch only), and matrix interpretations of the rewriting encoding. Those interpretations are not covered by the walls, but the z3 search at small sizes found nothing that orients a rule acting on a residue class.",
+  "summary": "I repaired every item REFEREE1 flagged in /home/riv/Code/collatz/census/round4/wpotential/. The headline is unchanged: no type-(c) system is settled; the result is a proved extension of the wall to potentials.\n\nThe WRONG item (W2b) is withdrawn and marked in place:\n- theory.md §0, the §2 \"iff CERT\" sentence and README row W2 now give the \"iff CERT\" only for the classes without counters.\n- With counters at finitely many points the reach is at most the systems whose expanding periodic points lie on finitely many orbits. That includes type (b) but never type (c).\n- The referee's acc_h16 counter certificate is now written out as a PROVED Remark in theory.md, checked by referee1_check.py [TYPEB].\n\nThe minor fixes:\n- W2 item 2: psi must be bounded.\n- W2 item 3: the unneeded ratio hypothesis is dropped.\n- The division-free expanding cycle case is added to \"only if\".\n- The two GAPs are relabelled as heuristics: W2 item 5 (accelerated certificates are counter potentials) and theory.md §6.3 (the 3x+1 conjugacy is not computable by an automaton).\n- srs.md, the README and check_srs.py now say that K7's small1 (1 -> 0) was removed, and that no rule acting on a residue class was oriented.\n- check_wall.py [MB] now asserts exactly 16274 orbits and the exact expanding list.\n- Docstrings now say W1, W2 and give the correct runtimes.\n- The README has a new section \"Revision after REFEREE1\".\n\ncheck_wall.py, check_windows.py, check_srs.py and referee1_check.py all exit 0. Nothing was committed."
+ },
+ "repair:integrality": {
+  "folder": "/home/riv/Code/collatz/census/round4/integrality/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "Theorem M",
+    "statement": "For any unit system and closed walk C with a division, the run map sends each lap-count class D_d affinely onto D_0 and the first-return map is full-branch; excursion data are i.i.d. under Haar measure and realized on positive integers. Lap count is now defined by the first dℓ steps (residues at times 0..dℓ).",
+    "status": "PROVED (wording repaired)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/mixing.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_mixing.py",
+    "novelty": "standard in spirit (Terras, Lagarias); literature not checked"
+   },
+   {
+    "name": "Theorem N-hat",
+    "statement": "Type (c) implies there is no profinite cover/stopping-time certificate. Congruences mod q != p cannot get past the wall as part of such a certificate; other global uses are not excluded.",
+    "status": "PROVED (scope wording added)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/mixing.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_mixing.py",
+    "novelty": "small extension of round 3 Theorem N"
+   },
+   {
+    "name": "Theorem R",
+    "statement": "For a unit system with an expanding cycle, the run map (or any excursion map containing the full run along C) is not a rational relation in base p (Cobham). The broader claim about all excursion maps is withdrawn: the Syracuse map is rational in base 2.",
+    "status": "PROVED (consequence narrowed)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/mixing.md",
+    "novelty": "application of Cobham's theorem"
+   },
+   {
+    "name": "Theorem C with C1, C2",
+    "statement": "Steiner/Eliahou-type cycle bound. There is no unlisted cycle with an element <= 10^11 for the 7 S-cores (length >= 492531) or for G3 (length >= 222404). The case Y = 0 is now excluded explicitly.",
+    "status": "PROVED (cycles only; divergence OPEN)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/cycles.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_cycles.py",
+    "novelty": "classical method; application not found in this repository; literature not checked"
+   },
+   {
+    "name": "Type (b) census tables",
+    "statement": "Theorem H is now actually run on the 36 type-(b) tables of F3m2. Its hypotheses hold at K = 2. Cycle minima: {1,2} in 18 tables, {1} in 12, {2} in 6.",
+    "status": "PROVED (not type (c))",
+    "proof_file": "/home/riv/Code/collatz/census/round4/integrality/census_small.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/integrality/check_typeb.py",
+    "novelty": "routine"
+   }
+  ],
+  "systems": [
+   {
+    "id": "K7 and the 8 cores",
+    "rule": "K7: z even -> z/2; z=3 mod 4 -> (3z+1)/2; z=1 mod 4 -> (z-1)/4",
+    "result": "exact excursion map and sharp inequality; cycle bound only",
+    "status": "GLOBAL OPEN",
+    "type_c_verified": "yes (round 3)"
+   },
+   {
+    "id": "G3",
+    "rule": "n=8 mod 9 -> (4n+1)/3, else ceil(n/3)",
+    "result": "no other cycle below 10^11; length >= 222404",
+    "status": "GLOBAL OPEN (EVIDENCE to 10^11)",
+    "type_c_verified": "yes, OBST"
+   }
+  ],
+  "blocking_points": "No type-(c) system was settled. Divergence is untouched: Theorem C works only on cycles, and Theorems M, N-hat and R only close proof routes. The claim \"only Archimedean size remains\" is now marked HEURISTIC.",
+  "summary": "I repaired every item in REFEREE1. Wording changes, all marked in the files:\n- mixing.md: fixed the lap-count off-by-one with the G3 n=8 example, added \"in [r0]_K\" to the proportion in M(3), narrowed Theorem R's consequence to run maps, and added the N-hat scope.\n- README.md, mixing.md, cycles.md: \"only Archimedean size is left\" is now labelled HEURISTIC.\n- cycles.md: added the Y = 0 exclusion line and withdrew \"nobody has done it\".\n- k7.md: δ1 = 0.0362745…; I re-derived the exact partial sum, 0.0362745023.\n- census_small.md: withdrew \"c_exp trivially divergent\".\n\nThe dch_C27_2466 analogy, which bears on the 2466-step certificate, was WRONG and is withdrawn in cycles.md and README. The depth 2466 is a fixed finite number in a settled base-3 table with multipliers 1, 2, 4, 5. It is forced by one 11-step contracting residue cycle with multiplier 80/81 = 2^4·5/3^4, the max-mean cycle of a finite graph. Theorem C's threshold is different: it is set by the continued-fraction convergents of log_p a and grows without bound with Z0. The two share only the loose theme of a product of multipliers close to 1.\n\nThe type (b) tables were called \"settled by Theorem H\" without the theorem being run. It is now run by the new check_typeb.py, which writes typeb_cycles.json and includes a negative control; it exits 0. check_mixing.py, check_k7.py and check_typeb.py all pass after the edits.\n\nREADME.md has a new section, \"Revision after REFEREE1\". The hard criterion is still not met."
+ },
+ "referee2:transport": {
+  "verdicts": [
+   {
+    "claim": "Lemma P",
+    "verdict": "CONFIRMED",
+    "detail": "Refinement rule re-derived; own symbolic engine reproduces all identities."
+   },
+   {
+    "claim": "Theorem E",
+    "verdict": "CONFIRMED",
+    "detail": "Boundary point z=0 and cycle multipliers checked."
+   },
+   {
+    "claim": "Lemma S",
+    "verdict": "CONFIRMED",
+    "detail": "Own implementation with exact Karp sign agrees on all 4857 join members; rejects (3x+1,1 mod 4), (3x+1,0 mod 3), (5x+1,3 mod 4) and a neutral-loop table."
+   },
+   {
+    "claim": "Proposition C (with corrected 'every C-cycle meets 2 mod 3')",
+    "verdict": "CONFIRMED",
+    "detail": "Branches re-derived by hand. The corrected two-step argument is right. Brute force for z<2e5. G and G' are type (c) (own graph; 3/2 self-loop and 9/8 cycle both present). G' orbits for y<=1e6 all reach 1."
+   },
+   {
+    "claim": "Theorem F",
+    "verdict": "CONFIRMED",
+    "detail": "Exactly the 4 stated sets among all 256 m=4 sets give G. The cycles for n<=1e6 are exactly (1 2) or (1 4 2), plus (3 10 5 6). Fate matches whether the orbit meets 3 mod 4. All 4 tables are type (c), labelled equivalence/GLOBAL OPEN."
+   },
+   {
+    "claim": "S-family classes 42/264/20",
+    "verdict": "CONFIRMED",
+    "detail": "All joins re-proved with own engine and Lemma S, sfam tables rebuilt from ids. All members are open and of type (c). Cut-offs are now stated."
+   },
+   {
+    "claim": "8 cores not joined",
+    "verdict": "CONFIRMED",
+    "detail": "43 bounded returns (incl. 9 maps), no collision, at tmax 24 and at tmax 80. Own exact criterion on 2-power classes gives 16, matching the prover."
+   },
+   {
+    "claim": "Lemma B, Lemma R",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. dch_C27_2466: rebuilt from its rule, unit 3-adic, type (a), max cycle 80/81 of length 11, 3 cycles for n<=2e5, empirical linear excursion bound <=142."
+   },
+   {
+    "claim": "Theorem O1",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof correct. Falsification test: all 32 unit bounded returns of CERT systems are type (a). Fixes: (1) transport_theorems.md line 220 still says 'to an OBST system'; it must say 'to a unit p-adic table with an expanding cycle reachable from X' (residual of REFEREE1 item 5). (2) In the proof, mu^L should be min(mu,1)^L."
+   },
+   {
+    "claim": "Theorem O2",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived; the 'type (c) or critical' conclusion is correct. 14 unit returns of Theorem-H systems to p-adic classes: none is type (c)."
+   },
+   {
+    "claim": "Non-unit search (EVIDENCE)",
+    "verdict": "CONFIRMED",
+    "detail": "Part G re-runs M<=144 (117390 pairs, 31 bounded, 0 unit). Breakdown 24 pairing + 7 dressed verified."
+   },
+   {
+    "claim": "Hard criterion not met; open door; honest limits",
+    "verdict": "CONFIRMED",
+    "detail": "No settlement claimed. 3x+1 bounded returns for M<=64 are all type (c). No settled/unsettled collision among the 220 sufficient library returns."
+   },
+   {
+    "claim": "Labels and novelty",
+    "verdict": "CONFIRMED",
+    "detail": "Novelty not checked is stated. Labels are accurate apart from the O1 scope sentence."
+   },
+   {
+    "claim": "REFEREE1 repairs honestly resolved",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "7 of 8 items fully resolved. Item 5 was fixed in the README but one sentence in transport_theorems.md (line 220) still overstates O1's scope."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "No mathematical error; the hard criterion is not met and not claimed. Every proof was re-derived and every recorded join re-proved with an independent exact engine. referee2_check.py passes in about 24 s and is shown to fail under injected faults. The prover's check_transport.py also passes. Two wording repairs are needed. First, transport_theorems.md line 220 must narrow 'to an OBST system' to unit p-adic tables with an expanding cycle reachable from X (residual of REFEREE1 item 5). Second, in the O1 proof mu^L must become min(mu,1)^L. Report: /home/riv/Code/collatz/census/round4/transport/REFEREE2.md; check script: /home/riv/Code/collatz/census/round4/transport/referee2_check.py."
+ },
+ "referee:schema": {
+  "verdicts": [
+   {
+    "claim": "Hard criterion: no type-(c) system settled (README bottom line)",
+    "verdict": "CONFIRMED",
+    "detail": "Correct. Every system the folder settles (D members, 3x+1 cut at j=2, K7 cut at j=2..5, window approximants T_N and the K7 ones) is CERT, so type (a). Nothing is presented as a type-(c) success. B1 is negative; W3 and W4 are a reformulation and a conditional. No argument proves 3x+1 or contradicts a known cycle or divergent orbit. A 5x+1 sanity test of the window method gives no false statement: the true 13-cycle simply lies in R_N."
+   },
+   {
+    "claim": "A1: CERT iff G_exit<Q; cycles {(1),loop}; exact k* formula for D(m,word,h,i0)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Re-derived line by line. Fix: the cycle-minimum argument in part (2) omits the case n_min = e_j with t_0 = 0. That orbit enters the loop at t=0 and never returns, so e_j is not on a cycle; one sentence is enough. Referee checks agree: G_exit computed on the residue graph, an exact search of all walks for Lambda (resets included), and brute-force cycle lists for n<=2e5 (m=4..6 plus 40 random members)."
+   },
+   {
+    "claim": "A2: Christoffel near-critical loops give k* >= c Q^2 log Q; 'proof of the round-3 conjecture'",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The mathematics is correct; the proof actually gives the stronger bound k*>=h+qL+1. Balance was checked directly. Label fix: the deep.md conjecture is stated for the base-3 families B(3^k,2) and C(3^k). A2 proves the base-2 analogue for a designed reset family, so the README headline 'proof of round 3's conjecture' must be reworded; that conjecture stays OPEN."
+   },
+   {
+    "claim": "A3: k* <= Q + (log3/log2)(a_{k+1}+2)Q^2(Q-1) for CERT base-2 tables with u in {1,3}",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof re-derived. No violations against decide.py's exact k* on 150 random CERT tables (m=2..4, translation nodes allowed). Fix: the Diophantine consequence needs an epsilon: a_{k+1}=O(q_k^{mu-2+eps}), so k*=O(Q^{mu+1+eps})."
+   },
+   {
+    "claim": "A-rec: k* records 41362 (m=8), 133534 (m=9), 304506 (m=10)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "All seven k* values (m=4..10) were reproduced by the referee's own exact search for Lambda, which does not use the A1 formula. The referee's own integer witnesses n=e_1+Q*2^(D+64), checked by direct iteration, include m=10, so that row can be upgraded from 'formula only'. Fix: the m=10 table row gives lambda=0.99795, but the correct value is 3^147/2^233=0.99274. The comparison with 2466 at modulus 27 is across families; say so."
+   },
+   {
+    "claim": "depth.md [A4]: witnesses plus Theorem 3(a) prove k* independently of Theorem A1",
+    "verdict": "WRONG",
+    "detail": "As worded this is false. A witness proves only the lower bound k* >= value. The upper bound needs Lambda, and check_depth takes it from the A1 formula (decide.py is called with want_depth=False for m<=9). The values still stand, by the referee's independent computation [R2]. The sentence needs rewording."
+   },
+   {
+    "claim": "B1: cut-offs near a finite set F of a type-(c) system are again type (c)",
+    "verdict": "CONFIRMED",
+    "detail": "Steps 1-6 re-derived. C-stretches are maximal runs of C-edges, which gives disjoint compact invariant sets X_d. Compactness gives J0. Points that share A_d^i are congruent mod p^(K+i). (M) for T' excludes a single simple cycle. In an adversarial test, 60 random non-reset unit-multiplier replacements on U_J were all type (c)."
+   },
+   {
+    "claim": "B1-inst: exact thresholds J0=3 (3x+1, witness -5) and J0=6 (K7, witness -49/17)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Run-length formulas and block maxima confirmed. Type (c) holds for j=3..11 and j=6..11 with the referee's own SCC code. Below J0, exact contraction potentials exist, and brute-force cycle lists for n<=1e6 give (1 2) and z=0. Fix: 'CERT only for j=2' should read 'j<=2', and the README should state the standing hypothesis on T'."
+   },
+   {
+    "claim": "W1: window approximants T_K are CERT",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof correct. Wording fix: the leftover partial window is bounded above by U_w(x_j) <= p^((1-delta)(K-m+e_max)), not by 'U>=1'. The README row should list the hypotheses, including (1-delta)(K-m+e_max)<K."
+   },
+   {
+    "claim": "W1': dist_{2^N}(3x+1)/2^N -> 0 exponentially (answers round-3 open question)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "It was proved and checked only for accelerated 3x+1, but dichotomy.md section 7 asks about the non-accelerated map. The claim is still true: the plain map's window at K=N is the accelerated N-window, so R_N is the same set, and W1 applies with e_max=1=m. The referee verified this exactly for N=4..10 with its own potential and with decide.py. window.md must state it."
+   },
+   {
+    "claim": "W2: explicit uniform schema for 3x+1, exceptional set in [1, B_N]",
+    "verdict": "CONFIRMED",
+    "detail": "All edge cases re-derived, along with the constants (gamma^8*243<256, c_max<=2^(N-2) for N>=4) and the bound B_N. The referee's own weights satisfy every edge inequality exactly for N=4..12."
+   },
+   {
+    "claim": "W3: T_N cycle list {(1 2)} for N in [4,26]; reduction is equivalent to the conjecture",
+    "verdict": "CONFIRMED",
+    "detail": "Referee brute force for N=4..20 (all n<=B_N) finds only (1 2); the prover checked up to 26. The equivalence is correct and honestly labelled as a reformulation."
+   },
+   {
+    "claim": "W4: (S_C) implies Collatz; (S_C) OPEN",
+    "verdict": "CONFIRMED",
+    "detail": "Cycle identity and the (3+1/x)^5 bound verified, so x<=31 and the cycle is (1 2). Labels honest. Nit: the remark that B1 forbids any cylinder replacement is informal."
+   },
+   {
+    "claim": "W4-ev: max A(n)/log2 n values",
+    "verdict": "CONFIRMED",
+    "detail": "A(27)=63 (13.25), A(837799)=217 (11.03) and A(63728127)=446 (17.20) reproduced; correctly labelled EVIDENCE."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "The lens honestly reports that no type-(c) system was settled; everything it settles is CERT, so type (a). The proofs of A1-A3, B1, W1-W4 hold up. The referee re-derived each one and wrote an independent check, /home/riv/Code/collatz/census/round4/schema/referee1_check.py, which exits 0, includes negative controls, and passes 81 checks. It confirms every depth record independently, including m=10 (k*=304506), which the prover had verified by formula only, now with an integer witness. All three prover checks also pass. Repairs are needed for labels and wording, not for the mathematics: (1) the 'proof of round 3's conjecture' headline overclaims, since what is proved is a base-2 designed-family analogue and the base-3 B(3^k,2)/C(3^k) conjecture stays OPEN; (2) the depth.md sentence saying the [A4] witnesses prove k* independently of A1 is wrong, because a witness gives only the lower bound; (3) the m=10 lambda is a typo (should be 0.99274, not 0.99795); (4) W1' was proved for accelerated 3x+1 while round 3 asked about the plain map; it is true there too (verified) but must be stated; (5) minor items: a missing trivial case in A1, the W1 leftover wording, epsilon in A3, j<=2 in B1-inst, and hypotheses missing from README rows. Report: /home/riv/Code/collatz/census/round4/schema/REFEREE1.md."
+ },
+ "referee2:wpotential": {
+  "verdicts": [
+   {
+    "claim": "S: Lemma S (soundness of potential certificates; every cycle meets F; well-order variant)",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived it line by line and it is correct."
+   },
+   {
+    "claim": "W: Theorem W (for any residue-class affine map, a certificate is not coarsely monotone at any expanding periodic point)",
+    "verdict": "CONFIRMED",
+    "detail": "The shadowing, growth and F-avoidance steps all hold. My [SHADOW] check confirms the exact identity at x* for sf3_7, sf3_13, sf3_137, K7z, 3x+1 and 5x+1."
+   },
+   {
+    "claim": "W1: in type (c), Lambda_Sigma is a Cantor set and the expanding periodic points are dense in it",
+    "verdict": "CONFIRMED",
+    "detail": "The perfectness argument and the (M) fixed-point argument are correct. My [DENSE] check builds 36 random walks with my own G_K and verifies each one by iteration; a contracting walk is correctly rejected."
+   },
+   {
+    "claim": "W2a: the counter-free classes certify exactly the CERT systems",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Items 1-4 and 6 are correct. The division-free sentence 'multiplier ... > 1' is false when every u is 1: n=1(4) -> n+4 has multiplier exactly 1. Fix: say the multiplier is >= 1, and handle multiplier 1 separately (shift > 0 diverges; shift 0 gives infinitely many cycles, which Lemma S excludes). Also say 'cycle with multiplier >= 1' instead of 'expanding cycle'. REFEREE1 had mentioned the u=1 case and the repair dropped it."
+   },
+   {
+    "claim": "W2b: with finitely many counters the reach includes type (b) but never type (c)",
+    "verdict": "CONFIRMED",
+    "detail": "The WRONG item from REFEREE1 is honestly withdrawn in section 0, section 2 and the README."
+   },
+   {
+    "claim": "Remark: acc_h16 counter certificate (labelled PROVED)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "As written, phi = c(r)n only on the 10-node SCC and 0 on 'transient nodes'. But {0} is a 1-node SCC with a self-loop, so V does not descend at any n = 0 (32), which is infinitely many n. Fix: phi = c(r)n on every contracting SCC with an internal edge, including {0}. referee1_check already does this; my independent rebuild then descends with failures only below 510 (threshold 2369)."
+   },
+   {
+    "claim": "A: Theorem A, window potentials collapse (u=3, s<=10; u=5, s<=8)",
+    "verdict": "CONFIRMED",
+    "detail": "Steps 1-4 re-derived. Pump, bijection and step-3 identities are exact, and my own rank mod 998244353 equals 2^(s-1), with exact kernel vectors. The u=1 control gives rank 0. A positive control (a window potential certifying a CERT x3 system) shows no over-reach."
+   },
+   {
+    "claim": "A-open: general s OPEN, rank pattern EVIDENCE",
+    "verdict": "CONFIRMED",
+    "detail": "The label is correct."
+   },
+   {
+    "claim": "TYPE: the 8 cores, K7z and 3x+1 are type (c)",
+    "verdict": "CONFIRMED",
+    "detail": "My own G_K and SCCs at K=m and m+2 confirm the standing hypothesis, an expanding x* walk, and a non-simple SCC; 5x+1 is also type (c). The acc_h16 and CERT controls are correctly not type (c). Brute force to 10^6 gives the stated stopping values (sf3_13 has minima 1 and 3; K7z reaches 0), and sf3_137 escapes, as expected."
+   },
+   {
+    "claim": "MB: mb_s3_27 periodic orbits and homoclinic points",
+    "verdict": "CONFIRMED",
+    "detail": "My own Lyndon enumeration reproduces exactly 16274 orbits of period <= 12 and exactly two expanding ones (9/8 and 2187/2048, the latter through -10138/139). Homoclinic points for d=10, 20, 40 are exact. 'Infinitely many' is correctly OPEN, and check_wall now asserts the count."
+   },
+   {
+    "claim": "SRS: the encodings simulate the maps; chains verified; no class map rule oriented",
+    "verdict": "CONFIRMED",
+    "detail": "I wrote my own rule lists and semantics check. My own interpretation algebra re-verifies every stored chain, the removed sets match, and the small1 qualifier is present."
+   },
+   {
+    "claim": "Section 4 automaton reduction and section 6.3 heuristic",
+    "verdict": "CONFIRMED",
+    "detail": "Both are correctly labelled as a sketch and a heuristic. Nit: the README 'stalled' sentence states the section 4 consequence without the 'sketch' qualifier."
+   },
+   {
+    "claim": "Headline: no type-(c) system settled; novelty not checked; refereed once",
+    "verdict": "CONFIRMED",
+    "detail": "The labels are honest. No positive claim exists that could prove 3x+1."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "Second referee pass on /home/riv/Code/collatz/census/round4/wpotential. No type-(c) system is claimed settled, and none is; the folder is honest about that. The negative results hold: Lemma S, Theorem W, Corollaries W1 and W2, and Theorem A. Of the REFEREE1 items, every one was resolved except the division-free sentence, which was only partly fixed.\n\nTwo textual repairs are needed:\n(1) theory.md's acc_h16 Remark, labelled PROVED, leaves out the self-loop SCC {0}. As written, its potential fails at every n = 0 (32). referee1_check's code already handles this correctly.\n(2) In the W2 'only if' argument, the division-free case says the multiplier is > 1. It can be exactly 1; the conclusion still holds.\n\nMy independent check is /home/riv/Code/collatz/census/round4/wpotential/referee2_check.py, with exact arithmetic and negative controls; it exits 0 in about 26 s. Its first run failed, which is how it caught issue (1). The prover's checks (check_wall, check_windows, check_srs and referee1_check) all exit 0. The report is /home/riv/Code/collatz/census/round4/wpotential/REFEREE2.md. Nothing was committed and no prover file was edited."
+ },
+ "repair:schema": {
+  "folder": "/home/riv/Code/collatz/census/round4/schema/",
+  "success_level": "WALL_EXTENDED",
+  "theorems": [
+   {
+    "name": "A1 exact certificate/depth for D(m,word,h,i0)",
+    "statement": "Designed base-2 family: CERT iff G_exit < Q; complete cycle list is {(1), the loop}; exact k* formula. Revision: the missing case where n_min is a chain residue (t0 = 0) is now written out.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/schema/depth.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/schema/check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "A2 unbounded depth from near-critical Christoffel loops",
+    "statement": "k* >= h + 1 + qL with q = floor(h log3/|log lambda|), strengthened from h + 1 + L(q-1). Along the convergents of log2(3), k* >= c Q^2 log Q. This is a base-2 analogue for a designed reset family. The round-3 conjecture for B(3^k,2) and C(3^k) remains OPEN, and the claim that A2 proves it is withdrawn.",
+    "status": "PROVED (analogue); conjecture OPEN",
+    "proof_file": "/home/riv/Code/collatz/census/round4/schema/depth.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/schema/check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "A3 polynomial upper bound",
+    "statement": "Every CERT base-2 table with u in {1,3} has k* <= Q + (log3/log2)(a_{k+1}+2)Q^2(Q-1), hence k* = O_eps(Q^{mu+1+eps}). The eps was added in this revision. The gap between Q^2 log Q and Q^3 is OPEN.",
+    "status": "PROVED (bound); OPEN (gap)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/schema/depth.md",
+    "novelty": "not checked"
+   },
+   {
+    "name": "A-rec depth records",
+    "statement": "k* = 41362 (Q=256), 133534 (Q=512), 304506 (Q=1024). lambda at m=10 corrected to 0.99274. The sentence saying the witnesses prove k* independently of A1 is withdrawn: witnesses give only the lower bound. Upper bounds independent of A1 come from decide.py for m<=8 (new check [A5]) and from REFEREE1 [R2] for m<=10.",
+    "status": "PROVED",
+    "check_file": "/home/riv/Code/collatz/census/round4/schema/check_depth.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "B1 cut-off wall",
+    "statement": "If T is type (c) and F is finite, every unit-multiplier T' that satisfies the standing hypothesis and agrees with T off a small enough neighbourhood of F is type (c). So it has no descent or accelerated certificate. Instances: the 3x+1 reset cut-off is CERT exactly for j<=2 and type (c) for j>=3; K7 is CERT for j=2..5 and type (c) for j>=6.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/schema/cutoff.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/schema/check_cutoff.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "W1/W1' window approximants; dist_{2^N}(3x+1)/2^N -> 0",
+    "statement": "Window approximants are CERT under the stated hypotheses (the leftover wording is fixed: it uses an upper bound). dist_{2^N} <= sum_{k>5N/8} C(N,k) <= 2^{0.954N}, now proved and checked for the non-accelerated map of dichotomy section 7 as well (new check [W1'p], N=4..10).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round4/schema/window.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/schema/check_window.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "W2-W4 schema and reduction",
+    "statement": "W2: explicit uniform potential for T_N. W3: for each N in [4,26], an orbit reaches (1 2) iff it eventually avoids R_N (a reformulation). W4: (S_C) implies Collatz; (S_C) itself is OPEN. The informal sentence attributing a cylinder impossibility to B1 is withdrawn.",
+    "status": "PROVED (W2, W3, W4 implication); OPEN (S_C)",
+    "proof_file": "/home/riv/Code/collatz/census/round4/schema/window.md",
+    "check_file": "/home/riv/Code/collatz/census/round4/schema/check_window.py",
+    "novelty": "not checked"
+   }
+  ],
+  "systems": [
+   {
+    "id": "3x+1 cut-off at depth j",
+    "rule": "accelerated 3x+1, reset on n = -1 mod 2^j",
+    "result": "CERT for j<=2 (cycle (1 2)); type (c) for j>=3",
+    "status": "PROVED",
+    "type_c_verified": "yes for j>=3 (SCC + witness -5 -7 -10)"
+   },
+   {
+    "id": "K7 cut-off at depth j",
+    "rule": "K7, reset on z = -1 mod 2^j",
+    "result": "CERT for j=2..5 (cycle z=0); type (c) for j>=6",
+    "status": "PROVED",
+    "type_c_verified": "yes for j>=6 (witness z=-49/17)"
+   },
+   {
+    "id": "3x+1 / K7 window approximants",
+    "rule": "reset on high-multiplier windows R_N",
+    "result": "CERT, single cycle; settles only the approximants, not T",
+    "status": "PROVED",
+    "type_c_verified": "approximants are type (a); T itself remains open"
+   }
+  ],
+  "blocking_points": "No type-(c) system was settled. B1 shows that cut-offs near finitely many points stay type (c). The window approximants reduce T only to an eventual-avoidance statement, which is equivalent to the conjecture (W3) or stronger, (S_C), and is unproved. The depth conjecture for the base-3 families B(3^k,2) and C(3^k) is still OPEN. The re-run of check_depth.py after the revision had passed every item through [A3] m=9 when the revision was handed off. Its last items (the m=10 formula, the new lambda-column check and the new [A5] decide.py depth check for m=4..8) had not finished, so the full run is not yet confirmed and the README says so. Before the edit, decide.py run by hand gave k* = 791, 4335 and 41362 for m=6,7,8.",
+  "summary": "Repaired every REFEREE1 item in /home/riv/Code/collatz/census/round4/schema/.\n- Withdrew the claim that A2 proves round 3's conjecture. It is now described as a base-2 analogue for a designed family, and the conjecture for B(3^k,2) and C(3^k) is stated as OPEN.\n- Withdrew the depth.md sentence saying the [A4] witnesses prove k* independently of A1. They give only the lower bound. Added check [A5]: decide.py computes k* without using A1 for m<=8. REFEREE1 [R2] is cited for m=9,10.\n- Corrected lambda at m=10 to 0.99274 and added an exact check of the lambda column.\n- Added the missing A1 case where n_min is a chain residue (t0=0).\n- Strengthened the A2 bound to k* >= h+1+qL.\n- Added the eps to A3.\n- Fixed the W1 leftover argument (it needs an upper bound) and noted the irrational delta used for 3x+1.\n- Proved W1' for the non-accelerated map and added check [W1'p].\n- Withdrew the informal B1 sentence in W4.\n- Changed \"j=2\" to \"j<=2\" in B1-inst and added a j=1 check.\n- Added the missing hypotheses to the README rows and a section \"Revision after REFEREE1\" to the README.\ncheck_cutoff.py, check_window.py and referee1_check.py exit 0. The full re-run of check_depth.py was not yet complete at hand-off: everything through m=9 passed, and the m=10 formula, the lambda-column check and [A5] were still running. The hard criterion is still not met; the best outcome is the extended wall (B1)."
+ },
+ "referee2:integrality": {
+  "verdicts": [
+   {
+    "claim": "Hard criterion: a type-(c) unit system settled by a new method",
+    "verdict": "CONFIRMED",
+    "detail": "The folder does not claim it. The README says plainly that the criterion was not met, and GLOBAL is labelled OPEN for K7, G3 and all 8 cores. No new type-(c) proof method exists to attack."
+   },
+   {
+    "claim": "Theorem M (run map is affine from D_d onto D_0; the first-return map is full-branch; every finite excursion word is one residue class of positive integers)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived line by line. The lap-count off-by-one from REFEREE1 is fixed in the text. Exact test on G3 modulo 3^12: each of the 2585 decided first-return walks has exactly 3^(10-E) starting residues and maps bijectively onto all of [8]_2 modulo 3^(12-E). [M-run] confirms R(n) = -1 + (4/3)^d (n+1), landing in D_0."
+   },
+   {
+    "claim": "Theorem N-hat (no profinite cover/stopping-time certificate)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived, including the rotation step that makes every partial multiplier > 1. The scope wording is now correct."
+   },
+   {
+    "claim": "Theorem R (the run map is not a rational relation, by Cobham) and its narrowed Consequence",
+    "verdict": "CONFIRMED",
+    "detail": "Proof steps re-derived. The n_d identity holds exactly for G3 with d < 40. The Consequence is now limited to the run map and to excursion maps that contain a full run, with the Syracuse map given as the counterexample to the broad form."
+   },
+   {
+    "claim": "Theorem C (Steiner/Eliahou cycle bound) and the (Y_fail, X_fail) values",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived; the constants are right for the S-family (beta=1, gamma=1) and for G3 (beta=2, gamma=1). My own full scan from Y=0 reproduces all four pairs. It holds on 246 cycles of 3x+k and on the 5x+1 cycles 13 and 17, and the c/8 control is violated 234 times, so the test can fail. Nit: for 3x+1 at Z0=2^40, Theorem C's constants give only X >= 301994. Eliahou's sharper form, through my same scan, reproduces his 17,087,915. The text should say Theorem C is weaker by one convergent level."
+   },
+   {
+    "claim": "C1: the 7 S-cores (and K7) have no other cycle with an element <= 10^11 and none of length < 492531 (K7: elements >= 5e10, length >= 190537)",
+    "verdict": "CONFIRMED",
+    "detail": "Strong induction and length arithmetic checked. The prover's 10^11 slices cover the range, all with rc=0. My own C verifier (uint64 with overflow checks) passes to 4e9 and on the top slice [9.98e10, 1e11]. Orbit enumeration from all n <= 3e5 finds exactly the listed cycles."
+   },
+   {
+    "claim": "C2: G3 has no other cycle with an element <= 10^11 and none of length < 222404",
+    "verdict": "CONFIRMED",
+    "detail": "Same checks as C1. The only cycle reached from n <= 3e5 is (1)."
+   },
+   {
+    "claim": "G3 is type (c) and not a disguised easy case",
+    "verdict": "CONFIRMED",
+    "detail": "My own residue graph modulo 9 is one SCC of 9 nodes, with the loop 8->8 (multiplier 4/3) and the loop 1->1 (1/3). It is c_mixed again modulo 27. An expanding loop in an SCC rules out weighted potentials, and Theorem N rules out certificates. GLOBAL is correctly OPEN. Nit: log_3 4 is a ceiling for one run, not a proved bound on the whole orbit."
+   },
+   {
+    "claim": "K1-K3 (K7 excursion map, sharp inequalities, delta1, rising families)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived and checked exactly: delta1 = 0.0362745023, and there is exactly one class mod 2^(7k+1) for each k = 1..3."
+   },
+   {
+    "claim": "Census counts and types; the 36 type-(b) tables settled by Theorem H",
+    "verdict": "CONFIRMED",
+    "detail": "My independent enumerator and typer reproduce the F2m2 and F3m2 counts exactly. I find the same 36 type-(b) tables, and brute force reproduces every listed cycle list. Theorem H is now actually run."
+   },
+   {
+    "claim": "Revised dch_C27_2466 paragraph (2466 is a fixed finite depth set by an 11-step 80/81 max-mean residue cycle; Theorem C's threshold is Diophantine)",
+    "verdict": "CONFIRMED",
+    "detail": "Checked independently: the multipliers are 1, 2, 4, 5 on base 3; there are exactly 3 cycles up to 1e6; Karp's max cycle mean is ln(80/81)/11 = -0.0011293; the 1424-bit witness gives T^i(n) >= n for every i < 2466. New observation: the 80/81 residue cycle is exactly the integer 11-cycle 125...375, and on that cycle Theorem C's identity gives prod(1+v/(un)) = 81/80 exactly. This is an optional, precise link that can be added."
+   },
+   {
+    "claim": "REFEREE1 items honestly resolved",
+    "verdict": "CONFIRMED",
+    "detail": "All 11 items were resolved as described. One correction is to REFEREE1 itself, not to the prover: W is rejected at n=7 because 7 lies on W's known 9-cycle (7 22 11 34 17 52 26 13 14), not because of the step cap. With all 4 known W cycles listed, the first rejected start is n=15, as the prover says."
+   },
+   {
+    "claim": "Labels, novelty and honesty",
+    "verdict": "CONFIRMED",
+    "detail": "The labels are honest. Nits: the check_cycles.py docstring says 'every Y' but the code samples Y (the full scan in cycle_bound.py covers every Y); and n=15 is the least failing start for W only once all its known cycles are listed."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "Second referee pass on round4/integrality: every claim is CONFIRMED and needs_repair is false. Nothing claims a type-(c) system is settled, and GLOBAL is OPEN everywhere. I re-derived all proofs. All prover checks pass. My own check (/home/riv/Code/collatz/census/round4/integrality/referee2_check.py, standard library only, ALL PASS in about 17 s) exits 1 when errors are planted. My own C drop verifier passes all 8 systems to 4e9 and on the top slice below 1e11. All REFEREE1 items were honestly resolved. On the 2466-step certificate, every fact in the revised paragraph checks out: the max-mean cycle is 80/81 over 11 steps (mean -0.0011293), there are 3 cycles, and the 1424-bit witness holds. One new observation: the 80/81 residue cycle is the system's own integer 11-cycle 125...375, on which Theorem C's identity gives exactly 81/80. Four optional nits remain: Theorem C is weaker than Eliahou's form (X >= 301994 vs 17,087,915 at 2^40); 'per-run ceiling' wording for G3; the check_cycles docstring; the least failing start for W. I also corrected REFEREE1's explanation of the W control at n=7: 7 lies on a known W cycle. Report: /home/riv/Code/collatz/census/round4/integrality/REFEREE2.md."
+ },
+ "referee2:schema": {
+  "verdicts": [
+   {
+    "claim": "Hard criterion: no type-(c) system settled",
+    "verdict": "CONFIRMED",
+    "detail": "Every system the folder settles is CERT, i.e. type (a). I verified each by exact potential or exact G_exit: the D members, the cut-offs below J0, T_N, T0_N, and the K7 window approximants for K=3..9. None is presented as a type-(c) success. B1 is a negative theorem; W3 is a reformulation and W4 is conditional."
+   },
+   {
+    "claim": "A1 exact certificate, cycle list and depth for D(m,word,h,i0)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived, including the new t0=0 case. Tested on 120 random CERT members with random residue layouts: exact potential exists, my generic Lambda+1 equals my own implementation of the formula, and brute force over n<=4000 gives exactly {(1), loop}. Each of 30 members with G_exit>=Q has a closed walk of multiplier >=1, verified exactly."
+   },
+   {
+    "claim": "A2 Christoffel lower bound k*>=h+1+qL and the Q^2 log Q growth along convergents (base-2 analogue)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Continued fraction and convergents re-checked at 100 digits. The label is now honest: it is a base-2 analogue for a designed family, and the B(3^k,2) and C(3^k) conjecture is stated as OPEN."
+   },
+   {
+    "claim": "A3 polynomial upper bound on k* for base-2 tables with u in {1,3}",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived, with epsilon now present. No violations against the generic exact k* (drift tracked for translation walks) on 150 random CERT tables."
+   },
+   {
+    "claim": "A-rec depth records 26..304506",
+    "verdict": "CONFIRMED",
+    "detail": "All 7 values reproduced by a generic exact Lambda search that does not use A1, on random residue layouts. My own Lemma-1 integer witnesses for m=7..10 were iterated directly (m=10 modulus has 186717 bits)."
+   },
+   {
+    "claim": "B1 cut-off wall",
+    "verdict": "CONFIRMED",
+    "detail": "Steps 1-6 re-derived against the trichotomy.md definitions."
+   },
+   {
+    "claim": "B1-inst exact thresholds for 3x+1 (J0=3) and K7 (J0=6)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Periodic points, 2-adic letters, avoidance and type (c) confirmed with my own SCC code; 40 random adversarial replacements are all type (c); everything below J0 is CERT. Fix: the cutoff.md table row '3x+1 | 1, 2 | CERT, cycle (1 2)' is wrong for j=1, where the only cycle is the fixed point (1)."
+   },
+   {
+    "claim": "W1 window approximants are CERT",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. The K7 instance was checked independently for K=3..9, and its densities match the text. Nit: the general 'Density' remark is an unproved large-deviation heuristic and is unlabelled."
+   },
+   {
+    "claim": "W1' dist_{2^N}(3x+1)/2^N -> 0 exponentially (plain and accelerated maps)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The mathematics is correct, including the new direct proof for the plain map, which I checked for N=4..9. Fix: the printed numeric exponents are false for large N because they round H(5/8)=0.954434 down. README's 2^{0.954N} fails at N=20000 and window.md's 2^{0.9544N} fails at N=400000, both verified exactly. Replace with 2^{N H(5/8)} or 2^{0.9545N}."
+   },
+   {
+    "claim": "W2 explicit schema for 3x+1",
+    "verdict": "CONFIRMED",
+    "detail": "All edge cases re-derived. My own weights verified on every edge for N=4..12, and the Lyapunov decrease above B_N checked."
+   },
+   {
+    "claim": "W3 cycle list of T_N and the exact reduction",
+    "verdict": "CONFIRMED",
+    "detail": "Brute force over n<=max(B_N,30000) for N=4..26 finds only (1 2). Honestly labelled as a reformulation."
+   },
+   {
+    "claim": "W4 (S_C) implies Collatz",
+    "verdict": "CONFIRMED",
+    "detail": "Implication re-derived and the finite facts checked exactly. (S_C) is correctly labelled OPEN. A 5x+1 control shows the method yields no false conclusion."
+   },
+   {
+    "claim": "W4-ev evidence for (S_C)",
+    "verdict": "CONFIRMED",
+    "detail": "Correctly labelled EVIDENCE. REFEREE1 reproduced the values; I did not re-run them."
+   },
+   {
+    "claim": "REFEREE1 items honestly resolved",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "All 12 items were resolved honestly. One leftover: the README revision note still says the full check_depth.py run is 'not yet confirmed'. I re-ran it and it exits 0 with ALL PASS, so the sentence should be updated."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "Second referee pass on /home/riv/Code/collatz/census/round4/schema/. The report is /home/riv/Code/collatz/census/round4/schema/REFEREE2.md. My independent check is /home/riv/Code/collatz/census/round4/schema/referee2_check.py; it is written from scratch, uses exact arithmetic, includes negative controls, and exits 0 with 33 PASS in about 50 s. The prover checks check_depth.py (full run, including [A5] and m=10), check_cutoff.py and check_window.py, plus referee1_check.py, all exit 0 with ALL PASS. The hard criterion is not met, and the folder says so honestly: no type-(c) system is settled, and every settled system is CERT. All theorems were re-derived and hold. All REFEREE1 items were resolved honestly. Three text-only repairs remain: (1) the numeric entropy exponents 2^{0.954N} in the README and 2^{0.9544N} in window.md are false for large N (both verified exactly) and should read 2^{N H(5/8)} or 2^{0.9545N}; (2) in the cutoff.md table, the 3x+1 cut at j=1 has cycle (1), not (1 2); (3) the README note that check_depth.py is 'not yet confirmed' is out of date. needs_repair is set to true only because a PROVED row prints a false inequality; no mathematics changes and no further mathematical refereeing are needed."
+ }
+}

@@ -1,0 +1,1473 @@
+{
+ "apply:cutoff_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/cutoff_wide/",
+  "newly_settled": [],
+  "theorems": [
+   {
+    "name": "Theorem W (whole-prefix shift-and-subtract cutoff, general two-prime form)",
+    "statement": "Fix primes p (denominator) and l (numerator). Take a path of affine steps y -> (l^a y + c)/p^e with values whose denominators are prime to p, and N events (c != 0). Assume: (H1) labels lie in a finite set; (H2) |tau_i| <= C at events (non-descent); (H3) N, max|A_j| <= C(E+1); (H4) the events split into at most J pieces with bounded internal geometry, each piece being either hereditarily shift-invariant (for every subinterval I' and delta there is a shift q <= delta|I'| with fixed exponent increment, k_E >= 1, |log gamma| <= C, and at most M(delta) exceptions) or periodic of bounded period. Arbitrary jumps are allowed between pieces. Then for every eta > 0 and |y_0| >= y_*(eta, p, l, C, J, M, labels), ineffective: total divisions E <= (1+eta) log_p|y_0|. The coefficient 1 is sharp.",
+    "status": "PROVED (conditional on Evertse 1984 Thm 2 eq. (14); the statement text was read from the PDF, the display (14) is quoted from memory/repo; constant ineffective)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_W.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_cutoff_instances.py",
+    "novelty": "Port of the repo's split5_3 argument to the general two-prime class. The single-schedule form (an approximation exponent of p-adic points of rigid words by integers) is likely a known consequence of the p-adic Subspace Theorem; not checked."
+   },
+   {
+    "name": "Lemma R (rotation schedules satisfy (H4))",
+    "statement": "Block words C^{k_i} X_{lambda_i} whose exits all have the same slope mu < 1, with K_i = c + floor(kappa i + t) + w(phi_i), labels Lambda(phi_i), kappa = log(1/mu)/log(lambda_C), and w, Lambda step functions with at most J arcs and |w| <= B, are shift pieces with M(delta) = 2(2J+1)(1/delta+2), gamma in [1/lambda_C, lambda_C], and bounded geometry. Periodic exit patterns, including unequal slopes, and ramps are geometric pieces.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_W.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_cutoff_instances.py",
+    "novelty": "routine generalization"
+   },
+   {
+    "name": "Theorem P (type (c) implies positive-dimension non-descending set) and converse",
+    "statement": "In a unit-multiplier p-adic table map (standing hypothesis), if some SCC of G_K is of type (c) there are closed walks U != V of equal length at a node of the expanding cycle such that every word of {U,V}^* has all prefix slopes > 1. Hence dim_H of the set of points with all prefix slopes >= 1 is at least s > 0, where p^{-s e_U} + p^{-s e_V} = 1, and every interval of p^{K+E} integers contains at least 2^{floor(E/max e)} slope-non-descending starts. Conversely, with no type-(c) SCC that set is countable. So dim > 0 iff type (c).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_entropy_code.py",
+    "novelty": "not checked; elementary"
+   },
+   {
+    "name": "Lemma Q and Corollary P1 (cylinder-level rigidity impossible)",
+    "statement": "Rigid families of Theorem W/Lemma R with fixed (J,B) contain at most (cE)^{c'J} words with at most E divisions. Hence in every type-(c) unit-multiplier system the rigid fraction of non-descending words is at most poly(E)·2^{-E/max(e_U,e_V)} -> 0. No type-(c) table, existing or designed, has every long non-descending cylinder word rigid; without type (c), Theorem H already settles the system.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_entropy_code.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Proposition B (blocked mixed-base system mb_s3_27)",
+    "statement": "Off the class 26 mod 27 the map is Terras 3x+1 with T(n) mod 27 = f(n mod 27, n mod 2), so never-blocked paths are Terras words with a Z/27 automaton and are realized by CRT classes. With C = 110 (the cycle -5,-7,-10, states 22,20,17), W = 010, U = C^25 W^3 and V = C^28 (length 84), every word in {U,V}^* avoids 26 and has all prefix slopes > 1. The non-descending set therefore has 2-adic dimension >= 1/84 per 27-class, and its survivors are not rigid.",
+    "status": "PROVED (exact check)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_mb_s3_27.py",
+    "novelty": "new to the census"
+   }
+  ],
+  "coverage": "Theorem W was instantiated and exactly checked on 15 unit-multiplier systems. The checks verify the shifted forms, the whole-prefix identity on actual integer orbits, the exact pairing decomposition and the Lemma R exception bound. The systems are 3x+1, the controls 3x-1, 3x+5 and 5x+1, K7, the cores {1,3}, {1,3,5}, {5,7}, {1,5,7}, {3,5,7}, {1,7} and W, split5_3, split5_1, and m3_b (p=3, l=2); the mixed-base mb_s3_27 was checked as well. Near-critical rates: 3x+1 kappa = log2/log1.5 = 1.7095 per exit; m3_b 3.8188; split5_3 6.2126; cores {1,3}/{1,3,5} per-block 2.44/4.88 around -5 with lap slope 9/8. Lift ratios log_p|y|/E for rigid words with 100-300 blocks are 0.98-1.002 in every system (EVIDENCE consistent with the theorem). Theorem P witnesses were checked for all 15 unit-multiplier systems and Proposition B for mb_s3_27. Exact non-descending counts up to E = 300, with the DP verified against brute force, give exponents H: core135 0.376, core13 0.457, mb_s3_27 never-blocked part >= 0.32, split5_3 0.581, core57 0.719, K7 0.749, other cores 0.77-0.79, split5_1 0.937, 3x+1 0.950, m3_b 0.965, 5x+1 and core W 1. The technique settled nothing. For each system it only shows that zero-entropy rigid families cannot be followed far beyond the horizon. It gives nothing on escaping orbits in general and nothing on cycles.",
+  "blocking_points": "The rigidity reduction asked for in part (2) is false at the cylinder level for every type-(c) system (Theorem P with Lemma Q) and for mb_s3_27 (Proposition B). Designed type-(c) tables with rigid re-entry cannot exist in the unit-multiplier class. Any working reduction would have to use the integer start beyond its digit horizon, which is the count-law problem. The best proved linked-label families (split5_3 multi-shift) cover an exponent below 0.03 per division, against H >= 0.37 for the most rigid candidate. Evertse's constant is ineffective, so even a full reduction would only exclude escaping orbits and give no explicit octave or cycle list. Evertse's eq. (14) is quoted from memory, because the PDF's displays could not be extracted. The general versions of the unbounded-rate, two-phase, linked-label, separation and free-label results were not ported.",
+  "summary": "I ported the split5_3 whole-prefix S-unit cutoff to a general theorem for two-prime affine paths, Theorem W, with full proof and explicit hypotheses. I also proved Lemma R, which shows that rotation (Sturmian) schedules with phase-coded offsets and labels satisfy those hypotheses. It is instantiated with exact checks on 15 systems including the controls 3x-1, 3x+5 and 5x+1, and on the blocked mixed-base system. On the candidates the answer is negative and proved. Theorem P shows that every type-(c) unit-multiplier system has a non-descending set of positive dimension, given by an explicit two-word code, and that the dimension is positive exactly when there is a type-(c) component. Lemma Q shows rigid families have polynomially many words. So rigid survivors are an exponentially small fraction, designed rigid type-(c) tables are impossible, and in this class the cutoff can never be the deciding tool beyond Theorem H. Proposition B gives the same for mb_s3_27 via a Z/27 skew product and the code C = 110 (cycle -5,-7,-10), W = 010. The cores S = {1,3} and {1,3,5} mod 8 have the lowest non-descending entropy (0.46 and 0.38), but it is still positive. No system was settled. Files: /home/riv/Code/collatz/census/round6/cutoff_wide/README.md, theorem_W.md, theorem_P.md, cwlib.py, check_entropy_code.py, check_cutoff_instances.py, check_mb_s3_27.py, count_nondesc.py. All checks exit 0 in a few seconds."
+ },
+ "apply:typeb_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/typeb_wide/",
+  "newly_settled": [
+   {
+    "id": "sh8",
+    "type": "constructed, Collatz convention",
+    "rule": "even n -> n/2; n=1 (8) -> n+1; n=3,7 (8) -> 3n+1; n=5 (8) -> n+5",
+    "result": "GLOBAL yes; cycles (1 2), (5 10); x*=-1 (mult 3/2) is an isolated cycle; no table with n/2 on every even class has a smaller modulus (Prop. M)",
+    "technique": "Theorem H proof object plus counter potential",
+    "status": "PROVED"
+   },
+   {
+    "id": "sh4",
+    "type": "general unit table, modulus 4",
+    "rule": "n=0,1 (4) -> n+1; n=2 (4) -> (n+2)/2; n=3 (4) -> (3n+1)/2",
+    "result": "GLOBAL yes; cycles (2), (4 5 6); isolated x*=-1",
+    "technique": "Theorem H",
+    "status": "PROVED"
+   },
+   {
+    "id": "P8 family (630 checked pairs, all a,d by hand proof)",
+    "type": "one-class neighbour of every parity map an+d",
+    "rule": "n=4 (8) -> n+4; other even n -> n/2; odd n -> a n + d (a>=3 odd, d odd, a+d>=1)",
+    "result": "GLOBAL yes; cycles (4 8) and (x*,2x*) when x*=-d/(a-2) is a positive integer; keeps the expanding fixed point (-1 for 3x+1, -1/3 for 5x+1, -2/5 for 7x+1, -2/7 for 9x+1, the cycle (1 2) for 3x-1)",
+    "technique": "hand proof (trap + rigid 2-adic cycle) and Theorem H",
+    "status": "PROVED"
+   },
+   {
+    "id": "5x+1 relative mod 8",
+    "rule": "even n/2; n=1,5 (8) -> 5n+1; n=3 -> n+3; n=7 -> n+7",
+    "result": "GLOBAL yes, cycles with minima 3 and 7; keeps 5x+1's expanding point -1/3 isolated",
+    "technique": "Theorem H",
+    "status": "PROVED"
+   },
+   {
+    "id": "c9b",
+    "type": "base 3 mod 9",
+    "rule": "3|n -> n/3; 1 -> 4n-1; 2 -> 2n+1; 4,7 -> 4n+1; 5 -> n+1; 8 -> 2n-1",
+    "result": "GLOBAL yes; cycles (1 3), (2 5 6); the isolated expanding cycle is the positive cycle (1 3), mult 4/3",
+    "technique": "Theorem H",
+    "status": "PROVED"
+   },
+   {
+    "id": "SH3/SH5/C9 families",
+    "rule": "odd -> 3n+1 or 5n+1 or n+d (d in 1,3,5,7) mod 8, 16; base-3 C9",
+    "result": "all 2+358 (SH3), 3+458 (SH5), 53 (C9) type-(b) members settled with complete cycle lists; plus 2000 SH3 m=5 and 30 C27 SAT hits",
+    "technique": "exhaustive scan / z3 search + Theorem H",
+    "status": "PROVED"
+   },
+   {
+    "id": "open-map neighbours",
+    "rule": "one- and two-class modifications of par_*, split5_1, split5_3, perm_1932inv, perm_c, desc_m3_4n5, desc_split7_1",
+    "result": "1974 type-(b) neighbours settled (keep an expanding cycle); perm_1932inv and perm_c get provable neighbours at distance 2 at level 8 where descent needs 3; par_5/7/9 at distance 1 where descent needs 2",
+    "technique": "exact classification + Theorem H",
+    "status": "PROVED"
+   }
+  ],
+  "theorems": [
+   {
+    "name": "Theorem H mechanised (prove_H + independent verify_H)",
+    "statement": "For a unit-multiplier p-adic table with only (a)/(b)/trivial SCCs, a proof object (SCC levels, exact periodic orbits on simple SCCs, exact weights and search bound on contracting SCCs, cycle list) is produced and independently verified; the simple-SCC step uses the counter phi = l(v_p(n-x_i)+E_i)-i, which drops by >=1 per step, so only x_i stays forever (also covers contracting simple cycles).",
+    "status": "PROVED",
+    "proof_file": "README.md section 1; tblib.py; verify_H.py",
+    "check_file": "check_examples.py, check_scans.py [PROOF] (5291 objects)",
+    "novelty": "mechanisation and the counter-only argument are new here; the theorem is round 3's"
+   },
+   {
+    "name": "Counter potential for every type-(b) system",
+    "statement": "V=(level, phi), phi=c(r)n on contracting SCCs, the counter above on simple SCCs, descends off a finite set; generalises the round-4 acc_h16 certificate.",
+    "status": "PROVED",
+    "proof_file": "README.md section 1",
+    "check_file": "check_examples.py [CNT] (13 systems)",
+    "novelty": "generalisation of REFEREE1's example"
+   },
+   {
+    "name": "Proposition M (minimal modulus)",
+    "statement": "No unit table at modulus p is of type (b); type (b) exists at modulus 4 (general) and 9; with n/2 on all even classes modulus 4 is impossible and 8 is attained.",
+    "status": "PROVED",
+    "proof_file": "README.md section 3",
+    "check_file": "shapes.py",
+    "novelty": "new here"
+   },
+   {
+    "name": "Theorem P8",
+    "statement": "For odd a>=3, odd d, a+d>=1, the parity map an+d changed to n -> n+4 on n=4 mod 8 has every positive orbit eventually periodic, cycles (4 8) and (x*,2x*) if x*=-d/(a-2) in Z>0; it is type (b) with x* isolated.",
+    "status": "PROVED",
+    "proof_file": "README.md section 3",
+    "check_file": "check_examples.py [P8]",
+    "novelty": "elementary; not checked in literature"
+   },
+   {
+    "name": "Proposition CS (scaling)",
+    "statement": "x -> dx conjugates common-shift-d families to common-shift-1 families on Z_p, so their SCC types agree.",
+    "status": "PROVED",
+    "proof_file": "README.md section 2",
+    "check_file": "check_scans.py (SPL_d1,d3,d5 identical)",
+    "novelty": "elementary"
+   },
+   {
+    "name": "S-family exhaustive",
+    "statement": "No member of the 3n+1/n+1 S-family with m<=6 or of the 5n+1/n+1 S-family with m<=6 is of type (b) (m=6: 34,560 resp. 2,218,464 members have an isolated expanding SCC but always also a type-(c) SCC); z3 extends this to m=7,8 (3n+1), m=7 (5n+1), m=6 (7n+1).",
+    "status": "PROVED for m<=6 (exhaustive, float verdict exact by separation bound); m=7,8 PROVED modulo z3 UNSAT",
+    "proof_file": "README.md section 2",
+    "check_file": "check_scans.py [BRUTE], sbrute.c, sat_sfam_H.py",
+    "novelty": "extends round 3 (m<=5) and corrects its phrasing: isolated expanding SCCs do occur from m=6"
+   },
+   {
+    "name": "Gap zero does not imply type (b); boundary example",
+    "statement": "An S-family member at m=6 has theta_1=theta_run=log2/log(3/2) yet a type-(c) SCC; sh8 lifted to 16 with n=9 (16) -> n+16 has gap zero, theta_1>0 and divergent orbits (division-free class).",
+    "status": "PROVED",
+    "proof_file": "README.md section 4",
+    "check_file": "check_gap.py",
+    "novelty": "new here"
+   },
+   {
+    "name": "Theorem Y (mb_s3_27 homoclinic orbits) and corollary",
+    "statement": "y_d=27*9^d/(8^{d+1}-3*9^d)-5 is, for every d>=0, a periodic point following the ghost cycle -5,-7,-10 d times then HEH, multiplier (9/8)^d*3/8 (>1 for d>=9); hence mb_s3_27 admits no certificate accelerated along finitely many periodic orbits (mixed-base type (c)).",
+    "status": "PROVED (system itself OPEN)",
+    "proof_file": "README.md section 5",
+    "check_file": "mixed27.py check",
+    "novelty": "answers the round-4 wpotential OPEN question (infinitely many expanding periodic points)"
+   },
+   {
+    "name": "Conjecture CS",
+    "statement": "A 2-adic table with n/2 on every even class and branches u_r n + d with one common d is never of type (b).",
+    "status": "OPEN (EVIDENCE: all tested moduli)",
+    "proof_file": "README.md section 2",
+    "check_file": "",
+    "novelty": "conjecture"
+   }
+  ],
+  "coverage": "Theorem H was applied systematically to 14 families, about 3.4 million systems in Python: S3/S5/S7 with m<=5, SH3/SH5 with m<=4, SPL with m<=4, B9/B27 for 8 multipliers, C9, D9. A C scan covered the 3n+1 and 5n+1 S-families at m=6 (2 x 2^32). z3 searches covered S3 at m=7,8, S5 at m=7, S7 at m=6, SPL at m=5, SH3 at m=5, D27 and C27. 835,000 one- and two-class neighbours of the 26 single-prime open table maps were classified. Type (b) occurs only where shifts vary: SH3 2/358, SH5 3/458, C9 53, SH3 m=5 at least 2000, C27 present. It occurs nowhere in the common-shift families S, SPL and B. Every type-(b) member found was settled; 5,291 proof objects were re-verified. Theorem H gives nothing for any open census entry, since all are type (c). It also gives no neighbour of m3_*, perm_1932/perm_b/perm_swap or perm_d at the tested moduli. It does give provable neighbours that keep the expanding cycle for every par_* map, split5_1, split5_3, perm_1932inv, perm_c, desc_m3_4n5 and desc_split7_1. The counter-potential second proof was checked on 13 systems. The mixed-base question was settled negatively for mb_s3_27: an explicit homoclinic family proves there is no accelerated certificate.",
+  "blocking_points": "The open census entries are all type (c), so Theorem H cannot settle any of them. The mixed system mb_s3_27 has explicit homoclinic expanding orbits y_d, so it cannot be settled by any isolated-cycle or finitely-accelerated certificate; it stays OPEN (the reduction to a 9/8 split map is in round6/blocked27). Conjecture CS (no type (b) when all branches share one additive constant) has no general proof; the forcing mechanism observed at m=6 is that isolating -1 forces the classes of -5 and -7 into S, after which the 9/8 cycle re-enters. The z3 UNSAT answers (S3 at m=7,8 and others) have no independent certificate.",
+  "summary": "I made Theorem H mechanical: tblib.prove_H builds a complete exact proof object, and verify_H.py checks it independently. I applied it to 14 families and to 835,000 neighbours of the open maps, and settled every type-(b) system found (5,291 proof objects re-verified). New general results, all PROVED: the minimal modulus of type (b) (impossible at modulus p; 4 in general; 8 with n/2 on even classes; 9 in base 3); Theorem P8, under which every parity map an+d becomes provable after changing the class 4 mod 8 to n+4, keeping its expanding fixed point; Theorem-H neighbours that are closer than any descent neighbour for perm_1932inv, perm_c and par_5/7/9; the fact that gap zero does not imply type (b), plus a divergent gap-zero example at the boundary of the standing hypothesis; and, for mb_s3_27, the closed-form homoclinic periodic points y_d = 27*9^d/(8^{d+1}-3*9^d)-5. These show that mb_s3_27 is the mixed-base analogue of type (c) and has no accelerated certificate. The S-family now has no type-(b) member for m<=6 by exhaustive search (m=7,8 by z3); at m=6, isolated expanding SCCs exist but always together with a type-(c) SCC. No open census entry was settled. All checks exit 0: check_examples.py, check_scans.py, shapes.py, mixed27.py check, check_gap.py, verify_H.py."
+ },
+ "referee:cutoff_wide": {
+  "verdicts": [
+   {
+    "claim": "Evertse 1984 Thm 2 eq. (14) as quoted",
+    "verdict": "CONFIRMED",
+    "detail": "I rendered the scanned pp. 226 and 228 of the Numdam PDF. Display (14) and hypothesis (13) match the quotation exactly, and ||x|| = max|x_k| for K = Q. The 'quoted from memory' caveat can be dropped."
+   },
+   {
+    "claim": "Theorem W (general whole-prefix cutoff)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Steps 1-4 re-derived. The truncation step uses an undefined e_max and assumes (H3) is hereditary. Fix: add e_j <= C and require (H3) for every prefix. Both hold in all instances. Minor: n_terms should count J*2/delta singletons. Identity (1) and the pairing identity verified exactly on random two-piece schedules with jumps (3x+1, core13, m3_b)."
+   },
+   {
+    "claim": "Lemma R (rotation schedules satisfy H4)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The window bound ceil(|I'|/Q) <= 1/delta+2 is false (delta=1/6, |I'|=17 gives 9 > 8). The true bound is 2/delta+1. The exceptional arcs are half-open of length Delta, so each window holds at most 1 point per arc. The stated M(delta) = 2(2J+1)(1/delta+2) still holds."
+   },
+   {
+    "claim": "Instance table (13 systems + 3 controls)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "x*, lambda_C, W slopes and kappa_W recomputed independently; all match. The split5_3 'kappa = 6.2126 (repo)' is wrong: it is 3.1063 = log2/log(5/4). 6.2126 is 2*kappa."
+   },
+   {
+    "claim": "'Cycles fail (H2)' (README, theorem_W sec. 6)",
+    "verdict": "WRONG",
+    "detail": "Expanding integer cycles satisfy (H1)-(H4) from bounded starts with E unbounded. Checked exactly for 3x-1 cycles 5 and 17 and 3x+1 cycles -5 and -17: |tau| <= 0.47, |y0| = 4 or 16. Only the ineffective y_* excludes them. Reword."
+   },
+   {
+    "claim": "Theorem P items 1-3 (type (c) => positive-dimension non-descending code)",
+    "verdict": "CONFIRMED",
+    "detail": "Proof verified. I built the code independently for core13 and core135 (same |U|, eU/eV, s = 0.0200 and 0.0106) and realized random words by integers."
+   },
+   {
+    "claim": "Theorem P item 4 (count in every interval)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Cutting at exactly the E-th division needs e <= 1 per step. This is true for all census systems here; state it."
+   },
+   {
+    "claim": "Converse: dim 0 iff no type (c)",
+    "verdict": "CONFIRMED",
+    "detail": "Correct. The README's claim that 'Theorem H settles' must add T(Z+) in Z+ and the standing hypothesis."
+   },
+   {
+    "claim": "Lemma Q (rotation families are polynomial)",
+    "verdict": "CONFIRMED",
+    "detail": "Counting verified, with a sanity check of n+1 rotation words."
+   },
+   {
+    "claim": "Corollary P1 / 'Theorem W families have polynomially many words'",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Lemma Q covers only the Lemma R normal form, not general (H4) shift pieces. Either restrict the statement, or prove a 2^{o(E)} bound (sketch in the report). The conclusion survives."
+   },
+   {
+    "claim": "Proposition B (mb_s3_27)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Skew product, U/V, D=25, the 1/84 bound and realizations all verified. The phrase 'inside each 27-class' is false for class 26. It holds for the other 26 classes, all of which reach 22."
+   },
+   {
+    "claim": "Entropy H for core13 / core135 (0.4565 / 0.3755)",
+    "verdict": "WRONG",
+    "detail": "H_variational searches theta only in [0,3], but the minimizer is at theta = 4.65 / 4.0. The true H is 0.4281 / 0.3593, which exact-count fits up to E=2400 confirm. crit becomes 1.75 / 1.56. Qualitative conclusions are unchanged."
+   },
+   {
+    "claim": "Entropy H for the other systems",
+    "verdict": "CONFIRMED",
+    "detail": "Own DP (checked against brute force) and fits agree. All minimizers lie below theta = 1. EVIDENCE."
+   },
+   {
+    "claim": "No system settled; coverage and novelty statements",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "'No system settled' is correct. 'Cutoff cannot by itself decide any system' is proved only at the cylinder level. 'Escaping code' is a misnomer for non-descending. 'Smallest in census' holds only among the computed systems. The multi-shift exponent is 0.0366, not '< 0.03'. The novelty caveat should also cover Theorem P."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "Nothing is settled in cutoff_wide, and nothing is claimed settled. Theorem W, Lemma R, Theorem P, the converse, Lemma Q and Proposition B are correct after small repairs: bounded e per step and hereditary (H3); the Lemma R window count; the e <= 1 condition in item 4; the 'each 27-class' wording. I verified Evertse's (14) from the scanned paper. Two substantive errors need repair. (1) The H values for core13 and core135 are wrong (0.428 and 0.359, not 0.4565 and 0.3755) because the theta grid is truncated at 3. (2) The claim that cycles fail (H2) is false for expanding integer cycles; only the ineffective y_* excludes them. Also needed: the split5_3 kappa typo (3.1063, not 6.2126), the scope of Corollary P1, and wording fixes. The prover's checks all exit 0. /home/riv/Code/collatz/census/round6/cutoff_wide/referee1_check.py exits 0 and encodes the corrections. Report: /home/riv/Code/collatz/census/round6/cutoff_wide/REFEREE1.md"
+ },
+ "apply:decide_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/decide_wide/",
+  "newly_settled": [
+   {
+    "id": "B2(u) family (odd u>=3)",
+    "rule": "even n -> n/2; n=1,3,5,7 mod 8 -> n+1, u(n-3)+6, n+5, n+3",
+    "result": "GLOBAL yes; cycles exactly (1 2),(3 6),(5 10); no descent certificate (expanding positive cycle (3 6), multiplier u/2)",
+    "technique": "Theorem H (isolated expanding cycle), hand proof in theory.md §3",
+    "status": "PROVED",
+    "type": "(b)"
+   },
+   {
+    "id": "Bp(u) family (p odd prime, u>p, p∤u)",
+    "rule": "p|n -> n/p; n=1 mod p^2 -> u(n-1)+p; other units n -> n+((2p-n) mod p^2)",
+    "result": "GLOBAL yes; cycles exactly (1 p),(2 2p); no descent certificate",
+    "technique": "Theorem H, hand proof",
+    "status": "PROVED",
+    "type": "(b)"
+   },
+   {
+    "id": "div23 with 5n±1",
+    "rule": "2|n->n/2; else 3|n->n/3; n=1 mod 6 -> 5n+1; n=5 mod 6 -> 5n-1",
+    "result": "GLOBAL yes, only cycle (1 6 3), k*=4 (variant 5n+5: cycles (1 6 3),(5 30 15))",
+    "technique": "decide.py + Theorem C6 classification",
+    "status": "PROVED",
+    "type": "(a)"
+   },
+   {
+    "id": "mixed-modulus type (b), Q=12",
+    "rule": "2|n->n/2; else 3|n->n/3; n=1,5,7,11 mod 12 -> 11n+3, n+2, n+3, n-1",
+    "result": "GLOBAL yes, single cycle (5 7 10); isolated residue cycle (2 1) with multiplier 11/2, x*=-2/3",
+    "technique": "Theorem H' (mixed modulus)",
+    "status": "PROVED",
+    "type": "(b)"
+   },
+   {
+    "id": "10,734 type-(b) family members",
+    "rule": "listed in out/typeb_list.jsonl",
+    "result": "each GLOBAL yes with complete cycle list; each has no descent certificate",
+    "technique": "Theorem H/H' with exact witnesses, confirmed by iteration",
+    "status": "PROVED",
+    "type": "(b)"
+   },
+   {
+    "id": "about 1.19 million CERT family members",
+    "rule": "out/fam_*.txt.gz; deepest and most-cycle ones in out/cert_top.json",
+    "result": "GLOBAL yes with cycle count; max k* 2120 (Q=27), 616 (Q=32), 587 (Q=36); up to 7 cycles",
+    "technique": "famscan exact integer potentials (dichotomy theorem)",
+    "status": "PROVED",
+    "type": "(a)"
+   }
+  ],
+  "theorems": [
+   {
+    "name": "Theorem H' (isolated expanding cycles, any modulus, any multipliers)",
+    "statement": "Let T be a table map satisfying (P), and fix a level K. Suppose every SCC of the level-K residue graph is either (a) all cycles contract, or (b) a single cycle in which some prime has v_p(W)>v_p(U). Then every positive orbit is eventually periodic, with a computable complete cycle list. This contains round 3's Theorem H and extends it to mixed and non-Markov moduli. The proof uses a p-adic valuation argument and needs no Markov property.",
+    "status": "PROVED",
+    "proof_file": "theory.md §1",
+    "check_file": "check_harness.py, check_theory.py part 4",
+    "novelty": "port of round-3 Theorem H; elementary"
+   },
+   {
+    "name": "Proposition P + Corollary P'",
+    "statement": "A Markov table with prime modulus and no division-free residue cycle has no type-(b) SCC. With Lemma L this holds at every level. So Theorem H settles exactly the CERT systems there, and by Theorem N no generalized certificate exists otherwise. Covered: par_a_d (a, d odd), m3_b/d/e/g, perm_1932/b/swap, desc_m3_4n5.",
+    "status": "PROVED",
+    "proof_file": "theory.md §2",
+    "check_file": "check_theory.py part 2"
+   },
+   {
+    "name": "Theorem S",
+    "statement": "Let Q be squarefree. Suppose non-units go to n/q(r) with q(r) depending only on the prime support of r, and units take division-free branches. Then every expanding cycle of G_Q lies in a type-(c) SCC or there is a division-free cycle. So there is no type (b) at level Q. The hypothesis is needed: with divisions allowed on units, type (b) occurs at Q=6, 10, 15.",
+    "status": "PROVED",
+    "proof_file": "theory.md §2",
+    "check_file": "check_theory.py parts 1-2"
+   },
+   {
+    "name": "Proposition 4",
+    "statement": "Raw tables mod 4 with halving even classes have no type (b) at any level. This covers the split family, split5_1, split5_3 and desc_split7_1.",
+    "status": "PROVED",
+    "proof_file": "theory.md §2",
+    "check_file": "check_theory.py part 2"
+   },
+   {
+    "name": "Theorem B",
+    "statement": "The explicit families B2(u) (mod 8) and Bp(u) (mod p^2) are type (b) with complete cycle lists. So type (b) occurs at every prime power p^m except 2, 4 and p, for every u>p. Multipliers below p can also give type (b) through multi-step cycles (6/5 at Q=25).",
+    "status": "PROVED",
+    "proof_file": "theory.md §3",
+    "check_file": "check_theory.py part 3"
+   },
+   {
+    "name": "Theorem C6",
+    "statement": "Complete descent-certificate classification of D6: 2|n->n/2, 3|n->n/3, with u1 n+v1 on 1 mod 6 and u5 n+v5 on 5 mod 6, over the 36 successor patterns. A certificate requires u1, u5 in {1,5}. (5,5) is certifiable iff v1≡1 and v5≡5 mod 6.",
+    "status": "PROVED",
+    "proof_file": "theory.md §6",
+    "check_file": "classify6.py check (26,887 tables, 0 mismatches)"
+   }
+  ],
+  "coverage": "Catalog: 633 entries in all systems.py files, 539 distinct tables (10 non-table entries; 59 skipped: polynomial, non-N domains, traps, progressions duplicates). Re-settled automatically (exact, confirmed by iteration): 244 of 256 GLOBAL-yes tables (227 CERT, 17 Theorem H': acc_h9/16/32 and 14 non-Markov mixedbase maps) and 15 of 42 GLOBAL-no tables (division-free divergent class). Not re-settled: 12 yes (dress_*, farkas*, mb_pair_*, perm_flip) and 27 no (split class D, divergence-lens maps, mahler, par_4_2, perm_ceil*, perm_suffix_b). Open: 0 of 226 settled (38 open census table maps, 188 open round-folder maps); all are type (c), mixed ones at every level tried up to about 600. The exponents theta_1, theta_run, gap and drift are tabulated as floats. Families: 18 new families with p in {2,3,5} (Q up to 32/27/25) and mixed Q in 6,10,12,18,24,36, about 54 million members (exhaustive or random). About 1.19M CERT, 10,734 type (b), the rest type (c) or division-free. 0 FALLBACK; famscan cross-checked against decide.py on 5,400 members with 0 mismatches. Type-(b) search over all moduli 2..64: none at prime, squarefree or Q=4 moduli, as the theorems require; examples at 8, 9, 12, 16, 20, 24, 28, 36.",
+  "blocking_points": "No open census question settled: every open table map is type (c). For prime-modulus and mod-4 maps, Theorem H is now proved useless at every level, for the whole class. For mixed squarefree maps (div23_5n1, div23_7n1, div235_7n1) this is proved only at the base level, because level independence of type (c) is unproved for mixed moduli (EVIDENCE: type (c) up to about 600 residues). Theorem N's barrier remains proved only for prime-power Markov maps. Non-Markov open systems (mb_s3_27, mb_pair_3_27m, mb_pair_5_25p) stay type (c) at lifted levels. Type (b) at mixed non-squarefree moduli has no general classification: none in 15.7M members of M_18, and the reason is unknown. The exponents are floating point.",
+  "summary": "Built twlib.py (decide.py verdict, exact SCC typing at any level, Theorem H', Lundberg exponents and drift) and an exact C family scanner (famscan.c). Ran them on every census table map and 54M new family members. No open entry is settled. New general results: Theorem H' (isolated-cycle method for any modulus and multipliers); Prop P, Prop 4 and Theorem S (classes where type (b) cannot occur, which covers 29 of the 38 open census table maps and three more at their base level); Theorem B (explicit infinite type-(b) families with expanding positive cycles and full cycle lists); Theorem C6 (complete certificate classification of the div23 family mod 6, including the new 'div23 with 5n±1'). 10,734 type-(b) systems are listed with witnesses. All checks exit 0: check_theory.py, check_harness.py, check_famscan.py, classify6.py check. README.md, theory.md and out/catalog_table.md hold the tables."
+ },
+ "apply:chain_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/chain_wide/",
+  "newly_settled": [],
+  "theorems": [
+   {
+    "name": "Theorem 1+2 (occupation bound, general)",
+    "statement": "For any single-prime table map with a certified negative-drift moment certificate (s, gamma, w) (signed constants allowed), the number V(X) of updates with value <= X on a non-eventually-periodic orbit satisfies V(X) <= W p^theta X^theta + s*ceil(log_p X)*E, theta = 1 - gamma, W = sum w/w_min, E = the orbit's total log error (finite by a crude bound with window length kappa log_p X). Hence V(X) <= X^{theta*+o(1)}, theta* the optimal moment exponent. Under (P),(R), raw visits <= R*V(X/c_raw).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked (generalises the repo's split5_3 lemma; key step is the exact identity log(y_{l+j}/y_l) = log A + log(Z_{l+j}/Z_l))"
+   },
+   {
+    "name": "Theorem 3 (multiplier bound and dichotomy)",
+    "statement": "If all values of a non-periodic orbit are >= p^k0, then E <= E*(k0) = g' W p^theta S1/(1 - g' s S2) (explicit), so 1 <= x_t/(x_0 P_t) < e^{E*} (constants >= 0) or two-sided in the signed case; P_t -> infinity on every non-periodic orbit, P_t -> 0 on eventually periodic ones when constants are >= 0 (fails for 3x-1: cycle multipliers 3/2, 9/8, 2187/2048).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem 4 (chain theorem, general)",
+    "statement": "Under (N),(P),(R), on an escaping orbit the successive last minimisers of the update multiplier give starts x_i in N^mult (subset of the never-dropping set), links with ratio in (1, rho], rho = largest edge slope, exact expansion count a = floor(e log(1/kappa)/log rho)+1 for two-slope maps, strip x_{i+1} = r x_i + C_i with explicit bounds, forced residue classes (first k* edges expand), and at least A(B) = max{k: rho^k < 2^B} selected starts in every B consecutive late octaves. Signed version for m3_b, 3x-1.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Proposition 5.1 (gap statement)",
+    "statement": "With constants >= 0 and unit multipliers: N^mult (starts whose raw multiplier never drops below 1) is empty iff every positive orbit is eventually periodic; if nonempty it has >= A(B) members in every late B-octave window (so >= log X/log rho - O(1) below X), and it is empty on every verified range. Hence the window criterion for N^mult itself is a restatement of GLOBAL; the non-trivial targets are finite-depth survivor sets.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "3x+1 instance",
+    "statement": "On a divergent 3x+1 trajectory, #{t: T^t(n) <= X} <= 2(2^theta X^theta + (41/84) ceil(log2 X) E), theta = 1082/1139, E <= 3.46 using Barina's 2^68 range (quoted from memory) or E <= 12.04 using the own exact 2^32 check; x_t/(x_0 P_t) in [1, 31.7). An escaping orbit has >= 1 element of N^mult (all 3 mod 4) in every late octave, >= 17 per 10 octaves. Lagarias 1985 eq. (2.32) (checked in the scanned source) bounds only the never-dropping elements U_D by c x^{1-eta}, eta = 0.05004.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked beyond Lagarias 1985 survey"
+   },
+   {
+    "name": "Propositions 6, 7 (expanding mirror)",
+    "statement": "For positive drift every moment exponent exceeds 1, so the moment method gives no occupation mirror; the chain conclusions hold on any non-periodic orbit with sum 1/x_t < infinity (equivalent to a bounded multiplier quotient). Non-escaping integer orbits are eventually periodic, and no useful height mirror exists. Evidence: on 5x+1 and 7x+1 orbit segments the count A(10) is attained exactly.",
+    "status": "PROVED (Prop 6, 7) / EVIDENCE (segments)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/evidence_expanding.py",
+    "novelty": "not checked"
+   }
+  ],
+  "coverage": "Named systems: 23 with negative drift (3x+d for d in {1,-1,3,5,7,9,13,17}; K7 = sf3_7 and the cores sf3_17, 57, 157, 357, 13, 135; split5_1; split5_3; m3_b (signed); m3_d; m3_g; desc_split7_1; desc_m3_4n5; desc_s32_plus9), plus 3 expanding maps (5x+1, 7x+1, core W). Each has: a certified theta, W, rho, A(1), A(10), k*, forced class, survivor mass, C*, an exact verified range (2^32, or 2^27 for m3_g, via verify_range.c) and the multiplier constant E*. Families: S-family m=3 (16 members) and m=4 (256), split_{a,d} (32), m3_{a,c1,c2} (405). That is 709 maps, 240 with a certified negative drift, all tabulated; 31 S4 members fail the raw-prefix condition (R). Settled: none. split5_3 reproduces the repo's 31 per 10 octaves and 256 | x+3, and the multiplier constant improves to E* < 5.4e-5 at 2^48 (repo 7.3e-5). Gives nothing: no expanding map, no mixed-prime map (div23, div235), and for m3_g (theta* = 1906/1907) the constants are nearly vacuous (E* about 6.3e3).",
+  "blocking_points": "The chain and occupation bounds do not meet: an escaping orbit has at least log X/log rho and at most W p^theta X^theta visits below X. Proposition 5.1 shows that the window criterion for N^mult is equivalent to GLOBAL. The non-trivial target is \"fewer than A(B) finite-depth survivors in infinitely many B-windows\". The count law gives that only at depth factor C* = 1/(1-theta*): 19.98 for 3x+d, 2.38 for split5_3, 3.98 for K7, 15.84 for split5_1, 28.42 for m3_b/d, 1907 for m3_g. The proved count laws reach only depth m + O(log m), where the predicted count is 2^{theta* m}. For expanding maps the moment method gives exponents > 1 for every s > 0, so there is no occupation mirror, and the chain is conditional on sum 1/x_t < infinity.",
+  "summary": "This round settles no census system and no open question. Two split5_3 results are now proved for every single-prime table map with negative drift (THEORY.md): the occupation/multiplier bound, at the optimal moment exponent theta*, and the chain theorem. The occupation bound counts visits below X along one non-periodic orbit (at most W p^theta X^theta + s log_p X * E, with E the orbit's total log error). The multiplier bound gives explicit e^{E*} constants from exact verified ranges and the dichotomy P_t -> infinity on non-periodic orbits (it fails for cycles of 3x-1). The chain theorem gives linked permanent survivors with ratio in (1, rho], forced residue classes, strips, and at least A(B) = max{k: rho^k < 2^B} per B late octaves. The new structural point is Proposition 5.1: with constants >= 0, N^mult is empty exactly when GLOBAL holds, and otherwise has at least A(B) members in every late window; so the useful criteria are the finite-depth ones, which need depth factor C* beyond the proved count law. For 3x+1 this gives a bound on all elements of a divergent trajectory below X: at most 2(2^theta X^theta + (41/84) ceil(log2 X) E), theta = 1082/1139, E <= 3.46 with 2^68. Lagarias (2.32), read in the scanned source, bounds only the never-dropping elements. Also for 3x+1: a multiplier constant below 31.7, and at least one N^mult start in every late octave (17 per 10). The constants are tabulated for 23 named systems and 709 family maps; the exact checks pass (check_chain.py exits 0). Expanding maps: proved that there is no occupation mirror; a conditional chain is proved; evidence shows A(10) attained exactly on 5x+1 and 7x+1 orbit segments. Novelty not checked beyond the Lagarias survey; the 3x+1 verified range 2^68 is quoted from memory."
+ },
+ "repair:cutoff_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/cutoff_wide/",
+  "newly_settled": [],
+  "theorems": [
+   {
+    "name": "Theorem W (whole-prefix S-unit cutoff, general two-prime affine paths)",
+    "statement": "For every eta > 0 there is an ineffective y_* such that every path of affine steps (l^a y + c)/p^e satisfying (H0)-(H4) has E <= (1 + eta) log_p |y_0| when |y_0| >= y_*. (H0) says e_j <= C per step. (H1) says the labels lie in a finite set. (H2) says |tau_i| <= C. (H3) is density and size, required for every prefix. (H4) says the path has at most J pieces, each a shift piece or a geometric piece. The revision added (H0) and the prefix form of (H3), and corrected the count of S-unit terms. Expanding integer cycles satisfy all the hypotheses from bounded starts, so Theorem W can exclude no finite set of cycles.",
+    "status": "PROVED (uses Evertse 1984 Thm 2 eq. (14), checked against the scanned source by referee 1)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_W.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_cutoff_instances.py",
+    "novelty": "not checked; probably a known consequence of the p-adic Subspace Theorem"
+   },
+   {
+    "name": "Lemma R (rotation schedules are shift pieces)",
+    "statement": "Block words C^{k_i} X_{lambda_i} with equal-slope exits and K_i = c + floor(kappa i + t) + w(phi_i) satisfy (H4) with M(delta) = 2(2J+1)(1/delta+2). The window argument was repaired: each window has at most 2J+1 half-open exceptional arcs, each holding at most 1 phase, and there are at most 2/delta + 1 windows.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_W.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_cutoff_instances.py"
+   },
+   {
+    "name": "Theorem P and converse",
+    "statement": "In a unit-multiplier system, the non-descending p-adic set has positive Hausdorff dimension if and only if there is a type-(c) SCC. Item 4 was restated for general e_max: at least 2^{floor((E-1)/e*)} non-descending walks reach E divisions, in every interval of p^{K+E+e_max-1} integers.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_entropy_code.py",
+    "novelty": "elementary; presumably classical for 3x+1"
+   },
+   {
+    "name": "Lemma Q' (new): general (H4) shift pieces give 2^{o(E)} words",
+    "statement": "Take block words over an expanding cycle C and finitely many exits with pairwise distinct labels, whose event data satisfy (H4). For every delta, the number of such words with at most E divisions is at most |Sigma|^{delta E} (E+2)^{c(delta)}.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md"
+   },
+   {
+    "name": "Corollary P1 (restricted)",
+    "statement": "Restricted to the block-word normal form with distinct labels: in any type-(c) system, rigid families are a 2^{-E/e* + o(E)} fraction of the non-descending cylinder walks. So no cylinder-level rigidity reduction exists.",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md"
+   },
+   {
+    "name": "Proposition B (mb_s3_27), corrected",
+    "statement": "The never-blocked non-descending set has 2-adic dimension >= 1/84 in each of the 18 classes s = 0, 1 (mod 3) mod 27. The 9 classes s = 2 (mod 3), 26 included, contain no non-descending point: some prefix slope drops below 1 within 3 steps. Both the original claim (each class) and the referee's proposed fix (each class except 26) were false.",
+    "status": "PROVED (exact exhaustive check)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/theorem_P.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/cutoff_wide/check_mb_s3_27.py"
+   }
+  ],
+  "coverage": "Theorem W is instantiated on 13 census systems and families plus 3 controls: 3x+1, 3x-1, 3x+5, 5x+1, K7, cores {1,3}, {1,3,5}, {5,7}, {1,5,7}, {3,5,7}, {1,7}, W, split5_3, split5_1, m3_b, and mb_s3_27. Each instance has exact identity, pairing and exception checks. Each instance shows only that one zero-entropy rigid family cannot run past the digit horizon from large starts. Theorem P plus Lemmas Q and Q' show that every type-(c) system, and the blocked mixed-base system, has exponentially many non-descending cylinder words, so the cylinder-level rigidity reduction sought in part (2) is impossible. The entropy table (EVIDENCE) is corrected: core13 H = 0.4281, core135 H = 0.3593; the other values were confirmed. No proved cutoff family covers a positive fraction of the entropy of any system. The best, split5_3 multi-shift, is below 0.04 per division, against H >= 0.36. The technique settles nothing.",
+  "blocking_points": "The only route left is a rigidity reduction that uses the integer start beyond its digit horizon, which is the count-law problem. The Evertse constant is ineffective, so even a full reduction would only exclude escaping orbits for large starts; cycles would need a separate argument, since expanding cycles satisfy every hypothesis of Theorem W. The general-setting versions of the split5_3 linked-label, varying-rate and free-label theorems were not written out. Corollary P1 does not cover paths outside the block-word normal form, for example paths over several cycles or exits with coinciding labels.",
+  "summary": "All REFEREE1 items are repaired in /home/riv/Code/collatz/census/round6/cutoff_wide/.\n\nCorrections and withdrawals:\n- The claim \"cycles fail (H2)\" is withdrawn. A new exact check shows that the expanding cycles of 3x-1 and 3x+1 satisfy (H0)-(H4) from bounded starts; only the ineffective y_* keeps them consistent with Theorem W.\n- The H values for core13 and core135 are corrected from 0.4565 and 0.3755 to 0.4281 and 0.3593. The cause was that the theta grid stopped at 3. The grid is now [0, 12] with an end-point guard, and a new --hcheck mode was added.\n- split5_3 kappa is corrected to 3.1063.\n- The multi-shift exponent bound is corrected to below 0.04.\n\nProof repairs:\n- Theorem W gains (H0) and the prefix form of (H3), the truncation step is argued hypothesis by hypothesis, and the S-unit term count is fixed.\n- The Lemma R window argument is redone with half-open arcs; M(delta) is unchanged. The window inequality and a sharper exception bound are now checked.\n- Theorem P item 4 is restated for general e_max.\n- New Lemma Q' handles general (H4) shift pieces (2^{o(E)} words), and Corollary P1 is restricted to the block-word normal form.\n- Proposition B: the referee's proposed fix was itself false. The 9 classes s = 2 (mod 3) contain no non-descending point, so the bound now holds in 18 classes, with an exhaustive check.\n\nWording fixes cover \"escaping\", \"smallest in census\", \"cannot decide\", Theorem H's hypotheses, and the novelty caveat for Theorem P. The Evertse quotation is now marked as verified by the referee. The README has a \"Revision after REFEREE1\" table.\n\nAll checks exit 0: check_entropy_code.py, check_cutoff_instances.py, check_mb_s3_27.py, count_nondesc.py --check and --hcheck, and referee1_check.py. Both new checks were seen to fail on the old claims. No system is settled."
+ },
+ "referee:typeb_wide": {
+  "needs_repair": true,
+  "overall": "The work is mathematically sound, and the computations reproduce. All of the prover's checks exit 0. My own script, /home/riv/Code/collatz/census/round6/typeb_wide/referee1_check.py, also exits 0 after about 1 minute, with every check passing. Each PROVED theorem held up when re-derived line by line: Theorem H as a proof object, the counter lemma, Prop M, Prop CS, Theorem P8, Theorem Y and its corollary, and the gap example G1. The exhaustive counts I recomputed match, the named systems agree with brute force up to 10^6, and 193 stored neighbours were re-settled independently. No open entry is settled, nothing settles 3x+1, and the open maps remain type (c). Repair is needed for four points. First, one sentence in §4 asserts an unproved implication, \"gap zero and theta_1>0 implies GLOBAL\" under the standing hypothesis. Example G1 itself is a type-(c) system that meets these conditions and has unknown status, so this sentence is WRONG. Second, Theorem P8 must cite round3/traps Corollary F1, which already contains its core argument. Third, results row 45 overstates the coverage at modulus 16. Fourth, the claim that the z3 encoding is \"sound and complete\" fails at the shipped SC=4096 for S3 m=8 and D27. Both UNSAT answers survive a re-run at SC=2^22, a scale I verified to be complete. The report is at /home/riv/Code/collatz/census/round6/typeb_wide/REFEREE1.md.",
+  "verdicts": [
+   {
+    "claim": "Theorem H as a mechanical proof object plus an independent verifier (PROVED method)",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived the proof. The hypotheses used are unit multipliers u>=1, w=p^e exact on each class, T(Z>0) in Z>0, and the standing hypothesis. Verifier step H1 forces the parts to be exactly the SCCs. The counter drops by at least 1 per step, including at the wrap where the drop is lD-l+1, and it stays at least -l. The weighted case is correct. Round 3's accel_lib already implemented the proof; what is new is the serialised object and the independent verifier."
+   },
+   {
+    "claim": "Counter potential phi=l(v_p(n-x_i)+E_i)-i and the lexicographic second proof",
+    "verdict": "CONFIRMED",
+    "detail": "This is a formal identity. On contracting SCCs the descent holds off the finite set {c n <= Vmax+1}."
+   },
+   {
+    "claim": "S-family 3n+1/5n+1/7n+1 has no type (b) for m<=5 (exhaustive) and m=6 (C scan)",
+    "verdict": "CONFIRMED",
+    "detail": "I recomputed m<=4. In the C scan the float threshold is exact, because cycle means are more than 2e-4 away from 0. The sub-claim that every isolated SCC is {63,62} is not checked by any prover script. I confirmed it with two z3 UNSAT queries. The statement that the companion SCC always contains the -5,-7,-10 cycle is unchecked."
+   },
+   {
+    "claim": "z3 rows (S3 m=7,8; S5 m=7; S7 m=6; SPL m=5; D27) PROVED modulo z3, with a 'sound and complete' encoding",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "I computed the precision slack of each row. At SC=4096 the encoding is complete for S3 m=7, S5 m=7, S7 m=6 and SPL m=5. It is not complete for S3 m=8, where a contracting cycle 3^41/2^65 with 130 nodes is wrongly excluded, or for D27 (slack +2 on the contracting side, and some expanding cycles are missed). A re-run at SC=2^22, which is provably complete, still gives UNSAT for both. Fix: raise SC and state the precision bound."
+   },
+   {
+    "claim": "SPL m<=4 has no type (b); Proposition CS (scaling conjugacy)",
+    "verdict": "CONFIRMED",
+    "detail": "I recomputed the rows for d=1,3,5 at m=3 and 4; they are identical. The conjugacy argument is correct. Nit: the name CS is used for both a Proposition and a Conjecture."
+   },
+   {
+    "claim": "B9/B27/D9 tables and CERT counts equal to round 3",
+    "verdict": "CONFIRMED",
+    "detail": "I recomputed B9 for all a. B27 matches round 3 through the prover's check."
+   },
+   {
+    "claim": "Type-(b) counts SH3 (2, 358), SH5 (3, 458), C9 (53), plus existence for C27 and SH3 m=5, all settled",
+    "verdict": "CONFIRMED",
+    "detail": "I recomputed the full C9 counts and the SH3/SH5 type-(b) counts. All stored proof objects verify, and my samples settle independently against brute force."
+   },
+   {
+    "claim": "Named systems sh8, sh4, sh16, sh32, the 5x+1 relative, c9a, c9b",
+    "verdict": "CONFIRMED",
+    "detail": "All are type (b), and the isolated orbits are as stated. My own Theorem-H code gives the stated cycle lists, and brute force over n<=10^6 agrees."
+   },
+   {
+    "claim": "Proposition M (minimal modulus for type (b))",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived the hand proof of (i). The shape reduction is correct, and the counts are 128/2401 and 0/49."
+   },
+   {
+    "claim": "Theorem P8 (an+d with n=4 mod 8 -> n+4)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The proof is correct, and I checked 265 pairs (a,d) by brute force. Fix: cite round3/traps Corollary F1, which already proves that every orbit meets 4 mod 8 by the same x*=-b/(a-2) valuation argument. P8 extends this to d>=1-a and adds the trivial dynamics on M4."
+   },
+   {
+    "claim": "Open-map one- and two-class neighbours (counts and representatives)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "I rebuilt the menu and recomputed counts for 10 map/modulus cases plus the two-class perm_1932inv@8 case (68/0). All agree. Fix: row 45 says 'every par_* map (mod 8, 16)', but at modulus 16 only the par_3_* maps have type-(b) neighbours."
+   },
+   {
+    "claim": "perm_1932inv and perm_c have Theorem-H neighbours at level 8 distance 2, and no CERT neighbour",
+    "verdict": "CONFIRMED",
+    "detail": "I recomputed 68 type (b) and 0 CERT. The round-3 distance of 3 matches neighbours.md."
+   },
+   {
+    "claim": "par_5_d, par_7_d, par_9_1 drop to distance 1 via P8",
+    "verdict": "CONFIRMED",
+    "detail": "The round-3 values are 8:2 and 8:[2,4], and the P8 neighbours are verified."
+   },
+   {
+    "claim": "Gap zero does not imply type (b) (example G1)",
+    "verdict": "CONFIRMED",
+    "detail": "My own exact Collatz-Wielandt certificate gives rho_S(12/7)<=1 on both non-simple SCCs. The SCC structure (a,1),(a,2),(b,{62,63}),(c,34) is confirmed."
+   },
+   {
+    "claim": "Example G2, and the sentence \"'gap zero and theta_1>0 implies GLOBAL' holds exactly under the standing hypothesis\"",
+    "verdict": "WRONG",
+    "detail": "The example is correct. The sentence is unproved: G1 meets the standing hypothesis with gap zero and theta_1>0, is type (c), and has unknown GLOBAL status. Replace the sentence with the proved statements: type (b) implies gap zero and GLOBAL, and the converse fails."
+   },
+   {
+    "claim": "Theorem Y: y_d are homoclinic expanding periodic points of mb_s3_27",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived all valuations and residues. An exact check with the real map for d<=120 confirms periodicity, the word, the multiplier (above 1 iff d>=9), and disjoint orbits. This resolves round4/wpotential's open question of whether there are infinitely many."
+   },
+   {
+    "claim": "Corollary: mb_s3_27 has no generalized certificate; the system remains OPEN",
+    "verdict": "CONFIRMED",
+    "detail": "The transfer of Theorem N is valid, and integers that rise for a whole period are checked for d=9..14. Nit: 'proves that it is the mixed-base analogue of type (c)' describes a definition, not a theorem."
+   },
+   {
+    "claim": "No open entry is settled; all open table maps are type (c); 3x+1 is untouched",
+    "verdict": "CONFIRMED",
+    "detail": "3x+1, 3x-1, 5x+1 and 7x+1 are type (c) at levels 1..10 with exact witnesses."
+   },
+   {
+    "claim": "Honesty, coverage and novelty statements",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "'No external theorem is used' is inaccurate, because §4 uses Kingman log-convexity and the Collatz-Wielandt bound. The P8 attribution, the row-45 overstatement, the SAT completeness wording, and the source of the {63,62} identification all need edits."
+   },
+   {
+    "claim": "Headline numbers (3.4M, 835k, 874, 2,030, 1,974, 5,291)",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed from the data files."
+   }
+  ]
+ },
+ "referee:decide_wide": {
+  "verdicts": [
+   {
+    "claim": "Lemma 0 (over-approximation)",
+    "verdict": "CONFIRMED",
+    "detail": "w | uK follows from w | uQ; w=1 gives g=K."
+   },
+   {
+    "claim": "Theorem H' (any modulus/multipliers, condition (D))",
+    "verdict": "CONFIRMED",
+    "detail": "The p-adic valuation argument is valid without unit or Markov hypotheses. (H1)/(H2) imply (D). Nit: §0 leaves single-cycle SCCs with U=W>1 untyped; the harness handles them safely (padic_kill returns None, so the verdict is NONE)."
+   },
+   {
+    "claim": "Proposition Z",
+    "verdict": "CONFIRMED",
+    "detail": "Correct as written."
+   },
+   {
+    "claim": "Proposition P (prime modulus)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Own exhaustive pattern check for p=2,3,5 and random patterns for p=7,11. The no-division-free-cycle hypothesis is genuinely needed."
+   },
+   {
+    "claim": "Corollary P'",
+    "verdict": "CONFIRMED",
+    "detail": "Relies on round-3 Lemma L, whose proof there is a sketch. I re-derived its going-up step. Own check: 3x+1, m3_g, desc_m3_4n5 and perm_1932 are (c) with no (b) at every level up to 256."
+   },
+   {
+    "claim": "Lemma S / Theorem S (squarefree, level Q)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proof correct. Lemma S checked with arbitrary rules q(S) for squarefree Q<400; pattern check for Q=6,10 (exhaustive) and Q=14,15,21,30,35,42 (random). Fix: 'no type-(b) SCC' should read 'no type-(b) SCC containing a division node', since unit self-loops with U>1 are (b) as well as (z)."
+   },
+   {
+    "claim": "Proposition 4 (modulus 4)",
+    "verdict": "WRONG",
+    "detail": "False as stated, because it has no division-free-cycle hypothesis. Counterexample: even n->n/2, 1 mod 4 -> 3n+2, 3 mod 4 -> 3n+1. Here 1->1 is a division-free loop and {2,3} is a single expanding cycle (3/2), so type (b). The proof step 'both 1 and 3 return to 2' fails. Fix: add 'no division-free cycle'; the proof is then correct and holds at every level. Fix the README row and the §4 row Q=4 too. Census applications all have odd v, so they are unaffected."
+   },
+   {
+    "claim": "Theorem B(i) B2(u)",
+    "verdict": "CONFIRMED",
+    "detail": "Own types at levels 8 to 64 are (a)/(b) only, with (b)={3,6} and multiplier u/2. Brute force n<=300k/60k for 10 values of u finds exactly (1 2),(3 6),(5 10)."
+   },
+   {
+    "claim": "Theorem B(ii) Bp(u)",
+    "verdict": "CONFIRMED",
+    "detail": "Own types at p^2, p^3 (and 81) are (a)/(b) only. Brute force n<=60k finds exactly (1 p),(2 2p) for p=3,5,7,11. Slips: 'only 0 and p lead to 1' should be 'only p leads to 1'; the m-range wording is confusing."
+   },
+   {
+    "claim": "§4 type-(b)-by-modulus classification",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Row Q=4 needs the division-free caveat. The general-branch Q=15 example is claimed as verified but appears nowhere (check_theory has only 6 and 10); supply one or drop it. Credit the earlier type-(b) examples at 9, 16, 32 (round3 acc_h*, round4 F3m2)."
+   },
+   {
+    "claim": "Theorem C6",
+    "verdict": "CONFIRMED",
+    "detail": "Own simple-cycle enumeration of the 36 graphs agrees with classify6.md for all u1,u5<60. Both corollaries hold, and 3000 random maps agree with own SCC typing."
+   },
+   {
+    "claim": "div23 with 5n±1 (and 5n+5 variant)",
+    "verdict": "CONFIRMED",
+    "detail": "Own exact potential. Brute force n<=2e6 finds only (1 6 3); decide.py gives k*=4. The variant has cycles (1 6 3),(5 30 15)."
+   },
+   {
+    "claim": "Q=12 mixed type-(b) system, 72 mixed examples, novelty",
+    "verdict": "CONFIRMED",
+    "detail": "Types ab, (b) SCC {1,2} with 11/2 and x*=-2/3. Brute force n<=300k finds only (5 7 10). All 72 examples are Markov and (a)/(b) with (D). Novelty is consistent with the files of rounds 1-5."
+   },
+   {
+    "claim": "Catalog sweep counts (244/256, 15/42, 0/226)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Counts reproduced. A 40-record sample of the GLOBAL verdicts matches brute force. Fix: zcore_3_7 and zcore_3_17 (N0 maps) were read on positive integers and labelled 'positivity fails'. I checked they are type (c) on N0; re-run them with zero=True and fix the '188 type (c)' count."
+   },
+   {
+    "claim": "38 open census table maps all OBST, type (c)",
+    "verdict": "CONFIRMED",
+    "detail": "Own exact (c) witnesses for all 224 analysable open records. Own tables for 12 key systems match the catalog tables. These are (c) with no (b) at all lifted levels tried (to 576 for div23_*, 540 for div235_7n1)."
+   },
+   {
+    "claim": "Coverage: 29 of 38 by class theorems plus 3 at base level",
+    "verdict": "CONFIRMED",
+    "detail": "Recount: 26 by Prop P, 3 by Prop 4, 3 by Thm S; 6 not covered."
+   },
+   {
+    "claim": "Family scans (counts, CERT ~1.19M, type-(b) members)",
+    "verdict": "CONFIRMED",
+    "detail": "Summaries add up with FALLBACK=0, and every CERT member has a cycle count (total 1,185,073). famscan.c logic reviewed. Own typing of 690 listed members, with cycle counts checked by brute force. Unlisted members of exhaustive families are C/Z in own code."
+   },
+   {
+    "claim": "typeb_list.jsonl 10,734 settled members",
+    "verdict": "CONFIRMED",
+    "detail": "Per-Q counts match. For a 150-member sample, own types, brute-force cycle lists and x* all agree."
+   },
+   {
+    "claim": "14 non-Markov mixedbase re-settled; open mixedbase not",
+    "verdict": "CONFIRMED",
+    "detail": "Covered by the prover's check_harness A and my catalog sample."
+   },
+   {
+    "claim": "Exponents labelled EVIDENCE",
+    "verdict": "CONFIRMED",
+    "detail": "Label honest; values not recomputed."
+   },
+   {
+    "claim": "README headline: Theorem H gives nothing for whole classes incl. squarefree",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Overclaim at README lines 15-17: Theorem S is proved only at level Q. Add 'at level Q'."
+   },
+   {
+    "claim": "No open question settled; 3x+1 etc. not settled",
+    "verdict": "CONFIRMED",
+    "detail": "3x±1, 5x+1, 3x+5 are (c) at all levels 2-512 in own code. No type-(c) system is claimed settled."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "The prover's four checks (check_theory, check_harness, check_famscan, classify6 check) all exit 0. My own check, referee1_check.py in round6/decide_wide, is written from scratch, uses exact arithmetic and exits 0. Its first version failed on Proposition 4, which shows it can fail.\n\nThe one substantive error is Proposition 4: it is false as stated. A raw mod-4 table with a division-free loop on class 1 has a type-(b) SCC {2,3}. The fix is to add the 'no division-free cycle' hypothesis. Every census application has odd v, so no census conclusion changes.\n\nSmaller fixes:\n- The README headline overclaims Theorem S beyond level Q.\n- The general-branch Q=15 type-(b) example is claimed but never given.\n- Two zcore maps were defined on N0 but analysed on the positive integers, so they were never classified. They are type (c) on N0.\n- Wording nits in Theorems S and B(ii) and the §0 definitions, plus credit for the earlier type-(b) examples at prime powers.\n\nEverything else is confirmed: Theorem H', Prop P, Corollary P', Theorem S, Theorems B and C6, 5n±1, the Q=12 system, the scans, the type-(b) list, and the claims that all open maps are type (c) and none is settled. Report: /home/riv/Code/collatz/census/round6/decide_wide/REFEREE1.md"
+ },
+ "referee2:cutoff_wide": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 items resolved honestly",
+    "verdict": "CONFIRMED",
+    "detail": "Every item was addressed: Evertse credited, (H0) and prefix-(H3) added, n_terms, Lemma R window, split5_3 kappa, cycles-(H2) claim withdrawn, H values corrected, item 4 and Lemma Q' added, Prop B, Theorem H hypotheses, wording. On Proposition B the prover correctly rejected referee 1's own fix ('each class != 26' is false). One leftover: the Corollary P1 restriction was not carried into the headline sentences (see that row)."
+   },
+   {
+    "claim": "Evertse 1984 Thm 2 (14) as quoted",
+    "verdict": "CONFIRMED",
+    "detail": "I re-verified it myself by rendering pp. 226 and 228 of the Numdam scan. Hypothesis (13) requires every nonempty subsum to be nonzero; C depends on (eps, S, K, n); ||x|| = max|x_k| for K = Q (eq. 2). The quotation matches."
+   },
+   {
+    "claim": "Theorem W (with (H0) and prefix-(H3))",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived line by line: truncation, the 1-gamma bound (its denominator is a {p,l}-unit, checked exactly), pairing, the geometric sum, the S-unit bookkeeping (|ZF|_p cancels; |y||y|_l <= |y| because the denominator of x* is prime to l), deletion, and uniformity of the ineffective constant. The pairing identity and identity (1) were checked exactly on 13 actual integer orbits of two-piece schedules with jumps (3x+1, m3_b, core13)."
+   },
+   {
+    "claim": "Lemma R (half-open arc / 2/delta+1 window argument)",
+    "verdict": "CONFIRMED",
+    "detail": "Correct. Tested on 400 random cases with exact rational phases (J <= 4 arcs): at most 2J+1 exceptions per window and at most M(delta) in total (largest total 88). Nit: J is used for both arc count and piece count."
+   },
+   {
+    "claim": "Instances (16 rows: kappa, x*, slopes, identity)",
+    "verdict": "CONFIRMED",
+    "detail": "All kappa values recomputed to within 6e-5; T = 7.2126 and 0.0366 confirmed; the prover's instance checks exit 0."
+   },
+   {
+    "claim": "Expanding cycles satisfy (H0)-(H4); Theorem W says nothing about cycles",
+    "verdict": "CONFIRMED",
+    "detail": "Independent exact check on the 3x-1 cycles 5,7,10 and the 17-cycle, and the 3x+1 cycles -5 and -17, over 40 laps: identity holds, |tau| <= 1/2, |y0| = 4 and 16, E unbounded."
+   },
+   {
+    "claim": "Theorem P items 1-4",
+    "verdict": "CONFIRMED",
+    "detail": "Proof re-derived. For all 15 table systems I independently verified the standing hypothesis, (M) by residue enumeration, and a type-(c) SCC. My own witness construction reproduces |C|, |W|, D, |U|, eU/eV and s for every row. {U,V}^n words are realized by integers via lifting with a uniqueness test and direct iteration, and they give disjoint classes. Item 4 was brute-forced on 5 systems."
+   },
+   {
+    "claim": "Converse (dim 0 iff no type-(c) SCC)",
+    "verdict": "CONFIRMED",
+    "detail": "The type (a) potential needs no positivity; type (b) has finitely many preimages. The standing hypothesis is required and is part of the stated setting."
+   },
+   {
+    "claim": "Lemma Q and Lemma Q' (2^{o(E)} for general (H4) shift pieces in block normal form)",
+    "verdict": "CONFIRMED",
+    "detail": "Recovery of the word from distinct labels and E' increments with e_C >= 1 is correct; |D| <= 2M; the count is correct. Minor point: cut walks that end mid-block add only a bounded factor."
+   },
+   {
+    "claim": "Corollary P1 (restricted to block-word normal form)",
+    "verdict": "CONFIRMED",
+    "detail": "Follows from Theorem P item 4 together with Lemmas Q and Q'."
+   },
+   {
+    "claim": "Headline: cylinder-level rigidity 'false for every type-(c) system' / 'no designed type-(c) table can have it'",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Proved only for block words over one expanding cycle with distinct-label exits, which the prover's own caveat at theorem_P.md lines 230-232 concedes. Fix: add 'in block-word normal form (one expanding cycle, distinct-label exits)' at README lines 18-20, theorem_P.md lines 24-27 and lines 234-243. 'Countable is impossible' is fully proved and needs no change. This is a wording fix only."
+   },
+   {
+    "claim": "Proposition B (dim >= 1/84 in the 18 classes s = 0,1 mod 3; no non-descending point in s = 2 mod 3)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-proved: two odd steps from s = 2 (mod 3) reach 26, because 26 is the 3-adically attracting fixed point of s -> (3s+1)/2. Checked on all |n| < 10^6. Entry words were found by exhaustive search for all 18 classes; the negative control (no entry word for s = 2 mod 3) passes. W = 010, D = 25 and |U| = 84 were reproduced."
+   },
+   {
+    "claim": "H table and mb_s3_27 never-blocked exponent (EVIDENCE)",
+    "verdict": "CONFIRMED",
+    "detail": "My DP matches direct enumeration. Fits over [800,1600] are 0.001-0.002 below the stated H for 7 systems, including core13 (0.4263) and core135 (0.3574); the old values fail the same test. The mb fit over [240,480] is 0.3315 and still rising, so '>= 0.32' holds. Nits: H is the word-count exponent, which is only an upper bound for dim_H (the docstring overstates this); 'smallest in round4/lundberg' should say 'among type-(c) systems', because acc_h16 is in that table; mb_s3_27's 'multipliers not all units' should say the branch condition is mod 27."
+   },
+   {
+    "claim": "No system settled; no cycle lists; nothing bears on 3x+1",
+    "verdict": "CONFIRMED",
+    "detail": "The claim is honest. Theorem W excludes only zero-entropy rigid families, and only from ineffectively large starts."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "I refereed round6/cutoff_wide a second time and found no mathematical errors. All proofs re-derive (Theorem W, Lemma R, Theorem P and its converse, Lemmas Q and Q', Corollary P1 in normal form, Proposition B). I re-checked the Evertse statement against the scan myself. Every REFEREE1 item was resolved honestly, and on Proposition B the prover correctly overruled referee 1's own wrong fix.\n\nneeds_repair is true for a wording fix only: three headline sentences (README lines 18-20; theorem_P.md lines 24-27 and 234-243) still claim cylinder-level rigidity fails for every type-(c) system without the block-word-normal-form restriction that Corollary P1 actually proves. There are also three nits: the H-versus-dim_H wording, 'smallest' versus acc_h16 in the lundberg table, and the reason the trichotomy does not apply to mb_s3_27.\n\nNo system is settled and none is claimed. All prover checks and referee1_check.py exit 0. My independent check exits 0 in about 20 s and includes negative controls that reject the old false claims.\n\nFiles: /home/riv/Code/collatz/census/round6/cutoff_wide/REFEREE2.md and /home/riv/Code/collatz/census/round6/cutoff_wide/referee2_check.py"
+ },
+ "referee:chain_wide": {
+  "verdicts": [
+   {
+    "claim": "Lemmas 1-4, Theorem 1 (crude occupation bound)",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived each step. Lemma 1 holds for unit multipliers. The referee's own tree code checks y_{l+1}=F y_l+G exactly along every tested orbit."
+   },
+   {
+    "claim": "Theorem 2 (V(X) <= W p^θ X^θ + s⌈log_p X⌉E) and the raw-count corollary",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The proof is correct. Typo to fix: 'log A ≤ -1/s + A^s' should end '+ A^s/s'. The 3x+1 constants (R=2, c_raw=1, W=1, s=41/84) are consistent."
+   },
+   {
+    "claim": "Theorem 3 multiplier bound, (P) systems; 3x+1 <31.7 (2^68), <1.7e5 (2^32); split5_3 5.32e-5 at 2^48",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed in 50-digit Decimal. Every json value is an upper bound within 3e-8 relative. All 23 certificates were re-verified exactly with the referee's own integer-root power bounds."
+   },
+   {
+    "claim": "Theorem 3 signed case (par_3_m1, m3_b constants)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The code uses 2g·X/(1-g s S2), but THEORY proves 2g·X/(1-2g s S2). The json values are about 1e-9 relative below the proved bound (24.07889438 < 24.07889443; 50.73726249 < 50.73726252). Fix lam and regenerate. The raw-time two-sided bound also needs the condition 'at most one nonzero-v step per edge', which holds for both signed systems."
+   },
+   {
+    "claim": "Corollary 3.1 dichotomy; §0 'unit multipliers not needed'",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The corollary is correct, but its second half and Prop 5.1 do use unit multipliers. The §0 sentence saying they are not needed is false and should be removed. All treated systems have unit multipliers (checked)."
+   },
+   {
+    "claim": "Theorem 4 chain theorem (a)-(e), A(B) counts, forced classes, k*, two-slope formula, strips",
+    "verdict": "CONFIRMED",
+    "detail": "I re-derived all parts. Every forced D, residue, class count and mass was reproduced by independent sigma-tree code for all 23 systems. Tested on beam-constructed long survivor orbits: 20-141 links per system with (a)-(d) all holding, including sf3_13 and sf3_135. Wording fixes: 'edges with F≠1' in (b) and (d). 'Survivor mass' is an upper bound because root classes of different states overlap."
+   },
+   {
+    "claim": "Signed version of Thm 4; Corollary 5 window criterion",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Both are correct. Heights inside edges need the same raw-time remark as Thm 3. 'Survive' in N_b must mean ≥1. The criterion is vacuous when A(B)=0."
+   },
+   {
+    "claim": "Proposition 5.1 (N^mult empty iff GLOBAL; gap)",
+    "verdict": "CONFIRMED",
+    "detail": "Correct, but nearly tautological. Calling it 'the main new point' oversells it."
+   },
+   {
+    "claim": "§5 count-law analysis C* = 1/(1-θ*), proved depth factor 1",
+    "verdict": "CONFIRMED",
+    "detail": "This is heuristic but sound given the additive-error form of Conjecture E. The quoted round-5 result is the τ-version for a density-one set of m, and the citation should say so."
+   },
+   {
+    "claim": "Prop 6 (no occupation mirror) and Prop 7 (conditional chain) as stated",
+    "verdict": "CONFIRMED",
+    "detail": "Both are correct as stated."
+   },
+   {
+    "claim": "Application of Prop 7 / chain to core W (sf3_137) in README",
+    "verdict": "WRONG",
+    "detail": "Core W fails (R): one edge has prefix slopes 1, 1/2, 3/2, 3/4. Concrete orbit from 15: the selected minimum 263 is followed by 223, with raw multiplier 27/32. Only the update-time conclusions apply. 5x+1 and 7x+1 satisfy (R)."
+   },
+   {
+    "claim": "Families: 240 certified members, constants per member, 'non-certified = positive drift or graph error'",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "A recomputed sample of 30 agrees, and the counts 240 and 31 R-failures are correct. But 103 non-certified members have negative drift and were dropped only by the assertion γ≤1. They satisfy (N) at γ=1 (verified exactly for 12). Coverage is therefore 343, and the README's explanation is wrong."
+   },
+   {
+    "claim": "Range certificates and cycle lists (2^32, m3_g 2^27)",
+    "verdict": "CONFIRMED",
+    "detail": "The prover's C verifier was rerun on split5_3, and a negative control makes it fail. Independent numpy check to 2^22 (2^16 for m3_g). Cycle minima were brute-forced to 65536 and match."
+   },
+   {
+    "claim": "Labels, novelty, 'nothing settled'",
+    "verdict": "CONFIRMED",
+    "detail": "Honest overall. Barina's 2^68 is flagged as quoted from memory. Novelty is not checked, which is appropriate. Nothing would settle 3x+1."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "The core proofs are sound and all finite content was independently reproduced: referee1_check.py gives 266 PASS and 4 FAIL, and all 4 FAILs are findings. Substantive repairs are needed. (1) The signed multiplier constants for 3x-1 and m3_b are computed with g in the denominator instead of 2g, so they fall about 1e-9 below the bound Theorem 3 proves. (2) Core W fails hypothesis (R), so the README's use of Prop 7 for it is wrong, with a concrete raw drop 263 -> 223. (3) 103 negative-drift family members were silently dropped by an assertion, and the README misdescribes them as positive drift. Minor wording fixes are also needed (unit-multiplier sentence, a typo, edges with F≠1, survivor mass is an upper bound). No census system is claimed settled and none is. Report: /home/riv/Code/collatz/census/round6/chain_wide/REFEREE1.md; script: /home/riv/Code/collatz/census/round6/chain_wide/referee1_check.py; output: /home/riv/Code/collatz/census/round6/chain_wide/referee1_check.out."
+ },
+ "repair:typeb_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/typeb_wide/",
+  "newly_settled": [
+   {
+    "id": "S3_m6_isolated_SCC_identification",
+    "rule": "S-family even n -> n/2, odd n -> 3n+1 if n mod 64 in S else n+1, all 2^32 S",
+    "result": "The 34,560 members with an isolated expanding SCC are exactly the members where {63,62} (x* = -1) is an SCC. In each it is the only one, 59 and 57 lie in S, and the residue cycle 59,50,57,44,54 of -5,-7,-10 lies in a non-simple SCC, which is type (c). Exact enumeration: 7,740 closure configurations, count equal to the C-scan nb.",
+    "technique": "exact closure enumeration plus count comparison with the exhaustive C scan (check_iso63.py)",
+    "status": "PROVED (previously stated without a check)",
+    "type": "structural fact, not a system settlement"
+   }
+  ],
+  "theorems": [
+   {
+    "name": "Theorem P8 (re-attributed)",
+    "statement": "For odd a >= 3 and odd d with a+d >= 1: n=4 mod 8 -> n+4, other even n -> n/2, odd n -> an+d. Every positive orbit is eventually periodic. The cycles are (4 8), plus (x*,2x*) when x* = -d/(a-2) is a positive integer. Its core is round3/traps Corollary F1; P8 extends F1 to d >= 1-a and makes it a Theorem-H-provable neighbour.",
+    "status": "PROVED; novelty reduced",
+    "proof_file": "/home/riv/Code/collatz/census/round6/typeb_wide/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/typeb_wide/check_examples.py"
+   },
+   {
+    "name": "Gap zero and GLOBAL (withdrawn claim)",
+    "statement": "The claim 'gap zero and theta_1 > 0 implies GLOBAL under the standing hypothesis' is WITHDRAWN. Proved instead: type (b) implies gap zero and GLOBAL; gap zero does not imply type (b) (G1); without the standing hypothesis gap zero can coexist with divergent orbits (G2). Gap zero implies GLOBAL is OPEN.",
+    "status": "WRONG claim withdrawn; implication OPEN",
+    "proof_file": "/home/riv/Code/collatz/census/round6/typeb_wide/README.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/typeb_wide/check_gap.py"
+   },
+   {
+    "name": "z3 encoding completeness bound",
+    "statement": "At SC = 2^22, for every z3 row (S3 m=6,7,8; S5 m=6,7; S7 m=6; SPL_d1 m=5; D27), every contracting count vector realisable by a simple cycle of length <= p^m satisfies sum(ceil(SC lq)+1) <= 0. Every expanding one satisfies sum floor(SC lq) >= 1. So UNSAT means no type-(b) member, modulo z3. At SC = 4096 the bound fails for S3 m=8 and D27.",
+    "status": "PROVED (exact check), the UNSAT results themselves modulo z3",
+    "proof_file": "/home/riv/Code/collatz/census/round6/typeb_wide/check_sat_precision.py",
+    "check_file": "/home/riv/Code/collatz/census/round6/typeb_wide/check_sat_precision.py"
+   }
+  ],
+  "coverage": "This was a repair of the existing typeb_wide folder; nothing new was swept. Six S-family z3 rows (S3 m=6,7,8; S5 m=6,7; S7 m=6) plus D27 and SPL_d1_m5 were re-run at SC = 2^22. All are still UNSAT, and the completeness bound now holds for every one. At the new scale, z3 reproduces the exhaustive type-(b) counts for C9 (53), SH3 m=3 (2), SH5 m=3 (3) and D9 (0). For S3 m=6, all 34,560 members with an isolated expanding SCC were classified exactly. The S5 m=6 isolated SCCs (2,218,464 members) were not examined, and the README says so. No open census entry is settled; all open table maps remain type (c).",
+  "blocking_points": "Whether gap zero implies GLOBAL under the standing hypothesis is open. G1 is the test case: an S-family member at m=6 with gap zero, theta_1 > 0, type (c), status unknown. Conjecture CS (no type (b) with one common shift) is open beyond the tested moduli. The z3 UNSAT answers have no independent certificate. mb_s3_27 stays open: Theorem Y shows it behaves like type (c) in the sense of Theorem N.",
+  "summary": "Every REFEREE1 item is repaired in /home/riv/Code/collatz/census/round6/typeb_wide/.\n\n(1) WRONG item 15: the §4 sentence 'gap zero and theta_1 > 0 implies GLOBAL' is explicitly withdrawn and replaced by the proved statements. The implication is listed as OPEN, also in the results table.\n\n(2) Theorem P8 now cites round3/traps/family.md Corollary F1 as its core, with the novelty reduced.\n\n(3) Results row 45 is reworded: every par_* map has type-(b) neighbours at modulus 8, but at 16 only the par_3_* maps do.\n\n(4) z3 completeness: SC is raised to 2^22 in sat_typeH.py. The new check_sat_precision.py checks the completeness bound for every z3 row over all realisable count vectors. It uses Hall caps per branch type, and for the 2-adic rows the constraint #odd steps <= #halvings. It reproduces the referee's SC = 4096 failures exactly (S3 m=8 and D27). Without the caps, S3 m=7 and S5 m=7 also fail the cruder bound; the README records this. All z3 rows were re-run at 2^22 and are still UNSAT (out/sc22/). The new check_sat_sc22.py re-validates the SAT direction against the exhaustive counts. 'Sound and complete' is replaced by an accurate qualification.\n\n(5) The two unchecked S3 m=6 statements are now PROVED exactly, without z3, by the new check_iso63.py: the {63,62} identification for all 34,560 members, and the -5,-7,-10 residue cycle lying in the type-(c) companion SCC. A mutation test shows the check can fail.\n\n(6) Kingman log-convexity and the Collatz-Wielandt bound are now named as the external theorems used, quoted from memory.\n\n(7) Nits: Proposition CS is renamed Proposition K, 'B <= 64' is corrected to 32 in check_scans.py, and the Outcome wording now reads 'behaves like type (c) in the sense of Theorem N'.\n\nA section 'Revision after REFEREE1' is added to README.md. All checks exit 0: check_examples, shapes, mixed27 check, check_gap, check_scans, verify_H, check_iso63, check_sat_precision, check_sat_sc22 and the referee's referee1_check. No count, cycle list or proof object changed, and no open census entry is settled."
+ },
+ "repair:decide_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/decide_wide/",
+  "newly_settled": [
+   {
+    "id": "E15",
+    "rule": "mod 15: 3|r -> (n + (15-r) mod 15)/5; r=1 -> (7n-1)/3; r=2 -> n+14; other r -> n + 15 - r",
+    "result": "every positive orbit reaches the fixed point 3 (only cycle); type (b) SCC {1,2} with multiplier 7/3 next to type (a) only",
+    "technique": "Theorem H' (isolated expanding cycle, condition (D) at p=3)",
+    "status": "PROVED (theory.md section 2, check_theory.py part 4 with brute force n<20000)",
+    "type": "constructed example (type b at squarefree modulus with general branches)"
+   }
+  ],
+  "theorems": [
+   {
+    "name": "Proposition 4 (modulus 4), corrected",
+    "statement": "Q=4, even n -> n/2, odd classes (u,v,1) with u odd. If G_4 has no division-free cycle (e.g. both odd v odd), no SCC is type (b) at any level 2^k. Without the hypothesis a type-(b) SCC can occur, but only next to a division-free (z) SCC, where Theorem H' fails at every level. The original statement without the hypothesis is WITHDRAWN (counterexample: 1 -> 3n+2, 3 -> 3n+1).",
+    "status": "PROVED (corrected); original WRONG",
+    "proof_file": "/home/riv/Code/collatz/census/round6/decide_wide/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/decide_wide/check_theory.py",
+    "novelty": "repair of round-6 statement; no census conclusion changes (all census members have odd v)"
+   },
+   {
+    "name": "Theorem S (squarefree, level Q), wording fixed",
+    "statement": "For raw full-division tables at squarefree Q, at level Q no type-(b) SCC contains a division node; every expanding cycle lies in a (c) SCC or next to a division-free cycle.",
+    "status": "PROVED at level Q; other levels EVIDENCE",
+    "proof_file": "/home/riv/Code/collatz/census/round6/decide_wide/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/decide_wide/check_theory.py"
+   },
+   {
+    "name": "Example E15",
+    "statement": "Type (b) occurs at squarefree Q=15 with general branches (units dividing by 3), next to type (a) only; the system is settled with the single cycle (3).",
+    "status": "PROVED",
+    "proof_file": "/home/riv/Code/collatz/census/round6/decide_wide/theory.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/decide_wide/check_theory.py",
+    "novelty": "replaces an unsupported Q=15 claim"
+   }
+  ],
+  "coverage": "Catalog sweep re-run after reading the zcore_* maps on N0: 540 distinct tables (was 539). 244/256 GLOBAL-yes and 15/42 GLOBAL-no tables re-settled (unchanged). 0 of the 227 open tables (38 OPEN-CLS + 189 open round-folder tables) settled, and all 227 are now classified, each with a type-(c) SCC at the base level (asserted by the new check_harness.py part D). Family scans, the type-(b) list (10,734 members) and Theorem C6 are unchanged and were re-checked.",
+  "blocking_points": "Same as before: we have no barrier theorem for mixed or non-Markov maps. Type (c) being level-independent at composite squarefree moduli is EVIDENCE only, so for div23_5n1, div23_7n1 and div235_7n1, Theorem H is proved useless only at the base level. Type (b) at mixed non-squarefree moduli is still open in general. No open census system is settled.",
+  "summary": "I repaired every REFEREE1 item, and the README now has a \"Revision after REFEREE1\" section.\n\n1. Proposition 4 was WRONG as stated and is corrected. It now carries the hypothesis \"no division-free cycle\". The theory files say explicitly that the old statement is withdrawn and give the referee's counterexample. The proof is rewritten, and the extension to every level 2^k is spelled out. The README and the section 4 rows now carry the caveat, and check_theory.py asserts that the counterexample is type (b) next to type (z) and that Theorem H' does not return GLOBAL on it.\n2. The headline sentence about squarefree moduli now says \"at level Q\". Theorem S now reads \"no type-(b) SCC containing a division node\".\n3. The unsupported claim of type (b) at Q=15 is now backed by an explicit table, E15, with a proof and an exact check. The Q=4 claim for general branches is attributed to the counterexample.\n4. zcore_3_7 and zcore_3_17 are now read on N0 and classified as type (c). The counts become 540 distinct tables and 189 open round-folder tables, all classified. The new part D of check_harness.py fails on the old sweep file.\n5. Nits fixed: the single-cycle case U = W in section 0, the predecessor sentence in Theorem B(ii) (now asserted by the check) and its modulus range, citation of the earlier type-(b) examples (acc_h9, acc_h16, acc_h32, round-4 F3m2), and the measured runtimes.\n\nAll four checks were re-run and exit 0: check_theory.py, check_harness.py, check_famscan.py and classify6.py check. Files changed: README.md, theory.md, check_theory.py, check_harness.py, sweep_catalog.py, and out/ (catalog_sweep.json, catalog_sweep.txt.gz, catalog_rows.json, catalog_table.md, logs). All are in /home/riv/Code/collatz/census/round6/decide_wide/."
+ },
+ "referee2:decide_wide": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 items honestly resolved (Prop 4 hypothesis, squarefree wording, E15, zcore on N0, nits, runtimes)",
+    "verdict": "CONFIRMED",
+    "detail": "All six items resolved and recorded honestly. Own section B: 7654 mod-4 tables, no (b) at levels 4-32 under the hypothesis, 1120 (b)-next-to-(z) cases without it, none settled by own H'."
+   },
+   {
+    "claim": "Lemma 0, Theorem H' (any modulus/multipliers, condition D), Proposition Z",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. The (b) part uses only Q|K, integrality and (D): no unit or Markov hypothesis. The (a) part needs x>=0 only. No external theorems are quoted."
+   },
+   {
+    "claim": "Proposition P",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Own lifted-level check: 803 (table, level) pairs plus 3x+1, 3x-1, 5x+1 and desc_m3_4n5 up to 256; no (b), and (c) is level independent."
+   },
+   {
+    "claim": "Corollary P' / 'no type (b) at any level' (README row 36, Prop 4 every-level paragraph)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Round 3's Lemma L gives only '(c) at every level'. Prop 4 cites a 'going-up argument of Corollary P'' that is not in theory.md. Fix: add the argument, including the choice of a closed walk X not a power of the primitive root of P when P covers every edge of the SCC, or weaken the wording to '(c) at every level'. The claim is true (argument reconstructed in REFEREE2.md, numerically confirmed) and no conclusion changes."
+   },
+   {
+    "claim": "Lemma S and Theorem S (level Q)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. 720 random squarefree tables over 12 moduli with random prime-support rules: s* permutes the q-nodes, and every (b) SCC is units only."
+   },
+   {
+    "claim": "Example E15",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived the graph, the lap map (7x+41)/3 and the descent in R. Types ab at levels 15/45/75/135; own H' gives {(3)}; brute force over n<=1e6 agrees."
+   },
+   {
+    "claim": "Proposition 4 (corrected)",
+    "verdict": "CONFIRMED",
+    "detail": "The proof is valid with the hypothesis, and the division-free case lifts to every level."
+   },
+   {
+    "claim": "Theorem B(i) B2(u), Theorem B(ii) Bp(u)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived the graphs, x*, F(q) and the predecessor sets. Types ab at multiple levels for 10 values of u (B2) and p in {3,5,7,11,13} (Bp). Own H' cycle lists equal brute force (up to 1e6)."
+   },
+   {
+    "claim": "Section 4 type-(b)-by-modulus table",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Nit: the row for p^m should say 'u > p with p not dividing u'. The other rows carry the correct caveats."
+   },
+   {
+    "claim": "Theorem C6 and div23 with 5n+-1 / 5n+5",
+    "verdict": "CONFIRMED",
+    "detail": "classify6 check passes. Own grid of 6474 D6 members confirms both corollaries. 5n+-1 gives only (1 6 3) up to 1e6; 5n+5 gives (1 6 3) and (5 30 15)."
+   },
+   {
+    "claim": "Q=12 mixed type-(b) system and 74 mixed examples",
+    "verdict": "CONFIRMED",
+    "detail": "Q=12: (b) {1,2} with multiplier 11/2, x*=-2/3, cycle list {(5 7 10)} up to 1e6. All 74 tables (Q=6..36) are Markov and ab, with own H' equal to brute force."
+   },
+   {
+    "claim": "Catalog sweep 244/256, 15/42, 0/227; 38 open maps all type (c); coverage 29+3",
+    "verdict": "CONFIRMED",
+    "detail": "Recounted. Own (c) witness for all 227 open records (zcore on N0). 80 sampled H' records reproduced by own H' and brute force. Coverage 26 Prop P + 3 Prop 4 + 3 Thm S + 6 uncovered."
+   },
+   {
+    "claim": "Family scans and typeb_list.jsonl",
+    "verdict": "CONFIRMED",
+    "detail": "Six exhaustive families recounted completely with exactly matching counts (including P5_1 with 129,200 members and M_10/M_12 with 61,440 each). 433 CERT, 213 B and 420 unlisted members sampled across all 18 files. 200 typeb members checked by own H', brute force and exact x*."
+   },
+   {
+    "claim": "14 non-Markov mixedbase systems re-settled",
+    "verdict": "CONFIRMED",
+    "detail": "All 14 are type (a) at the stated level, own H' cycles match, brute force agrees. Two more mixedbase records (mb_d23_4, mb_d23_8) are Markov, so the label 'non-Markov' is accurate."
+   },
+   {
+    "claim": "Labels, honesty, no open question settled, 3x+1 not settled",
+    "verdict": "CONFIRMED",
+    "detail": "Own H' returns NONE with a (c) witness for 3x+1, 3x-1, 3x+5, 5x+1, split5_1/5_3, desc_split7_1 and the div23/div235 maps at several levels. No type-(c) system is claimed settled. EVIDENCE/OPEN labels and novelty scope are honest."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "Second pass: every REFEREE1 item was honestly resolved and all PROVED claims re-derive. All prover checks exit 0 (check_theory 77 s, check_harness 103 s, check_famscan, classify6). Own check /home/riv/Code/collatz/census/round6/decide_wide/referee2_check.py was written from scratch with exact typing and its own Theorem H'. It exits 0, and mutation tests show it can fail. Two non-substantive fixes are recommended. First, theory.md cites a 'going-up argument of Corollary P'' that it does not contain, for the 'no type (b) at any level' wording: either add the argument (reconstructed in the report) or weaken the wording to '(c) at every level'. Second, the section 4 row for p^m should add 'p does not divide u'. No open census system is settled, and none is claimed. Report: /home/riv/Code/collatz/census/round6/decide_wide/REFEREE2.md"
+ },
+ "referee2:typeb_wide": {
+  "verdicts": [
+   {
+    "claim": "Theorem H as a mechanised proof object with an independent verifier (PROVED method)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived line by line. The proof uses only these hypotheses: u is a p-unit with u >= 1 (so positivity at the least member of each class suffices), w = p^e is exact on the whole class, and there is no division-free cycle. max(v,0) correctly handles the negative v in the new maps. verify_H's checks (each part strongly connected, levels drop strictly between parts) force the parts to be exactly the SCCs."
+   },
+   {
+    "claim": "Counter potential phi = l(v_p(n-x_i)+E_i)-i and the lexicographic second proof",
+    "verdict": "CONFIRMED",
+    "detail": "phi drops by exactly 1 inside a lap and by lD-l+1 >= 1 at the wrap, and phi >= -(l-1)."
+   },
+   {
+    "claim": "S3/S5/S7 exhaustive (m<=5, C scan m=6): no type (b); S3 m=6 identification of {63,62} and the type-(c) companion",
+    "verdict": "CONFIRMED",
+    "detail": "My own enumeration (34,560 members) equals the C-scan nb slice by slice in all 4096 slices. All members checked exactly. The C-scan float decisions are exact by the separation bound (min |A ln3 - B ln2| = 0.01355). Totals: nH = nunc = 0 for both a=3 and a=5."
+   },
+   {
+    "claim": "z3 rows PROVED modulo z3 with the completeness bound checked at SC=2^22",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "I recomputed the bound independently: complete at 2^22 for every row, and incomplete at 4096 exactly for {S3_m8, D27}. Fix: the SPL m=5 row was run only for d=1; d=3,5 follow from Proposition K, and the row should say so."
+   },
+   {
+    "claim": "SPL m<=4 and Proposition K (scaling conjugacy)",
+    "verdict": "CONFIRMED",
+    "detail": "Recounted SPL m=3 for d=1,3,5 (identical counts). Checked directly that x -> d x is a graph isomorphism on every member."
+   },
+   {
+    "claim": "B9/B27/D9/C9/SH3/SH5 tables and type-(b) counts, all settled",
+    "verdict": "CONFIRMED",
+    "detail": "Full recounts of B9 (all a) and S5 m=5. Random samples of about 1,550 members each of SH3 m=4, SH5 m=4 and C9, including the stored type-(b) members (all 53 for C9): my verdict is (b) exactly when the index is in the stored list. Sampled (b) members were settled and brute-forced."
+   },
+   {
+    "claim": "Named systems sh8, sh4, sh16, sh32, 5x+1 relative, c9a, c9b and the open-map representatives",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Tables transcribed from the README text. All are type (b) with the stated cycles and isolated orbits, and brute force over n <= 10^6 agrees. Fix: the 5x+1 relative is attributed to check_examples.py but is not in it."
+   },
+   {
+    "claim": "Proposition M (minimal modulus)",
+    "verdict": "CONFIRMED",
+    "detail": "(i) re-derived and checked over all shapes for p=2,3,5. (iii) 0 of the 49 shapes admit type (b)."
+   },
+   {
+    "claim": "Theorem P8 (F1 turned into a provable neighbour)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The proof and the G_3 structure hold for all (a,d); checked on 160 random pairs with brute force, and the F1 attribution is in place. Fix: the README quotes -2/5 (7x+1) and -2/7 (9x+1) as expanding fixed points. The fixed points x* are -1/5 and -1/7; -2/5 and -2/7 are the points 2x* of the same 2-cycles."
+   },
+   {
+    "claim": "Open-map one- and two-class neighbours, counts and representatives",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Recounts agree (par_9_1@8, desc_split7_1@8, split5_3@16, perm_1932inv@32, two-class perm_c@8 = 68 b). 60 random stored neighbours re-settled. Totals 304,296 / 530,668 / 1,974 reproduced. Fix: results row 47 says 'par_*', but two-class runs exist only for par_3_1, par_3_m1, par_5_1, par_7_1 and par_9_1."
+   },
+   {
+    "claim": "perm_1932inv/perm_c distance at most 2; par_5/7/9 distance 1",
+    "verdict": "CONFIRMED",
+    "detail": "Both follow from the stored counts and my recounts. Both are stated as Theorem-H neighbours, not descent neighbours."
+   },
+   {
+    "claim": "G1 (gap zero does not imply type b) and revised section 4 (implication OPEN), G2",
+    "verdict": "CONFIRMED",
+    "detail": "My own exact Collatz-Wielandt certificate at t=665/389, with t > theta_C checked exactly. The REFEREE1 WRONG sentence is honestly withdrawn. Nit: check_gap.py chooses t >= theta_C with a float comparison."
+   },
+   {
+    "claim": "Theorem Y: homoclinic periodic points y_d of mb_s3_27",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived every line. Exact checks for d=0..150: word, multiplier, valuations, disjoint orbits. Rising integer progressions for d=9..13."
+   },
+   {
+    "claim": "Corollary: no generalized certificate for mb_s3_27; system OPEN",
+    "verdict": "CONFIRMED",
+    "detail": "The Theorem N transfer is valid for finite or countable covers and under either reading of 'almost all'. The system is correctly left open."
+   },
+   {
+    "claim": "No open census entry settled; open unit table maps all type (c); nothing touches 3x+1",
+    "verdict": "CONFIRMED",
+    "detail": "No type-(c) system is claimed settled. 3x+1, 3x-1, 5x+1, 7x+1 and 3x+5 are type (c) at levels 1..10 with exact expanding walks."
+   },
+   {
+    "claim": "REFEREE1 items honestly resolved",
+    "verdict": "CONFIRMED",
+    "detail": "Items 15, 10, 11, 4, 3(i), 3(ii), edit 5 and the nits were all addressed, and the fixes were verified independently. The repair changed no counts or proof objects."
+   },
+   {
+    "claim": "Honesty, coverage and novelty statements",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Four minor wording or number edits (listed in REFEREE2.md) plus one nit. Literature novelty is honestly marked as unchecked. External theorems (Kingman, Collatz-Wielandt) are named and stated correctly."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "Second referee pass for round6/typeb_wide. The repair after REFEREE1 is honest and complete: the WRONG sentence in section 4 is withdrawn and the implication is marked OPEN, P8 is attributed to round3 Corollary F1, and the coverage row is fixed. The z3 completeness gap is closed with SC=2^22, which I confirmed with my own recomputation of the bound. The {63,62} identification is now exact; I strengthened it to a slice-by-slice match with the C scan in all 4096 slices. Every PROVED theorem re-derives: Theorem H and its verifier, the counter potential, Propositions M and K, P8, Theorem Y and its corollary, and G1. Every recount and sampled proof object matched, including brute force over n <= 10^6 for the named systems. No open census entry is settled, and the folder claims none. Remaining issues are all minor: x* for 7x+1 and 9x+1 is quoted as -2/5 and -2/7 instead of -1/5 and -1/7; results row 47 says 'par_*' where only five maps were run two-class; SPL m=5 was run by z3 only for d=1 (d=3,5 follow from Proposition K); the 5x+1 relative is attributed to check_examples.py but is not in it; and check_gap.py compares t >= theta_C in floats. All prover checks and referee1_check.py exit 0. My independent script /home/riv/Code/collatz/census/round6/typeb_wide/referee2_check.py exits 0 (ALL PASS, about 50 s) and can fail, as a mutation test showed. Report: /home/riv/Code/collatz/census/round6/typeb_wide/REFEREE2.md."
+ },
+ "apply:countlaw_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/countlaw_wide/",
+  "newly_settled": [],
+  "theorems": [
+   {
+    "name": "Theorem R_G (reduction, general)",
+    "statement": "For any unit-multiplier p-adic table map with multipliers powers of g: N(p^m,m+j) lies between sums over alive depth-(m+j-K) nodes of min_B and max_B #{t<p^{K-j}: g^A t+B in S}, where S (continuation set) and A are in-horizon data, and the sum of means is exactly p^m P(m+j).",
+    "status": "PROVED; checked against brute force in 1452 cases and node by node on 582 nodes; reproduces round-5 microrange numbers for 3x+1",
+    "proof_file": "THEORY.md §1",
+    "check_file": "check_all.py part 3",
+    "novelty": "generalises round-5 Theorem R (3x+d) and fourier Lemma T"
+   },
+   {
+    "name": "Lemma F_G",
+    "statement": "For u uniform on <g mod p^K>: E max_B |Phi-Phibar| <= iota (p/(p-1))(1+K ln p) sqrt(|S|(1-|S|/p^K)), iota = index of closure of <g> in Z_p^*.",
+    "status": "PROVED",
+    "proof_file": "THEORY.md §2",
+    "check_file": "check_all.py part 4"
+   },
+   {
+    "name": "Lemma P_G",
+    "statement": "Under a checked condition (P) on the 'bad' automaton states (acyclic or strictly contracting cycles), every nonempty continuation set has >= p^{h0 K - O(1)} elements, h0 from an exact supermultiplicative count.",
+    "status": "PROVED",
+    "proof_file": "THEORY.md §3",
+    "check_file": "check_all.py part 5"
+   },
+   {
+    "name": "Theorem G1 (one-ended count law, general)",
+    "statement": "Under (SG) single generator, (F) finite chains, (P): for all but M^{1-eta/2} of m in [M,2M), |N(p^m,b)/(p^m P(b))-1| <= M^{-eta/3} for all b <= m + (h_*/2 - eta) log_p M. No drift hypothesis.",
+    "status": "PROVED",
+    "proof_file": "THEORY.md §4"
+   },
+   {
+    "name": "Corollary G1' + Lemma X (exact survival test)",
+    "statement": "Same count for actual survival T^i(n)>=n on octaves [p^{m-1},p^m), with O(log M) extra exceptional octaves; elementary proof via |g^A-p^E|>=1. Computed exactly: for 18<=m<=3000 no exceptional octave for any of 23 systems.",
+    "status": "PROVED",
+    "proof_file": "THEORY.md §4",
+    "check_file": "check_all.py part 7"
+   },
+   {
+    "name": "Theorem G2 (two-ended)",
+    "statement": "Depth m + (c2-eta) log_p M with c2 = min(1, h_*/2 + H_2/(2 alpha log_p g)), H_2 the Renyi-2 rate of the tilted measure, alpha the max g-factors per digit.",
+    "status": "PROVED for split5_3 (formula reproduces 0.459918 of split5_3_s27.md); CONDITIONAL on ballot hypothesis (B2) for every other system; (B2) EVIDENCE only",
+    "proof_file": "THEORY.md §5",
+    "check_file": "evidence_b2.py"
+   },
+   {
+    "name": "Theorem U'_G (every octave, exact constants)",
+    "statement": "For every b >= L, |N(p^{b-m},b)/(p^{b-m}P(b))-1| <= D'_{L,m}, exact rationals computed for 19 systems (e.g. split5_1 89/569 at m=1, m3_g 139/768, sf3_357 9/41, K7 19/52 at L=16).",
+    "status": "PROVED (exact); reproduces round-5 fourier constants for 3x+1, K7, split5_3 exactly",
+    "proof_file": "THEORY.md §6",
+    "check_file": "check_all.py part 8, everyoct.py"
+   },
+   {
+    "name": "Theorem C_G (certified counts)",
+    "statement": "N(p^m,m+j) certified for m=100,1000, j=1..10: K7 within 1.1% for j<=7, 4.3% at j=10 (m=1000); m3_b within 0.7% j<=7, 5.2% at j=10; split5_3 within 1.2% j<=3, 27% at j=10.",
+    "status": "PROVED (exact integer computation)",
+    "check_file": "cert.py, data/log_cert28_*.txt, data/log_cert17_m3_b_*.txt"
+   }
+  ],
+  "coverage": "Constants (h with proved enclosure h0<=h_*<=h<=h_up, iota, alpha, H_2, c1, c2, critical C*=1/(1-h), Pot, condition (P)) for 23 named systems: 3x+1/3x-1/3x+5/5x+1, K7 and all 8 S-family cores (n-form), split5_1, split5_3, desc_split7_1, desc_s32_plus9, m3_b, m3_d, m3_g, m3_e, desc_m3_4n5, perm_1932. hyp_scan.py classified every map in census/systems.py and round2 descent/rewriting (~75): SG holds for 3x+d, 5x+d, 7x+d, 9x+1, split, m3, desc, mahler and 7 permutations. It fails for mixed-prime maps (div23_*, div235, farkas, farkas5m), for non-unit parity maps (2n+1, 4n+2, 6n+2/3, 10n+2, suffix permutations), for the trivial group (n+1, n+5, m3_f, perm_flip), and for infinite chains (3n+2, 3n+4, 5n+2, div3_2n, div2_3n). For settled descent systems (split_d, splitB, m3_a/c, desc_s8_35, desc_s32_max/d65) the count law is trivial (R_b empty). For expanding maps and permutations it holds with h=1 and says nothing. Certified tables: K7, split5_3, m3_b. U' constants: 19 systems. h matches round-3 density theta* for all 8 common systems. Settled: nothing.",
+  "blocking_points": "(1) The two-ended theorem needs uniform ballot asymptotics |S_n(sigma,L)| ~ L^theta rho*^n n^{-3/2} (B2). This is proved only for split5_3; the crude Chernoff and Raney bounds lose polynomial factors in the depth D ~ M, which is fatal. (2) Every-octave control with error tending to 0 needs bounds for the specific multipliers g^A rather than their average (the round-5 O2 problem, now for every system). (3) All results reach depth (1+o(1)) log_p X. GLOBAL needs C* log_p X with C* from 1.56 (sf3_135) to 1906 (m3_g). (4) Mixed-prime maps have no node-state reduction (Lemma T fails).",
+  "summary": "No system was settled. The count law beyond the digit horizon now has one general theorem, G1, proved for every unit-multiplier p-adic table map whose multipliers are powers of a single g. The hypotheses are checkable: finite decided chains, and a rescue condition (P) on bad automaton states, which holds for all 23 systems studied. G1 holds in almost every octave up to depth log_p X + (h_*/2) log_p log_p X, and Lemma X carries it to actual stopping counts with an elementary exact survival test. Ported tools: Theorem R_G (bracket), Lemma F_G (index iota of <g> in Z_p^*), Lemma P_G (lower bound on continuation sets), Theorem U'_G (every-octave exact constants) and certified counts C_G for K7, split5_3 and m3_b at m=100 and 1000, j<=10. The two-ended theorem G2 has an explicit general constant c2 = h_*/2 + H_2/(2 alpha log_p g). It reproduces split5_3's 0.459918 exactly and is proved there; elsewhere it is conditional on a ballot hypothesis with numerical evidence. Independent checks agree with earlier rounds: microrange (3x+1 m=1000, K=24), fourier U' (3x+1 L=14; K7 and split5_3 L=16), and round-3 density exponents. Critical constants C* = 1/(1-h) for the open contracting systems run from 1.56 (sf3_135) and 1.75 (sf3_13) to 28.4 (m3_b, m3_d) and 1906 (m3_g); none of the theorems reaches them. All checks in check_all.py pass (parts 1-8, run in four batches). Key files: /home/riv/Code/collatz/census/round6/countlaw_wide/README.md and THEORY.md. Not refereed."
+ },
+ "referee:countlaw_wide": {
+  "verdicts": [
+   {
+    "claim": "Lemma T_G / Theorem R_G (reduction bracket)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. My own 44 random brute-force cases on 11 systems pass, including the node-by-node Lemma T_G and the g^(A+1) mutation test. My grouped brackets match the prover's bracket and bracket_fast exactly as integers. Unit multipliers cause no problem. No conflict with round 5's 3^A d^{-1} multiplier: that comes from different coordinates."
+   },
+   {
+    "claim": "Lemma F_G and iota values",
+    "verdict": "CONFIRMED",
+    "detail": "Proof steps check. The iota closed forms are verified for L<=24 (p=2) and L<=14 (p=3). Exact random tests give a largest ratio of 0.10. Nit: m3_e has iota=2, which the README list does not mention."
+   },
+   {
+    "claim": "Lemma P_G under (P)",
+    "verdict": "CONFIRMED",
+    "detail": "Supermultiplicativity and the cycle-deletion rescue are correct. My G at K0=24 equals the prover's. The bound only takes effect for K >= K1: at small K, m_GG can be 0 (sf3_13, K<=10). Suggest stating K1."
+   },
+   {
+    "claim": "Theorem G1 one-ended count law",
+    "verdict": "CONFIRMED",
+    "detail": "Types, the Delta formula, Markov, the octave counting and the exponent all re-derived; the type structure was tested numerically. The gcd(a_r)=1 hypothesis is unused. Wording fix: 'fully proved in that generality' needs to add 'under (F),(P)'."
+   },
+   {
+    "claim": "Corollary G1' (actual octave counts)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Applying G1 at m-1 overshoots that octave's depth range by one digit. Fix: shrink eta (exceptional set M^{1-eta/4}) or restate the depth range. Cosmetic."
+   },
+   {
+    "claim": "Lemma X and exceptional octaves (none for 18<=m<=3000)",
+    "verdict": "CONFIRMED",
+    "detail": "Proof correct. My own exact scan uses the constant 3 and a rigorous log bound; it flags no octave in [18,3000] for any of the 23 systems. Whole-octave brute force at m=18/11 shows no slope/actual disagreements."
+   },
+   {
+    "claim": "Theorem G2 general (conditional on B2)",
+    "verdict": "CONFIRMED",
+    "detail": "A faithful conditional sketch of s27's argument. Nit: k is used both as the table exponent and as the terminal length in section 5. Erdos-Turan is quoted from memory but in the correct form."
+   },
+   {
+    "claim": "G2 PROVED for split5_3 (c2=0.459918)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The constant matches s27's closed form to 1e-8. But the theorem is s27's, stated for a different object: shifted y=n+3, (z,s) bit coding, halving clock, actual octave counts. The transfer of s27's weight and terminal bounds to this automaton is not written out. Fix: relabel as imported from split5_3_s27.md, or write the translation."
+   },
+   {
+    "claim": "B2 evidence",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The numbers reproduce, but the evidence is weak in three cases. m3_g's ratio rises monotonically (local exponent 0.85, not 1.5). sf3_13 and sf3_135 oscillate strongly. The README should say the data are inconclusive for these."
+   },
+   {
+    "claim": "h, h_up, h0, alpha, H2, c2, C* table",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed independently for all 23 systems: h to <2e-6; alpha exact; c2 to 1e-5."
+   },
+   {
+    "claim": "h_* = h for single-state systems and split5_3",
+    "verdict": "CONFIRMED",
+    "detail": "The Raney/types sketch is adequate and the buffer words are checked exactly. For split5_3 the result is imported from s27, and (Pot) also covers it."
+   },
+   {
+    "claim": "C_G certified tables",
+    "verdict": "CONFIRMED",
+    "detail": "The code agrees with my implementation at small K, and the README entries match the data files. I reproduced the round-5 3x+1 K=24 numbers with the prover's code, but no script in the folder does this (nit)."
+   },
+   {
+    "claim": "U'_G every-octave constants",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed exactly with my own code; identical for m3_b, desc_m3_4n5, m3_g (L=9) and 3x+1, split5_3, K7 (L=14). The theorem also checks against brute force for m3_b at L=6."
+   },
+   {
+    "claim": "Hypothesis scan / coverage",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Spot checks agree. Wording fixes: 'R_b empty from b=1 to 30' should read 'empty for b>=b0', with b0 between 1 and 30. This is a slope certificate only, valid for large n. The (F)-failure condition is a cycle of classes, not necessarily a single class. 'Least extrapolation anywhere in the census' holds only within the table."
+   },
+   {
+    "claim": "GLOBAL: nothing settled",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "Correct: nothing is settled, and the argument applies equally to 3x+1 and its siblings. But 'GLOBAL needs control out to C* log X' and 'needs at least that no start survives C* log X' are backwards. Conjecture E would be a sufficient route, not a necessary one. Rephrase."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "No mathematical error found. The prover's check_all.py passes, and so does my independent referee1_check.py (sections A-H and Z, all 23 systems). No system is claimed settled, and none is. Fixes needed: (1) relabel G2 for split5_3 as imported from s27, since the coding transfer is unwritten; (2) the GLOBAL 'needs C* log X' wording is backwards; (3) say the B2 evidence is weak for m3_g, sf3_13 and sf3_135; (4) eta bookkeeping in G1'; (5) minor scan and coverage wording. Report: /home/riv/Code/collatz/census/round6/countlaw_wide/REFEREE1.md"
+ },
+ "repair:chain_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/chain_wide/",
+  "newly_settled": [],
+  "theorems": [
+   {
+    "name": "Theorems 1-2 (occupation bound with optimal moment exponent)",
+    "statement": "For a single-prime table map with unit multipliers, finite state graph and certified negative drift (N), a non-eventually-periodic orbit has V(X) <= W p^theta X^theta + s ceil(log_p X) E updates below X, for every certified theta, so X^{theta*+o(1)}; with (P) = all v_r >= 0 and (R), raw times at most R V(X/c_raw).",
+    "status": "PROVED (unchanged; Thm 2 typo /s fixed; (P) restated as all v_r >= 0; units now stated as needed)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked (compared only with Lagarias 1985 (2.32))"
+   },
+   {
+    "name": "Theorem 3 (multiplier bound)",
+    "statement": "E <= g' W p^theta S1/(1 - g' s S2) with g' = g under (P) and g' = 2g for signed maps. So 1 <= x_t/(x_0 P_t) < e^{E*} at raw times under (P). For signed maps the two-sided bound holds at updates, and at raw times under the new hypothesis (S1): at most one raw step with v != 0 per edge.",
+    "status": "PROVED; the signed constants have been recomputed (they were 1e-9 too small); signed raw-time claim now conditional on (S1), which holds for 3x-1 and m3_b",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_revision.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Theorem 4 (chain of permanent survivors) and Corollary 5 (window criterion)",
+    "statement": "On an escaping orbit under (N),(P),(R), the successive last multiplier minima are in N^mult, linked with ratio in (1, rho], with a strip and forced classes, and at least A(B) = max{k: rho^k < 2^B} lie in every late B-octave window. Corollary 5: fewer than A(B) finite-depth survivors in infinitely many windows implies every orbit is eventually periodic (vacuous if A(B) = 0).",
+    "status": "PROVED (wording fixed: 'edges with F != 1' in (b),(d); survivor mass is an upper bound; 'survive' means >= 1 at raw steps)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_chain.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Proposition 7 (conditional chain for expanding maps)",
+    "statement": "Under (P),(R) and sum 1/x_t < infinity, all conclusions of Thm 4 hold on a non-periodic orbit. Without (R), only the update-time conclusions hold. 5x+1 and 7x+1 satisfy (R). Core W does NOT: there is a raw drop 263 -> 223 with raw multiplier 27/32 on the orbit of 15.",
+    "status": "PROVED; the earlier application of the full statement to core W is WITHDRAWN and replaced by the update-time version",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/chain_wide/check_revision.py",
+    "novelty": "not checked"
+   },
+   {
+    "name": "Proposition 5.1",
+    "statement": "With all v_r >= 0: N^mult is empty iff every orbit is eventually periodic; otherwise at least A(B) members in every late window.",
+    "status": "PROVED, relabelled as nearly tautological (no longer called the main new point)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/chain_wide/THEORY.md",
+    "novelty": "not checked"
+   }
+  ],
+  "coverage": "Named systems: 23 contracting (3x+d for 8 values of d, K7 and 6 cores, split5_1, split5_3, m3_b, m3_d, m3_g, desc_split7_1, desc_m3_4n5, desc_s32_plus9), plus 3 expanding maps (5x+1, 7x+1, core W). Families: 709 maps (S3 16, S4 256, split 32, m3 405). After the revision, 343 of them carry a certified negative drift, up from 240: 103 strongly contracting members had been dropped and are now certified with gamma = 1, theta = 0. 63 of the 343 have no expanding edge, so their chain is empty and the theorems hold vacuously (these maps are trivially type (a)). 35 S4 members fail (R), so for them only the update-time conclusions hold. Every family member without a certificate has positive drift (96) or a state-graph error (270, all in m3). The lens settles no census system; every statement is either conditional on escape or a bound on an escaping orbit.",
+  "blocking_points": "The window criterion needs the count law at depth factor C* = 1/(1-theta*). That is 19.98 for 3x+d, 2.38 for split5_3, 3.98 for K7 and 1907 for m3_g, while the proved results reach depth factor 1, and only for a density-one set of octaves. For an escaping orbit, the occupation lower bound (about log X) and upper bound (about X^theta) do not meet. There is no useful mirror for expanding maps. Mixed-prime maps are not covered. Barina's 2^68 range is quoted from memory. I re-ran the referee's script after the repairs but could not finish it: its A_of(F,B) loops forever for F = 1, the revised family data now contains certified members with rho = 1, and the run was stopped after about 50 minutes, so its last three family checks did not run. check_revision.py [R4] covers the coverage statement they test. I did not edit the referee's script.",
+  "summary": "I repaired every REFEREE1 item in /home/riv/Code/collatz/census/round6/chain_wide/.\n(1) Signed E* had used g instead of g' = 2g in the self-consistency denominator, so the 3x-1 and m3_b values were about 1e-9 below the proved bound. The fix is in chainlib.multiplier_E (factor=2). Recomputed values: 3x-1 24.0788944447, m3_b 50.7372625433. Both are now at or above an independent 50-digit evaluation, and a check confirms the old values fail. The signed raw-time claims now need a new hypothesis (S1), at most one nonzero-constant raw step per edge. It is checked for both signed systems, with an exact raw-Z test and a negative control.\n(2) Core W fails (R). The claim that applied Prop. 7 to it is withdrawn, Prop. 7 now has an update-time version, and the raw drop 263 -> 223 (multiplier 27/32) is checked.\n(3) The families coverage sentence was false. The gamma > 1 certificates are now clipped to gamma = 1 with an exact re-check, giving 343 certified members (was 240), and every member without a certificate has positive drift or a graph error. While re-running this I found that chain_table.kstar looped forever on maps with no expanding edge, and fixed it.\n(4) Hypothesis (P) is now stated as all v_r >= 0, which is what the raw-time steps use; it is checked for every system called (P).\n(5) Wording fixes: units are needed; the Thm 2 typo /s; 'edges with F != 1'; survivor mass is an upper bound; 'survive' means >= 1; the A(B) = 0 case is vacuous; Prop. 5.1 is toned down; the headline hypotheses are added; the split5_3 figure is unified.\nTHEORY.md section 8 and the README section 'Revision after REFEREE1' document all changes. check_chain.py and the new check_revision.py both exit 0, with outputs in data/. The referee's script, re-run after the repairs, gives 265 PASS; its two remaining FAILs encode the withdrawn claims, and its last three family checks did not run (see blocking_points). No headline result changes, and nothing in the census is settled."
+ },
+ "repair:countlaw_wide": {
+  "folder": "/home/riv/Code/collatz/census/round6/countlaw_wide/",
+  "newly_settled": [],
+  "theorems": [
+   {
+    "name": "G1 (one-ended count law, general table maps)",
+    "statement": "For p-adic table maps whose unit multipliers are powers of one g, satisfying (F) and the per-system check (P): for all but M^{1-eta/2} of m in [M,2M), |N(p^m,b)/p^mP(b) - 1| <= M^{-eta/3} for every b <= m + (h_*/2 - eta) log_p M.",
+    "status": "PROVED (wording fixed: for (SG) maps with (F) and (P); (P) is checked for all 23 systems)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/countlaw_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/countlaw_wide/check_all.py",
+    "novelty": "port of round-5 microrange/s27 one-ended theorem to a class; no literature search"
+   },
+   {
+    "name": "Corollary G1' (octaves, actual survival)",
+    "statement": "Same count for actual stopping on [p^{m-1},p^m) with exceptional set 2M^{1-eta/4}+O(log M) and error O(M^{-eta/6}) (corrected from M^{1-eta/2}, M^{-eta/3}; G1 applied with eta/2 to fix a one-digit overrun at m-1).",
+    "status": "PROVED (revised)",
+    "proof_file": "/home/riv/Code/collatz/census/round6/countlaw_wide/THEORY.md",
+    "check_file": "/home/riv/Code/collatz/census/round6/countlaw_wide/check_all.py"
+   },
+   {
+    "name": "G2 (two-ended count law)",
+    "statement": "Depth m + (c_2 - eta) log_p M with c_2 = min(1, h_*/2 + H_2/(2 alpha log_p g)).",
+    "status": "Conditional sketch on (B2) for every system. For split5_3: PROVED in split5_3_s27.md in that file's coding, constant 0.459918 reproduced; the translation to the present coding is not written out. The earlier claim 'PROVED for split5_3 here' is withdrawn.",
+    "proof_file": "/home/riv/Code/collatz/census/round6/countlaw_wide/THEORY.md"
+   },
+   {
+    "name": "R_G, F_G, P_G, Lemma X, C_G tables, U'_G constants",
+    "statement": "Reduction bracket, averaged discrepancy, continuation-set lower bound (K >= K1; K1 can be about 10-15), exact survival test, certified relative errors (K7, split5_3, m3_b at m=100,1000, j<=10), every-octave constants for 19 systems.",
+    "status": "PROVED / exact; unchanged by the referee",
+    "check_file": "/home/riv/Code/collatz/census/round6/countlaw_wide/check_all.py"
+   }
+  ],
+  "coverage": "Unchanged from the first version. Constants h, h0, c1, c2 and C* were computed for 23 systems: the controls, the S-cores, split5_1/3, desc_split7_1, desc_s32_plus9, m3_b/d/g, desc_m3_4n5 and the expanding maps. Certified counts were computed for 3 systems and U' constants for 19. The hypothesis scan covers all census maps and lists where the technique fails: mixed primes, non-unit multipliers, the trivial multiplier group, (F) failing, and the trivial descent cases. No system is settled. The method gives nothing about GLOBAL.",
+  "blocking_points": "The ballot hypothesis (B2) is unproved for every system. The data for m3_g, sf3_13 and sf3_135 neither confirm nor refute the exponent 3/2. For split5_3, the transfer of the s27 two-ended proof to the digit-tree coding of n is not written out. Depth beyond (1+o(1)) log_p X is still out of reach; a counting route would need C* = 1/(1-h) times log_p X. The mixed-prime maps have no node-state reduction.",
+  "summary": "I repaired every REFEREE1 item. The referee found no mathematical error. Changes:\n(1) G1 is now stated for (SG) maps with (F) and (P).\n(2) G1' bookkeeping: G1 is applied with eta/2, so the exceptions become 2M^{1-eta/4}+O(log M) and the error O(M^{-eta/6}). The statement and proof are rewritten.\n(3) Lemma P_G: added a note that K1 can be about 10 to 15.\n(4) G2 'PROVED for split5_3' is withdrawn as stated. It is now labelled PROVED in s27 in its own coding, with the constant reproduced and the translation not written out. Lemma B1 is corrected.\n(5) The (B2) evidence is marked weak for m3_g, sf3_13 and sf3_135.\n(6) The terminal length in section 5 is renamed l, so k means only the table exponent.\n(7) 'GLOBAL needs control to C* log X' is withdrawn as backwards and replaced by a sufficient-route statement.\n(8) The hypothesis-scan wording now gives the exact first-empty depths and calls them slope certificates that allow extra cycles among small n.\n(9) 'Least extrapolation anywhere in the census' is now limited to the table.\n(10) The (F) failure condition is now a cycle of division-free decided steps.\n(11) The iota list now includes g=7 mod 3^k.\n(12) Added check_all.py part 9, which reproduces the round-5 3x+1 certificates (m=1000, K=24, j=1..8) exactly.\nREADME has a 'Revision after REFEREE1' section and THEORY.md has section 8, with edits marked [Rev]. The full check_all.py passes (exit 0); the log is /home/riv/Code/collatz/census/round6/countlaw_wide/data/log_check_rev1.txt. No system is settled."
+ },
+ "referee2:chain_wide": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 repairs (signed E*, (S1), core W, families 343, wording)",
+    "verdict": "CONFIRMED",
+    "detail": "All were resolved honestly. My own rigorous E* values are at or below the json values (3x-1: 24.07889443 <= 24.07889444; m3_b: 50.73726252 <= 50.73726254). The (S1) counter has a negative control. Core W fails (R), and I found a raw drop on my own segments. Family counts recomputed by my builder: 343 certified, 63 with no expanding edge, 35 (R)-failures, 270 graph errors."
+   },
+   {
+    "claim": "Lemmas 1-4, Theorems 1-2 (occupation bounds)",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived line by line. Lemma 1 was also tested exactly on orbit segments of all 26 systems."
+   },
+   {
+    "claim": "Theorem 3 and every E* in named.json",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed with my own code: verified power bounds, my own graph, and the certificate checked exactly. Every json value is >= mine, within 3e-8 relative. 3x+1: e^E* = 31.693 (2^68) and 1.693e5 (2^32). split5_3: 5.314e-5 at 2^48 and 2.841e-7 at 2^66."
+   },
+   {
+    "claim": "Cor 3.1, Theorem 4 (a)-(e), signed version",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived. Tested on 45-299 links per system on orbit segments in deep survivor classes, with 0 violations of (a), (b) (including the two-slope count), (c) (exact identity and bounds) and (d) (forced residue)."
+   },
+   {
+    "claim": "Cor 5 window criterion",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "A clause added in the repair is false: 'or equivalently every update multiplier over the first b updates is > 1 ... Either set contains every selected start'. For split5_3 and the S-family, the root edge (1,0)->(2,1) is a pure split with F = 1, so every odd start, including every selected start, has root-tree update multiplier P_1 = 1 (referee2_check [J]). With the clause, N_b is empty and the corollary would falsely 'prove' GLOBAL. Fix: delete the clause, or use >= 1."
+   },
+   {
+    "claim": "Prop 5.1, section 5 count-law discussion, Prop 6",
+    "verdict": "CONFIRMED",
+    "detail": "Prop 5.1 is correctly labelled nearly tautological. The quotes of round3 Thm 1/2 and round5 Cor D were read and match."
+   },
+   {
+    "claim": "Prop 7 (conditional chain, core W update-time only)",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The side remark 'Sum 1/x_t < inf is equivalent to sup Z < inf' is proved only in the direction =>. It holds for the three applied maps, whose v=0 steps are all n/2. Fix: say 'implies'."
+   },
+   {
+    "claim": "Named-systems table (theta, W, rho, A(B), k*, forced class, mass, cycles, ranges)",
+    "verdict": "CONFIRMED",
+    "detail": "Everything was recomputed by independent code. My brute force covers all n < 2^28 (2^24 for m3_g), and its cycle minima match the json lists. The prover's verify_range reproduces OK at 2^32 for 3x-1."
+   },
+   {
+    "claim": "Families table / coverage statement",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The counts are confirmed, and a 30-member sample passes the exact certificate and forced-class checks. The README says 'positive drift (97)'; the data have 96."
+   },
+   {
+    "claim": "63 no-expanding-edge family members GLOBAL",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The proof via Cor 3.1 is right, and brute force to 20000 agrees. The label 'trivially type (a)' should read 'GLOBAL by Cor 3.1', since no descent certificate was produced."
+   },
+   {
+    "claim": "Nothing in census settled; novelty and label honesty",
+    "verdict": "CONFIRMED",
+    "detail": "The argument cannot settle 3x+1, because everything is conditional on escape. Barina 2^68 is quoted from memory, as the prover flags. Nits: m3_g 'theta*' should be 'certified theta'; the K7 row's range of constants should run up to e^1.24."
+   }
+  ],
+  "needs_repair": true,
+  "overall": "Second referee pass on round6/chain_wide. The REFEREE1 repairs were made honestly, and every core proof re-derives correctly. My own check script, /home/riv/Code/collatz/census/round6/chain_wide/referee2_check.py, gives 241 PASS and 0 FAIL (output in referee2_check.out). Independent recomputation confirms all named constants, certificates, E*, survivor classes, cycle lists (brute force to 2^28) and family counts. One substantive fix is needed. A clause added to Corollary 5 during the repair ('equivalently every update multiplier > 1') is false: for split5_3 and the S-family, every odd start has root-tree update multiplier exactly 1. Read literally, the clause would make the criterion 'prove' GLOBAL. There are also minor fixes: the Prop 7 'equivalent' should be 'implies', positive drift 97 should be 96, 'type (a)' should be 'GLOBAL by Cor 3.1', and two nits. No census system is settled, and nothing here would settle 3x+1. Report: /home/riv/Code/collatz/census/round6/chain_wide/REFEREE2.md"
+ },
+ "referee2:countlaw_wide": {
+  "verdicts": [
+   {
+    "claim": "REFEREE1 repairs (12 items)",
+    "verdict": "CONFIRMED",
+    "detail": "All 12 items were honestly resolved: G1 wording, G1' eta/2 bookkeeping (I re-checked the depth inequality), K1 note, G2 for split5_3 relabelled as imported from s27, B2 wording, GLOBAL direction, scan depths, 'among the systems in this table', (F) cycle wording, the l/k notation, iota for m3_e, and part 9 added as a round-5 reproduction. The only status change is the announced downgrade of G2 for split5_3."
+   },
+   {
+    "claim": "Lemma T_G / Theorem R_G",
+    "verdict": "CONFIRMED",
+    "detail": "Re-derived: unit multipliers only, e<=s is automatic, u=1 rows and negative v are harmless. My own engine checked 92 random cases on all 23 systems against brute force (bracket and identity), 389 nodes for T_G, and 60 literal checks over all intercepts B. The g^(A+1) mutation was detected. My brackets equal the prover's cert.bracket as integers on 10 cases at m=100."
+   },
+   {
+    "claim": "Lemma F_G and iota values",
+    "verdict": "CONFIRMED",
+    "detail": "The coset argument correctly uses the index of <g>; iota=2 for g=1 mod 3 is used. Orders give iota = 2,2,4 (p=2) and 2,2,1,1 (p=3). Exact enumeration on 28 random sets gives a largest ratio of 0.122."
+   },
+   {
+    "claim": "Lemma P_G and (P) for all 23 systems",
+    "verdict": "CONFIRMED",
+    "detail": "Own computation at K0=40: B is non-empty for exactly 6 systems, matching the prover. Every B state reaches G, the only B-cycles (self-loops of sf3_57 and sf3_357) contract, and m_GG>=1 on [40,80)."
+   },
+   {
+    "claim": "Theorem G1",
+    "verdict": "CONFIRMED",
+    "detail": "Every step re-derived: type count, Delta pattern formula, union over patterns, mu for lambda<1 and >1, constants uniform in the table, exponent 1-7eta/12."
+   },
+   {
+    "claim": "Corollary G1' and Lemma X",
+    "verdict": "CONFIRMED",
+    "detail": "Identity and inequalities checked; H0 holds for all 23. My rigorous exact scan flags no octave 18<=m<=3000 for any system (largest flagged is 16). Slope survival equals actual survival on whole octaves m=18 (p=2, 6 systems) and m=11 (p=3, 3 systems)."
+   },
+   {
+    "claim": "Theorem G2 (conditional sketch on B2); split5_3 imported from s27",
+    "verdict": "CONFIRMED",
+    "detail": "Labelled honestly. The c2 formula reproduces s27's c_*=0.459918. The index of <p> mod g^A is bounded for the g used. Erdos-Turan is flagged as quoted from memory and its form is correct."
+   },
+   {
+    "claim": "(B2) evidence",
+    "verdict": "CONFIRMED",
+    "detail": "Confirmed as EVIDENCE. Nit N2: the upward drift is generic (every system peaks in the last third). Extended to n=3000: 3x+1 levels at about 2.38, K7 in [0.84,1.06], split5_3 oscillates in [0.60,1.07]."
+   },
+   {
+    "claim": "Constants h, H2, alpha, c2, C*",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed from my own transfer matrix for all 23 systems. They agree with data/constants_K1500.txt (h to 2e-6, c2 to 2e-5)."
+   },
+   {
+    "claim": "h_* = h for single-state systems",
+    "verdict": "CONFIRMED",
+    "detail": "The Raney plus types sketch is correct. It upgrades the 3x+1 G1 constant to 0.47498 (see N1)."
+   },
+   {
+    "claim": "h_* = h for split5_3",
+    "verdict": "CONFIRMED_WITH_FIX",
+    "detail": "The text cites s27's continuation-set bound, which is stated in s27's coding (y=n+3). That is the same transfer gap REFEREE1 flagged for G2. Fix: use the file's own (Pot) argument from both states. Potential phi(1,1)-phi(0,0)=-(1/2)log(5/4), labels {1/2, sqrt5/2}, dip 0, buffer words '10' from (0,0) and '0' from (1,1). Verified exactly in referee2_check.py section J. check_all part 6 should check a buffer word from every G-state, not only the root."
+   },
+   {
+    "claim": "C_G certified tables",
+    "verdict": "CONFIRMED",
+    "detail": "All 60 README cells match data/certified_*.txt. The code path matches my independent bracket exactly."
+   },
+   {
+    "claim": "U'_G constants",
+    "verdict": "CONFIRMED",
+    "detail": "Recomputed exactly for m3_d, sf3_357, split5_1 and sf3_13, identical to everyoct.txt. Theorem checked against brute force for K7, split5_3, m3_g and desc_s32_plus9."
+   },
+   {
+    "claim": "Hypothesis scan",
+    "verdict": "CONFIRMED",
+    "detail": "First empty R_b confirmed: 2 for split_7081, split_5, splitB_71; 4 for desc_s8_35; 30 for desc_s32_max and d65; 1 for m3_a and m3_c. Infinite decided chains for 3n+2 and 3n+4."
+   },
+   {
+    "claim": "GLOBAL / nothing settled",
+    "verdict": "CONFIRMED",
+    "detail": "No system is claimed settled, so there is no cycle list to verify. The theorems hold identically for 3x+1, 3x-1 and 3x+5, so they cannot settle 3x+1."
+   },
+   {
+    "claim": "Labels, coverage, novelty",
+    "verdict": "CONFIRMED",
+    "detail": "Nits only. N1: the README presents 0.47498 as round 5's H(lambda)/2, but round 5 proved only 0.4715; this file improves it and should say so. N2: B2 drift is generic. N3: the THEORY header puts Erdos-Turan in 'Section 7' (it is in Section 5) and omits Raney, types and LTE."
+   }
+  ],
+  "needs_repair": false,
+  "overall": "Second referee pass on round6/countlaw_wide. No mathematical error was found, and every REFEREE1 item was honestly resolved. No system is claimed settled, so there is no cycle list to verify and no type-(c) claim to attack. One citation fix: h_*=h for split5_3 currently rests on s27's coding, but the file's own (Pot)/Raney argument works from both states; I verified the potential and buffer words exactly. There are three wording nits, including that the 3x+1 G1 constant 0.47498 improves on round 5's proved 0.4715. The prover's check_all.py passes (exit 0, 12 min). My from-scratch /home/riv/Code/collatz/census/round6/countlaw_wide/referee2_check.py passes in every section (A-K, Z). The report is /home/riv/Code/collatz/census/round6/countlaw_wide/REFEREE2.md."
+ }
+}

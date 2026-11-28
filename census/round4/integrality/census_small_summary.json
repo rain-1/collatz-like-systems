@@ -1,0 +1,403 @@
+{
+ "F2m2": {
+  "counts": {
+   "a": 54,
+   "fails (P)": 86,
+   "c_mixed": 168,
+   "c_exp": 16
+  },
+  "classes": {
+   "LONG": {
+    "count": 72,
+    "sampled": 72,
+    "all_converge": 58,
+    "ncycles_hist": {
+     "1": 36,
+     "2": 21,
+     "3": 13,
+     "4": 2
+    },
+    "worst_exponent": 8.135
+   },
+   "FP(u=3,s=1,neg-int)": {
+    "count": 8,
+    "sampled": 8,
+    "all_converge": 8,
+    "ncycles_hist": {
+     "1": 4,
+     "2": 2,
+     "3": 2
+    },
+    "worst_exponent": 5.434
+   },
+   "FP(u=5,s=2,nonint)": {
+    "count": 19,
+    "sampled": 19,
+    "all_converge": 5,
+    "ncycles_hist": {
+     "1": 7,
+     "2": 6,
+     "3": 4,
+     "4": 2
+    },
+    "worst_exponent": 8.024
+   },
+   "FP(u=5,s=2,neg-int)": {
+    "count": 24,
+    "sampled": 24,
+    "all_converge": 22,
+    "ncycles_hist": {
+     "1": 3,
+     "2": 12,
+     "3": 5,
+     "4": 4
+    },
+    "worst_exponent": 6.387
+   },
+   "FP(u=5,s=2,pos-int)": {
+    "count": 24,
+    "sampled": 24,
+    "all_converge": 22,
+    "ncycles_hist": {
+     "1": 10,
+     "2": 11,
+     "3": 2,
+     "6": 1
+    },
+    "worst_exponent": 5.295
+   },
+   "FP(u=3,s=1,pos-int)": {
+    "count": 11,
+    "sampled": 11,
+    "all_converge": 11,
+    "ncycles_hist": {
+     "1": 3,
+     "2": 3,
+     "3": 5
+    },
+    "worst_exponent": 6.594
+   },
+   "FP(u=3,s=1,pos-int) + FP(u=5,s=2,neg-int)": {
+    "count": 1,
+    "sampled": 1,
+    "all_converge": 1,
+    "ncycles_hist": {
+     "2": 1
+    },
+    "worst_exponent": 6.321
+   },
+   "FP(u=3,s=1,pos-int) + FP(u=5,s=2,pos-int)": {
+    "count": 1,
+    "sampled": 1,
+    "all_converge": 1,
+    "ncycles_hist": {
+     "6": 1
+    },
+    "worst_exponent": 3.855
+   },
+   "FP(u=5,s=2,neg-int) + FP(u=5,s=2,nonint)": {
+    "count": 2,
+    "sampled": 2,
+    "all_converge": 0,
+    "ncycles_hist": {
+     "2": 1,
+     "3": 1
+    },
+    "worst_exponent": 0.0
+   },
+   "FP(u=5,s=2,nonint) + FP(u=5,s=2,pos-int)": {
+    "count": 2,
+    "sampled": 2,
+    "all_converge": 0,
+    "ncycles_hist": {
+     "1": 2
+    },
+    "worst_exponent": 0.0
+   },
+   "FP(u=3,s=1,neg-int) + FP(u=5,s=2,neg-int)": {
+    "count": 1,
+    "sampled": 1,
+    "all_converge": 1,
+    "ncycles_hist": {
+     "3": 1
+    },
+    "worst_exponent": 4.002
+   },
+   "FP(u=5,s=2,neg-int) + FP(u=5,s=2,pos-int)": {
+    "count": 2,
+    "sampled": 2,
+    "all_converge": 2,
+    "ncycles_hist": {
+     "2": 1,
+     "6": 1
+    },
+    "worst_exponent": 1.568
+   },
+   "FP(u=3,s=1,neg-int) + FP(u=5,s=2,pos-int)": {
+    "count": 1,
+    "sampled": 1,
+    "all_converge": 1,
+    "ncycles_hist": {
+     "3": 1
+    },
+    "worst_exponent": 5.224
+   }
+  }
+ },
+ "F2m3": {
+  "counts": {
+   "a": 6612,
+   "c_mixed": 6044,
+   "fails (P)": 8064,
+   "c_exp": 16
+  },
+  "classes": {
+   "LONG": {
+    "count": 3548,
+    "sampled": 150,
+    "all_converge": 144,
+    "ncycles_hist": {
+     "1": 85,
+     "2": 54,
+     "3": 5,
+     "4": 3,
+     "5": 1,
+     "6": 1,
+     "7": 1
+    },
+    "worst_exponent": 4.369
+   },
+   "FP(u=3,s=1,neg-int)": {
+    "count": 920,
+    "sampled": 150,
+    "all_converge": 141,
+    "ncycles_hist": {
+     "1": 129,
+     "2": 11,
+     "3": 4,
+     "4": 5,
+     "6": 1
+    },
+    "worst_exponent": 3.395
+   },
+   "FP(u=3,s=1,pos-int)": {
+    "count": 1448,
+    "sampled": 150,
+    "all_converge": 145,
+    "ncycles_hist": {
+     "1": 106,
+     "2": 32,
+     "3": 9,
+     "5": 2,
+     "7": 1
+    },
+    "worst_exponent": 4.44
+   },
+   "FP(u=3,s=1,neg-int) + FP(u=3,s=1,pos-int)": {
+    "count": 128,
+    "sampled": 128,
+    "all_converge": 115,
+    "ncycles_hist": {
+     "1": 92,
+     "2": 19,
+     "3": 12,
+     "4": 2,
+     "5": 1,
+     "6": 2
+    },
+    "worst_exponent": 3.31
+   }
+  }
+ },
+ "F3m2": {
+  "counts": {
+   "a": 9200,
+   "c_mixed": 16668,
+   "b": 36,
+   "fails (P)": 20736,
+   "c_exp": 16
+  },
+  "classes": {
+   "FP(u=4,s=1,neg-int)": {
+    "count": 4840,
+    "sampled": 150,
+    "all_converge": 149,
+    "ncycles_hist": {
+     "1": 78,
+     "2": 37,
+     "3": 23,
+     "4": 9,
+     "5": 2,
+     "9": 1
+    },
+    "worst_exponent": 2.014
+   },
+   "LONG": {
+    "count": 1600,
+    "sampled": 150,
+    "all_converge": 150,
+    "ncycles_hist": {
+     "1": 99,
+     "2": 43,
+     "3": 6,
+     "5": 1,
+     "6": 1
+    },
+    "worst_exponent": 1.806
+   },
+   "FP(u=4,s=1,pos-int)": {
+    "count": 7254,
+    "sampled": 150,
+    "all_converge": 148,
+    "ncycles_hist": {
+     "1": 70,
+     "2": 70,
+     "3": 9,
+     "4": 1
+    },
+    "worst_exponent": 1.808
+   },
+   "FP(u=4,s=1,neg-int) + FP(u=4,s=1,pos-int)": {
+    "count": 2974,
+    "sampled": 150,
+    "all_converge": 143,
+    "ncycles_hist": {
+     "1": 51,
+     "2": 56,
+     "3": 27,
+     "4": 14,
+     "5": 1,
+     "7": 1
+    },
+    "worst_exponent": 5.783
+   }
+  }
+ },
+ "F3m2b": {
+  "counts": {
+   "a": 417,
+   "c_mixed": 31225,
+   "fails (P)": 14256,
+   "c_exp": 758
+  },
+  "classes": {
+   "FP(u=4,s=1,neg-int)": {
+    "count": 3113,
+    "sampled": 150,
+    "all_converge": 120,
+    "ncycles_hist": {
+     "0": 1,
+     "1": 74,
+     "2": 52,
+     "3": 14,
+     "4": 6,
+     "5": 3
+    },
+    "worst_exponent": 8.323
+   },
+   "LONG": {
+    "count": 5719,
+    "sampled": 150,
+    "all_converge": 134,
+    "ncycles_hist": {
+     "0": 1,
+     "1": 77,
+     "2": 53,
+     "3": 10,
+     "4": 8,
+     "7": 1
+    },
+    "worst_exponent": 11.779
+   },
+   "FP(u=10,s=2,nonint)": {
+    "count": 8458,
+    "sampled": 150,
+    "all_converge": 97,
+    "ncycles_hist": {
+     "0": 5,
+     "1": 67,
+     "2": 43,
+     "3": 25,
+     "4": 5,
+     "5": 2,
+     "6": 2,
+     "7": 1
+    },
+    "worst_exponent": 13.179
+   },
+   "FP(u=10,s=2,nonint) + FP(u=4,s=1,neg-int)": {
+    "count": 3129,
+    "sampled": 150,
+    "all_converge": 58,
+    "ncycles_hist": {
+     "0": 4,
+     "1": 51,
+     "2": 57,
+     "3": 27,
+     "4": 8,
+     "5": 3
+    },
+    "worst_exponent": 10.892
+   },
+   "FP(u=4,s=1,pos-int)": {
+    "count": 4129,
+    "sampled": 150,
+    "all_converge": 129,
+    "ncycles_hist": {
+     "1": 46,
+     "2": 54,
+     "3": 34,
+     "4": 9,
+     "5": 4,
+     "6": 2,
+     "7": 1
+    },
+    "worst_exponent": 8.396
+   },
+   "FP(u=4,s=1,neg-int) + FP(u=4,s=1,pos-int)": {
+    "count": 2008,
+    "sampled": 150,
+    "all_converge": 118,
+    "ncycles_hist": {
+     "1": 50,
+     "2": 66,
+     "3": 15,
+     "4": 14,
+     "5": 3,
+     "6": 2
+    },
+    "worst_exponent": 13.814
+   },
+   "FP(u=10,s=2,nonint) + FP(u=4,s=1,pos-int)": {
+    "count": 3865,
+    "sampled": 150,
+    "all_converge": 61,
+    "ncycles_hist": {
+     "1": 24,
+     "2": 58,
+     "3": 44,
+     "4": 14,
+     "5": 8,
+     "7": 2
+    },
+    "worst_exponent": 16.342
+   },
+   "FP(u=10,s=2,nonint) + FP(u=4,s=1,neg-int) + FP(u=4,s=1,pos-int)": {
+    "count": 804,
+    "sampled": 150,
+    "all_converge": 63,
+    "ncycles_hist": {
+     "1": 26,
+     "2": 49,
+     "3": 38,
+     "4": 26,
+     "5": 5,
+     "6": 4,
+     "7": 1,
+     "10": 1
+    },
+    "worst_exponent": 10.576
+   }
+  }
+ }
+}
