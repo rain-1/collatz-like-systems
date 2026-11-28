@@ -995,3 +995,73 @@ h\le\log_2 y+O_{B,J}(\delta h)+O_{B,J,\delta}(\log(h+2))
  +O_{B,J}(\rho(h+\log_2 y))+O_{B,J,\delta,\rho}(1).
 $$
 Choosing $\delta$, then $\rho$, then $y$ proves the asserted cutoff. The constants use only a bounded number of phase cuts and pieces, even though their locations, rates and vertical offsets may all change.
+
+**Two rotation phases with a bounded integer relation.** Fable's simultaneous-phase reduction also applies. Suppose the cuts for the bounded offsets and labels are taken in both $\{t-\kappa i\}$ and $\{t'-\omega i\}$, with a fixed bound on their number. If $a\omega+b\kappa+c=0$ for bounded integers with $a\ne0$, choose $q=|a|q'$ where $q'$ minimizes $\|\kappa j\|=:\Delta'$ at its minimizer over $1\le j\le\lfloor Q/|a|\rfloor$. The rotation displacements are at most $|a|\Delta'$ and $|b|\Delta'$. For $b=0$ the second phase is unchanged. Otherwise for $1\le j\le Q/(|ab|)$ its points have separation from the origin at least $\|bj\kappa\|/|a|\ge\Delta'/|a|$. Together with the analogous spacing of the first phase, this leaves boundedly many exceptional indices per cut on a piece of length $O(Q/\delta)$. The original near-critical pairing proof now applies. For rationally independent phases this argument supplies no such uniform bound; the discrepancy calculation in Fable's review is an obstruction to that argument rather than a general impossibility theorem.
+
+## Free exit labels on the near-critical expansion schedule
+
+Fix the schedule $K_i=a-\lfloor\kappa(e-i)\rfloor$ for $1\le i\le e$, with $K_0=0$, $a=\lfloor\kappa e\rfloor+1$, $h_i=2K_i+i$ and $h=h_e=Te+O(1)$. Let $Y_0=y$, let $Y_i$ be the shifted integer after exit $i$, and write $\beta_i=3(1+\epsilon_i)/2$, $\epsilon_i\in\{0,1\}$. Put $P_i=5^{K_i}/2^{h_i}$, with $P_0=1$. Throughout, $1\le P_i\le(5/4)^2$ and $h_v-h_u=T(v-u)+O(1)$ uniformly. Every one of the $2^e$ label words has arbitrarily large positive lifts: enforce $256\mid Y_e$ using the terminal congruence above. An internal exit with constant 3 has even output because expansions follow it. This is Fable's unrestricted-label test case.
+
+### What the two ends determine for arbitrary labels
+
+For a specified word the residue of $y$ modulo $2^h$ is $-\sum_i\beta_i/P_i$. Changing just $\epsilon_i$ changes this residue by a quantity of 2-adic valuation $h_i-1$. Thus the first differing label gives the first differing binary digit of the two residues. In the reverse direction, with $k_i=K_i-K_{i-1}\ge1$ we have
+$$
+2Y_i\equiv3(1+\epsilon_i)\pmod{5^{k_i}},\qquad
+Y_{i-1}=4^{k_i}\frac{2Y_i-3(1+\epsilon_i)}{5^{k_i}} .
+$$
+Already modulo 5 the two choices give distinct residues. The integer $Y_i$ therefore determines the label and predecessor uniquely on this schedule, all the way back to the start. In particular two different starts cannot merge at the same exit index.
+
+**Separation theorem.** Take any two distinct positive integer starts $y,z$ following the schedule, with completely arbitrary labels. Suppose the labels agree on a union of at most $J$ index intervals containing $L$ exits in total. For fixed $J$,
+$$
+\log_2|y-z|\ \ge\ TL-o(e)\qquad(e\to\infty),
+$$
+uniformly in the starts, the locations of the intervals and the labels. In particular, in an octave of width $2^m$ at $h=12m/5+O(1)$, prescribing the labels on such intervals of total halving length at least $(1+\eta)m$ leaves at most one start for all sufficiently large $m$, for every fixed $\eta>0$. Gaps between prescribed intervals may have arbitrary lengths and labels.
+
+**Proof.** Write $D_i=Y_i(y)-Y_i(z)$ and $g_i=\beta_i(y)-\beta_i(z)$. Then
+$$
+D_0+\sum_{i=1}^e g_i/P_i=2^hD_e/5^a,\qquad
+D_i=P_i\left(D_0+\sum_{j\le i}g_j/P_j\right).
+$$
+No $D_i$ is zero by reverse uniqueness. To prove the uniform asymptotic it suffices to consider $L\ge c e$ for fixed $c>0$, since $|D_0|\ge1$. On the longest agreeing interval $[u+1,v]$ we have $2^{h_v-h_u}\mid D_u$, by integrality at $v$ and oddness of the numerator multiplier. Hence $|D_0|\ge 2^{Tc e/J-O(1)}/(5/4)^2-O(e)$. In particular it exceeds the total absolute correction in the first identity. A vanishing subsum cannot contain the leading term.
+
+We may assume $\log_2|D_0|\le 2h$, since otherwise the conclusion already holds. Multiply the identity by $2\cdot5^a$. Group the nonzero correction terms by the at most $J+1$ complementary intervals. For an interval $[p,v]$ its term is $2^{h_p}5^{a-K_v}C$ with integer $C=\sum_{i=p}^v(2g_i)2^{h_i-h_p}5^{K_v-K_i}$. Since $P_v/P_i$ is bounded, $|C|\ll e\,2^{T(v-p)}$. Thus the product of the nonzero cores has at most $T(e-L)+O_J(\log(e+2))$ binary digits up to an additive constant. Delete zero terms and vanishing subsums. The leading term remains and the sum still has 2-adic norm at most $2^{-h}$. After division by its 2-adic norm, the leading term's prime-to-10 part is at most $2|D_0|$. All ordinary term sizes are $2^{O(h)}$. Evertse's inequality, in exactly the integer form used above, gives for every $\rho>0$
+$$
+h\le\log_2|D_0|+T(e-L)+O_J(\log(e+2))+O(\rho h)+O_{J,\rho}(1).
+$$
+Let $e\to\infty$ and then $\rho\downarrow0$. As $h=Te+O(1)$, this proves the assertion. [Evertse, Theorem 2, p. 228](https://www.numdam.org/item/CM_1984__53_2_225_0.pdf)
+
+**A word-count consequence with no independence assumption on the dynamics.** For any $m<h$ there are at most $2^{m/T+O(1)}$ words represented in an ordinary octave of width $2^m$. Indeed only the exits with $h_i-1<m$ affect the low $m$ bits. Their labels specify one residue modulo $2^m$, and the octave supplies just one candidate per residue. Deterministic iteration fixes every subsequent label. For a uniformly chosen label word at $h=12m/5+O(1)$ the probability of a representative there is at most $2^{-7e/12+O(1)}$. This is a bound on a fraction of words; its numerator may still grow exponentially. In particular it does not prove Fable's proposed worst-case coefficient $T/(T-1)$.
+
+For example, use a single infinite fair binary string to supply the first $e$ labels for every $e$, even though the expansion schedule depends on $e$. Let $y_e$ be the least positive lift with $256\mid Y_e$. Then $\log_2 y_e/h\to1$ almost surely. The interval $[1,2^m]$ obeys the same word bound. Taking $m=\lfloor(1-\eta)h\rfloor$ gives probability $O(2^{-\eta e})$, summable in $e$ for each fixed $\eta>0$. The first Borel–Cantelli lemma and $y_e\le2^{h+8}$ give the limit. This argument uses no independence between different depths.
+
+### Complementary labels in two halves
+
+There is a family with choices in both halves of the path for which a uniform cutoff below $12m/5$ can be proved. Let $e=2q$. For $1\le i\le q$, $K_{i+q}-K_i$ takes at most two consecutive values. Choose a most frequent value $k$ and put $v_i=K_{i+q}-K_i-k$ for $0\le i\le q$, using the actual $K_0=0$. Impose the following rule:
+
+* At every $i$ with $v_i=0$, choose either label independently and put its complement at $i+q$.
+* At the other positions take $\epsilon_i=0$, $\epsilon_{i+q}=1$.
+
+**Theorem.** For every $q$ this rule admits at least $2^{q/2}$ different legal words. Uniformly over their positive integer starts,
+$$
+h\le(2+o(1))\log_2 y .
+$$
+Infinitely many $q$ admit the same cutoff with **all $q$ first-half labels free** and the second half their complement, with no exceptions to the freedom in the first half.
+
+**Proof.** Superpose the two actual paths at the same exit index by putting
+$$
+W_i=Y_i+s^{-v_i}Y_{i+q},\qquad s=5/4.
+$$
+The discrepancy $v_i$ is bounded by an absolute constant, including $i=0$. Substitution gives
+$$
+W_i=(P_i/P_{i-1})W_{i-1}+b_i^*,\qquad
+b_i^*=\beta_i+s^{-v_i}\beta_{i+q}.
+$$
+Whenever $v_i=0$ the additive term is $9/2$, independent of the chosen bit. At other indices it is $3/2+3s^{-v_i}$. For $i\ge1$, $v_i$ is a two-valued step function of $\{\kappa(2q-i)\}$ with a bounded number of cuts. Hence the virtual path has the same near-critical slopes, and its additive terms are a step function of that one phase taking values in a fixed finite set of positive rationals.
+
+To apply the whole-prefix argument here, multiply every $W_i$ by a fixed common denominator, so that the heights and corrections are integers. Its proof for a near-critical piece uses only the integral endpoint, the bounded additive terms, and equality of those terms away from phase crossings under translation. All hold for this virtual recurrence, including at a truncation at any exit (successive exit depths here differ by at most eleven). Thus for every fixed $\eta>0$, $h_q\le(1+\eta)\log_2 W_0+O_\eta(1)$ for sufficiently large $W_0$. Explicitly the affine identity to which one applies the pairing argument has left side $W_0+\sum_{i\le q}b_i^*/P_i$ and right side $2^{h_q}W_q/5^{K_q}$, before the fixed denominator is cleared. This application does not require $W_i$ to be a trajectory of the original deterministic map.
+
+Since $Y_q=P_q(y+\sum_{j\le q}\beta_j/P_j)$, we have $W_0\asymp y+q$. Also $h_q=Tq+O(1)$. The inequality first gives $q=O(\log y)$: if $q>y$ it would give $q=O(\log q)$, and otherwise $\log(y+q)\le\log(2y)$. Now $h=2h_q+O(1)$, giving the claimed coefficient. There are at least $q/2$ independent choices by the definition of $k$, and all words have the integer lifts described above.
+
+Finally choose successive record denominators $q$ for $\|q\kappa\|$, which exist indefinitely by irrationality and the pigeonhole principle. Take $k$ nearest to $q\kappa$. The exceptional phase arc has length $\|q\kappa\|$ and contains at most two of the first $q$ phase points by their spacing. Under the all-complement rule, split off each exceptional index as a singleton piece. The same proof applies with uniformly boundedly many pieces, regardless of its chosen label. This gives $2^q$ words at those depths.
+
+A bounded number of intervals of free labels already gave positive-entropy examples via the earlier $7/12$ cover criterion. The construction here allows choices throughout the first half at the record depths and tests their complements throughout the second half. For unrestricted independent choices in **both** halves the virtual additive terms still depend on unknown bits, and the $2\log_2 y$ theorem has not been proved for that family. [Exact checks of residues, reverse decoding and the two-half identity](check_split5_3_free_labels.py)
