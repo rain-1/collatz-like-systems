@@ -562,3 +562,65 @@ For an eventually periodic word whose real series converges, the value is the sa
 **An arithmetic test for some aperiodic words.** If a length-$m$ prefix is shared with a nonpositive rational $N/D$ in lowest terms with $D>0$ odd, then any ordinary positive integer $y$ realizing it must satisfy $2^m\mid Dy-N$. In particular $Dy+|N|\ge2^m$. A word with such completions satisfying $(D+|N|)/2^m\to0$ along a subsequence cannot come from a positive integer.
 
 For example, suppose a word passes the prefix test forever and begins with $WW$ for arbitrarily long blocks $W$ having an even number of zeros. Repeat $W$ periodically instead. If $r=|W|$ and $a$ is half its zero count, its block sends $z$ to $(5^az+B)/2^r$ with $B\ge0$, restores the flag, and has $5^a>2^r$ by the prefix condition and unique factorization. Its 2-adic periodic completion starts at the nonpositive rational $-B/(5^a-2^r)$. Both numerator and denominator are $O((\sqrt5)^r)$: for a one at position $i$ its contribution to $B$ is $3\cdot 2^i 5^{a-a_i}$, and $a-a_i\le(r-i)/2$ since the block's total zero count is even and bit $i$ is a one. Summing the resulting geometric majorant proves the bound. The two paths agree for $2r$ bits, while $(\sqrt5)^r/2^{2r}\to0$. The arithmetic test excludes the original word even when its tail is aperiodic. The prefix inequality by itself does not give such repetitions or sufficiently small rational completions for a general word. This is where the argument stops.
+
+## A restriction on survivors at the two-survivor depth
+
+Let $2^m\le n<2^{m+1}$, $y=n+3$ and $b=\lceil 12m/5\rceil$. A survivor here is a start whose raw orbit has no value below $n$ through the first $b$ halvings. Use its first $b$ parity bits in the $(z,s)$ coding above. A word on an interval has period $d$ if bits at distance $d$ agree whenever both positions lie in that interval. Its length need not be a multiple of $d$.
+
+**Theorem.** Fix a positive integer $R$ and any function $p(b)=o(b)$ taking positive integer values. Along any sequence of survivors with $m\to\infty$, the fraction of bits covered by at most $R$ disjoint intervals of period at most $p(b)$ has upper limit at most
+$$
+ 1-\frac{7}{6\log_2 5}=0.4975440155\ldots .
+$$
+In particular, for all sufficiently large $m$, **zero** survivors at the requested depth have half their bits covered by such intervals. This includes constant expanding stretches and repetitions of short mixed patterns. The result gives no upper bound of two for the complementary class.
+
+**The clock and the affine identity.** Index bit positions from zero. Write $A_j$ for the number of updates $z\mapsto5z/2$ in the first $j$ bits and $P_j=5^{A_j}/2^j$. At index $j$, $2^{s_j}z_j$ is the raw shifted height after $j-s_j$ halvings, at a block boundary. Indeed the first zero with flag zero waits, the next zero with flag one performs two halvings, and a one performs one halving with either flag. Thus a survivor satisfies $z_j\ge y/2$ at all $j\le b$. Iterating the three bit rules gives
+$$
+ z_j=P_j y\prod_{i<j:\,z_i\ {\rm odd}}(1+3/z_i),\qquad
+ P_j\ge \tfrac12\exp(-6b/y)\ge \tfrac13
+$$
+for large $m$. This uses actual survival throughout, including when the flag is one.
+
+For any consecutive block $[u,v)$ of length $\ell$, the affine update is
+$$
+ 2^\ell z_v=5^{A_v-A_u}z_u+C_{u,v},\qquad
+ C_{u,v}=3\sum_{u\le i<v:\,z_i\ {\rm odd}}2^{i-u}5^{A_v-A_{i+1}}.
+$$
+This nonnegative integer is at most $3\sqrt5\,\ell(\sqrt5)^\ell$. In a suffix each pair of zeros accounts for one factor of five, with at most one extra from its entry flag. Therefore $A_v-A_{i+1}\le(v-i)/2$ and each summand has the required bound. In the numerator $2^b z_b$ the block contributes $2^u5^{A_b-A_v}C_{u,v}$ in addition to the propagated starting term $5^{A_b}y$ and the contributions of the other blocks.
+
+**An exact test for the remaining residue classes.** More generally, fix $K>0$ and allow any integer depth $1\le b\le Km$. For all sufficiently large $m$ and every start in the octave, actual survival through $b$ halvings is equivalent to
+$$
+ 5^{A_j}\ge 2^{j-s_j}\quad\text{for every }0\le j\le b+1\text{ with }j-s_j\le b .
+$$
+The possible extra bit matters when the entry flag delays a halving. In a completed expanding block the raw slopes are $5,5/2,5/4$ relative to its input; a partial final expanding block cannot create a first drop. A nonexpanding odd block first adds 3 before its halving. Thus testing the completed bit boundaries detects every first drop of the raw multiplier. It detects every first drop of height as well. If all the tested slopes are at least one, the nonnegative additive corrections guarantee survival.
+
+Conversely, at a boundary with $h=j-s_j\le b$ halvings the raw multiplier is $M=5^{A_j}/2^h$. If $M<1$, Matveev's bound for the fixed rational bases $5,2$ gives $1-M\ge c(1+b)^{-C}$ with absolute constants, since $A_j,h\le b+1$ and the two powers cannot agree here. If $A_j=0$, the gap is at least $1/2$. Under actual survival every preceding raw input is at least $n$. Each odd update with coefficient $a\in\{1,5\}$ contributes a factor $1+3/(ax)\le1+3/n$ relative to its linear part at input $x$. At most $b+1$ such updates precede the boundary since every odd update is followed by a halving. Its height divided by $n$ is therefore at most $M(1+3/n)^{b+1}<1$ for all large $m$, a contradiction. In particular the desired count at $b=\lceil2.4m\rceil$ equals exactly the number of passing word residues modulo $2^{b+1}$ whose shifted representative lies in $[2^m+3,2^{m+1}+3)$. This removes any additive approximation error at the scale of two survivors. [Matveev's theorem](https://www.mathnet.ru/eng/im314)
+
+**Representing a periodic block by two terms.** In each proposed periodic interval with period $d$, take the longest initial segment consisting of whole repetitions of a word of length $2d$. Doubling the period restores the entry flag because this word has an even number of zeros. Discard fewer than $2d$ remaining bits into the unrestricted gaps. Empty periodic segments can be dropped. There are at most $R+1$ gaps of total length $L$, counting the discarded bits. The trimming changes the total coverage by $o(b)$.
+
+One copy of the doubled word induces $z\mapsto\alpha z+\beta$, with $\alpha=5^a/2^{2d}\ne1$, $\beta=C/2^{2d}$, and $C$ as above. Put $c=\beta/(\alpha-1)=C/(5^a-2^{2d})$. Both numerator and denominator in lowest terms have magnitude at most $2^{O(d+1)}$. At the endpoints $u,v$ of the repeated segment,
+$$
+ \frac{z_v}{P_v}-\frac{z_u}{P_u}
+   =c\left(\frac1{P_u}-\frac1{P_v}\right).
+$$
+Consequently the contribution to $2^b z_b$ is a pair of signed terms $c\,2^u5^{A_b-A_u}$ and $-c\,2^v5^{A_b-A_v}$. This holds also when $c=0$, in which case both terms can be omitted.
+
+**The arithmetic estimate.** Write $r(x)=|x|\,|x|_2\,|x|_5$ for the part of a nonzero integer's magnitude coprime to 10, where $|p|_p=1/p$. Evertse's Theorem 2, equation (14), over the rationals with $S=\{\infty,2,5\}$ and $T=\{2\}$ gives the following. For a fixed number of nonzero integer summands $x_i$ with no nonempty vanishing subsum, and each $\epsilon>0$,
+$$
+ \left(\prod_i r(x_i)\right)\left|\sum_i x_i\right|_2
+ \ \ge\ c_\epsilon\max_i |x_i|_2\,(\max_i |x_i|)^{-\epsilon}.
+$$
+The constant also depends on the number of terms. Only boundedly many choices for this number occur below. [Evertse, *On sums of S-units and linear recurrences*, p. 228](https://www.numdam.org/item/CM_1984__53_2_225_0.pdf)
+
+Multiply the block decomposition by a common positive denominator $D$ of the periodic coefficients $c$. Since $R$ is fixed and $d\le p(b)=o(b)$, both $D$ and every $|Dc|+1$ are $2^{o(b)}$. The resulting integer sum equals $D2^bz_b$. Its leading term is $x_0=D5^{A_b}y$. All gap terms are nonnegative. After division by $D5^{A_b}$ the absolute sum of the signed periodic terms is at most $6\sum |c|=2^{o(b)}$, using $P_j\ge1/3$. Since $y\ge2^m$, no vanishing subsum contains $x_0$ for large $m$. Remove zero terms and successively delete any nonempty vanishing subsum until Evertse's hypothesis holds. The sum and its leading term are preserved.
+
+The remaining terms have maximum magnitude at most $2^{O(b)}$, by their displayed formulas and $y<2^{m+1}+3$. Every $r(x_i)$ is at least one, so deletion can only decrease their product. The periodic terms contribute at most $2^{o(b)}$ to that product. The unrestricted terms contribute at most $2^{o(b)}(\sqrt5)^L$, by the bound for $C_{u,v}$ and the fixed number of gaps. The leading term contributes $r(D)r(y)$. On the other hand $|\sum x_i|_2\le |D|_2\,2^{-b}$ and $\max_i|x_i|_2\ge |D|_2|y|_2$. Cancelling $|D|_2$ and using $r(y)/|y|_2=y|y|_5\le y$ yields
+$$
+ b\le\log_2 y+L\log_2\sqrt5+O(\epsilon b)+o(b).
+$$
+The coefficient implicit in $O(\epsilon b)$ comes from the uniform height bound and is independent of $\epsilon$; the fixed Evertse constant contributes $o(b)$ for each $\epsilon$. Divide by $b$, pass to the limit, and let $\epsilon$ decrease to zero. Since $\log_2 y/b\to5/12$, the unrestricted fraction has lower limit at least $7/(6\log_2 5)$. This proves the theorem.
+
+There is a quantitative consequence for the expanding bits themselves. The number of zeros among the first $b$ bits is $2A_b+s_b$. The exact multiplier test gives at least $2b/\log_2 5-O(1)$ zeros. After removing any fixed number of short-period intervals as in the theorem, the lower limit of the fraction of all $b$ positions still occupied by uncovered zeros is at least $2/\log_2 5-(1-7/(6\log_2 5))=0.3638\ldots$. A survivor would therefore need expansions distributed beyond its longest regular stretches.
+
+**What remains.** The real growth condition allows extensive variation. For example, concatenate either of the eleven-bit blocks $0^{10}1$ and $0^9 1 0$ independently. Both restore flag zero, have terminal multiplier $5^5/2^{11}>1$, and maintain raw block-end multiplier at least one at all prefixes. For the second block the only contraction follows four complete expansions, with multiplier $(5/4)^4/2>1$ after the contraction. The intervening raw heights in an expanding or contracting block are at least the smaller endpoint, so each word is a legal survival pattern. Each specifies a residue modulo $2^b$ at length $b$ by the coding bijection.
+
+For $b=11k$ there are $2^k$ of these words. At most $2^{k/2+o(b)}$ of them can have half their bits covered by at most $R$ intervals of period at most $p(b)=o(b)$. Indeed the interval endpoints, periods and period words have only $2^{o(b)}$ choices; the covered intervals determine at least $k/2-2R$ whole eleven-bit blocks. Thus many residue classes pass the multiplier test and escape the periodic-block restriction. Whether more than two surviving residues have representatives $y=n+3$ in the target octave for all sufficiently large $m$ remains undecided. There are arbitrarily large $m$ with $11\mid b$, for instance $m=55j$.

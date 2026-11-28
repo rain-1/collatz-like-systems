@@ -38,6 +38,8 @@ The quantifiers matter. A single crossing measures the linear multiplier and can
 
 The recorded computations certify that every positive $n<2^{66}$ reaches one of the five known cycles. The all-zero prefixes show that the first crossing can come arbitrarily late, so increasing the search depth still leaves infinitely many starts unresolved. [Range certificate and independent checkers](../round2/rewriting/split5_3_s27.md#verification-through-66-bits)
 
+**A restriction at the proposed two-survivor depth.** Set $b=\lceil 2.4m\rceil$. For all sufficiently large $m$, no survivor starting in $[2^m,2^{m+1})$ has half of its first $b$ encoded bits covered by a fixed number of disjoint stretches of sublinear period. The proof bounds the two-adic cancellation in a sum of integers. The number of survivors with more varied bits remains open. [Theorem and proof](../round2/rewriting/split5_3_s27.md#a-restriction-on-survivors-at-the-two-survivor-depth)
+
 ## Original census investigation
 Odd-to-odd map: n = 1 mod 4 -> (5n+3)/2^v with v >= 2 (5n+3 = 0 mod 4); n = 3 mod 4 -> (n+3)/2
 (exactly one halving, since n+3 = 2 mod 4), which decreases n when n > 3.
