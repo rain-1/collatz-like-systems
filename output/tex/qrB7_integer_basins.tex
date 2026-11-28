@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,booktabs}
+\usepackage[hmargin=28mm,top=22mm,bottom=23mm]{geometry}
+\usepackage{xcolor,hyperref}
+\definecolor{ink}{RGB}{22,59,75}
+\hypersetup{colorlinks=true,urlcolor=ink,linkcolor=ink,pdftitle={Five cycles and twenty states for a Collatz-type map on the integers}}
+\newtheorem{theorem}{Theorem}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\B}{\mathcal B}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{2pt}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Five cycles and twenty states for a\\[3pt] Collatz-type map on the integers\par}
+\end{center}
+\medskip
+\noindent
+Define the map $T\colon\Z\to\Z$, denoted \texttt{qrB7\_c53} in the Collatz census, by
+\[
+T(n)=
+\begin{cases}
+ n/2, & n\text{ even},\\
+ (n+35)/2, & n\equiv1\pmod4,\\
+ (n+21)/2, & n\equiv3\pmod4.
+\end{cases}
+\]
+Every integer reaches one of five cycles. We determine the cycle from the binary digits of the starting value, prove that the rule requires exactly twenty states, and compute which basins have a natural density. The proof first traps every orbit in a finite interval. Two identities for odd inputs then turn the basin problem into a finite-state calculation. Choosing the input bits uniformly in that calculation gives the density statements.
+
+\section{The five cycles}
+\begin{theorem}\label{t:cycles}
+Every integer eventually enters exactly one of the following cycles, listed in forward order. Write $L(n)$ for the least element of the cycle reached from $n$.
+\[
+ (0),\quad (1,18,9,22,11,16,8,4,2),\quad (3,12,6),\quad
+ (5,20,10),\quad (7,14).
+\]
+The residues $1,2,4$ modulo $7$ give exactly the basin of $1$. The residues $3,5,6$ split between $3$ and $5$. Positive multiples of $7$ reach $7$, and nonpositive multiples split between $0$ and $7$.
+\end{theorem}
+
+\begin{proof}
+For $n<0$ we have $T(n)>n$, so a negative orbit reaches a nonnegative integer in finitely many steps. For $n>35$ we have $0<T(n)<n$. The interval $I=[0,35]\cap\Z$ is invariant, so every orbit enters $I$.
+
+Substitution verifies the five displayed cycles. For completeness, let $C_0$ be their union, and let $C_j$ consist of the points of $I$ that first reach $C_0$ in $j$ steps. Taking preimages under the three branches gives the remaining layers
+\[
+\begin{array}{ll}
+ C_1=\{15,19,23,24,28,32\}, & C_2=\{13,21,27,29,30,35\},\\
+ C_3=\{25,26\},\quad C_4=\{17,31\}, & C_5=\{34\},\quad C_6=\{33\}.
+\end{array}
+\]
+Together they exhaust $I$. Finally $2T(n)\equiv n\pmod7$, and the orbits of multiplication by $2^{-1}$ modulo $7$ are $\{0\}$, $\{1,2,4\}$ and $\{3,5,6\}$. Comparing with the cycles and observing that positive inputs stay positive proves the residue claims.
+\end{proof}
+For example, $-21\mapsto0$ and $-7\mapsto14$, although both starts are multiples of seven. The next theorem decides both residue-class splits for either sign.
+
+\newpage
+\section{Reading the basin from the binary digits}
+\begin{theorem}
+With digits read least significant first and a terminal sign, exactly twenty states suffice to compute $L$ on $\Z$.
+\end{theorem}
+\begin{proof}
+For every $t\in\Z$ the paths $4t+1\to2t+18\to t+9$ and $4t+3\to2t+12\to t+6$ give
+\[
+ L(2t)=L(t),\qquad L(4t+1)=L(t+9),\qquad L(4t+3)=L(t+6).
+\]
+Represent a state by one of the following functions of the unread integer $t$.
+\[
+ A_j(t)=L(t+j)\ (0\le j\le12),\qquad B_j(t)=L(2(t+j)+1)\ (0\le j\le6).
+\]
+Start at $H=A_0$ with $t=n$. While $t\notin\{0,-1\}$, write $t=2s+b$ with $b\in\{0,1\}$, and read $b$. Write $j+b=2h+e$. Substitution in the three identities gives the new state $H'$ in the table, with $H'(s)=H(t)$.
+\[
+\begin{array}{c|cc}
+ H & e=0 & e=1\\ \hline
+ A_j & A_h & B_h\\
+ B_j & A_{h+9} & A_{h+6}
+\end{array}
+\]
+Replace $t$ by $s=\lfloor t/2\rfloor$ and continue. This signed binary convention terminates at $0$ for nonnegative inputs and at $-1$ for negative inputs. The invariant $H(t)=L(n)$ proves that the indicated output $H(0)$ or $H(-1)$ is correct.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcccc@{\qquad}lcccc@{}}
+\toprule
+$H$ & $H(0)$ & $H(-1)$ & $s_H$ & $w_H$ &
+$H$ & $H(0)$ & $H(-1)$ & $s_H$ & $w_H$\\
+\midrule
+$A_0$ &0&5&11315&0   & $A_{10}$&5&1&13371&258\\
+$A_1$ &1&0&13153&282 & $A_{11}$&1&5&33711&264\\
+$A_2$ &1&1&31537&282 & $A_{12}$&3&1&37113&174\\
+$A_3$ &3&1&15371&312 & $B_0$&1&5&35711&141\\
+$A_4$ &1&3&53711&252 & $B_1$&3&1&57113&297\\
+$A_5$ &5&1&37115&186 & $B_2$&5&3&71131&219\\
+$A_6$ &3&5&71151&438 & $B_3$&7&5&11313&365\\
+$A_7$ &7&3&11513&292 & $B_4$&1&7&13135&163\\
+$A_8$ &1&7&15133&212 & $B_5$&1&1&31357&261\\
+$A_9$ &1&1&51337&114 & $B_6$&3&1&13571&87\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $s_H$ lists $H(1),\dots,H(5)$ as five digits. These and the terminal outputs follow by evaluating the state functions using Theorem~\ref{t:cycles}. The weights $w_H$ will be used in the density proof.
+
+For minimality, exploring the two transitions from $A_0$ in bit order $0,1$ visits the states in the following order of first discovery.
+\[
+\begin{gathered}
+ A_0,B_0,A_9,A_6,B_4,A_5,A_3,B_3,A_{11},A_8,\\
+ B_2,B_1,A_2,A_7,B_5,A_4,A_{10},A_1,A_{12},B_6 .
+\end{gathered}
+\]
+The twenty strings $s_H$ are pairwise distinct. Thus for any two reachable states, appending the binary digits of some $t\in\{1,\ldots,5\}$, followed by the nonnegative terminal sign, gives different outputs. Every correct machine in this input convention must distinguish all twenty states.
+\end{proof}
+
+\newpage
+\section{Which basins have a natural density?}
+For $c\in\{0,1,3,5,7\}$ let $\B_c=\{n\in\Z:L(n)=c\}$. Its positive and negative densities are the limits, as $X\to\infty$, of $|\B_c\cap[1,X]|/X$ and $|\B_c\cap[-X,-1]|/X$, respectively, when they exist.
+
+\begin{theorem}
+The one-sided natural densities are as follows. A dash indicates that the limit does not exist.
+\[
+\begin{array}{lccccc}
+\toprule
+ \text{Cycle minimum} & 0&1&3&5&7\\
+\midrule
+ \text{Positive density} &0&3/7&-&-&1/7\\
+ \text{Negative density} &-&3/7&-&-&-\\
+\bottomrule
+\end{array}
+\]
+\end{theorem}
+
+\begin{proof}
+The specified densities follow from Theorem~\ref{t:cycles}. For the remaining entries fix $t\in\Z$ and choose $n$ uniformly from the block $[t2^k,(t+1)2^k)\cap\Z$. Its low $k$ bits are independent fair bits, and the unread integer after $k$ steps is $t$. Even if the terminal sign could have been read earlier, the identity $H'(s)=H(2s+b)$ still holds. Thus the block fraction reaching $c$ is the probability of ending these $k$ steps in a state $H$ with $H(t)=c$.
+
+The fair bits give a finite Markov chain. The transition table shows that from each state other than $A_0$ one can reach $A_1$ and from $A_1$ one can reach all nineteen of these states. They form a closed class. The self-loop at $A_1$ gives period one. The initial state $A_0$ leaves on the first 1 and cannot be re-entered. The state probabilities therefore converge to the unique stationary distribution. Its value at $H$ is $w_H/4599$, since the weights on the previous page sum to 4599, and summing the incoming weights at each state, counting each bit transition once, gives twice that state's weight.
+
+Consequently the limiting fraction in the block is $\sum_{H:H(t)=c} w_H/4599$. Evaluation at four high parts gives the numerators below.
+\[
+\begin{array}{r|rrrrr}
+ t\ \backslash\ c &0&1&3&5&7\\ \hline
+ 0 &0&1971&1308&663&657\\
+ 4 &0&1971&990&981&657\\
+ -1&282&1971&763&1208&375\\
+ -3&312&1971&715&1256&345
+\end{array}
+\]
+If a basin had density $d$ on one half-line, its count there up to magnitude $X$ would be $dX+o(X)$. Taking the difference at the ends of a fixed-$t$ block on that side would give $d2^k+o(2^k)$. Comparing $t=0$ with $4$, and $t=-1$ with $-3$, proves every claimed failure of density.
+\end{proof}
+
+\paragraph{Consequence for other bases.}
+Grouping bits gives a classifier in every base $2^a$ with $a\ge1$. For sign-and-magnitude input, the negative binary expansion is obtained by complementing the magnitude bits and adding one with carry. Conversely, a classifier in a base multiplicatively independent of 2 would recognize the positive basin of 3 in both bases. Cobham's theorem would make that basin ultimately periodic, hence of natural density, contradicting the table. These powers of two are therefore exactly the integer bases admitting a finite-state classifier.\footnote{A. Cobham, \href{https://doi.org/10.1007/BF01746527}{On the base-dependence of sets of numbers recognizable by finite automata}, \emph{Math. Systems Theory} \textbf{3} (1969), 186--192.}
+
+\end{document}
