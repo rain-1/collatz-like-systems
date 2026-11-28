@@ -1,7 +1,82 @@
-# qrB7_c53: two cycles in one coset; no congruence rule exists; a 20-state binary automaton decides the basin
+# Complete orbit and basin classification for qrB7_c53 on the integers
 
 Rule: n even -> n/2; n = 1 mod 4 -> (n + 35)/2; n = 3 mod 4 -> (n + 21)/2.
 This is family B, T(n) = (n + q*c_{n mod 4})/2, with q = 7 and (c_0, c_1, c_2, c_3) = (0, 5, 0, 3).
+
+## Classification on all integers
+
+**Theorem.** Every integer reaches exactly one of the following five cycles. Write $L(n)$ for the minimum of the cycle reached from $n$.
+
+| $L(n)$ | Cycle in forward order | Which starts can reach it |
+|---:|---|---|
+| 0 | $(0)$ | Zero and some negative multiples of 7 |
+| 1 | $(1,18,9,22,11,16,8,4,2)$ | Exactly $n\equiv1,2,4\pmod7$, of either sign |
+| 3 | $(3,12,6)$ | Part of $n\equiv3,5,6\pmod7$, of either sign |
+| 5 | $(5,20,10)$ | The rest of $n\equiv3,5,6\pmod7$, of either sign |
+| 7 | $(7,14)$ | Every positive multiple of 7 and the remaining negative multiples of 7 |
+
+The following binary rule decides **every** split in the table. For example $-21,-3,-9,-1,-7$ reach the cycles labelled $0,1,3,5,7$, respectively. Run the classifier with signed arguments, or omit the arguments to verify the theorem's finite calculations. [Classifier and exact checks](check_qrB7_signed.py)
+
+**Why the list is exhaustive.** For $n<0$, $n<T(n)$, so after finitely many steps the orbit becomes nonnegative. For $n>35$, $0<T(n)<n$. The interval $[0,35]$ is forward invariant, and its cycle enumeration gives the five rows above. Every branch satisfies $2T(n)\equiv n\pmod7$. Multiplication by $2^{-1}$ partitions the residues into $\{0\},\{1,2,4\},\{3,5,6\}$. Positive integers stay positive. This proves all the residue and sign restrictions.
+
+### A single binary classifier for either sign
+
+Two halving identities account for the small number of states. For **all** integers $t$,
+$$
+L(2t)=L(t),\qquad L(4t+1)=L(t+9),\qquad L(4t+3)=L(t+6).
+$$
+For example $4t+1\to2t+18\to t+9$, and $4t+3\to2t+12\to t+6$.
+
+Start with the unread integer $t=n$ in state $A_0$. Define $A_j(t)=L(t+j)$ and $B_j(t)=L(2(t+j)+1)$. While $t\notin\{0,-1\}$, read its low bit $b=t\bmod2$ and replace $t$ by $\lfloor t/2\rfloor$. With $j+b=2h+e$ and $e\in\{0,1\}$, update the state by this table.
+
+| Current state | $e=0$ | $e=1$ |
+|---|---|---|
+| $A_j$ | $A_h$ | $B_h$ |
+| $B_j$ | $A_{h+9}$ | $A_{h+6}$ |
+
+Reading $b$ replaces the function $H$ by $t\mapsto H(2t+b)$. Substitution in the three identities gives exactly the displayed transitions. Thus the current function applied to the unread integer always equals $L(n)$. For a negative input, floor division leaves $-1$ when the finite digits have been consumed. This is the usual sign extension of binary integers.
+
+The reachable states are precisely $A_0,\ldots,A_{12},B_0,\ldots,B_6$. The two rows show closure of this set, and breadth-first traversal from $A_0$ visits all 20. At termination use $z=t+j$ in state $A_j$, or $z=2(t+j)+1$ in state $B_j$. Return the entry for $z$ in this finite table, obtained from the cycles above.
+
+| $z$ | $-1$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| $L(z)$ | 5 | 0 | 1 | 1 | 3 | 1 | 5 | 3 | 7 | 1 | 1 | 5 | 1 | 3 | 3 |
+
+The classifier is minimal for this low-bit-first input convention with a terminal sign. For each reachable state $H$, form $(H(1),H(2),H(3),H(4),H(5))$. Direct evaluation gives 20 distinct tuples, as the checker verifies. Hence any two states can be distinguished by appending the digits of a positive integer from 1 to 5 and terminating with the positive sign. In particular, handling the negative inputs requires no additional states beyond the positive classifier.
+
+### Natural densities of all five basins
+
+On each half-line take cutoffs $1\le n\le X$ or $-X\le n\le-1$, dividing the count by $X$.
+
+| Cycle minimum | Positive starts | Negative starts |
+|---:|---:|---:|
+| 0 | 0 | no density |
+| 1 | $3/7$ | $3/7$ |
+| 3 | no density | no density |
+| 5 | no density | no density |
+| 7 | $1/7$ | no density |
+
+The densities that exist follow at once from the residue and sign rules. For the others, fix an integer $t$ and vary the low $k$ bits uniformly. This enumerates the block $[t2^k,(t+1)2^k)$ exactly, also for $t<0$. Each of the two transitions from a state then has probability $1/2$. If the resulting state is $H$, the output is $H(t)$.
+
+The 19 states other than $A_0$ form a closed communicating class, as traversal of the transition table shows. It is aperiodic since $A_1$ has a self-loop. The initial state $A_0$ is transient since it leaves on a 1 and cannot be re-entered. Thus the state distribution tends to the unique stationary row. In order $A_0,\ldots,A_{12},B_0,\ldots,B_6$, the row has denominator 4599 and numerators
+$$
+(0,282,282,312,252,186,438,292,212,114,258,264,174,141,297,219,365,163,261,87).
+$$
+These sum to 4599, and the incoming weights on the two equally likely transitions give twice the weight at each destination. Summing weights over $H$ with $H(t)$ equal to the specified label gives the following limiting fractions, all in units of $1/4599$.
+
+| Block high part $t$ | 0-basin | 1-basin | 3-basin | 5-basin | 7-basin |
+|---:|---:|---:|---:|---:|---:|
+| 0 | 0 | 1971 | 1308 | 663 | 657 |
+| 4 | 0 | 1971 | 990 | 981 | 657 |
+| $-1$ | 282 | 1971 | 763 | 1208 | 375 |
+| $-3$ | 312 | 1971 | 715 | 1256 | 345 |
+
+If a basin had one-sided density $d$, its count up to $X$ on that side would equal $dX+o(X)$. Subtracting the counts at the two endpoints of any fixed-$t$ block on that side would then give $d2^k+o(2^k)$. The unequal entries between rows 0 and 4, and between rows $-1$ and $-3$, prove each nonexistence claim.
+
+As a consequence the full signed basin function, with sign and magnitude encoded in any integer base $b\ge2$, is finite-state recognizable exactly for powers of two. Binary sign and magnitude can be converted to the convention above by complementing the bits and adding one with a single carry for a negative magnitude (then extending the sign); changing the reading direction preserves regularity. Grouping bits handles powers of two. In a multiplicatively independent base, even recognition of the positive 3-basin would force ultimate periodicity by Cobham's theorem, contradicting its absence of density. [Cobham (1969)](https://research.ibm.com/publications/on-the-base-dependence-of-sets-of-numbers-recognizable-by-finite-automata)
+
+## Earlier classification on the positive integers
+
 Question: BASIN.
 
 | Question | Answer | Status | Tier |
