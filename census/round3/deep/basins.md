@@ -208,3 +208,5 @@ Among the 67 values d < 200 with gcd(d, 6) = 1, 44 have only congruence basins a
 least one shared class. Members with 3 | d are not covered by B2 (the 3-adic step uses 3 ∤ d);
 for them the invariant is not a group orbit (for example SPLIT(3,1,9) sends the class 3Z \ 9Z into
 9Z), and their basins are left open here.
+
+**Subsequent positive-basin classification.** For odd shifts divisible by 3, a tripling block reduces the parameter from $d$ to $d/3$ after rescaling. This yields the cycle list, the binary-automaticity criterion for each basin, and the sharp counting order for cycles outside the full power-of-three divisor. In particular, every $d=3^a$ with $a\ge1$ has exactly two positive cycles. [Proof and binary decision rule](split_three_basins.md) · [Exact checks](check_split_three_basins.py)
